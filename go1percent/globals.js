@@ -4,6 +4,20 @@ module.exports = {
         chromedriver.start();
         done();
     },
+    
+    global: {
+        headers: {
+            'sec-ch-ua': '?0',
+            'LanguageValue' : 'en',
+            'Source': 'https://nashtechglobal.qa.go1percent.com',
+            'Authorization' : '',
+            'User-Agent' : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
+            'Accept' : 'application/json, text/plain, */*',
+            'sec-ch-ua-platform' : '"Linux"',
+            'host' : 'techhub-backend.qa.go1percent.com'
+            },
+            baseURL: "https://techhub-backend.qa.go1percent.com"
+    },
 
     after: function(done) {
         chromedriver.stop();
