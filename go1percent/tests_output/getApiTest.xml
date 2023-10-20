@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="getApiTest"
+    errors="0" failures="0" hostname="" id="" package="getApiTest" skipped="0"
+    tests="1" time="5.468" timestamp="">
+  
+    <testcase name="post api test" classname="getApiTest" time="2.732" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

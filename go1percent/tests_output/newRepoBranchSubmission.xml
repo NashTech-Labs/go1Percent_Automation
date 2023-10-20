@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="newRepoBranchSubmission"
+    errors="0" failures="1" hostname="" id="" package="newRepoBranchSubmission" skipped="0"
+    tests="1" time="0.6470" timestamp="">
+  
+    <testcase name="post api test" classname="newRepoBranchSubmission" time="0.3230" assertions="1">  <failure message="expected 200 &#34;OK&#34;, got 403 &#34;Forbidden&#34;">    at DescribeInstance.&lt;anonymous&gt; (/home/knoldus/Desktop/Go1Percent/go1Percent_Automation/go1percent/test/newRepoBranchSubmission.js:15:10)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

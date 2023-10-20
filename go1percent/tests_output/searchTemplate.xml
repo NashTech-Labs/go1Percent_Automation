@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="searchTemplate"
+    errors="0" failures="0" hostname="" id="" package="searchTemplate" skipped="0"
+    tests="1" time="0.5090" timestamp="">
+  
+    <testcase name="Verify search template" classname="searchTemplate" time="0.2530" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

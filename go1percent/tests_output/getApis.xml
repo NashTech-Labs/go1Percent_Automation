@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="8">
+
+  <testsuite name="getApis"
+    errors="0" failures="0" hostname="" id="" package="getApis" skipped="0"
+    tests="8" time="27.33" timestamp="">
+  
+    <testcase name="token generation" classname="getApis" time="0.4360" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Verify search template" classname="getApis" time="0.6760" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get template" classname="getApis" time="0.7560" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get Template View Requested" classname="getApis" time="0.5410" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get Trending tags" classname="getApis" time="1.307" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get trending templates" classname="getApis" time="0.4300" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Draft Repo or Branch Submission" classname="getApis" time="6.821" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="New Repo Branch Submission" classname="getApis" time="2.693" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

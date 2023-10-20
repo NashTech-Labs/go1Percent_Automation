@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="9">
+
+  <testsuite name="EmployeeUserOne"
+    errors="0" failures="0" hostname="" id="" package="EmployeeUserOne" skipped="0"
+    tests="9" time="13.86" timestamp="">
+  
+    <testcase name="token generation" classname="EmployeeUserOne" time="0.3090" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Verify search template" classname="EmployeeUserOne" time="0.1660" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get template" classname="EmployeeUserOne" time="0.1840" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get Template View Requested" classname="EmployeeUserOne" time="0.1460" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get Trending tags" classname="EmployeeUserOne" time="0.1480" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get Api of recent templates" classname="EmployeeUserOne" time="0.1280" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get Api of repos" classname="EmployeeUserOne" time="0.1560" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get trending templates" classname="EmployeeUserOne" time="0.1780" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Draft Repo or Branch Submission" classname="EmployeeUserOne" time="5.512" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
