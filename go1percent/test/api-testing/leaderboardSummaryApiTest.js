@@ -1,9 +1,7 @@
 const global = require('../../globals');
 const headers = global.headers;
 
-/**
- * Leaderboard API Testing
- */
+
 describe('Leaderboard API Testing', function () {
   const baseUrl = 'https://backend.qa.go1percent.com';
 
@@ -63,11 +61,11 @@ describe('Leaderboard API Testing', function () {
       expect(object.allTimeScore).to.be.a('number');
       expect(object.studioHeadEmail).to.be.a('string');
       expect(object.monthlyScore).to.be.a('number');
-      expect(object.memberAvg).to.be.a('number'); // Make sure this should be a string
-      expect(object.memberAllTimeAvg).to.be.a('number'); // Add this assertion
+      expect(object.memberAvg).to.be.a('number'); 
+      expect(object.memberAllTimeAvg).to.be.a('number');
       expect(object.monthlyScore).to.be.a('number');
-      expect(object.memberAvg).to.be.a('number'); // Change the type to 'number'
-      expect(object.memberCount).to.be.a('number'); // Add this assertion
+      expect(object.memberAvg).to.be.a('number'); 
+      expect(object.memberCount).to.be.a('number'); 
 
       if (object.studioHeadName === null) {
         expect(object.studioHeadName).to.be.null;
