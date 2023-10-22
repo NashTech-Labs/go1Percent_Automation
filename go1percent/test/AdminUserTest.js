@@ -2,9 +2,9 @@ const globals = require('../globals')
 
 describe('api testing', function () {
 
-  const headers = globals.headers;
-  const tokenHeaders = globals.tokenHeaders;
-  const tokenBody = globals.tokenBody;
+  const headers = globals.admin.headers;
+  const tokenHeaders = globals.admin.tokenHeaders;
+  const tokenBody = globals.admin.tokenBody;
   const urls = globals.urls;
 
   let approval_req = [];
