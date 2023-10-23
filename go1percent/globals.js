@@ -4,7 +4,7 @@ module.exports = {
         headers: {
             'Authorization': '',
             'Source': 'https://nashtechglobal.qa.go1percent.com'
-        },    
+        },
         token_headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'source': 'https://nashtechglobal.qa.go1percent.com'
@@ -16,6 +16,7 @@ module.exports = {
             password: 'testadmin',
             grant_type: 'password',
         },
+        created_form_id: ''
     },
 
     urls: {
