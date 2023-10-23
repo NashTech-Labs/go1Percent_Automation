@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="1">
+            tests="3">
 
   <testsuite name="Upcoming_Session_API"
     errors="0" failures="0" hostname="" id="" package="Upcoming_Session_API" skipped="0"
-    tests="1" time="0.06100" timestamp="">
+    tests="3" time="0.8390" timestamp="">
   
-    <testcase name="post api test" classname="Upcoming_Session_API" time="0.03000" assertions="0">
+    <testcase name="Post APi Test" classname="Upcoming_Session_API" time="0.1410" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="get api test" classname="Upcoming_Session_API" time="0.1630" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="put api test" classname="Upcoming_Session_API" time="0.1150" assertions="4">
+
+    
+
+    
+
+    
+
+    
     </testcase>
   
 
