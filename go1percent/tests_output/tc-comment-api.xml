@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="tc-comment-api"
+    errors="0" failures="1" hostname="" id="" package="tc-comment-api" skipped="0"
+    tests="1" time="1.295" timestamp="">
+  
+    <testcase name="Testing Comment of send button API" classname="tc-comment-api" time="0.6470" assertions="1">  <failure message="expected 200 &#34;OK&#34;, got 415 &#34;Unsupported Media Type&#34;">    at DescribeInstance.&lt;anonymous&gt; (/home/knoldus/go1Percent_Automation/go1percent/test/tc-comment-api.js:37:8)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
