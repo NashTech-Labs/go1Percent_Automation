@@ -30,6 +30,19 @@ describe('TechHub Api Testing', function () {
   
   })
 
+  // Performs a GET request to test the 'All TechHub' API of a TechHub Module.
+  it('Get API test for All TechHubs Button in TechHub', async function ({ supertest }) {
+    await supertest
+        .request(header.urls.go1percentBase)
+        .get("/templates/my?state=approvedAndRejected&limit=10000&page=1")
+        .set(header.employee.headers)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .then(function (response) {
+          approval_req = response.body.data.templates        //Response body template list
+        });
+  });
+
   //Verify Search Template
   it('should verify the search template endpoint', async function ({ supertest }) {
     await supertest
@@ -102,18 +115,7 @@ describe('TechHub Api Testing', function () {
       .expect('Content-Type', /json/)
   });
 
-  // Performs a GET request to test the 'All TechHub' API of a TechHub Module.
-  it('Get API test for All TechHubs Button in TechHub', async function ({ supertest }) {
-    await supertest
-        .request(header.urls.go1percentBase)
-        .get("/templates/my?state=approvedAndRejected&limit=10000&page=1")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .then(function (response) {
-          approval_req = response.body.data.templates        //Response body template list
-        });
-  });
+  
 
   //Performs a GET request to test the 'Pending' API of a TechHub Module.
   it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
