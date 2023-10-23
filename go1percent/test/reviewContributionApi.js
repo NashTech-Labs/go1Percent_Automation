@@ -69,7 +69,54 @@ describe('Review Contribution API Testing', function () {
 
             });
 
+    });
 
+    it('should retrieve the details of a specific contribution on click', async function ({ supertest }) {
+
+        await supertest
+
+            .request(headers.baseurl)
+
+            .get("/contribution?contributionId=2702")
+
+            .set(headers.headers)
+
+            .expect(200)
+
+            .then(function (response) {
+                const responseBody = response.body.data;
+
+                // Assert the keys and data types of the properties
+                for (let i = 0; i < responseBody.length; i++) {
+                    const responseObject = responseBody[i];
+
+                    expect(responseObject).to.have.all.keys(
+                        'contributionId',
+                        'contributionType',
+                        'title',
+                        'contributionDate',
+                        'technologyDetails',
+                        'urlDetails',
+                        'status',
+                        'reviewer_name'
+                    );
+
+                    expect(responseObject.contributionId).to.be.a('number');
+                    expect(responseObject.contributionType.name).to.be.a('string');
+                    expect(responseObject.title).to.be.a('string');
+                    expect(responseObject.contributionDate).to.be.a('string');
+                    expect(responseObject.technologyDetails).to.be.a('string');
+                    expect(responseObject.studioName).to.be.a('string');
+                    expect(responseObject.reviewer_name).to.be.a('string');
+                }
+
+                // Assert that the status of every contribution can be "PENDING," "APPROVED," or "REJECTED"
+                const responseData = response.body.data;
+                for (let i = 0; i < responseData.length; i++) {
+                    const status = responseData[i].status.name;
+                    expect(status).to.be.oneOf(['PENDING', 'APPROVED', 'REJECTED']);
+                }
+            });
 
     });
 
