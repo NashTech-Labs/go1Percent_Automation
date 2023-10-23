@@ -2,6 +2,14 @@ const header = require('../globals')
 let approval_req = [];
 
 describe('TechHub Api Testing', function () {
+
+  const commonExpectation = (startTimestamp, response) => {
+    const endTimestamp = Date.now(); // Record the end time
+    const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
+    expect(responseTime).to.be.below(10000);             //Response time assertion 
+    expect(response._body.status).to.be.equal('success'); //Response attribute assertion
+  }
+
   // Token Generation
   it('token generation', async function ({ supertest }) {
     const tokenURl = "https://auth.go1percent.com";
@@ -27,74 +35,302 @@ describe('TechHub Api Testing', function () {
         const token = response._body.access_token;
         header.employee.headers['Authorization'] = 'Bearer ' + token;
       });
-  
+
   })
 
   // Performs a GET request to test the 'All TechHub' API of a TechHub Module.
   it('Get API test for All TechHubs Button in TechHub', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
-        .request(header.urls.go1percentBase)
-        .get("/templates/my?state=approvedAndRejected&limit=10000&page=1")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .then(function (response) {
-          approval_req = response.body.data.templates        //Response body template list
-        });
+      .request(header.urls.go1percentBase)
+      .get("/templates/my?state=approvedAndRejected&limit=10000&page=1")
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+        approval_req = response.body.data.templates        //Response body template list
+      });
   });
 
-  //Verify Search Template
+  //Get Request for Search Template
   it('should verify the search template endpoint', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
       .request(header.urls.go1percentBase)
       .get("/search/template?text=tags&page=2")
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
   });
 
-  //  Get Template
+  //  get Request to retrieve the Template
   it('should retrieve a specific template', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
       .request(header.urls.go1percentBase)
-      .get("/template?tempId="+approval_req[0]._id)
+      .get("/template?tempId=" + approval_req[0]._id)
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
   });
 
-  // Get Trending Tags
+  // Get Request For retrieve trending tags
   it('should retrieve trending tags', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
       .request(header.urls.go1percentBase)
       .get("/trending/tags")
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
   });
 
-  // Get API of Recent Templates
+  // Get Request for retrieving Recent Templates
   it('should retrieve recent templates', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
       .request(header.urls.go1percentBase)
       .get("/recent/templates?count=Two")
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
   });
 
-  // Get Trending Templates
+  // Get Request for retrieve Trending Templates
   it('should retrieve trending templates', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
       .request(header.urls.go1percentBase)
       .get("/trending/templates")
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
   });
 
-  //  Draft Repo or Branch Submission
+  //Performs a GET request to test the 'Pending' API of a TechHub Module.
+  it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .get("/templates/my?state=draftAndReview&limit=10000&page=1")
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  // Performs a GET request to test the 'Pending' API of a TechHub Module.
+  it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .get("/templates/my?state=draftAndReview&limit=10000&page=1")
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  //Performs a GET request to test the 'Other Technologies' API of a TechHub Module.
+  it('Get API for other Technologies in TechHub', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .get("/other/technologies?id=101")
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  //Performs a GET request to test the 'Trending Technology' API of a TechHub Module.
+  it('Get API to Get Trending Technology', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .get("/trending/technologies")
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', 'application/json')
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  }); 
+
+  //Performs a GET request to test the 'All templates' API of a TechHub Module.
+  it('Get API To Get All templates of TechHub', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .get("/templates?technology=Java&category=Kafka&page=1")
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', 'application/json')
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  //Performs a POST request to test the 'New Repo Branch Submission' API of a TechHub Module.
+  it('New Repo Branch Submission', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    const uniqueName = `TestingNightwatchTestcase1-${Math.floor(Math.random() * 1000000)}`;
+    await supertest
+      .request(header.urls.go1percentBase)
+      .post("/user/request")
+      .send({
+        "name": uniqueName,
+        "description": "gfdrtfyguhijoihubhgvfctvghbjnbhvgyfcvghbjnbgvcftvgbhjnhbygvfctvghbjnbgvftcgvhbjgvfcgvycftxdrctfygvhbjbgcftxdrfcgvhbjnbgfcx",
+        "technology": "angular",
+        "branch": false
+      })
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  //Post Request for Inserting technology with unique Id
+  it('Insert technology successfully', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    const uniqueId = `TestingNightwatchTestcase1-${Math.floor(Math.random() * 1000000)}`;
+    await supertest
+      .request(header.urls.go1percentBase)
+      .post("/insert/technology")
+      .send({
+        "id": uniqueId,
+        "name": uniqueId,
+        "logoURL": uniqueId,
+        "caption": uniqueId,
+        "description": [
+          uniqueId
+        ],
+        "resources": {
+          "baseWebsite": uniqueId,
+          "docLink": uniqueId,
+          "twitterLink": uniqueId,
+          "githubLink": uniqueId,
+          "stackOverflowLink": uniqueId
+        },
+        "hits": 0,
+        "allTechnology": {
+          "id": uniqueId,
+          "name": uniqueId,
+          "logoURL": uniqueId,
+          "caption": uniqueId
+        },
+        "technology": {
+          "id": uniqueId,
+          "name": uniqueId
+        },
+        "trending": {
+          "id": uniqueId,
+          "name": uniqueId,
+          "hits": 0
+        }
+      })
+      .set(header.employee.headers)
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  })
+
+  // Post Request for updating Technology
+  it('update technology successfully', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .post("/update/technology")
+      .send({
+        "id": "string",
+        "name": "string",
+        "logoURL": "string",
+        "caption": "string",
+        "description": [
+          "string"
+        ],
+        "resources": {
+          "baseWebsite": "string",
+          "docLink": "string",
+          "twitterLink": "string",
+          "githubLink": "string",
+          "stackOverflowLink": "string"
+        },
+        "hits": 0,
+        "allTechnology": {
+          "id": "string",
+          "name": "string",
+          "logoURL": "string",
+          "caption": "string"
+        },
+        "technology": {
+          "id": "string",
+          "name": "string"
+        },
+        "trending": {
+          "id": "string",
+          "name": "string",
+          "hits": 0
+        }
+      })
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  // Post Request for submit user feedback
+  it('Submit user feedback', async function ({ supertest }) {
+    const startTimestamp = Date.now();
+    await supertest
+      .request(header.urls.go1percentBase)
+      .post("/submit/feedback")
+      .send({
+        "_id": "string",
+        "emailId": "string",
+        "message": "string",
+        "ratings": 0,
+        "formType": "string"
+      })
+      .set(header.employee.headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
+  });
+
+  //  Post Request for Draft Repo or Branch Submission
   it('should submit a draft repository or branch', async function ({ supertest }) {
+    const startTimestamp = Date.now();
     await supertest
       .request(header.urls.go1percentBase)
       .post("/user/submit")
@@ -113,83 +349,8 @@ describe('TechHub Api Testing', function () {
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
-  });
-
-  
-
-  //Performs a GET request to test the 'Pending' API of a TechHub Module.
-  it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
-    await supertest
-        .request(header.urls.go1percentBase)
-        .get("/templates/my?state=draftAndReview&limit=10000&page=1")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', /json/)
-  });
-
-  // Performs a GET request to test the 'Pending' API of a TechHub Module.
-  it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
-    await supertest
-        .request(header.urls.go1percentBase)
-        .get("/templates/my?state=draftAndReview&limit=10000&page=1")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', /json/)
-  });
-
-  //Performs a GET request to test the 'Other Technologies' API of a TechHub Module.
-  it('Get API for other Technologies in TechHub', async function ({ supertest }) {
-    await supertest
-        .request(header.urls.go1percentBase)
-        .get("/other/technologies?id=101")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', /json/)
-  });
-
-  //Performs a GET request to test the 'Trending Technology' API of a TechHub Module.
-  it('Get API to Get Trending Technology', async function ({ supertest }) {
-    await supertest
-        .request(header.urls.go1percentBase)
-        .get("/trending/technologies")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', 'application/json')
-  });
-
-  //Performs a GET request to test the 'Github URL' API of a TechHub Module.
-  it('Get API for the github url present in approved TechHub', async function ({ supertest }) {
-    await supertest
-        .request("https://github.com")
-        .get("/NashTech-Labs/TestingRepoForDemo")
-        .expect(200)
-        .expect('Content-Type', 'text/html; charset=utf-8')
-  });
-
-  //Performs a GET request to test the 'All templates' API of a TechHub Module.
-  it('Get API To Get All templates of TechHub', async function ({ supertest }) {
-    await supertest
-        .request(header.urls.go1percentBase)
-        .get("/templates?technology=Java&category=Kafka&page=1")
-        .set(header.employee.headers)
-        .expect(200)
-        .expect('Content-Type', 'application/json')
-  });
-
-  //Performs a POST request to test the 'New Repo Branch Submission' API of a TechHub Module.
-  it('New Repo Branch Submission', async function ({ supertest }) {
-    const uniqueName = `TestingNightwatchTestcase1-${Math.floor(Math.random() * 1000000)}`;
-    await supertest
-      .request(header.urls.go1percentBase)
-      .post("/user/request")
-      .send({
-        "name": uniqueName,
-        "description": "gfdrtfyguhijoihubhgvfctvghbjnbhvgyfcvghbjnbgvcftvgbhjnhbygvfctvghbjnbgvftcgvhbjgvfcgvycftxdrctfygvhbjbgcftxdrfcgvhbjnbgfcx",
-        "technology": "angular",
-        "branch": false
-      })
-      .set(header.employee.headers)
-      .expect(200)
-      .expect('Content-Type', /json/)
+      .then(function (response) {
+        commonExpectation(startTimestamp, response);
+      });
   })
 })
