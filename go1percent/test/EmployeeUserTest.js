@@ -1,8 +1,8 @@
 const header = require('../globals')
-let approval_req = [];
 
 describe('TechHub Api Testing', function () {
-
+  let approval_req = [];
+  
   const commonExpectation = (startTimestamp, response) => {
     const endTimestamp = Date.now(); // Record the end time
     const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
@@ -352,5 +352,5 @@ describe('TechHub Api Testing', function () {
       .then(function (response) {
         commonExpectation(startTimestamp, response);
       });
-  })
+  }) 
 })
