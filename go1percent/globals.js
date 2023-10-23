@@ -11,7 +11,7 @@ module.exports = {
         headers: {
             'Authorization': '',
             'Source': 'https://nashtechglobal.qa.go1percent.com'
-        },    
+        },
         tokenHeaders: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'source': 'https://nashtechglobal.qa.go1percent.com'
@@ -26,13 +26,13 @@ module.exports = {
     },
 
     employee: {
-        headers:{
+        headers: {
             "accept": "application/json, text/plain, */*",
             "Authorization": "",
             "content-type": "application/json",
             "source": "https://nashtechglobal.qa.go1percent.com",
-            }
-        },
+        }
+    },
 
 
     urls: {
@@ -44,5 +44,4 @@ module.exports = {
         chromedriver.stop();
         done();
     }
-
 };
