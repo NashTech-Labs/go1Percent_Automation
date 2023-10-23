@@ -25,7 +25,14 @@ module.exports = {
         },
     },
 
-    employee: {},
+    employee: {
+        headers:{
+            "accept": "application/json, text/plain, */*",
+            "Authorization": "",
+            "content-type": "application/json",
+            "source": "https://nashtechglobal.qa.go1percent.com",
+            }
+        },
 
 
     urls: {
