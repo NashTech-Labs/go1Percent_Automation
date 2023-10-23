@@ -5,9 +5,11 @@
 
   <testsuite name="Add_Config"
     errors="0" failures="0" hostname="" id="" package="Add_Config" skipped="0"
-    tests="2" time="1.761" timestamp="">
+    tests="2" time="1.393" timestamp="">
   
-    <testcase name="POST api test" classname="Add_Config" time="0.4350" assertions="3">
+    <testcase name="POST api test" classname="Add_Config" time="0.4030" assertions="4">
+
+    
 
     
 
@@ -16,7 +18,11 @@
     
     </testcase>
   
-    <testcase name="GET api test" classname="Add_Config" time="0.4450" assertions="3">
+    <testcase name="GET api test" classname="Add_Config" time="0.2920" assertions="5">
+
+    
+
+    
 
     
 

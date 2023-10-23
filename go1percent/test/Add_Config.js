@@ -22,12 +22,14 @@ describe('api testing', function () {
             "title":"Test employee contribution",
             "contributionType":"Research paper",
             "contributionDate":"2023-10-19 00:00:00",
-            "urlDetails":"www.coursgbcxdf.org",
+            "urlDetails":"www.courxfgbfdddf.org",
             "technologyDetails":"ddcscdcmjjicjdjc hdfiwic jocdjoicwd fcdiocd chojvwofeefhevdvhvhnvjvjdwehuihefkjcnjkvnwbrihfuvbhjbdjfre"
           })
           .expect(200) //Asserting Response Code
           .then(function(response){
+            expect('Content-Type', /json/)//Assert content type
             expect(response.body.status).to.be.equal(true)// Asserting Response Attribute
+           expect(response.body.data).to.be.equal("Successfully added contribution!")
           });
 
           ResponseTime(startTime); // Asserting Response Time
@@ -42,7 +44,10 @@ describe('api testing', function () {
           .set(globals.headers)
           .expect(200) //Asserting Response Code
          .then(function(response){
-           expect(response.body.status).to.be.equal(true)// Asserting Response Attribute
+          expect('Content-Type', /json/)//Assert content type
+           expect(response.body.status).to.be.equal(true)
+           expect(response.body.data._1).to.have.length.that.not.equals(0);
+           expect(response.body.data._2).to.have.length.that.not.equals(0);// Asserting Response Attribute
          });
 
          ResponseTime(startTime);// Asserting Response Time
