@@ -20,16 +20,17 @@ module.exports = {
   page_objects_path: ['page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  //custom_commands_path: ['nightwatch/custom-commands'],
+  // custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: ['nightwatch/custom-assertions'],
+  // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   //plugins: ['@nightwatch/react'],
+  plugins: ['@nightwatch/apitesting'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  //globals_path: './globals.js',
+  globals_path: './globals.js',
   
   vite_dev_server: {
     start_vite: true,
@@ -43,6 +44,12 @@ module.exports = {
   },
 
   test_settings: {
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
+      }
+    },
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
