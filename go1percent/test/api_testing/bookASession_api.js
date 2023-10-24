@@ -1,25 +1,43 @@
-const base_url = "https://knolx-backend.qa.go1percent.com/";
-const source = "https://nashtechglobal.qa.go1percent.com/";
+const { base_url, source, url, validator,expectedStudioIds } = require('../../globals'); //  global variables
 
 describe('Knolx|Book A Session API', function () {
-    it('Check All Users Data', async function  ({ supertest }) {
+    it('Check All Users Data', async function ({ supertest }) {
         const startTime = performance.now();
+        const response = await supertest
+            .request(base_url)
+            .get('v02/allUsers')
+            .set('source', source)
+            .expect(200);
 
-        try {
-            const response = await supertest
-                .request(base_url)
-                .get('v02/allUsers')
-                .set('source', source)
-                .expect(200);
+        const endTime = performance.now();
+        const responseTime = endTime - startTime;
+        expect(responseTime).to.be.lessThan(2000);
 
-            const endTime = performance.now();
-            const responseTime = endTime - startTime;
+        const users = response.body.users;
+        expect(users).to.satisfy((users) => {
+            return users.every(user => {
+                return user.hasOwnProperty('name') && typeof user.name === 'string' &&
+                    user.hasOwnProperty('email') && typeof user.email === 'string';
+            });
+        }, 'All users should have "name" and "email" properties that are strings');
+    });
+});
 
-            if (response.status === 200) {
-                expect(responseTime).to.be.lessThan(2000);
-            }
-        } catch (error) {
-           // console.error('API request failed with an error:', error);
-        }
+describe('Another API Test', function () {
+    it('Check Another API Data', async function ({ supertest }) {
+        const startTime = performance.now();
+        const response = await supertest
+            .request(url)
+            .get('knoldus-backend/rest/radar-service/technology/studio')
+            .expect(200);
+
+        const endTime = performance.now();
+        const responseTime = endTime - startTime;
+        expect(responseTime).to.be.lessThan(2000, 'Expected response time to be less than 2000ms');
+
+        const studios = response.body.data;
+
+        const missingCompetencies = studios.filter(studio => !studio.studioId || !expectedStudioIds.includes(studio.studioId));
+        expect(missingCompetencies.length, 'All competencies should match the expected values').to.equal(0);
     });
 });
