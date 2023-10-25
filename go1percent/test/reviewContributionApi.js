@@ -1,7 +1,61 @@
 const headers = require('../globals')
 
-
 describe('Review Contribution API Testing', function () {
+
+    /**
+     * Asserts the response time and status in a Nightwatch program.
+     *
+     * @param {number} startTimestamp - The start timestamp when the request was made.
+     * @param {object} response - The response object to be checked.
+     */
+
+    const assertResponseTime = (startTimestamp, response) => {
+
+        const endTimestamp = Date.now();
+
+        const responseTime = endTimestamp - startTimestamp;
+
+        expect(responseTime).to.be.below(10000);
+
+        expect(response.body.status).to.be.oneOf([true, false]);
+
+    }
+
+
+    it('token generation', async function ({ supertest }) {
+
+        const url = "https://auth.go1percent.com";
+        const tokenheaders = {
+            'accept': '*/*',
+            'source': 'https://nashtechglobal.qa.go1percent.com',
+            'Content-Type': 'application/x-www-form-urlencoded'
+
+        }
+
+        const tokenRequestData = {
+
+            'client_id': 'leaderboard-ui',
+            'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            'username': 'testadmin',
+            'password': 'testadmin',
+            'grant_type': 'password'
+
+        }
+
+        const response = await supertest
+
+            .request(url)
+            .post('/auth/realms/nashtech/protocol/openid-connect/token')
+            .set(tokenheaders)
+            .send(tokenRequestData)
+            .expect(200)
+
+        accessToken = response._body.access_token;
+
+        headers.headers['Authorization'] = 'Bearer ' + accessToken;
+        console.log(accessToken);
+
+    })
 
     /**
      * Test case to retrieve all the pending contributions for approval or rejection on Approvals page.
@@ -9,6 +63,8 @@ describe('Review Contribution API Testing', function () {
      */
 
     it('should retrieve all the pending contributions on approvals page', async function ({ supertest }) {
+
+        const startTimestamp = Date.now();
 
         await supertest
 
@@ -23,6 +79,7 @@ describe('Review Contribution API Testing', function () {
             // Assertions to check the structure and properties of the response
             .then(function (response) {
 
+                assertResponseTime(startTimestamp, response);
                 let responseBody = response.body.data._1;
                 expect((responseBody).length).to.be.greaterThan(0);
                 expect(responseBody[0]).to.have.property('contributionId');
@@ -31,8 +88,8 @@ describe('Review Contribution API Testing', function () {
                 expect(responseBody[1]).to.have.property('status');
 
                 // Assert that the status of every contribution should be "PENDING"
-                for (let i = 0; i < responseBody.length; i++) {
-                    expect(responseBody[i].status.name).to.equal('PENDING');
+                for (let index = 0; index < responseBody.length; index++) {
+                    expect(responseBody[index].status.name).to.equal('PENDING');
                 }
 
             });
@@ -45,6 +102,8 @@ describe('Review Contribution API Testing', function () {
      */
 
     it('should approve/reject a contribution', async function ({ supertest }) {
+
+        const startTimestamp = Date.now();
 
         await supertest
 
@@ -62,6 +121,7 @@ describe('Review Contribution API Testing', function () {
             .expect('Content-Type', /json/)
 
             .then(function (response) {
+                assertResponseTime(startTimestamp, response);
 
                 expect(Object.keys(response.body).length).to.be.greaterThan(0);
                 expect(response.body.resource).to.equal('contribution');
@@ -81,6 +141,8 @@ describe('Review Contribution API Testing', function () {
 
     it('should retrieve list of the contributions on "all contributions" page', async function ({ supertest }) {
 
+        const startTimestamp = Date.now();
+
         await supertest
             .request(headers.baseurl)
             .get("/contribution/getApprovedContributionsForAll?pageNumber=1&limit=10")
@@ -89,6 +151,7 @@ describe('Review Contribution API Testing', function () {
 
             // Assertions to check the structure and properties of the response
             .then(function (response) {
+                assertResponseTime(startTimestamp, response);
 
                 let responseBody = response.body.data._1;
                 expect((responseBody).length).to.be.greaterThan(0);
@@ -98,8 +161,8 @@ describe('Review Contribution API Testing', function () {
                 expect(responseBody[1]).to.have.property('status');
 
                 // Assert that the status of every contribution can be "PENDING," "APPROVED," or "REJECTED"
-                for (let i = 0; i < responseBody.length; i++) {
-                    const status = responseBody[i].status.name;
+                for (let index = 0; index < responseBody.length; index++) {
+                    const status = responseBody[index].status.name;
                     expect(status).to.be.oneOf(['PENDING', 'APPROVED', 'REJECTED']);
                 }
 
@@ -115,6 +178,8 @@ describe('Review Contribution API Testing', function () {
 
     it('should retrieve the details of a specific contribution', async function ({ supertest }) {
 
+        const startTimestamp = Date.now();
+
         await supertest
 
             .request(headers.baseurl)
@@ -126,11 +191,13 @@ describe('Review Contribution API Testing', function () {
             .expect(200)
 
             .then(function (response) {
+                assertResponseTime(startTimestamp, response);
+
                 let responseBody = response.body.data;
 
                 // Assert the keys and data types of the properties
-                for (let i = 0; i < responseBody.length; i++) {
-                    const responseObject = responseBody[i];
+                for (let index = 0; index < responseBody.length; index++) {
+                    const responseObject = responseBody[index];
 
                     expect(responseObject).to.have.all.keys(
                         'contributionId',
@@ -142,8 +209,8 @@ describe('Review Contribution API Testing', function () {
                 }
 
                 // Assert that the status of every contribution can be "PENDING," "APPROVED," or "REJECTED"
-                for (let i = 0; i < responseBody.length; i++) {
-                    const status = responseBody[i].status.name;
+                for (let index = 0; index < responseBody.length; index++) {
+                    const status = responseBody[index].status.name;
                     expect(status).to.be.oneOf(['PENDING', 'APPROVED', 'REJECTED']);
                 }
             });
@@ -159,6 +226,8 @@ describe('Review Contribution API Testing', function () {
      */
 
     it('should retrieve the contributions on the basis of date', async function ({ supertest }) {
+        const startTimestamp = Date.now();
+
         await supertest
             .request(headers.baseurl)
             .get("/contribution/allContribution?pageNumber=1&limit=10&date=2023-10-16")
@@ -166,11 +235,12 @@ describe('Review Contribution API Testing', function () {
             .expect(200)
 
             .then(function (response) {
+                assertResponseTime(startTimestamp, response);
                 const responseBody = response.body.data;
 
                 // Assert the keys of the properties in the response for each contribution
-                for (let i = 0; i < responseBody.length; i++) {
-                    const responseObject = responseBody[i];
+                for (let index = 0; index < responseBody.length; index++) {
+                    const responseObject = responseBody[index];
 
                     expect(responseObject).to.have.all.keys(
                         'contributionId',
@@ -182,8 +252,8 @@ describe('Review Contribution API Testing', function () {
                 }
 
                 // Assert that the status of every contribution can be "PENDING," "APPROVED," or "REJECTED"
-                for (let i = 0; i < responseBody.length; i++) {
-                    const status = responseBody[i].status.name;
+                for (let index = 0; index < responseBody.length; index++) {
+                    const status = responseBody[index].status.name;
                     expect(status).to.be.oneOf(['PENDING', 'APPROVED', 'REJECTED']);
                 }
             });
