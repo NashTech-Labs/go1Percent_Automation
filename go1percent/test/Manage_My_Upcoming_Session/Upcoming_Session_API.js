@@ -57,7 +57,7 @@ describe('api testing', function () {
           .put("user/session/65275cdb58f83108585a4005")
           .set(headers) 
           .send({"topic": "KnoldusNashtech",
-          "sessionDescription": "Knolduskkkkkkkkkkkkkkhhhhhhhhhhhhhhhhhhhhkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+          "sessionDescription": "In addition to the assert namespace, the Nightwatch API supports out of the box a BDD-style expect assertion library which greatly improves the flexibility as well as readability of the assertions.The expect assertions use a subset of the Expect api from the Chai framework and at this point a available for elements, cookies, page title, and urlHere a basic example that uses various expect.element([...]) assertions:",
           "slideURL": "www.goggle.com",
           "sessionTag": [
             "Automation","Testing"
