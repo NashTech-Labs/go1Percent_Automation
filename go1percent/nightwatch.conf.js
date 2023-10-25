@@ -31,7 +31,11 @@ module.exports = {
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
-  
+    globals: {
+      "userName": "testemployee", // this is placeholder username, make sure to update.
+      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+    },
+
   vite_dev_server: {
     start_vite: true,
     port: 5173
@@ -62,17 +66,10 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
-      },
-
-      
+      },    
       
     },
-    "qa": {
-      "globals": {
-        "userName": "testadmin", // this is placeholder username, make sure to update.
-        "password": "testadmin" // this is placeholderPassword, Make sure to update.
-      }
-    },
+   
     
     
 
