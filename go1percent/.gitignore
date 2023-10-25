@@ -1,12 +1,11 @@
-/node_modules/
+# /node_modules/
 
-/tests_output/
+# /tests_output/
 
-#
-globals.js
+# #
+# # globals.js
+# # nightwatch.conf.js
 
-nightwatch.conf.js
-
-package-lock.json
-
-sdcs.txt
+# # /package-lock.json
+# sdcs.txt
+# # go1percent/package-lock.json

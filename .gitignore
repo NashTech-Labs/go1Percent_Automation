@@ -24,3 +24,7 @@ hs_err_pid*
 replay_pid*
 
 
+go1percent/node_modules/
+go1percent/tests_output/
+go1percent/sdcs.txt
+
