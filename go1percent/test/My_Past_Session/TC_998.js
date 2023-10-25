@@ -1,8 +1,6 @@
-//const accessToken = '';
-
 describe('api testing', function () {   
 
-    it('admin should able to see the available requested sessions', async function ({ supertest }) {
+    it('Employee should able to see the available My Past sessions', async function ({ supertest }) {
 
       const startTime = performance.now();
 
@@ -45,7 +43,6 @@ describe('api testing', function () {
 
  
 
-          // console.log(`Elapsed time in milliseconds: ${responseTime}`);
 
         });
 
