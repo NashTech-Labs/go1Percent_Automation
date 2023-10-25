@@ -11,8 +11,10 @@ describe('Feedback-form API tests', function () {
   const new_form_id = globals.admin;
 
 
+
   // CONFIGURATION OF BEARER TOKEN
   it('Configuring Bearer Token', async function ({ supertest }) {
+    const startTime = performance.now();
     await supertest
       .request(urls.token)
       .post("/token")
@@ -24,18 +26,25 @@ describe('Feedback-form API tests', function () {
         const token = response.body.access_token;
         headers['Authorization'] = 'Bearer ' + token;
       });
+    const endTime = performance.now();
+    const responseTime = endTime - startTime;
+    expect(responseTime).to.be.lessThan(2000);
 
   });
 
 
   // GET ALL FEEDBACK FORM
   it('GET - all feedback forms', async function ({ supertest }) {
+    const startTime = performance.now();
     await supertest
       .request(urls.feedback_form_url_base)
       .get("/fetch?pageNumber=1&pageSize=1000&search=")
       .set(headers)
       .expect(200)
       .expect('Content-Type', /json/);
+    const endTime = performance.now();
+    const responseTime = endTime - startTime;
+    expect(responseTime).to.be.lessThan(2000);
   });
 
   // https://knolx-backend.qa.go1percent.com/v02/feedback-form/create-feedback-form
@@ -43,6 +52,7 @@ describe('Feedback-form API tests', function () {
 
   // CREATE A NEW FEEDBACK-FORM
   it('POST - Create a new feedback forms', async function ({ supertest }) {
+    const startTime = performance.now();
     await supertest
       .request(urls.feedback_form_url_base)
       .post("/create-feedback-form")
@@ -61,6 +71,20 @@ describe('Feedback-form API tests', function () {
           ]
         }
       )
+      .set(headers)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then((res) => {
+        const endTime = performance.now();
+        const responseTime = endTime - startTime;
+        expect(responseTime).to.be.lessThan(2000);
+        new_form_id['created_form_id'] = res.body.id;
+      })
+
+
+    await supertest
+      .request(urls.feedback_form_url_base)
+      .delete("/delete" + "/" + new_form_id['created_form_id'])
       .set(headers)
       .expect(200)
       .expect('Content-Type', /json/);
@@ -98,7 +122,9 @@ describe('Feedback-form API tests', function () {
 
       });
 
-      // updating an existing form
+    // updating an existing form
+    const startTime = performance.now();
+
     await supertest
       .request(urls.feedback_form_url_base)
       .put("/" + new_form_id['created_form_id'])
@@ -117,6 +143,17 @@ describe('Feedback-form API tests', function () {
           ]
         }
       )
+      .set(headers)
+      .expect(200)
+      .expect('Content-Type', /json/);
+    const endTime = performance.now();
+    const responseTime = endTime - startTime;
+    expect(responseTime).to.be.lessThan(2000);
+
+    //deleting the form
+    await supertest
+      .request(urls.feedback_form_url_base)
+      .delete("/delete" + "/" + new_form_id['created_form_id'])
       .set(headers)
       .expect(200)
       .expect('Content-Type', /json/);
@@ -152,14 +189,19 @@ describe('Feedback-form API tests', function () {
         new_form_id['created_form_id'] = res.body.id;
 
       });
-    
-      // deleting the form
+
+    // deleting the form
+    const startTime = performance.now();
+
     await supertest
       .request(urls.feedback_form_url_base)
-      .delete("/delete"+"/"+new_form_id['created_form_id'])
+      .delete("/delete" + "/" + new_form_id['created_form_id'])
       .set(headers)
       .expect(200)
       .expect('Content-Type', /json/);
+    const endTime = performance.now();
+    const responseTime = endTime - startTime;
+    expect(responseTime).to.be.lessThan(2000);
 
   });
 
