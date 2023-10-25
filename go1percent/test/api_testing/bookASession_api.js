@@ -1,12 +1,12 @@
-const { base_url, source, url,expectedStudioIds,access_token} = require('../../globals'); //  global variables
+const headers = require('../../globals')
 
 describe('Knolx|Book A Session API', function () {
     it('Check all users data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
-            .request(base_url)
+            .request(headers.base_url)
             .get('v02/allUsers')
-            .set('source', source)
+            .set('source', headers.source)
             .expect(200);
 
         const endTime = performance.now();
@@ -25,10 +25,19 @@ describe('Knolx|Book A Session API', function () {
     it('Check all studio competencies data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
-            .request(url)
+            .request(headers.url)
             .get('knoldus-backend/rest/radar-service/technology/studio')
             .expect(200);
-
+            const expectedStudioIds = [
+                'ALL_STUDIO',
+                'AGILE_COMPETENCY',
+                'AI_ML_COMPETENCY',
+                'DEVOPS_COMPETENCY',
+                'FRONTEND_COMPETENCY',
+                'JAVA_COMPETENCY',
+                'SCALA_COMPETENCY',
+                'TEST_AUTOMATION_COMPETENCY'
+            ];
         const endTime = performance.now();
         const responseTime = endTime - startTime;
         expect(responseTime).to.be.lessThan(2000, 'Expected response time to be less than 2000ms');
@@ -42,10 +51,10 @@ describe('Knolx|Book A Session API', function () {
     it('Validate upcoming months data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
-            .request(base_url)
+            .request(headers.base_url)
             .get('v02/slots/getFourMonths')
-            .set('source', source)
-            .set('authorization', access_token)
+            .set('source', headers.source)
+            .set('authorization', headers.access_token)
             .expect(200);
         const endTime = performance.now();
         const responseTime = endTime - startTime;
