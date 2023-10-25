@@ -1,2 +1,12 @@
-node_modules/
-tests_output/
+/node_modules/
+
+/tests_output/
+
+#
+globals.js
+
+nightwatch.conf.js
+
+package-lock.json
+
+sdcs.txt
