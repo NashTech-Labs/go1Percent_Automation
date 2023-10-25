@@ -1,4 +1,5 @@
 const header = require('../globals')
+const payload= require('../payload')
 
 describe('TechHub Api Testing', function () {
   let approval_req = [];
@@ -6,11 +7,17 @@ describe('TechHub Api Testing', function () {
   const commonExpectation = (startTimestamp, response) => {
     const endTimestamp = Date.now(); // Record the end time
     const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
-    expect(responseTime).to.be.below(10000);             //Response time assertion 
+    expect(responseTime).to.be.below(10000); //Response time assertion 
     expect(response._body.status).to.be.equal('success'); //Response attribute assertion
   }
 
-  // Token Generation
+  /**
+    * Generates a dynamic bearer token for API authentication.
+    *
+    * @param {string} username - The username for authentication.
+    * @param {string} password - The password for authentication.
+    * @returns {string} accessToken - The dynamically generated bearer token.
+    */
   it('token generation', async function ({ supertest }) {
     const tokenURl = "https://auth.go1percent.com";
     const requestData = {
@@ -123,20 +130,6 @@ describe('TechHub Api Testing', function () {
       });
   });
 
-  //Performs a GET request to test the 'Pending' API of a TechHub Module.
-  it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
-    const startTimestamp = Date.now();
-    await supertest
-      .request(header.urls.go1percentBase)
-      .get("/templates/my?state=draftAndReview&limit=10000&page=1")
-      .set(header.employee.headers)
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .then(function (response) {
-        commonExpectation(startTimestamp, response);
-      });
-  });
-
   // Performs a GET request to test the 'Pending' API of a TechHub Module.
   it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
     const startTimestamp = Date.now();
@@ -193,6 +186,7 @@ describe('TechHub Api Testing', function () {
       });
   });
 
+  
   //Performs a POST request to test the 'New Repo Branch Submission' API of a TechHub Module.
   it('New Repo Branch Submission', async function ({ supertest }) {
     const startTimestamp = Date.now();
@@ -221,38 +215,7 @@ describe('TechHub Api Testing', function () {
     await supertest
       .request(header.urls.go1percentBase)
       .post("/insert/technology")
-      .send({
-        "id": uniqueId,
-        "name": uniqueId,
-        "logoURL": uniqueId,
-        "caption": uniqueId,
-        "description": [
-          uniqueId
-        ],
-        "resources": {
-          "baseWebsite": uniqueId,
-          "docLink": uniqueId,
-          "twitterLink": uniqueId,
-          "githubLink": uniqueId,
-          "stackOverflowLink": uniqueId
-        },
-        "hits": 0,
-        "allTechnology": {
-          "id": uniqueId,
-          "name": uniqueId,
-          "logoURL": uniqueId,
-          "caption": uniqueId
-        },
-        "technology": {
-          "id": uniqueId,
-          "name": uniqueId
-        },
-        "trending": {
-          "id": uniqueId,
-          "name": uniqueId,
-          "hits": 0
-        }
-      })
+      .send(payload.insertPayload)
       .set(header.employee.headers)
       .expect(201)
       .expect('Content-Type', /json/)
@@ -267,38 +230,7 @@ describe('TechHub Api Testing', function () {
     await supertest
       .request(header.urls.go1percentBase)
       .post("/update/technology")
-      .send({
-        "id": "string",
-        "name": "string",
-        "logoURL": "string",
-        "caption": "string",
-        "description": [
-          "string"
-        ],
-        "resources": {
-          "baseWebsite": "string",
-          "docLink": "string",
-          "twitterLink": "string",
-          "githubLink": "string",
-          "stackOverflowLink": "string"
-        },
-        "hits": 0,
-        "allTechnology": {
-          "id": "string",
-          "name": "string",
-          "logoURL": "string",
-          "caption": "string"
-        },
-        "technology": {
-          "id": "string",
-          "name": "string"
-        },
-        "trending": {
-          "id": "string",
-          "name": "string",
-          "hits": 0
-        }
-      })
+      .send(payload.updatePayload)
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
@@ -334,18 +266,7 @@ describe('TechHub Api Testing', function () {
     await supertest
       .request(header.urls.go1percentBase)
       .post("/user/submit")
-      .send({
-        "id": "65321d9c3400003b269cc6bd",
-        "repoName": "TestTechHubAutomationShra",
-        "title": "SomeTestingTesting",
-        "caption": "SomeTestingTesting",
-        "description": ["sredtryugioyjgfhgchjklkgyfgchjuytfgcvhjbkuytfgchjbkuyfgchjkyutfgcvbnhjkuygtfgcvbnhjkyugtfhbjygfcvbnhjgfcvbnhjgfcvbnhjg"],
-        "branch": "main",
-        "tags": ["tags"],
-        "baseLanguage": "kafka",
-        "otherLanguages": [{ "tempId": "", "langName": "" }],
-        "category": "learning", "infoUrl": ""
-      })
+      .send(payload.draftRepoPayload)
       .set(header.employee.headers)
       .expect(200)
       .expect('Content-Type', /json/)
