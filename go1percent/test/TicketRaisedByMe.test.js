@@ -14,12 +14,12 @@ describe('Ticket Raised By Me Api testing', function () {
             'source': 'https://nashtechglobal.qa.go1percent.com',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-        const tokenRequestData={
-            'client_id':'leaderboard-ui',
-            'client_secret':'8090ed15-4cd1-483c-9fee-2a8b35941852',
-            'username':'testadmin',
-            'password':'testadmin',
-            'grant_type':'password'
+        const tokenRequestData = {
+            'client_id': 'leaderboard-ui',
+            'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            'username': 'testadmin',
+            'password': 'testadmin',
+            'grant_type': 'password'
         }
         const response = await supertest
 
@@ -39,6 +39,8 @@ describe('Ticket Raised By Me Api testing', function () {
      * @param {Object} supertest - The supertest object for making HTTP requests.
      */
     it('should retrieve open tickets', async function ({ supertest }) {
+
+        const startTimestamp = Date.now();
         await supertest
             .request(globals.baseUrl)
             .get("/tickets/my?status=Open&limit=10&page=1")
@@ -65,13 +67,12 @@ describe('Ticket Raised By Me Api testing', function () {
                 expect(responseBody[0].createdAt).to.be.an('number')
                 expect(responseBody[0].category).to.be.an('object')
 
-                for (let i = 0; i < responseBody.length; i++) {
+                for (let index = 0; index < responseBody.length; index++) {
 
                     // verifying the status of all the tickets should be "Open"
-                    expect(responseBody[i].status.name).to.equal('Open')
+                    expect(responseBody[index].status.name).to.equal('Open')
                 }
-
-
+                verifyResponseTime(startTimestamp, response);
             })
 
     });
@@ -82,6 +83,7 @@ describe('Ticket Raised By Me Api testing', function () {
      */
     it('get api test 2', async function ({ supertest }) {
 
+        const startTimestamp = Date.now();
         await supertest
             .request(globals.baseUrl)
             .get("/tickets/my?status=Closed&limit=10&page=1")
@@ -100,10 +102,11 @@ describe('Ticket Raised By Me Api testing', function () {
                 expect(responseBody[0]).to.have.property('category');
 
                 // verifying the status of all the tickets should be "Closed"
-                for (let i = 0; i < responseBody.length; i++) {
+                for (let index = 0; index < responseBody.length; index++) {
 
-                    expect(responseBody[i].status.name).to.equal('Closed')
+                    expect(responseBody[index].status.name).to.equal('Closed')
                 }
+                verifyResponseTime(startTimestamp, response);
             })
 
     });
@@ -114,6 +117,7 @@ describe('Ticket Raised By Me Api testing', function () {
      */
     it('should retrieve details of a specific ticket', async function ({ supertest }) {
 
+        const startTimestamp = Date.now();
         await supertest
             .request(globals.baseUrl)
             .get("/tickets/ticket/1162")
@@ -137,9 +141,9 @@ describe('Ticket Raised By Me Api testing', function () {
                 expect(responseBody.ticketDetails.category).to.be.an('object')
                 expect(responseBody.ticketDetails.assignedTo).to.be.an('array')
 
-
-
+                verifyResponseTime(startTimestamp, response);
             })
+
 
     });
 
@@ -149,6 +153,7 @@ describe('Ticket Raised By Me Api testing', function () {
      */
     it('should retrieve comments for a specific ticket', async function ({ supertest }) {
 
+        const startTimestamp = Date.now();
         await supertest
             .request(globals.baseUrl)
             .get("/tickets/1137/comments")
@@ -156,7 +161,6 @@ describe('Ticket Raised By Me Api testing', function () {
             .expect(200)
 
             .then(function (response) {
-
                 let responseBody = response.body.data;
 
                 // assert the response body attributes
@@ -165,7 +169,6 @@ describe('Ticket Raised By Me Api testing', function () {
                 expect(responseBody[0].comment).to.have.property('createdAt')
                 expect(responseBody[0].comment).to.have.property('file')
 
-
                 // assert the type of each property in "comment"
                 const comments = responseBody[0].comment;
                 expect(comments.userEmail).to.be.a('string');
@@ -173,7 +176,7 @@ describe('Ticket Raised By Me Api testing', function () {
                 expect(comments.createdAt).to.be.a('number');
                 expect(comments.file).to.be.a('object');
 
-
+                verifyResponseTime(startTimestamp, response);
             })
 
 
@@ -184,6 +187,7 @@ describe('Ticket Raised By Me Api testing', function () {
      */
     it('get Categories', async function ({ supertest }) {
 
+        const startTimestamp = Date.now();
         await supertest
             .request(globals.baseUrl)
             .get("/tickets/categories")
@@ -191,7 +195,6 @@ describe('Ticket Raised By Me Api testing', function () {
             .expect(200)
 
             .then(function (response) {
-
                 let responseBody = response.body.data;
 
                 // assert all the expected categories in response.
@@ -199,13 +202,25 @@ describe('Ticket Raised By Me Api testing', function () {
                     'Certification', 'Open source', 'PMO Template', 'Tech hub', 'Proposal', 'Book', 'Webinar', 'Conference',
                     'Other', 'Knolx', 'Process Document', 'Blog', 'Meetup', 'Research paper'
                 ]
-
-                for (let i = 0; i < responseBody.length; i++) {
-
-                    expect(responseBody[i].categoryType.name).to.be.oneOf(expectedCategoryTypeNames);
+                for (let index = 0; index < responseBody.length; index++) {
+                    expect(responseBody[index].categoryType.name).to.be.oneOf(expectedCategoryTypeNames);
                 }
-
+                verifyResponseTime(startTimestamp, response);
             })
+
     });
+    
+    /**
+     * Verifies the response time and status of an API request.
+     *
+     * @param {number} startTimestamp - The timestamp when the request was sent.
+     * @param {Object} response - The response object from the API request.
+     */
+    const verifyResponseTime = (startTimestamp, response) => {
+        const endTimestamp = Date.now();
+        const responseTime = endTimestamp - startTimestamp;
+        expect(responseTime).to.be.below(10000);
+        expect(response._body.status).to.be.equal(true);
+    }
 
 });
