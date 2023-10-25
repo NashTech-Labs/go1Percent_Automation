@@ -1,6 +1,6 @@
 //api-test.js
 describe('api testing', function () {
-    it('get api test', async function({supertest}) {
+    it('get All Rewards', async function({supertest}) {
       await supertest
         .request("https://backend.ntprod.go1percent.com")
         .get("/rewards/getAllRewards")
