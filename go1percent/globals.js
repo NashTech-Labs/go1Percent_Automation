@@ -1,4 +1,7 @@
 const chromedriver = require('chromedriver');
+function startTime(){
+    return new Date().getTime()
+}
 
 module.exports = {
 
@@ -10,7 +13,7 @@ module.exports = {
     after: function(done) {
         chromedriver.stop();
         done();
-    },
+    }, 
    
 
     Url:
@@ -20,5 +23,6 @@ module.exports = {
             PostEndPoints:"/contribution/addContribution",
             GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"
         }
+
 
 };
