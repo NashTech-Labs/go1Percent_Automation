@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="Rewards_section.get_all_rewards_api"
+    errors="0" failures="0" hostname="" id="" package="Rewards_section" skipped="0"
+    tests="1" time="2.361" timestamp="">
+  
+    <testcase name="should get all rewards" classname="Rewards_section.get_all_rewards_api" time="1.180" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
