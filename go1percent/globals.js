@@ -65,5 +65,3 @@ module.exports = {
     access_token :"",
     url : 'https://backend-radar.qa.go1percent.com/',
 };
-
-

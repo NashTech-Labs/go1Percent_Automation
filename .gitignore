@@ -1,3 +1,5 @@
+go1percent/node_modules/
+go1percent/tests_output/
 # Compiled class file
 *.class
 
