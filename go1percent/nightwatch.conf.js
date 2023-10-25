@@ -23,10 +23,10 @@ module.exports = {
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: ['nightwatch/custom-assertions'],
+ // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
-  //plugins: ['@nightwatch/react'],
+     plugins: ['@nightwatch/apitesting'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
@@ -38,10 +38,13 @@ module.exports = {
   
   webdriver: {},
 
+  //Test Worker Configuration
   test_workers: {
-    enabled: true
+    enabled: true,
+    workers: 'auto'
   },
 
+  
   test_settings: {
     default: {
       disable_error_log: false,
@@ -55,6 +58,14 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome'
+      // 'goog:chromeOptions': {
+      //   ...
+      //   // specify the locateStrategy as xpath
+      //   locateStrategy: 'xpath',
+        
+      // },
+      
+      
       },
       
       webdriver: {
@@ -65,8 +76,8 @@ module.exports = {
     },
     "qa": {
       "globals": {
-        "userName": "gaurav@knoldus.com", // this is placeholder username, make sure to update.
-        "password": "gauravshukla092" // this is placeholderPassword, Make sure to update.
+        "userName": "testemployee", // this is placeholder username, make sure to update.
+        "password": "testemployee" // this is placeholderPassword, Make sure to update.
       }
     },
     
@@ -92,7 +103,13 @@ module.exports = {
         ]
       }
     },
-    
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
+      }
+   },
+
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
