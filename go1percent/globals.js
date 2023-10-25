@@ -74,5 +74,8 @@ module.exports = {
     base_url : "https://knolx-backend.qa.go1percent.com/",
     source : "https://nashtechglobal.qa.go1percent.com",
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
-    access_token :"",   
+    access_token :"",  
+    // Upcoming Sessions Page Frontend Automation
+    nasher : "employee",
+    titleName: "TestAutomationTitle"
 };
