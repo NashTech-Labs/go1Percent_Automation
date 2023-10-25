@@ -644,98 +644,30 @@ module.exports = {
  
 
         start_process: true,
-
- 
-
         port: 4444,
-
- 
-
-        server_path: '', // Leave empty if @nightwatch/selenium-server is installed
-
- 
+       server_path: '', // Leave empty if @nightwatch/selenium-server is installed
 
         command: 'standalone', // Selenium 4 only
-
- 
-
         cli_args: {
-
- 
-
-          //'webdriver.gecko.driver': '',
-
- 
+    //'webdriver.gecko.driver': '',
 
           //'webdriver.chrome.driver': ''
-
- 
-
-        }
-
- 
-
-      },
-
- 
-
-      webdriver: {
-
- 
-
-        start_process: false,
-
- 
-
-        default_path_prefix: '/wd/hub'
-
- 
-
-      }
-
- 
-
-    },
-
- 
-
- 
-
- 
-
-    'selenium.chrome': {
-
- 
-
-      extends: 'selenium_server',
-
- 
-
-      desiredCapabilities: {
-
- 
-
+     }
+     },
+  webdriver: {
+    start_process: false,
+    default_path_prefix: '/wd/hub'
+  }
+ },
+ 'selenium.chrome': {
+ extends: 'selenium_server',
+ desiredCapabilities: {
         browserName: 'chrome',
-
- 
-
-        chromeOptions: {
-
- 
-
-          w3c: true
-
- 
-
+ chromeOptions: {
+  w3c: true
         }
-
- 
-
       }
-
- 
-
-    },
+  },
 
     'selenium.firefox': {
 
@@ -760,13 +692,7 @@ module.exports = {
       },
 
     },
-
- 
-
   }
-
- 
-
 };
 
  
