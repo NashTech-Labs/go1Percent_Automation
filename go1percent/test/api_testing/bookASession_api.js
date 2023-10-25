@@ -1,7 +1,7 @@
-const { base_url, source, url, validator,expectedStudioIds } = require('../../globals'); //  global variables
+const { base_url, source, url,expectedStudioIds,access_token} = require('../../globals'); //  global variables
 
 describe('Knolx|Book A Session API', function () {
-    it('Check All Users Data', async function ({ supertest }) {
+    it('Check all users data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
             .request(base_url)
@@ -21,10 +21,8 @@ describe('Knolx|Book A Session API', function () {
             });
         }, 'All users should have "name" and "email" properties that are strings');
     });
-});
 
-describe('Another API Test', function () {
-    it('Check Another API Data', async function ({ supertest }) {
+    it('Check all studio competencies data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
             .request(url)
@@ -39,5 +37,38 @@ describe('Another API Test', function () {
 
         const missingCompetencies = studios.filter(studio => !studio.studioId || !expectedStudioIds.includes(studio.studioId));
         expect(missingCompetencies.length, 'All competencies should match the expected values').to.equal(0);
+    });
+
+    it('Validate upcoming months data', async function ({ supertest }) {
+        const startTime = performance.now();
+        const response = await supertest
+            .request(base_url)
+            .get('v02/slots/getFourMonths')
+            .set('source', source)
+            .set('authorization', access_token)
+            .expect(200);
+        const endTime = performance.now();
+        const responseTime = endTime - startTime;
+        expect(responseTime).to.be.lessThan(2000);
+
+        const slots = response.body.slots;
+
+        const expectedDataTypes = {
+            id: 'string',
+            slotTitle: 'string',
+            dateTime: 'number',
+            bookable: 'boolean',
+            createdBy: 'string',
+            slotDuration: 'number',
+            slotType: 'string'
+        };
+
+        const dataTypesMatch = slots.every(slot => {
+            return Object.keys(expectedDataTypes).every(field => {
+                return typeof slot[field] === expectedDataTypes[field];
+            });
+        });
+
+        expect(dataTypesMatch, 'All fields have correct data types').to.be.true;
     });
 });
