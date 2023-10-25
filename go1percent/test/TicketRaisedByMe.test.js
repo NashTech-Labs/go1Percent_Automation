@@ -1,6 +1,7 @@
 const assert = require('assert')
 const globals = require('../globals')
 describe('Ticket Raised By Me Api testing', function () {
+    const baseUrl = "https://ticket-backend.qa.go1percent.com"
 
     /**
      * Test function for token generation.
@@ -42,7 +43,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(globals.baseUrl)
+            .request(baseUrl)
             .get("/tickets/my?status=Open&limit=10&page=1")
             .set(globals.apiheaders)
 
@@ -85,7 +86,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(globals.baseUrl)
+            .request(baseUrl)
             .get("/tickets/my?status=Closed&limit=10&page=1")
             .set(globals.apiheaders)
 
@@ -119,7 +120,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(globals.baseUrl)
+            .request(baseUrl)
             .get("/tickets/ticket/1162")
             .set(globals.apiheaders)
             .expect(200)
@@ -155,7 +156,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(globals.baseUrl)
+            .request(baseUrl)
             .get("/tickets/1137/comments")
             .set(globals.apiheaders)
             .expect(200)
@@ -189,7 +190,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(globals.baseUrl)
+            .request(baseUrl)
             .get("/tickets/categories")
             .set(globals.apiheaders)
             .expect(200)
