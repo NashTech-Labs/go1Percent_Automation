@@ -23,10 +23,13 @@ module.exports = {
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: ['nightwatch/custom-assertions'],
+  // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   //plugins: ['@nightwatch/react'],
+  plugins: ['@nightwatch/apitesting'],
+  
+  plugins: ['@nightwatch/apitesting'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
@@ -35,14 +38,25 @@ module.exports = {
     start_vite: true,
     port: 5173
   },
-  
+  "@nightwatch/apitesting" : {
+    "log_responses": true
+  },
   webdriver: {},
 
   test_workers: {
     enabled: true
   },
 
+
   test_settings: {
+
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
+      }
+    },
+    
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
@@ -65,8 +79,8 @@ module.exports = {
     },
     "qa": {
       "globals": {
-        "userName": "gaurav@knoldus.com", // this is placeholder username, make sure to update.
-        "password": "gauravshukla092" // this is placeholderPassword, Make sure to update.
+        "userName": "testemployee", // this is placeholder username, make sure to update.
+        "password": "testemployee" // this is placeholderPassword, Make sure to update.
       }
     },
     
@@ -90,6 +104,13 @@ module.exports = {
           // very verbose geckodriver logs
           // '-vv'
         ]
+      }
+    },
+
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
       }
     },
     
@@ -344,5 +365,9 @@ module.exports = {
     },
     
   },
+
+  "@nightwatch/apitesting" : {
+    "log_responses": true
+  }
   
 };
