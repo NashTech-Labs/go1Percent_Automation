@@ -21,13 +21,18 @@ module.exports = {
   page_objects_path: ['page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+  
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  //custom_assertions_path: ['nightwatch/custom-assertions'],
+
+   // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
-  plugins: ['@nightwatch/apitesting'],
+
+     plugins: ['@nightwatch/apitesting'],
+  //plugins: ['@nightwatch/react'],
+
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
@@ -43,10 +48,12 @@ module.exports = {
   
   webdriver: {},
 
+  //Test Worker Configuration
   test_workers: {
     enabled: true,
     workers: 'auto'
   },
+
 
   test_settings: {
     default: {
@@ -61,6 +68,14 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome'
+      // 'goog:chromeOptions': {
+      //   ...
+      //   // specify the locateStrategy as xpath
+      //   locateStrategy: 'xpath',
+        
+      // },
+      
+      
       },
       
       webdriver: {
@@ -69,7 +84,7 @@ module.exports = {
       },    
       
     },
-   
+
     
     
 
@@ -95,7 +110,16 @@ module.exports = {
         ]
       }
     },
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
+      }
+   },
+
+   },
     
+
     api_testing: {
       start_session: false,
       webdriver: {
@@ -103,7 +127,10 @@ module.exports = {
       }
     },
 
-    chrome: {
+  
+
+   chrome: {
+
       desiredCapabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
@@ -352,7 +379,13 @@ module.exports = {
         }
       }
     },
-    
-  },
+    "@nightwatch/apitesting" : {
+      "log_responses": true
+    }
+  };
+
   
-};
+
+  
+
+

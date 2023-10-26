@@ -1,4 +1,5 @@
-const globals = require('../globals')
+const globals = require('../../globals')
+
 const myToken = process.argv.indexOf('--token'); //npx nightwatch test/Add_Config.js --env api_testing --token youracesstoken
 
 describe('api testing', function () {
@@ -22,8 +23,8 @@ const headers = {
       const startTime = new Date().getTime();
         await supertest
         
-          .request(globals.Url.BaseUrl)
-          .post(globals.Url.PostEndPoints)
+          .request(globals.Add_Contribution_Url.BaseUrl)
+          .post(globals.Add_Contribution_Url.PostEndPoints)
           .set(headers)
           .send({
             "title":"Test employee contribution",
