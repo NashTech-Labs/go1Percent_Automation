@@ -3,6 +3,11 @@ function startTime(){
     return new Date().getTime()
 }
 
+
+function startTime(){
+    return new Date().getTime()
+}
+
 module.exports = {
 
     before: function (done) {
@@ -46,9 +51,7 @@ module.exports = {
     after: function (done) {
         chromedriver.stop();
         done();
-    },
-
-  
+    },      
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
@@ -111,7 +114,9 @@ module.exports = {
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
     access_token :"",
     url : 'https://backend-radar.qa.go1percent.com/',
-    baseurl:'https://backend.qa.go1percent.com'
+    baseurl:'https://backend.qa.go1percent.com',
+    base_url : "https://knolx-backend.qa.go1percent.com",
+    source : "https://nashtechglobal.qa.go1percent.com",
 
 };
 
