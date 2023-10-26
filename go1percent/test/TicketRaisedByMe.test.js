@@ -1,5 +1,6 @@
 const globals = require('../globals')
 const accessToken = process.argv.indexOf('--token');
+const fs = require('fs');
 
 describe('Ticket Raised By Me Api testing', function () {
     const baseUrl = "https://ticket-backend.qa.go1percent.com"
@@ -154,10 +155,64 @@ describe('Ticket Raised By Me Api testing', function () {
 
                 verifyResponseTime(startTimestamp, response);
             })
-
-
     });
- 
+     
+    /**
+     * Test case to retrieve all assignees.
+     * @param {Object} supertest - The supertest object for making HTTP requests.
+     */
+    it('should retrieve assignees', async function ({ supertest }) {
+
+        const startTimestamp = Date.now();
+        await supertest
+            .request(baseUrl)
+            .get("/users/assignees")
+            .set(header)
+            .expect(200)
+
+            .then(function (response) {
+                let responseBody = response.body.data;
+
+                // assert the response body attributes
+                const expectedAssignees=[
+                'Nitin Saxena','Ankit Kumar','Prateek Gupta','Aman Verma','Aanchal Agarwal',
+                'Jony Mandal','Rahul Khowal','Anirudh','Rahul Soni','Amit Nair','Saurabh Choudhary','Piyush Rana',
+                'Amelia','Himanshu Gupta','Testemployee','Hitesh Mahi','Ben Antony Joshua','Divyansh Devrani','Akash Kumar'
+                ]
+                for(let index= 0; index < responseBody.length; index++){
+
+                    const responseObject = responseBody[index];
+                    expect(responseObject).to.have.all.keys('name','email');
+                    expect(responseObject.name).to.be.oneOf(expectedAssignees)
+                }
+
+                verifyResponseTime(startTimestamp, response);
+            })
+    });
+    
+     /**
+     * Test case to update details for a specific ticket.
+     * @param {Object} supertest - The supertest object for making HTTP requests.
+     */
+    it('should update the details of Ticket', async function ({ supertest }) {
+
+        const requestedData={
+            "ticketID":1185,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
+        }
+        const startTimestamp = Date.now();
+        await supertest
+            .request(baseUrl)
+            .put("/tickets/update")
+            .set(header)
+            .send(requestedData)
+            .expect(200)
+
+            .then(function (response) {
+                // assert the response body
+                expect(response.body.data).to.equal("Ticket Updated Successfully!")
+                verifyResponseTime(startTimestamp, response);
+            })
+    });
     /**
      * Test case to retrieve ticket categories.
      * @param {Object} supertest - The supertest object for making HTTP requests.
@@ -186,7 +241,7 @@ describe('Ticket Raised By Me Api testing', function () {
             })
 
     });
-    
+        
     /**
      * Verifies the response time and status of an API request.
      *
