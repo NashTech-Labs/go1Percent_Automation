@@ -43,7 +43,8 @@ describe('api testing', function () {
         const responseTime = endTime - startTime;
 
         expect(responseTime).to.be.lessThan(2000);
-     expect(response.body.sessions[0].id).to.be.equal("6526385058f83108585a4002"),
+     //Attribute Response
+        expect(response.body.sessions[0].id).to.be.equal("6526385058f83108585a4002"),
      expect(response.body.sessions[0].topic).to.be.equal("Testing1") // Use response.body to access the response body
      expect(response.body.sessions[0].category).to.be.equal("TEST AUTOMATION COMPETENCY");   
         
@@ -70,7 +71,7 @@ describe('api testing', function () {
               const startTime = performance.now();
   
           const endTime = performance.now();
-  
+          
           const responseTime = endTime - startTime;
   
           expect(responseTime).to.be.lessThan(2000);
