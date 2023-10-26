@@ -1,6 +1,15 @@
 const headers = require('../globals')
+// Parsing the command-line arguments to find the '--token' parameter.
+const accessToken = process.argv.indexOf('--token');
 
 describe('Review Contribution API Testing', function () {
+
+    // Extracting the token value from the command-line arguments.
+    const token = process.argv[accessToken + 1];
+    const header = {
+        'Source': 'https://nashtechglobal.qa.go1percent.com',
+        'Authorization': 'Bearer ' + token
+    }
 
     /**
      * Asserts the response time and status in a Nightwatch program.
@@ -21,42 +30,6 @@ describe('Review Contribution API Testing', function () {
 
     }
 
-
-    it('token generation', async function ({ supertest }) {
-
-        const url = "https://auth.go1percent.com";
-        const tokenheaders = {
-            'accept': '*/*',
-            'source': 'https://nashtechglobal.qa.go1percent.com',
-            'Content-Type': 'application/x-www-form-urlencoded'
-
-        }
-
-        const tokenRequestData = {
-
-            'client_id': 'leaderboard-ui',
-            'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            'username': 'testadmin',
-            'password': 'testadmin',
-            'grant_type': 'password'
-
-        }
-
-        const response = await supertest
-
-            .request(url)
-            .post('/auth/realms/nashtech/protocol/openid-connect/token')
-            .set(tokenheaders)
-            .send(tokenRequestData)
-            .expect(200)
-
-        accessToken = response._body.access_token;
-
-        headers.headers['Authorization'] = 'Bearer ' + accessToken;
-        console.log(accessToken);
-
-    })
-
     /**
      * Test case to retrieve all the pending contributions for approval or rejection on Approvals page.
      * @param {object} supertest - The supertest object for making HTTP requests.
@@ -72,7 +45,7 @@ describe('Review Contribution API Testing', function () {
 
             .get("/contribution/allContribution?pageNumber=1&limit=10")
 
-            .set(headers.headers)
+            .set(header)
 
             .expect(200)
 
@@ -111,7 +84,7 @@ describe('Review Contribution API Testing', function () {
 
             .put('/contribution')
 
-            .set(headers.headers)
+            .set(header)
 
             .send({ "contributionId": 2718, "status": "APPROVED", "remark": "" })
 
@@ -146,7 +119,7 @@ describe('Review Contribution API Testing', function () {
         await supertest
             .request(headers.baseurl)
             .get("/contribution/getApprovedContributionsForAll?pageNumber=1&limit=10")
-            .set(headers.headers)
+            .set(header)
             .expect(200)
 
             // Assertions to check the structure and properties of the response
@@ -186,7 +159,7 @@ describe('Review Contribution API Testing', function () {
 
             .get("/contribution?contributionId=2702")
 
-            .set(headers.headers)
+            .set(header)
 
             .expect(200)
 
@@ -231,7 +204,7 @@ describe('Review Contribution API Testing', function () {
         await supertest
             .request(headers.baseurl)
             .get("/contribution/allContribution?pageNumber=1&limit=10&date=2023-10-16")
-            .set(headers.headers)
+            .set(header)
             .expect(200)
 
             .then(function (response) {
