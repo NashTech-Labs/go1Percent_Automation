@@ -80,8 +80,13 @@ module.exports = {
     "qa": {
       "globals": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "userName": "testemployee", // this is placeholder username, make sure to update.
         "password": "testemployee" // this is placeholderPassword, Make sure to update.
+=======
+        "userName": "testadmin", // this is placeholder username, make sure to update.
+        "password": "testadmin" // this is placeholderPassword, Make sure to update.
+>>>>>>> 37ad7bbcbcc721b6831b5651aa4f9ac23cc0ed6b
 =======
         "userName": "testadmin", // this is placeholder username, make sure to update.
         "password": "testadmin" // this is placeholderPassword, Make sure to update.
