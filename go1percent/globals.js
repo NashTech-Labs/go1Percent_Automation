@@ -61,10 +61,10 @@ module.exports = {
     Add_Configuration:{
         BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/contribution/addContribution",
-        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"
-        
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"     
 
     },
+
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
