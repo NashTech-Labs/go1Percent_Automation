@@ -1,6 +1,5 @@
-const headers = require('../go1Percentloging')
-
-const accessToken = ''; 
+const headers = require('../../globals')
+const access_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJIRzk4ejl1eFN0T3VPaVg4a2RiYlNPblQ2a29OWUlCSENLeXM2LUhTYnlFIn0.eyJleHAiOjE2OTgzMDIwNTksImlhdCI6MTY5ODMwMDI1OSwianRpIjoiYjk0MWJmYjgtMzFmZi00MGYyLWFmYWYtYjgyN2RmMGY5ZTgzIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLmdvMXBlcmNlbnQuY29tL2F1dGgvcmVhbG1zL25hc2h0ZWNoIiwiYXVkIjpbImxlYWRlcmJvYXJkLXFhLXVpIiwibGVhZGVyYm9hcmQtZGV2LXVpIiwiYWNjb3VudCJdLCJzdWIiOiJhNzE5YTJiMi0zY2FjLTRjMTItOTQ1Yi1kNzMzMGE4MTkxMDYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJsZWFkZXJib2FyZC11aSIsInNlc3Npb25fc3RhdGUiOiJkODRhODYwMy0yY2JhLTRmODItOTRiZS05YzE0MDkwYTFmNGEiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vbGVhZGVyYm9hcmQuZ28xcGVyY2VudC5jb20iLCJodHRwczovL3JlcG9ydC5xYS5nbzFwZXJjZW50LmNvbSIsImh0dHBzOi8vbmFzaHRlY2hnbG9iYWwuZ28xcGVyY2VudC5jb20iLCJodHRwczovL2tub2xkdXMuZ28xcGVyY2VudC5jb20iLCJodHRwOi8vbG9jYWxob3N0OjgwODgiLCJodHRwOi8vbG9jYWxob3N0OjQyMDAiLCJodHRwczovL2xlYWRlcmJvYXJkLmtub2xkdXMuY29tIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtbmFzaHRlY2giLCJ1bWFfYXV0aG9yaXphdGlvbiIsImVtcGxveWVlIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsibGVhZGVyYm9hcmQtcWEtdWkiOnsicm9sZXMiOlsiYWRtaW4iLCJlbXBsb3llZSJdfSwibGVhZGVyYm9hcmQtdWkiOnsicm9sZXMiOlsiYWRtaW4iLCJlbXBsb3llZSJdfSwibGVhZGVyYm9hcmQtZGV2LXVpIjp7InJvbGVzIjpbImFkbWluIiwiZW1wbG95ZWUiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6ImQ4NGE4NjAzLTJjYmEtNGY4Mi05NGJlLTljMTQwOTBhMWY0YSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InRlc3QgYWRtaW4iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0YWRtaW4iLCJnaXZlbl9uYW1lIjoidGVzdCIsImZhbWlseV9uYW1lIjoiYWRtaW4iLCJlbWFpbCI6InRlc3RhZG1pbkBuYXNodGVjaGdsb2JhbC5jb20ifQ.eikh7EDYu4QNvKzM-7mKJkB52WC42zGlCBh0e4LZE-Fc1ZWUKrjRkdAZ9-xi_erur6bVszmWAjBUS7ZZ3uUqMIkTvnLfD28VerVxpp3xyfFml85grEylu5qdbw57y3BT09oejo4u5qRbNEHZy9tquv7fjgObAjqwlZkzOqyh4uOh5pH7-UIHwc6XLJsloHwPeiWBxLvbH82n-qzhcHlYcPBDIwrAXMjE-8x6B3cglX6kbyX51d7x8e6e-zgNoF2ubUQfLK4U1rVTQPgcMgGcExnYNGHiM7QFL_8XfFUZA9d85XHbMV7ovh4SvPkktD3A5tRePpJ3sQT8CdzWvCnlHQ'
 const newSlotPayload = {
   "slotType": "Knolx",
   "dateTime": 1699093800000,
@@ -63,10 +62,10 @@ describe('api testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request("https://knolx-backend.qa.go1percent.com")
+      .request(headers.base_url)
       .post("/v02/slots")
-      .set('source', "https://nashtechglobal.qa.go1percent.com")
-      .set('Authorization', accessToken)
+      .set('source', headers.source)
+      .set('Authorization', access_token)
       .send(newSlotPayload)
       .expect(200)
       .then((response) => {
@@ -92,10 +91,10 @@ describe('api testing', function () {
       const startTime = performance.now();
 
       const response = await supertest
-        .request('https://knolx-backend.qa.go1percent.com')
+        .request(headers.base_url)
         .delete(`/v02/slots/${createdSlotId}`) 
-        .set('source', "https://nashtechglobal.qa.go1percent.com")
-        .set('Authorization', accessToken)
+        .set('source', headers.source)
+        .set('Authorization', access_token)
         .expect(200)
         .then((response) => {
           console.log(response.body);
@@ -103,6 +102,11 @@ describe('api testing', function () {
           const responseTime = endTime - startTime;
           expect(responseTime).to.be.lessThan(6000);
           expect(response.body.status).to.be.true;
+          expect(response.body.slotTitle).to.not.equal(data.slotTitle);
+          expect(response.body.slotDuration).to.not.equal(data.slotDuration);
+          expect(response.body.bookable).to.not.be.true; 
+          expect(response.body.createdBy).to.not.equal(data.createdBy);
+          expect(response.body.slotType).to.not.equal(newSlotPayload.slotType);
         });
     } else {
       console.log('No slotId available to delete.');
@@ -113,10 +117,10 @@ describe('api testing', function () {
     const startTime = performance.now();
   
     const response = await supertest
-      .request("https://knolx-backend.qa.go1percent.com")
+    .request(headers.base_url)
       .post("/v02/slots/653649d78555d37c0a4f8dc3")
-      .set('source', "https://nashtechglobal.qa.go1percent.com")
-      .set('Authorization', accessToken)
+      .set('source', headers.source)
+      .set('Authorization', access_token)
       .send(updatedSlotPayload) // Use the updated payload here
       .expect(200)
       .then((response) => {
@@ -135,10 +139,10 @@ describe('api testing', function () {
     const startTime = performance.now();
   
     const response = await supertest
-      .request("https://knolx-backend.qa.go1percent.com")
+      .request(headers.base_url)
       .post("/v02/slots/automateSlot/3/Knolx") 
-      .set('source', "https://nashtechglobal.qa.go1percent.com")
-      .set('Authorization', accessToken)
+      .set('source', headers.source)
+      .set('Authorization', access_token)
       .expect(200)
        console.log(response.body);
 
@@ -146,6 +150,9 @@ describe('api testing', function () {
         const responseTime = endTime - startTime;
         expect(responseTime).to.be.lessThan(6000);
         expect(response.body.status).to.be.true;
+        expect(response.type).to.equal('application/json');
+
+
        
       });
   }),
@@ -154,16 +161,19 @@ describe('api testing', function () {
     const startTime = performance.now();
   
     const response = await supertest
-      .request("https://knolx-backend.qa.go1percent.com")
+      .request(headers.base_url)
       .get("/v02/slots/getFourMonths") 
-      .set('source', "https://nashtechglobal.qa.go1percent.com")
-      .set('Authorization', accessToken)
+      .set('source', headers.source)
+      .set('Authorization', access_token)
       .expect(200)
        console.log(response.body);
 
         const endTime = performance.now();
         const responseTime = endTime - startTime
         expect(responseTime).to.be.lessThan(6000);
+        expect(response.body).to.be.an('object');
+        expect(response.body).to.have.property('slots').to.be.an('array');
+        expect(response.body).not.to.have.property('months');
              
       }),
 
@@ -171,10 +181,10 @@ describe('api testing', function () {
         const startTime = performance.now();
       
         const response = await supertest
-          .request("https://knolx-backend.qa.go1percent.com")
+          .request(headers.base_url)
           .get("/v02/getSession/650afe5cce8ba4439b1697ef") 
-          .set('source', "https://nashtechglobal.qa.go1percent.com")
-          .set('Authorization', accessToken)
+          .set('source', headers.source)
+          .set('Authorization', access_token)
           .expect(200)
            console.log(response.body);
     
