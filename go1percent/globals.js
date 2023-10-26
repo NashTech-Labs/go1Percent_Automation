@@ -28,6 +28,43 @@ module.exports = {
             grant_type: 'password',
         },
 
+    after: function(done) {
+        chromedriver.stop();
+        done();
+    },
+
+  
+    // Upcoming Page
+    queryNasher: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'approved',
+        'search': 'testadmin'
+    },
+    queryTestTitle: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'approved',
+        'search': 'TestAutomationTitle'
+    },
+    // filter
+    queryUsingCompetency: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'studio': 'testautomation'
+    },
+    queryUsingAllSessions: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'session': 'Knolx'
+    },
+    queryAllTime: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'time': '1698949800000'
     },
 
 
@@ -65,4 +102,8 @@ module.exports = {
     access_token :"",
     url : 'https://backend-radar.qa.go1percent.com/',
 
+
+    baseurl:'https://backend.qa.go1percent.com'
+
+}
 };
