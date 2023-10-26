@@ -70,6 +70,7 @@ module.exports = {
         'pageSize': '10',
         'filter': 'past'
     },
+
     //filter
     queryUsingCompetencyPast:{
         'pageNumber': '1',
@@ -112,6 +113,7 @@ module.exports = {
         username: 'testadmin',
         password: 'testadmin',
         grant_type: 'password',
+
         },
     },
          
