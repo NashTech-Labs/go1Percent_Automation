@@ -56,7 +56,15 @@ module.exports = {
     after: function (done) {
         chromedriver.stop();
         done();
-    },      
+    }, 
+    
+    Add_Configuration:{
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/contribution/addContribution",
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"
+        
+
+    },
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
@@ -95,6 +103,7 @@ module.exports = {
         'pageSize': '10',
         'filter': 'past'
     },
+
     //filter
     queryUsingCompetencyPast:{
         'pageNumber': '1',
@@ -119,6 +128,7 @@ module.exports = {
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
     access_token :"",
     url : 'https://backend-radar.qa.go1percent.com/',
+
     baseurl:'https://backend.qa.go1percent.com',
     	
     admin: {
@@ -136,11 +146,13 @@ module.exports = {
         username: 'testadmin',
         password: 'testadmin',
         grant_type: 'password',
+
         },
     },
          
     urls: {
             token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
             go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
+
             }
 };

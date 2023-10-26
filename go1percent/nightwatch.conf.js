@@ -31,11 +31,16 @@ module.exports = {
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
 
      plugins: ['@nightwatch/apitesting'],
+
     //plugins: ['@nightwatch/react'],
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
-  
+    globals: {
+      "userName": "testemployee", // this is placeholder username, make sure to update.
+      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+    },
+
   vite_dev_server: {
     start_vite: true,
     port: 5173
@@ -76,6 +81,7 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
+
       },
 
       
@@ -92,6 +98,7 @@ module.exports = {
         "password": "testemployee" // this is placeholderPassword, Make sure to update.
       }
     },
+
     
     
 
@@ -125,6 +132,18 @@ module.exports = {
    },
 
    },
+
+    
+
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
+      }
+    },
+
+  
+
 
    chrome: {
 
@@ -384,3 +403,5 @@ module.exports = {
   
 
   
+
+
