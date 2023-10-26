@@ -3,6 +3,11 @@ function startTime(){
     return new Date().getTime()
 }
 
+
+function startTime(){
+    return new Date().getTime()
+}
+
 module.exports = {
 
     before: function(done) {
@@ -13,6 +18,7 @@ module.exports = {
     after: function(done) {
         chromedriver.stop();
         done();
+
 
     }, 
    

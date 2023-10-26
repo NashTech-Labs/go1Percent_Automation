@@ -29,6 +29,8 @@ module.exports = {
 
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
+
+
   plugins: ['@nightwatch/apitesting'],
   
   plugins: ['@nightwatch/apitesting'],
@@ -84,7 +86,7 @@ module.exports = {
       },    
       
     },
-   
+
     
     
 
@@ -108,6 +110,13 @@ module.exports = {
           // very verbose geckodriver logs
           // '-vv'
         ]
+      }
+    },
+
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
       }
     },
     
@@ -369,5 +378,9 @@ module.exports = {
     },
     
   },
+
+  "@nightwatch/apitesting" : {
+    "log_responses": true
+  }
   
 };
