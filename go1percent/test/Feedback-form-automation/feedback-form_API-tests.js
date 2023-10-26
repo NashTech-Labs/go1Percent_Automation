@@ -37,67 +37,74 @@ describe('Feedback-form API tests', function () {
 
     const startTime = performance.now();  //capturing timestamp before calling API
 
-    const response = await supertest
+    await supertest
       .request(urls.feedback_form_url_base)
       .get("/fetch?pageNumber=1&pageSize=1000&search=")
       .set(headers)
       .expect(200)
-      .expect('Content-Type', /json/);
+      .expect('Content-Type', /json/)
+      .then(response => {
+        //capturing time after getting API response
+        const endTime = performance.now();
+
+        //total Time taken
+        const responseTime = endTime - startTime;
+
+        // assertion for response time
+        expect(responseTime).to.be.lessThan(2000);
 
 
-    const endTime = performance.now(); //capturing time after getting API response
+        const formData = response.body;  // storing response body in formData
 
-    const responseTime = endTime - startTime;  //total Time taken
-
-    expect(responseTime).to.be.lessThan(2000);
-
-
-    const formData = response.body;  // storing response body in formData
-
-    // expected GET body attributes and their types
-    const expectedGetFields = {
-      "forms": 'object',
-      "count": "number",
-      "pages": "number"
-    };
+        // expected GET body attributes and their types
+        const expectedGetFields = {
+          "forms": 'object',
+          "count": "number",
+          "pages": "number"
+        };
 
 
-    //Assertion for GET body
-    Object.keys(expectedGetFields).forEach(field => {
+        //Assertion for GET body
+        Object.keys(expectedGetFields).forEach(field => {
 
-      // assertion for attribute
-      expect(formData).to.have.property(field);
-      if (formData[field] || 0) {
+          // assertion for attribute
+          expect(formData).to.have.property(field);
+          if (formData[field] || 0) {
 
-        // assertion for field type
-        expect(typeof formData[field]).to.be.eq(expectedGetFields[field]);
+            // assertion for field type
+            expect(typeof formData[field]).to.be.eq(expectedGetFields[field]);
 
-      }
+          }
 
-    });
-
-
-    //Assertion for GET body --> form attribute
-    const formAttributesFields = {
-      "id": "string",
-      "name": "string"
-    };
+        });
 
 
-    if (formData['forms'].length > 0) {
-      formData['forms'].forEach(form => {
-        Object.keys(formAttributesFields).forEach(field => {
+        //Assertion for GET body --> form attribute
+        const formAttributesFields = {
+          "id": "string",
+          "name": "string"
+        };
 
-          // assertion for formAttribute -> attributes
-          expect(form).to.have.property(field);
-          if (form[field] || 0) {
 
-            // assertion for formAttribute -> attributes types
-            expect(typeof form[field]).to.be.eq(formAttributesFields[field]);
-          };
-        })
-      });
-    }
+        if (formData['forms'].length > 0) {
+          formData['forms'].forEach(form => {
+            Object.keys(formAttributesFields).forEach(field => {
+
+              // assertion for formAttribute -> attributes
+              expect(form).to.have.property(field);
+              if (form[field] || 0) {
+
+                // assertion for formAttribute -> attributes types
+                expect(typeof form[field]).to.be.eq(formAttributesFields[field]);
+              };
+            })
+          });
+        }
+
+      })
+
+
+
 
   });
 
@@ -191,7 +198,7 @@ describe('Feedback-form API tests', function () {
       .expect('Content-Type', /json/)
   });
 
-// ==========================UPDATE ========================
+  // ==========================UPDATE ========================
   // UPDATE AN EXISTING FORM
   it('PUT a new feedback form', async function ({ supertest }) {
 
@@ -262,15 +269,15 @@ describe('Feedback-form API tests', function () {
 
         //expected response attributes
         const expected_responseBody_attributes = {
-          "id":"string"
+          "id": "string"
         };
 
         //assertion for response attributes
         Object.keys(expected_responseBody_attributes)
-        .forEach(expectedField => {
-          expect(responseBody).to.have.property(expectedField);
-          expect(typeof responseBody[expectedField]).to.be.eq(expected_responseBody_attributes[expectedField]);
-        });
+          .forEach(expectedField => {
+            expect(responseBody).to.have.property(expectedField);
+            expect(typeof responseBody[expectedField]).to.be.eq(expected_responseBody_attributes[expectedField]);
+          });
       });
 
     //deleting the form
@@ -337,16 +344,16 @@ describe('Feedback-form API tests', function () {
 
         // expected response attributes
         const expected_responseBody_attributes = {
-          "id":"string"
+          "id": "string"
         };
 
 
         //assertion for response attributes
         Object.keys(expected_responseBody_attributes)
-        .forEach(expectedField => {
-          expect(responseBody).to.have.property(expectedField);
-          expect(typeof responseBody[expectedField]).to.be.eq(expected_responseBody_attributes[expectedField]);
-        });
+          .forEach(expectedField => {
+            expect(responseBody).to.have.property(expectedField);
+            expect(typeof responseBody[expectedField]).to.be.eq(expected_responseBody_attributes[expectedField]);
+          });
 
       })
 

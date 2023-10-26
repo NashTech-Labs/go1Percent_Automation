@@ -1,8 +1,3 @@
-// const chromedriver = require('chromedriver');
-// function startTime(){
-//     return new Date().getTime()
-// }
-
 module.exports = {
 
     feedbackform_cred:{
@@ -34,5 +29,4 @@ module.exports = {
 
 
 };
-
 
