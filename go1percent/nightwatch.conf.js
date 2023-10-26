@@ -36,12 +36,15 @@ module.exports = {
     start_vite: true,
     port: 5173
   },
-  
+  "@nightwatch/apitesting" : {
+    "log_responses": true
+  },
   webdriver: {},
 
   test_workers: {
     enabled: true
   },
+
 
   test_settings: {
     api_testing: {
@@ -50,6 +53,7 @@ module.exports = {
         start_process: false,
       }
     },
+    
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
