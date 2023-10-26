@@ -15,30 +15,107 @@ function startTime(){
 
 module.exports = {
 
-    feedbackform_cred:{
-        admin: {
-            headers: {
-                'Authorization': '',
-                'Source': 'https://nashtechglobal.qa.go1percent.com'
-            },
-            token_headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'source': 'https://nashtechglobal.qa.go1percent.com'
-            },
-            token_body: {
-                client_id: 'leaderboard-ui',
-                client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
-                username: 'testadmin',
-                password: 'testadmin',
-                grant_type: 'password',
-            },
-            created_form_id: ''
-        },
+    before: function (done) {
+        chromedriver.start();
+        done();
+    },
 
-        urls: {
-            token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-            feedback_form_url_base: "https://knolx-backend.qa.go1percent.com/v02/feedback-form",
+    admin: {
+        headers: {
+            'Authorization': '',
+            'Source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenHeaders: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenBody: {
+            client_id: 'leaderboard-ui',
+            client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            username: 'testadmin',
+            password: 'testadmin',
+            grant_type: 'password',
+        },
+    },
+
+    employee: {
+        headers: {
+            "accept": "application/json, text/plain, */*",
+            "Authorization": "",
+            "content-type": "application/json",
+            "source": "https://nashtechglobal.qa.go1percent.com",
         }
+    },
+
+
+    urls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://techhub-backend.qa.go1percent.com",
+    },
+
+    after: function (done) {
+        chromedriver.stop();
+        done();
+    }, 
+    
+    Add_Configuration:{
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/contribution/addContribution",
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"
+        
+
+    },
+    // Upcoming Page
+    queryNasher: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'approved',
+        'search': 'testadmin'
+    },
+    queryTestTitle: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'approved',
+        'search': 'TestAutomationTitle'
+    },
+    // filter
+    queryUsingCompetency: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'studio': 'testautomation'
+    },
+    queryUsingAllSessions: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'session': 'Knolx'
+    },
+    queryAllTime: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'time': '1698949800000'
+    },
+    // Past Sessions
+    queryUsingTitlePast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past'
+    },
+
+    //filter
+    queryUsingCompetencyPast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past',
+        'studio': 'testautomation'
+    },
+    queryUsingAllSessionsPast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past',
+        'session': 'Knolx'
     },
 
     baseurl:'https://backend.qa.go1percent.com',
@@ -58,18 +135,13 @@ module.exports = {
         username: 'testadmin',
         password: 'testadmin',
         grant_type: 'password',
+
         },
     },
          
     urls: {
             token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
             go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
+
             }
-            
-
-
-
-
-
-
 };
