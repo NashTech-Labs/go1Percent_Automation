@@ -3,7 +3,7 @@ module.exports = {
 
     elements: {
         knolxButton: {
-            selector: "//*[@id='sidenav-collapse-main']/ul/li//h6[text()=' Knolx ']",
+            selector: "//*[@id='sidenav-collapse-main']//*[text()=' Knolx ']",
             locateStrategy: 'xpath'
         },
         sessionsButton: ".nav.subMenu li a[href='/knolx/upcoming-sessions']",
@@ -13,6 +13,10 @@ module.exports = {
         },
         // Upcoming Sessions Page 
         nasher: ".text-bold",
+        title: {
+            selector: "(//*[contains(text(),'TestAutomationTitle')])[1]",
+            locateStrategy: 'xpath'
+        },
 
     },
     commands: [{
@@ -30,7 +34,19 @@ module.exports = {
         searchKnolxSessions(data) {
             return this
                 .waitForElementVisible('@searchKnolxSessions', 15000)
+                .clearValue('@searchKnolxSessions')
                 .sendKeys('@searchKnolxSessions', data)
+                .clearValue('@searchKnolxSessions')
         },
+        waitForPageLoad(){
+            return this
+                .waitForElementVisible('body',10000)
+        },
+        selectDropdown(selector, optionValue) {
+            return this
+              .waitForElementVisible(selector)
+              .click(selector)
+              .click(`option[value="${optionValue}"]`);
+          },
     }]
 };
