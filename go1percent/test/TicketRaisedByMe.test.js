@@ -1,39 +1,14 @@
-const assert = require('assert')
 const globals = require('../globals')
+const accessToken = process.argv.indexOf('--token');
+
 describe('Ticket Raised By Me Api testing', function () {
     const baseUrl = "https://ticket-backend.qa.go1percent.com"
-
-    /**
-     * Test function for token generation.
-     *
-     * @param {Object} supertest - The SuperTest object for making HTTP requests.
-     */
-    it('token generation', async function ({ supertest }) {
-        const url = "https://auth.go1percent.com";
-        const headers = {
-            'accept': '*/*',
-            'source': 'https://nashtechglobal.qa.go1percent.com',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        const tokenRequestData = {
-            'client_id': 'leaderboard-ui',
-            'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            'username': 'testadmin',
-            'password': 'testadmin',
-            'grant_type': 'password'
-        }
-        const response = await supertest
-
-            .request(url)
-            .post('/auth/realms/nashtech/protocol/openid-connect/token')
-            .set(headers)
-            .send(tokenRequestData)
-            .expect(200)
-        accessToken = response._body.access_token;
-        globals.apiheaders['authorization'] = 'Bearer ' + accessToken;
-
-        console.log(accessToken);
-    })
+    const token = process.argv[accessToken + 1];
+    
+    const header ={
+      'Source': 'https://nashtechglobal.qa.go1percent.com',
+      'Authorization': 'Bearer ' + token
+    }
 
     /**
      * Test case to verify the retrieval of open tickets.
@@ -45,7 +20,7 @@ describe('Ticket Raised By Me Api testing', function () {
         await supertest
             .request(baseUrl)
             .get("/tickets/my?status=Open&limit=10&page=1")
-            .set(globals.apiheaders)
+            .set(header)
 
             // assert the status code of response
             .expect(200)
@@ -82,13 +57,13 @@ describe('Ticket Raised By Me Api testing', function () {
      * Test case to verify the retrieval of closed tickets.
      * @param {Object} supertest - The supertest object for making HTTP requests.
      */
-    it('get api test 2', async function ({ supertest }) {
+    it('should retrieve closed tickets', async function ({ supertest }) {
 
         const startTimestamp = Date.now();
         await supertest
             .request(baseUrl)
             .get("/tickets/my?status=Closed&limit=10&page=1")
-            .set(globals.apiheaders)
+            .set(header)
 
             // assert the status code of response
             .expect(200)
@@ -122,7 +97,7 @@ describe('Ticket Raised By Me Api testing', function () {
         await supertest
             .request(baseUrl)
             .get("/tickets/ticket/1162")
-            .set(globals.apiheaders)
+            .set(header)
             .expect(200)
             .then(function (response) {
                 let responseBody = response.body.data;
@@ -158,7 +133,7 @@ describe('Ticket Raised By Me Api testing', function () {
         await supertest
             .request(baseUrl)
             .get("/tickets/1137/comments")
-            .set(globals.apiheaders)
+            .set(header)
             .expect(200)
 
             .then(function (response) {
@@ -182,6 +157,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
 
     });
+ 
     /**
      * Test case to retrieve ticket categories.
      * @param {Object} supertest - The supertest object for making HTTP requests.
@@ -192,7 +168,7 @@ describe('Ticket Raised By Me Api testing', function () {
         await supertest
             .request(baseUrl)
             .get("/tickets/categories")
-            .set(globals.apiheaders)
+            .set(header)
             .expect(200)
 
             .then(function (response) {
