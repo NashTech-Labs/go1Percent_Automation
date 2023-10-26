@@ -96,6 +96,12 @@ module.exports = {
     access_token :"",
     url : 'https://backend-radar.qa.go1percent.com/',
 
+
+
+    
+   
+
+
     baseurl:'https://backend.qa.go1percent.com',
     	
     admin: {
@@ -123,6 +129,7 @@ module.exports = {
             },
             
             
+
 
 
 
