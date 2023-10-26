@@ -14,6 +14,8 @@ module.exports = {
         chromedriver.stop();
         done();
     },
+
+  
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
@@ -76,5 +78,8 @@ module.exports = {
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
     access_token :"",
     url : 'https://backend-radar.qa.go1percent.com/',
+
+    baseurl:'https://backend.qa.go1percent.com'
+
 };
 

@@ -27,6 +27,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   //plugins: ['@nightwatch/react'],
+  plugins: ['@nightwatch/apitesting'],
   
   plugins: ['@nightwatch/apitesting'],
   
@@ -78,8 +79,8 @@ module.exports = {
     },
     "qa": {
       "globals": {
-        "userName": "gaurav@knoldus.com", // this is placeholder username, make sure to update.
-        "password": "gauravshukla092" // this is placeholderPassword, Make sure to update.
+        "userName": "testemployee", // this is placeholder username, make sure to update.
+        "password": "testemployee" // this is placeholderPassword, Make sure to update.
       }
     },
     
@@ -103,6 +104,13 @@ module.exports = {
           // very verbose geckodriver logs
           // '-vv'
         ]
+      }
+    },
+
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
       }
     },
     
@@ -357,5 +365,9 @@ module.exports = {
     },
     
   },
+
+  "@nightwatch/apitesting" : {
+    "log_responses": true
+  }
   
 };
