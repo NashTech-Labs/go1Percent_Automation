@@ -3,6 +3,12 @@ function startTime(){
     return new Date().getTime()
 }
 
+
+function startTime(){
+    return new Date().getTime()
+}
+
+
 module.exports = {
 
     before: function(done) {
@@ -14,67 +20,18 @@ module.exports = {
         chromedriver.stop();
         done();
     },
-    // Upcoming Page
-    queryNasher: {
+
+    // My Past Sessions
+    queryMyPastSession:{
         'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'approved',
-        'search': 'testadmin'
-    },
-    queryTestTitle: {
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'approved',
-        'search': 'TestAutomationTitle'
-    },
-    // filter
-    queryUsingCompetency: {
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'upcoming',
-        'studio': 'testautomation'
-    },
-    queryUsingAllSessions: {
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'upcoming',
-        'session': 'Knolx'
-    },
-    queryAllTime: {
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'upcoming',
-        'time': '1698949800000'
-    },
-    // Past Sessions
-    queryUsingTitlePast:{
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'past'
-    },
-    //filter
-    queryUsingCompetencyPast:{
-        'pageNumber': '1',
-        'pageSize': '10',
+        'pageSize': '1000',
         'filter': 'past',
-        'studio': 'testautomation'
+        'search': '',
+        'knolderOnly': 'true',
+        'sessionId' : '6529144d45bc9a797dfbcb19',
     },
-    queryUsingAllSessionsPast:{
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'past',
-        'session': 'Knolx'
-    },
-    queryAllTimePast:{
-        'pageNumber': '1',
-        'pageSize': '10',
-        'filter': 'past',
-        'time': '1697259310000'
-    } ,
+
     base_url : "https://knolx-backend.qa.go1percent.com/",
     source : "https://nashtechglobal.qa.go1percent.com",
-    sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
-    access_token :"",
-    url : 'https://backend-radar.qa.go1percent.com/',
+    access_token : '',
 };
-
