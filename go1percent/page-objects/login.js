@@ -1,5 +1,7 @@
+const { test_settings } = require("../nightwatch.conf");
+
 module.exports = {
-    url: "",
+    url: test_settings.default.launch_url,
 
     elements: {
         emailInput: '#username',
