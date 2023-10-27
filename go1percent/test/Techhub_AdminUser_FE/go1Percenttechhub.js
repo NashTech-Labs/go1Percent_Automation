@@ -18,6 +18,16 @@ module.exports = {
         
     },
 
+    "All status review filter": function(browser)
+    {
+        browser
+        .page.techhub()
+        .Filter_AllStatus_Review(browser)   
+        .assert.elementPresent("@Filter_AllStatus_Review")  
+        .pause(2000)
+        
+    },
+
     "Navigate to request Detail Page": function(browser)
     {
         browser
@@ -46,4 +56,12 @@ module.exports = {
         .Reject_Request(browser)
         .assert.elementPresent('@Approve_Toast')
     },
+
+    "Reject and verify techhub request without Reviewer Comment": function(browser){
+        browser
+        .page.techhub_detail()
+        .Reject_Request_Without_Reviewer_Comment(browser)
+        .assert.textContains("@Reviewer_Comment_error_message", "If Rejected, above field is mandatory. *");
+    }
+
 };

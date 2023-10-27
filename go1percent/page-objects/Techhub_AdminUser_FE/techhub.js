@@ -9,7 +9,9 @@ module.exports = {
         Filter_AllCompetency: ".form-control.cursor-pointer",
         Filter_AllStatus: ".filter-tab .select-status+select.form-control",
         AllStatus_Approved: '.filter-tab .select-status+select.form-control option:nth-child(2)',
+        AllStatus_Review: '.filter-tab .select-status+select.form-control option:nth-child(3)',
         Filter_AllStatus_Approved: '.filter-tab .approvedStatus+select.form-control ',
+        Filter_AllStatus_Review:'.filter-tab .pendingStatus+select.form-control',
         Approved_Request: '.report-card .card:first-child .row',
         Detail_Page: '.modal-dialog .modal-header .modal-title'
 
@@ -32,6 +34,13 @@ module.exports = {
                 .click("@Filter_AllStatus")
                 .click('@AllStatus_Approved')
 
+        },
+
+        Filter_AllStatus_Review() {
+
+            return this
+                .click("@Filter_AllStatus")     
+                .click('@AllStatus_Review')   
         },
 
         Navigate_to_detailsPage() {
