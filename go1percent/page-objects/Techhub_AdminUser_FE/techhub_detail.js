@@ -20,6 +20,10 @@ module.exports = {
             return this
                 .setValue('@Reviewer_Comment', 'Rejected')
                 .click("@Reject_Button")
-        }
+        },
+
+        Reject_Request_Without_Reviewer_Comment(browser){
+
+        },
     }]
 };
