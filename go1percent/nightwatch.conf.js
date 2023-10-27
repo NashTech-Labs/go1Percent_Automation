@@ -124,7 +124,7 @@ module.exports = {
         ]
       }
     },
-   },
+   
 
     
     api_testing: {
@@ -390,7 +390,8 @@ module.exports = {
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
-  };
+  }
+}
 
   
 
