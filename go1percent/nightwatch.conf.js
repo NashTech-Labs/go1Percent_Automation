@@ -16,21 +16,31 @@ module.exports = {
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
 
+  
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+  
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: ['nightwatch/custom-assertions'],
+
+   // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
-  plugins: ['@nightwatch/apitesting'],
+
+     plugins: ['@nightwatch/apitesting'],
+
+    //plugins: ['@nightwatch/react'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
-  
+    globals: {
+      "userName": "testemployee", // this is placeholder username, make sure to update.
+      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+    },
+
   vite_dev_server: {
     start_vite: true,
     port: 5173
@@ -38,9 +48,12 @@ module.exports = {
   
   webdriver: {},
 
+  //Test Worker Configuration
   test_workers: {
-    enabled: true
+    enabled: true,
+    workers: 'auto'
   },
+
 
   test_settings: {
     default: {
@@ -55,21 +68,40 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome'
+      // 'goog:chromeOptions': {
+      //   ...
+      //   // specify the locateStrategy as xpath
+      //   locateStrategy: 'xpath',
+        
+      // },
+      
+      
       },
       
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
+
       },
+
+      
       
     },
     "qa": {
       "globals": {
         "userName": "testadmin", // this is placeholder username, make sure to update.
         "password": "testadmin" // this is placeholderPassword, Make sure to update.
+      },
+
+      "employee":{
+        "userName": "testemployee", // this is placeholder username, make sure to update.
+        "password": "testemployee" // this is placeholderPassword, Make sure to update.
       }
     },
+
     
+    
+
     firefox: {
       desiredCapabilities: {
         browserName: 'firefox',
@@ -92,6 +124,8 @@ module.exports = {
         ]
       }
     },
+   },
+
     
     api_testing: {
       start_session: false,
@@ -100,7 +134,11 @@ module.exports = {
       }
     },
 
-    chrome: {
+  
+
+
+   chrome: {
+
       desiredCapabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
@@ -349,11 +387,13 @@ module.exports = {
         }
       }
     },
-    
-  },
+    "@nightwatch/apitesting" : {
+      "log_responses": true
+    }
+  };
 
-  "@nightwatch/apitesting" : {
-    "log_responses": true
-  }
   
-};
+
+  
+
+

@@ -1,22 +1,158 @@
 const chromedriver = require('chromedriver');
+function startTime(){
+    return new Date().getTime()
+}
+
+
+function startTime(){
+    return new Date().getTime()
+}
+
+
+function startTime(){
+    return new Date().getTime()
+}
+
 module.exports = {
 
-    before: function(done) {
+    before: function (done) {
         chromedriver.start();
         done();
     },
 
-    after: function(done) {
-        chromedriver.stop();
-        done();
+    admin: {
+        headers: {
+            'Authorization': '',
+            'Source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenHeaders: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenBody: {
+            client_id: 'leaderboard-ui',
+            client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            username: 'testadmin',
+            password: 'testadmin',
+            grant_type: 'password',
+        },
     },
 
+    employee: {
+        headers: {
+            "accept": "application/json, text/plain, */*",
+            "Authorization": "",
+            "content-type": "application/json",
+            "source": "https://nashtechglobal.qa.go1percent.com",
+        }
+    },
+
+
+    urls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://techhub-backend.qa.go1percent.com",
+    },
+
+    after: function (done) {
+        chromedriver.stop();
+        done();
+    }, 
     
-    accessToken : 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJIRzk4ejl1eFN0T3VPaVg4a2RiYlNPblQ2a29OWUlCSENLeXM2LUhTYnlFIn0.eyJleHAiOjE2OTgzMjQ5MDUsImlhdCI6MTY5ODMyMzEwNSwiYXV0aF90aW1lIjoxNjk4MzIzMTA1LCJqdGkiOiI5MTM4NDA5ZS1hZmY0LTRmNjQtOTllNy04MDE3NDYxM2M2ZTYiLCJpc3MiOiJodHRwczovL2F1dGguZ28xcGVyY2VudC5jb20vYXV0aC9yZWFsbXMvbmFzaHRlY2giLCJhdWQiOlsibGVhZGVyYm9hcmQtdWkiLCJsZWFkZXJib2FyZC1kZXYtdWkiLCJhY2NvdW50Il0sInN1YiI6ImE3MTlhMmIyLTNjYWMtNGMxMi05NDViLWQ3MzMwYTgxOTEwNiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImxlYWRlcmJvYXJkLXFhLXVpIiwibm9uY2UiOiI4NmEwYWFhNS00NzMxLTRhNWUtODQ2OC02MGZmMmJjNDE0ZTUiLCJzZXNzaW9uX3N0YXRlIjoiMGY4NDA5MDctNDNlNS00MDkyLThiZTItMDg1OWQ4NWQ5ZDYyIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL25hc2h0ZWNoZ2xvYmFsLnFhLmdvMXBlcmNlbnQuY29tIiwiaHR0cHM6Ly9sZWFkZXJib2FyZC1xYS5rbm9sZHVzLmNvbSIsImh0dHBzOi8va25vbGR1cy5xYS5nbzFwZXJjZW50LmNvbSIsImh0dHBzOi8vcmVwb3J0LnFhLmdvMXBlcmNlbnQuY29tIiwiaHR0cHM6Ly9sZWFkZXJib2FyZC1xYS5nbzFwZXJjZW50LmNvbSIsImh0dHA6Ly9sb2NhbGhvc3Q6ODA4OCIsImh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLW5hc2h0ZWNoIiwidW1hX2F1dGhvcml6YXRpb24iLCJlbXBsb3llZSJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImxlYWRlcmJvYXJkLXFhLXVpIjp7InJvbGVzIjpbImFkbWluIiwiZW1wbG95ZWUiXX0sImxlYWRlcmJvYXJkLXVpIjp7InJvbGVzIjpbImFkbWluIiwiZW1wbG95ZWUiXX0sImxlYWRlcmJvYXJkLWRldi11aSI6eyJyb2xlcyI6WyJhZG1pbiIsImVtcGxveWVlIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMGY4NDA5MDctNDNlNS00MDkyLThiZTItMDg1OWQ4NWQ5ZDYyIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoidGVzdCBhZG1pbiIsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3RhZG1pbiIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJhZG1pbiIsImVtYWlsIjoidGVzdGFkbWluQG5hc2h0ZWNoZ2xvYmFsLmNvbSJ9.Acr-TfjvWJVnGB08HqM2EBX7QLWFT5V8FXwbiWKnlw2K1qY3DFFHcz0G0W8Pc1p4TXTT1f7Xg-qmWI6BzOzpQJac-n4Or__j830PVkAGjDrShOB4iUoFxaKVjrHZeSJ6tdjFNhXfNn-MUEI-1vxo5YDzCCEaWTKkdw8qolxfi5CROnLxbFNjYPoNq1DX0e2Nq_08dYlg-03zdxhln68rJK6YEXYOUj4Sz9dTnTd16X59xw4PqBsxZllWT16KWM5iW1qxNAP_Me1JS6zw3GmbgXb9bFi_TmdJVlGysNtIPbUlcKkmngZ_c1knX7f-57oC0nP3E2hgZdvhWC3pCyNlPw', // Your access token here
-    source: 'https://nashtechglobal.qa.go1percent.com', 
-    baseUrl : 'https://backend.qa.go1percent.com',   
-   
+    Add_Configuration:{
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/contribution/addContribution",
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"     
 
+    },
+
+    // Upcoming Page
+    queryNasher: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'approved',
+        'search': 'testadmin'
+    },
+    queryTestTitle: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'approved',
+        'search': 'TestAutomationTitle'
+    },
+    // filter
+    queryUsingCompetency: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'studio': 'testautomation'
+    },
+    queryUsingAllSessions: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'session': 'Knolx'
+    },
+    queryAllTime: {
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'upcoming',
+        'time': '1698949800000'
+    },
+    // Past Sessions
+    queryUsingTitlePast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past'
+    },
+
+    //filter
+    queryUsingCompetencyPast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past',
+        'studio': 'testautomation'
+    },
+    queryUsingAllSessionsPast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past',
+        'session': 'Knolx'
+    },
+    queryAllTimePast:{
+        'pageNumber': '1',
+        'pageSize': '10',
+        'filter': 'past',
+        'time': '1697259310000'
+    } ,
+    base_url : "https://knolx-backend.qa.go1percent.com/",
+    source : "https://nashtechglobal.qa.go1percent.com",
+    sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
+    access_token :"",
+    url : 'https://backend-radar.qa.go1percent.com/',
+
+    baseurl:'https://backend.qa.go1percent.com',
+    	
+    admin: {
+        headers: {
+        'Authorization': '',
+        'Source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenHeaders: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenBody: {
+        client_id: 'leaderboard-ui',
+        client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
+        username: 'testadmin',
+        password: 'testadmin',
+        grant_type: 'password',
+
+        },
+    },
+         
+    urls: {
+            token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+            go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
+
+            }
 };
-
-
