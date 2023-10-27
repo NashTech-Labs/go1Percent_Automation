@@ -65,8 +65,8 @@ module.exports = {
     },
     "qa": {
       "globals": {
-        "userName": "gaurav@knoldus.com", // this is placeholder username, make sure to update.
-        "password": "gauravshukla092" // this is placeholderPassword, Make sure to update.
+        "userName": "testadmin", // this is placeholder username, make sure to update.
+        "password": "testadmin" // this is placeholderPassword, Make sure to update.
       }
     },
     
