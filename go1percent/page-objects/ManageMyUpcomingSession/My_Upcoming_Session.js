@@ -27,6 +27,11 @@ elements:{
 
 
         },
+
+        ListPresent:{
+
+            selector:'body > app-root:nth-child(1) > div:nth-child(1) > app-main:nth-child(2) > section:nth-child(1) > main:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > app-my-sessions:nth-child(2) > div:nth-child(2) > app-my-upcoming-sessions:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)',
+        }
     },
 commands:[{
 
@@ -34,7 +39,7 @@ commands:[{
         return this
         .waitForElementVisible('@UpcomingSession',3000)
         .click('@UpcomingSession')
-        
+        .waitForElementVisible('@ListPresent',3000)
         },
 
 }]
