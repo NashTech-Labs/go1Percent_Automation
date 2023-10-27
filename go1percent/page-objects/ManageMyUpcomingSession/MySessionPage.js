@@ -11,14 +11,9 @@ module.exports={
         MySession:{
         
             locateStrategy: 'xpath',
-            selector:'(//li[@class="nav-item"])[10]',
+            selector:'//a[@href="/knolx/my-sessions/my-upcoming-sessions"]',//(//li[@class="nav-item"])[10]
         },
-        UpcomingSession:{
-
-            locateStrategy: 'xpath',
-            selector:'//a[text()="My Upcoming Session "]',
-            
-            }
+       
 
 },
 
@@ -33,16 +28,11 @@ return this
 
 ClickOnMySession(){
 return this
-.waitForElementVisible('@MySession',3000)
+.waitForElementVisible('@MySession',5000)
 .click('@MySession')
 },
 
-ClickOnUpcomingSession(){
-return this
-.waitForElementVisible('@UpcomingSession',3000)
-.click('@UpcomingSession')
 
-}
 
 }
 
