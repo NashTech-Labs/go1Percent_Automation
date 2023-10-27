@@ -1,26 +1,27 @@
-// Refer to the online docs for more details:
-// https://nightwatchjs.org/gettingstarted/configuration/
-//
-
-//  _   _  _         _      _                     _          _
-// | \ | |(_)       | |    | |                   | |        | |
-// |  \| | _   __ _ | |__  | |_ __      __  __ _ | |_   ___ | |__
-// | . ` || | / _` || '_ \ | __|\ \ /\ / / / _` || __| / __|| '_ \
-// | |\  || || (_| || | | || |_  \ V  V / | (_| || |_ | (__ | | | |
-// \_| \_/|_| \__, ||_| |_| \__|  \_/\_/   \__,_| \__| \___||_| |_|
-//             __/ |
-//            |___/
 
 module.exports = {
+
   // An array of folders (excluding subfolders) where your tests are located;
-  // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['test'],
+
+  // If this is not specified, the test source must be passed as the second argument to the test runner.
+
+  src_folders: ['tests'],
+
+ 
+
+  // Page Object Model (POM) path
 
   
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects'],
+
+  page_objects_path: ['node_modules/nightwatch/examples/pages/'],
+
+ 
+
+  // Custom commands path
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+<<<<<<< HEAD
   
   //custom_commands_path: ['nightwatch/custom-commands'],
 
@@ -54,19 +55,91 @@ module.exports = {
     workers: 'auto'
   },
 
+=======
+
+  custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
+
+ 
+
+  // Custom assertions path
+
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
+
+  custom_assertions_path: '',
+
+ 
+
+  // Plugins configuration
+
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
+
+  plugins: ['@nightwatch/apitesting'],
+
+ 
+
+  // Global test variables path
+
+  // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
+
+  globals_path: '',
+
+ 
+
+  // Webdriver settings
+
+  webdriver: {},
+
+ 
+
+  // Test workers configuration
+
+  test_workers: {
+
+    enabled: true,
+
+    workers: 'auto',
+
+  },
+
+ 
+
+  // API Testing settings
+
+  "@nightwatch/apitesting": {
+
+    log_responses: true,
+
+  },
+
+ 
+
+  // Test settings
+>>>>>>> fbd86af5e4674a1e980e183c8c93a1b8c85b0b65
 
   test_settings: {
+
     default: {
+
       disable_error_log: false,
-      launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
+
+      launch_url: 'https://nightwatchjs.org',
+
+ 
 
       screenshots: {
+
         enabled: false,
+
         path: 'screens',
-        on_failure: true
+
+        on_failure: true,
+
       },
 
+ 
+
       desiredCapabilities: {
+<<<<<<< HEAD
         browserName: 'chrome'
       // 'goog:chromeOptions': {
       //   ...
@@ -76,10 +149,19 @@ module.exports = {
       // },
       
       
+=======
+
+        browserName: 'firefox',
+
+>>>>>>> fbd86af5e4674a1e980e183c8c93a1b8c85b0b65
       },
-      
+
+ 
+
       webdriver: {
+
         start_process: true,
+<<<<<<< HEAD
         server_path: 'node_modules/.bin/chromedriver'
 
       },
@@ -101,29 +183,57 @@ module.exports = {
 
     
     
+=======
+
+        server_path: '',
+
+      },
+
+    },
+
+ 
+>>>>>>> fbd86af5e4674a1e980e183c8c93a1b8c85b0b65
 
     firefox: {
+
       desiredCapabilities: {
+
         browserName: 'firefox',
-        alwaysMatch: {
-          acceptInsecureCerts: true,
-          'moz:firefoxOptions': {
-            args: [
-              // '-headless',
-              // '-verbose'
-            ]
-          }
-        }
+
+        acceptInsecureCerts: true,
+
+        'moz:firefoxOptions': {
+
+          args: [
+
+            // '-headless',
+
+            // '-verbose'
+
+          ],
+
+        },
+
       },
+
       webdriver: {
+
         start_process: true,
+
         server_path: '',
+
         cli_args: [
+
           // very verbose geckodriver logs
+
           // '-vv'
-        ]
-      }
+
+        ],
+
+      },
+
     },
+<<<<<<< HEAD
     api_testing: {
       start_session: false,
       webdriver: {
@@ -146,255 +256,457 @@ module.exports = {
 
 
    chrome: {
+=======
+
+ 
+
+    api_testing: {
+
+      start_session: false,
+
+      webdriver: {
+
+        start_process: false,
+
+      },
+
+    },
+
+ 
+
+    chrome: {
+>>>>>>> fbd86af5e4674a1e980e183c8c93a1b8c85b0b65
 
       desiredCapabilities: {
+
         browserName: 'chrome',
+
         'goog:chromeOptions': {
+
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-          //
+
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
+
           w3c: true,
+
           args: [
+
             //'--no-sandbox',
+
             //'--ignore-certificate-errors',
+
             //'--allow-insecure-localhost',
-            //'--headless'
-          ]
-        }
-      },
 
-      webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // --verbose
-        ]
-      }
-    },
-    
-    edge: {
-      desiredCapabilities: {
-        browserName: 'MicrosoftEdge',
-        'ms:edgeOptions': {
-          w3c: true,
-          // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
-          args: [
             //'--headless'
-          ]
-        }
-      },
 
-      webdriver: {
-        start_process: true,
-        // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
-        // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
-        server_path: '',
-        cli_args: [
-          // --verbose
-        ]
-      }
-    },
-    
-    'android.real.firefox': {
-      desiredCapabilities: {
-        real_mobile: true,
-        browserName: 'firefox',
-        acceptInsecureCerts: true,
-        'moz:firefoxOptions': {
-          args: [
-            // '-headless',
-            // '-verbose'
           ],
-          androidPackage: 'org.mozilla.firefox',
-          // add the device serial to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-          // androidDeviceSerial: 'ZD2222W62Y'
-        }
-      },
-      webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // very verbose geckodriver logs
-          // '-vv'
-        ]
-      }
-    },
 
-    'android.emulator.firefox': {
-      desiredCapabilities: {
-        real_mobile: false,
-        avd: 'nightwatch-android-11',
-        browserName: 'firefox',
-        acceptInsecureCerts: true,
-        'moz:firefoxOptions': {
-          args: [
-            // '-headless',
-            // '-verbose'
-          ],
-          androidPackage: 'org.mozilla.firefox',
-          // add the device serial to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-          // androidDeviceSerial: 'ZD2222W62Y'
-        }
-      },
-      webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // very verbose geckodriver logs
-          // '-vv'
-        ]
-      }
-    },
-    
-    'android.real.chrome': {
-      desiredCapabilities: {
-        real_mobile: true,
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-          //
-          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
-          w3c: true,
-          args: [
-            //'--no-sandbox',
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
-            //'--headless'
-          ],
-          androidPackage: 'com.android.chrome',
-          // add the device serial to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-          // androidDeviceSerial: ''
         },
-      },
-    
-      webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // --verbose
-        ]
-      }
-    },
 
-    'android.emulator.chrome': {
-      desiredCapabilities: {
-        real_mobile: false,
-        avd: 'nightwatch-android-11',
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-          //
-          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
-          w3c: true,
-          args: [
-            //'--no-sandbox',
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
-            //'--headless'
-          ],
-          androidPackage: 'com.android.chrome',
-          // add the device serial to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-          // androidDeviceSerial: ''
-        },
       },
-    
+
       webdriver: {
+
         start_process: true,
-        // path to chromedriver executable which can work with the factory
-        // version of Chrome mobile browser on the emulator (version 83).
-        server_path: 'chromedriver-mobile/chromedriver',
-        cli_args: [
-          // --verbose
-        ]
-      }
-    },
-    
-    app: {
-      selenium: {
-        start_process: true,
-        use_appium: true,
-        host: 'localhost',
-        port: 4723,
+
         server_path: '',
-        // args to pass when starting the Appium server
+
         cli_args: [
-          // automatically download the required chromedriver
-          // '--allow-insecure=chromedriver_autodownload'
+
+          // --verbose
+
         ],
-        // Remove below line if using Appium v1
-        default_path_prefix: ''
+
       },
-      webdriver: {
-        timeout_options: {
-          timeout: 150000,
-          retry_attempts: 3
-        },
-        keep_alive: false,
-        start_process: false
-      }
-    },
-    
-    'app.android.emulator': {
-      extends: 'app',
-      'desiredCapabilities': {
-        // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
-        browserName: null,
-        platformName: 'android',
-        // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
-        // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
-        // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
-        'appium:options': {
-          automationName: 'UiAutomator2',
-          // Android Virtual Device to run tests on
-          avd: 'nightwatch-android-11',
-          // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
-          // Appium v2 does not support relative paths.
-          app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
-          appPackage: 'org.wikipedia',
-          appActivity: 'org.wikipedia.main.MainActivity',
-          appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
-          // chromedriver executable to use for testing web-views in hybrid apps
-          chromedriverExecutable: `${__dirname}/chromedriver-mobile/chromedriver`,
-          newCommandTimeout: 0
-        }
-      }
+
     },
 
-    'app.android.real': {
-      extends: 'app',
-      'desiredCapabilities': {
-        // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
-        browserName: null,
-        platformName: 'android',
-        // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
-        // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
-        // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
-        'appium:options': {
-          automationName: 'UiAutomator2',
-          // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
-          // Appium v2 does not support relative paths.
-          app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
-          appPackage: 'org.wikipedia',
-          appActivity: 'org.wikipedia.main.MainActivity',
-          appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
-          // 'chromedriver' binary is required while testing hybrid mobile apps.
-          // 
-          // Set `chromedriverExecutable` to '' to use binary from `chromedriver` NPM package (if installed).
-          // Or, put '--allow-insecure=chromedriver_autodownload' in `cli_args` property of `selenium`
-          // config (see 'app' env above) to automatically download the required version of chromedriver
-          // (delete `chromedriverExecutable` capability below in that case).
-          chromedriverExecutable: '',
-          newCommandTimeout: 0,
-          // add device id of the device to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices` to get all connected devices
-          // udid: '',
-        }
-      }
+ 
+
+    edge: {
+
+      desiredCapabilities: {
+
+        browserName: 'MicrosoftEdge',
+
+        'ms:edgeOptions': {
+
+          w3c: true,
+
+          // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
+
+          args: [
+
+            //'--headless'
+
+          ],
+
+        },
+
+      },
+
+      webdriver: {
+
+        start_process: true,
+
+        // Download msedgedriver from https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/
+
+        // and set the location below:
+
+        server_path: '',
+
+        cli_args: [
+
+          // --verbose
+
+        ],
+
+      },
+
     },
+
+ 
+
+    'cucumber-js': {
+
+      src_folders: ['examples/cucumber-js/features/step_definitions'],
+
+      test_runner: {
+
+        // Set cucumber as the runner
+
+        type: 'cucumber',
+
+        options: {
+
+          // Set the feature path
+
+          feature_path: 'node_modules/nightwatch/examples/cucumber-js/*/*.feature',
+
+          // Start the webdriver session automatically (enabled by default)
+
+          // auto_start_session: true
+
+          // Use parallel execution in Cucumber
+
+          // workers: 2 // Set the number of workers to use (can also be defined in the CLI as --workers=2)
+
+        },
+
+      },
+
+    },
+
+ 
+
+    // BrowserStack configuration
+
+    browserstack: {
+
+      selenium: {
+
+        host: 'hub.browserstack.com',
+
+        port: 443,
+
+      },
+
+      // More info on configuring capabilities can be found on:
+
+      // https://www.browserstack.com/automate/capabilities?tag=selenium-4
+
+      desiredCapabilities: {
+
+        'bstack:options': {
+
+          userName: '${BROWSERSTACK_USERNAME}',
+
+          accessKey: '${BROWSERSTACK_ACCESS_KEY}',
+
+        },
+
+      },
+
+      disable_error_log: true,
+
+      webdriver: {
+
+        timeout_options: {
+
+          timeout: 15000,
+
+          retry_attempts: 3,
+
+        },
+
+        keep_alive: true,
+
+        start_process: false,
+
+      },
+
+    },
+
+ 
+
+    'browserstack.local': {
+
+      extends: 'browserstack',
+
+      desiredCapabilities: {
+
+        'browserstack.local': true,
+
+      },
+
+    },
+
+ 
+
+    'browserstack.chrome': {
+
+      extends: 'browserstack',
+
+      desiredCapabilities: {
+
+        browserName: 'chrome',
+
+        chromeOptions: {
+
+          w3c: true,
+
+        },
+
+      },
+
+    },
+
+ 
+
+    'browserstack.firefox': {
+
+      extends: 'browserstack',
+
+      desiredCapabilities: {
+
+        browserName: 'firefox',
+
+      },
+
+    },
+
+ 
+
+    'browserstack.ie': {
+
+      extends: 'browserstack',
+
+      desiredCapabilities: {
+
+        browserName: 'internet explorer',
+
+        browserVersion: '11.0',
+
+      },
+
+    },
+
+ 
+
+    'browserstack.safari': {
+
+      extends: 'browserstack',
+
+      desiredCapabilities: {
+
+        browserName: 'safari',
+
+      },
+
+    },
+
+ 
+
+    'browserstack.local_chrome': {
+
+      extends: 'browserstack.local',
+
+      desiredCapabilities: {
+
+        browserName: 'chrome',
+
+      },
+
+    },
+
+ 
+
+    'browserstack.local_firefox': {
+
+      extends: 'browserstack.local',
+
+      desiredCapabilities: {
+
+        browserName: 'firefox',
+
+      },
+
+    },
+
+ 
+
+    // SauceLabs configuration
+
+    saucelabs: {
+
+      selenium: {
+
+        host: 'ondemand.saucelabs.com',
+
+        port: 443,
+
+      },
+
+      // More info on configuring capabilities can be found on:
+
+      // https://docs.saucelabs.com/dev/test-configuration-options/
+
+      desiredCapabilities: {
+
+        'sauce:options': {
+
+          username: '${SAUCE_USERNAME}',
+
+          accessKey: '${SAUCE_ACCESS_KEY}',
+
+          screenResolution: '1280x1024',
+
+          // https://docs.saucelabs.com/dev/cli/sauce-connect-proxy/#--region
+
+          // region: 'us-west-1',
+
+          // https://docs.saucelabs.com/dev/test-configuration-options/#tunnelidentifier
+
+          // parentTunnel: '',
+
+          // tunnelIdentifier: '',
+
+        },
+
+      },
+
+ 
+
+      disable_error_log: false,
+
+ 
+
+      webdriver: {
+
+ 
+
+        start_process: false
+
+ 
+
+      }
+
+ 
+
+    },
+
+ 
+
+    'saucelabs.chrome': {
+
+ 
+
+      extends: 'saucelabs',
+
+ 
+
+      desiredCapabilities: {
+
+ 
+
+        browserName: 'chrome',
+
+ 
+
+        browserVersion: 'latest',
+
+ 
+
+        javascriptEnabled: true,
+
+ 
+
+        acceptSslCerts: true,
+
+ 
+
+        timeZone: 'London',
+
+ 
+
+        chromeOptions: {
+
+ 
+
+          w3c: true
+
+ 
+
+        }
+
+ 
+
+      }
+
+ 
+
+    },
+
+ 
+
+    'saucelabs.firefox': {
+
+ 
+
+      extends: 'saucelabs',
+
+ 
+
+      desiredCapabilities: {
+
+ 
+
+        browserName: 'firefox',
+
+ 
+
+        browserVersion: 'latest',
+
+ 
+
+        javascriptEnabled: true,
+
+ 
+
+        acceptSslCerts: true,
+
+ 
+
+        timeZone: 'London'
+
+ 
+
+      }
+
+ 
+
+    },
+<<<<<<< HEAD
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
@@ -405,3 +717,97 @@ module.exports = {
   
 
 
+=======
+
+ 
+
+    //////////////////////////////////////////////////////////////////////////////////
+
+ 
+
+    // Configuration for when using the Selenium service, either locally or remote,  |
+
+ 
+
+    //  like Selenium Grid                                                           |
+
+ 
+
+    //////////////////////////////////////////////////////////////////////////////////
+
+ 
+
+    selenium_server: {
+
+ 
+
+      // Selenium Server is running locally and is managed by Nightwatch
+
+ 
+
+      // Install the NPM package @nightwatch/selenium-server or download the selenium server jar file from https://github.com/SeleniumHQ/selenium/releases/, e.g.: selenium-server-4.1.1.jar
+
+ 
+
+      selenium: {
+
+ 
+
+        start_process: true,
+        port: 4444,
+       server_path: '', // Leave empty if @nightwatch/selenium-server is installed
+
+        command: 'standalone', // Selenium 4 only
+        cli_args: {
+    //'webdriver.gecko.driver': '',
+
+          //'webdriver.chrome.driver': ''
+     }
+     },
+  webdriver: {
+    start_process: false,
+    default_path_prefix: '/wd/hub'
+  }
+ },
+ 'selenium.chrome': {
+ extends: 'selenium_server',
+ desiredCapabilities: {
+        browserName: 'chrome',
+ chromeOptions: {
+  w3c: true
+        }
+      }
+  },
+
+    'selenium.firefox': {
+
+      extends: 'selenium_server',
+
+      desiredCapabilities: {
+
+        browserName: 'firefox',
+
+        'moz:firefoxOptions': {
+
+          args: [
+
+            // '-headless',
+
+            // '-verbose'
+
+          ],
+
+        },
+
+      },
+
+    },
+  }
+};
+
+ 
+
+ 
+
+ 
+>>>>>>> fbd86af5e4674a1e980e183c8c93a1b8c85b0b65
