@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="1"
+            tests="1">
+
+  <testsuite name="go1Percentloging"
+    errors="1" failures="1" hostname="" id="" package="go1Percentloging" skipped="0"
+    tests="1" time="44.45" timestamp="">
+  
+    <testcase name="landing on dashboard page" classname="go1Percentloging" time="22.19" assertions="1">  <failure message="Testing if the URL contains &#39;my-dashboard&#39; in 5000ms - expected &#34;contains &#39;my-dashboard&#39;&#34; but got: &#34;https://auth.go1percent.com/auth/realms/nashtech/login-actions/authenticate?execution=cb36f633-2f8f-4b2b-b694-30cc71983e40&amp;client_id=leaderboard-qa-ui&amp;tab_id=mkKAUyt7foc&#34; (5069ms)">    at landing on dashboard page (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/go1Percentloging.js:15:24)</failure>
+
+    
+    <error message="Testing if the URL contains [33m&#39;my-dashboard&#39;[39m in 5000ms - expected [32m&#34;contains &#39;my-dashboard&#39;&#34;[39m but got: [31m&#34;https://auth.go1percent.com/auth/realms/nashtech/login-actions/authenticate?execution=cb36f633-2f8f-4b2b-b694-30cc71983e40&amp;client_id=leaderboard-qa-ui&amp;tab_id=mkKAUyt7foc&#34;[39m [90m(5069ms)[39m" type="error"><![CDATA[
+    Error
+    at Proxy.&lt;anonymous&gt; (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/api/index.js:140:40)
+    at landing on dashboard page (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/go1Percentloging.js:15:24)
+    at Context.call (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/context.js:413:39)
+    at TestCase.run (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/testcase.js:50:39)
+    at Runnable.__runFn (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/index.js:675:84)
+    at Runnable.run (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/runnable.js:103:27)
+    at TestSuite.executeRunnable (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/index.js:809:55)
+    at TestSuite.handleRunnable (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/index.js:822:39)
+    at /home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/node_modules/nightwatch/dist/testsuite/index.js:675:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    ]]></error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+       NoSuchElementError
+   An element could not be located on the page using the given search parameters.
+
+    Try fixing by :
+    1. Please inspect the html before the step
+    2. Verify if an element with the mentioned selector is present in the DOM tree
+
+    Error location:
+    /home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/go1Percentloging.js:
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+     5 |             .page.login()
+     6 |             .navigate()
+     7 |             .enterCredentials(browser.globals.userName, browser.globals.password) 
+     8 |             .signIn()
+     9 |        // browser.pause(30000)
+    –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

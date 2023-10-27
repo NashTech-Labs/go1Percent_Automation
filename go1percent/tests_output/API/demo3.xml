@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="API.demo3"
+    errors="0" failures="1" hostname="" id="" package="API" skipped="0"
+    tests="1" time="0.1150" timestamp="">
+  
+    <testcase name="check" classname="API.demo3" time="0.05600" assertions="1">  <failure message="Cannot read properties of undefined (reading &#39;request&#39;)">TypeError: Cannot read properties of undefined (reading &#39;request&#39;)
+    at DescribeInstance.&lt;anonymous&gt; (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/API/demo3.js:4:12)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
