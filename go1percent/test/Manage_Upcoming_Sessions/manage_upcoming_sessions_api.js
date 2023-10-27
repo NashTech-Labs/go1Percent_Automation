@@ -4,30 +4,18 @@ const chai = require('chai');
 const expect = chai.expect;
 const headers = require('../../globals')
 
-// Test case for updating tags
 describe('Manage upcoming sessions', function () {
-    it('verify that user should able to remove the added tags', async function () {
-        const start = new Date();
-        // Sending a PUT request to update the tags
-        const response = await supertest(headers.base_url)
-            .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
-            .set('source', headers.source)
-            .set('Authorization', headers.access_token)
 
-        // Expecting a successful response with status code 200
-        expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
-        // Expecting the response time to be less than 2000ms
-        expect(responseTime).to.lessThan(2000);
-        // response status should not be empty
-        expect(response.body.status).to.greaterThan(0);
-        // Expect the 'Content-Type' header to be of type JSON
-        expect(response.headers['content-type']).to.include('application/json');
-    });
+    const commonExpectation = (startTimestamp, response) => {
+        const endTimestamp = Date.now(); // Record the end time
+        const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
+        expect(responseTime).to.be.below(2000); // Response time assertion
+        expect(response.body.status).to.be.greaterThan(0); // Response attribute assertion
+        expect(response.headers['content-type']).to.include('application/json'); // Content-Type header assertion
+    };
 
     it(' verify that admin should able to update the description', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Sending a PUT request to update the session description
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -37,11 +25,10 @@ describe('Manage upcoming sessions', function () {
         
         // Expecting a successful response with status code 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Expecting the response time to be less than 2000ms
         expect(responseTime).to.lessThan(2000);
-        expect(response.body.status).to.greaterThan(0);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -49,7 +36,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('verify that Admin should be able to change & update the feedback form', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Sending a PUT request to update data
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -59,10 +46,10 @@ describe('Manage upcoming sessions', function () {
 
         // Expecting a successful response with status code 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Expecting the response time to be less than 2000ms
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -70,7 +57,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('verify that admin should able to click on send instructions', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Sending a POST request to update data
         const response = await supertest(headers.base_url)
             .post('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -79,10 +66,10 @@ describe('Manage upcoming sessions', function () {
         
         // Expecting a successful response with status code 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Expecting the response time to be less than 2000 milliseconds
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -90,7 +77,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('verify that admin should able to report the session only if the approve button is enabled', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Sending a PUT request to update data
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -100,10 +87,10 @@ describe('Manage upcoming sessions', function () {
         
         // Expecting a successful response with status code 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Expecting the response time to be less than 2000 milliseconds
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -111,7 +98,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('Verify that admin should able to update the slide URL', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Send a PUT request to update the slide URL
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -121,10 +108,10 @@ describe('Manage upcoming sessions', function () {
         
         // Assert the response status code to be 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Expecting the response time to be less than 2000 milliseconds
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -132,7 +119,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('verify that admin should able to add tags', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Send a PUT request to update tags
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -142,10 +129,10 @@ describe('Manage upcoming sessions', function () {
 
         // Check if the response status is 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Check if the response time is less than 2000ms
         expect(responseTime).to.be.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -153,7 +140,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('Verify that admin should able to update the title', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Send a PUT request to update the title
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/6530c8088555d37c0a4f8d93')
@@ -163,10 +150,10 @@ describe('Manage upcoming sessions', function () {
         
         // Check if the response status is 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Check if the response time is less than 2000ms
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -174,7 +161,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('Verify that admin should able to see the available upcoming sessions', async function() {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Sending a GET request to retrieve data
         const response = await supertest(headers.base_url)
             .get('/v02/sessions/manage?pageNumber=1&pageSize=10&filter=upcoming&search=')
@@ -183,10 +170,10 @@ describe('Manage upcoming sessions', function () {
 
         // Check if the response status is 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Expecting the response time to be less than 2000ms
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.count).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON
@@ -195,7 +182,7 @@ describe('Manage upcoming sessions', function () {
     });
 
     it('verify that youtube URL should not be added or updated in the upcoming session', async function () {
-        const start = new Date();
+        const startTimestamp = Date.now();
         // Send a PUT request to update yturl
         const response = await supertest(headers.base_url)
             .put('/v02/sessions/manage/update/653113198555d37c0a4f8d97')
@@ -205,10 +192,10 @@ describe('Manage upcoming sessions', function () {
         
         // Check if the response status is 200
         expect(response.status).to.equal(200);
-        const end = new Date();
-        const responseTime = end - start;
         // Check if the response time is less than 2000ms
         expect(responseTime).to.lessThan(2000);
+        // Call the commonExpectation function
+        commonExpectation(startTimestamp, response);
         // response status should not be empty
         expect(response.body.status).to.greaterThan(0);
         // Expect the 'Content-Type' header to be of type JSON

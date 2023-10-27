@@ -3,8 +3,7 @@ function startTime(){
     return new Date().getTime()
 }
 
-
-function startTime(){
+function EndTime(){
     return new Date().getTime()
 }
 
@@ -18,7 +17,8 @@ module.exports = {
     after: function(done) {
         chromedriver.stop();
         done();
-    },      
+    },
+
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
@@ -77,8 +77,15 @@ module.exports = {
         'time': '1697259310000'
     } ,
     
+    base_url : "https://knolx-backend.qa.go1percent.com/",
+    source : "https://nashtechglobal.qa.go1percent.com",
+    sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
+    access_token :"",
+
+
+
+
     dataToUpdate: {
-        sessionTag: [],
         sessionDescription: "The error message indicates that the property 'topic' is not present in the response body, which is why the assertion is failing. This could be due to the structure of the response body or the way the API is handling the request. Please ensure that the API response structure matches the expected response format.",
         feedbackFormName: "sdv",
         sessionId: "653105778555d37c0a4f8d96",
