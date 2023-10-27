@@ -1,4 +1,12 @@
-# Compiled class file
+
+
+go1percent/tests_output/
+go1percent/node_modules/
+go1percent/test/Add_Contribution/FE/
+go1percent/page-objects/Profile.js
+go1percent/page-objects/Setting.js
+
+
 *.class
 
 # Log file
@@ -21,4 +29,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
 replay_pid*
+/go1percent/node_modules/
+go1percent/tests_output/
+//go1percent/package.json
+//go1percent/package-lock.json
+//go1percent/globals.js
+go1percent/nightwatch.conf.js
+
+
+replay_pid*
+
