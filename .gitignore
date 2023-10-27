@@ -38,7 +38,4 @@ go1percent/tests_output/
 //go1percent/package-lock.json
 //go1percent/globals.js
 go1percent/nightwatch.conf.js
-
-
 replay_pid*
-
