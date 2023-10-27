@@ -76,12 +76,7 @@ module.exports = {
         'filter': 'past',
         'time': '1697259310000'
     } ,
-    base_url : "https://knolx-backend.qa.go1percent.com/",
-    source : "https://nashtechglobal.qa.go1percent.com",
-    sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
-    access_token :"",
-    url : 'https://backend-radar.qa.go1percent.com/',
-
+    
     dataToUpdate: {
         sessionTag: [],
         sessionDescription: "The error message indicates that the property 'topic' is not present in the response body, which is why the assertion is failing. This could be due to the structure of the response body or the way the API is handling the request. Please ensure that the API response structure matches the expected response format.",
