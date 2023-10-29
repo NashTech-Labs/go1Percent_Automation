@@ -75,7 +75,39 @@ module.exports = {
 
             selector: '.btn.btn-primary.saveBtn.m-2',
 
+
         },
+
+        ValidationErrorMessage: {
+
+            selector: '.error-message.mt-1'
+            //Description should contain atleast 250 characters
+
+        },
+
+        ErrorMessageExceedLength: {
+
+            selector: '.error-message.mt-1'
+            //Exceeded the maxlength
+        },
+
+        SlideURlBox: {
+
+            selector: '.py-1.px-2.slide.studio-logo'
+
+        },
+
+        URLSaveButton: {
+
+            selector: '.btn.btn-primary.ms-2.save'
+        },
+
+        InvalidURlMessage: {
+
+            selector: '.error-message'
+
+        }
+
 
 
 
@@ -115,7 +147,12 @@ module.exports = {
                 .click('@EditButton')
                 .waitForElementPresent('@TextBox', 5000)
                 .click('@TextBox')
-                .clear()
+                .pause(4000)
+
+                // .clearValue('@TextBox')
+                .pause(5000)
+                .click('@SaveButton')
+                .pause(5000)
 
         },
 
@@ -147,8 +184,31 @@ module.exports = {
         },
 
         UpdateDescriptionBox() {
-            var existingText
-            var newText
+
+            return this
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .waitForElementPresent('@DescriptionEditButton', 3000)
+                .pause(5000)
+                .click('@DescriptionEditButton')
+                .pause(5000)
+                .waitForElementVisible('@DescriptionTextBox', 3000)
+                .pause(5000)
+                .getAttribute('@DescriptionTextBox', 'value', function (result) {
+                    var attributeValue = result.value;
+                    console.log(attributeValue);
+
+                    this.setValue('textarea[type="text"]', attributeValue + 'NashTech')
+                })
+                .pause(5000)
+                .waitForElementPresent('@DescriptionSaveButton', 3000)
+                .click('@DescriptionSaveButton')
+
+
+        },
+
+        UnableToUpdateDescription() {
             return this
                 .pause(4000)
                 .waitForElementVisible(Startingbox, 3000)
@@ -159,40 +219,106 @@ module.exports = {
                 .pause(5000)
                 .waitForElementVisible('@DescriptionTextBox', 3000)
                 .click('@DescriptionTextBox')
-                .pause(10000)
-                .getText('@DescriptionTextBox', function(result) {
-                    existingText = result.value; 
-                     newText = existingText + " Your new information here";
-                  })
-                  .setValue('@DescriptionTextBox', newText)
-                  
-                //  .setValue('@DescriptionTextBox', newText)
-                 .pause(10000)
+                .setValue('@DescriptionTextBox', 'Hii EveryOne')
+                .pause(4000)
 
-                // .waitForElementPresent('@DescriptionSaveButton', 3000)
-                // .click('@DescriptionSaveButton')
+        },
+
+        ExceedDescriptionLength() {
+            const MAX_DESCRIPTION_LENGTH = 1000; 0
+            const INVALID_DESCRIPTION = 'Hi To All I Am Here'.repeat(MAX_DESCRIPTION_LENGTH + 1);
+
+            return this
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .waitForElementPresent('@DescriptionEditButton', 3000)
+                .pause(5000)
+                .click('@DescriptionEditButton')
+                .pause(5000)
+                .waitForElementVisible('@DescriptionTextBox', 3000)
+                .click('@DescriptionTextBox')
+                .pause(5000)
+                .setValue('@DescriptionTextBox', INVALID_DESCRIPTION)
+                .pause(4000)
+
+        },
+
+        DisableDiscriptionTextBox() {
+
+            return this
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .waitForElementPresent('@DescriptionEditButton', 3000)
+                .pause(5000)
+                .click('@DescriptionEditButton')
+                .pause(5000)
+                .waitForElementVisible('@DescriptionTextBox', 3000)
+                .click('@DescriptionTextBox')
+                .pause(3000)
+                // Get the current value of the description box
+                .clearValue('@DescriptionTextBox')
+                //.click('@DescriptionTextBox')
+                // .pause(5000)
+                // .setValue('@DescriptionTextBox','')
+                .pause(4000)
+        },
+
+        UpdateSlideURLField() {
+
+            return this
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .pause(3000)
+                .waitForElementVisible('@SlideURlBox', 3000)
+                .click('@SlideURlBox')
+                .waitForElementVisible('@URLSaveButton', 3000)
+                .click('@URLSaveButton')
+
+        },
+
+        NotUpdateSlideURL() {
+
+            return this
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .pause(3000)
+                .waitForElementVisible('@SlideURlBox', 3000)
+                .click('@SlideURlBox')
+                .pause(5000)
+                .clearValue('textarea[type="text"]')
+                .pause(10000)
+                .waitForElementVisible('@URLSaveButton', 3000)
+                .click('@URLSaveButton')
+
+        },
+
+        InvalideSlideURL() {
+
+            return this
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .pause(3000)
+                .waitForElementVisible('@SlideURlBox', 3000)
+                .click('@SlideURlBox')
+                .pause(5000)
+                .setValue('textarea[type="text"]', 'GoodEvening')
+                .pause(5000)
+                .waitForElementVisible('@URLSaveButton', 3000)
+                .click('@URLSaveButton')
+
+
+
+
         }
 
 
 
-
-
     }]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
