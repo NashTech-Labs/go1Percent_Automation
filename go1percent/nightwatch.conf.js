@@ -5,7 +5,7 @@ module.exports = {
 
   // Page Object Model (POM) path
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['node_modules/nightwatch/examples/pages/'],
+  page_objects_path: ['page-objects'],
 
   // Custom commands path
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
