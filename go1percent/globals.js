@@ -159,7 +159,10 @@ module.exports = {
             access_token :"",  
             // Upcoming Sessions Page Frontend Automation
             nasher : "employee",
-            titleName: "TestAutomationTitle"
+            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+            badge:"KNOLX",
+            date:"Nov 4, 2023",
+            datePastSessions: "Oct 14, 2023",
         };
         
 
