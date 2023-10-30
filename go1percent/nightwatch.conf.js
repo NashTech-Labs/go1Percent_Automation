@@ -62,8 +62,13 @@ module.exports = {
         enabled: false,
         path: 'screens',
         on_failure: true
-      },
 
+
+      },
+      
+"globals": {         "waitForConditionTimeout": 30000 // Set the timeout to 30 seconds
+      },
+      
       desiredCapabilities: {
         browserName: 'chrome'
       },
