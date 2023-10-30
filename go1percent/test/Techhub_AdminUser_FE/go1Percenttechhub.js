@@ -88,18 +88,15 @@ module.exports = {
             .assert.elementPresent('@Approve_Toast', 'Can approve two techhubs of a person on same day')
     },
 
-
     "Total_records": async function (browser) {
+        const techhubPage = browser.page.techhub();
 
-        
-        const examplePage = browser.page.techhub(); // Replace 'techhub' with your actual page object file
-
-        const record = await examplePage.scrollToElement(browser);
-        //console.log(record);
-        const elementCount = await examplePage.countElements(browser);
-        //console.log(elementCount)
-        //browser.assert.equal(record, elementCount, 'Record count matches element count.');
-
+        await techhubPage.scrollToElement(browser);
+        const cardElements = techhubPage.element.findAll('@Request_Cards');
+        const elements = await cardElements;
+        const totalRecordsString = 'Total Records: ' + elements.length;
+        techhubPage
+            .assert.textEquals('@Total_Records', totalRecordsString);
     },
 
     "Navigate to Github URL and verify": async function (browser) {

@@ -1,3 +1,5 @@
+
+
 module.exports = {
     url: "",
 
@@ -55,7 +57,6 @@ module.exports = {
         Navigate_to_detailsPage() {
             return this
                 .click('@Approved_Request')
-            // .click('@Approvals_tab')
         },
 
         Search_Nasher() {
@@ -63,19 +64,15 @@ module.exports = {
                 .setValue('@Search', 'Test Employee')
         },
 
-
-        scrollToElement(browser) {
-            this.waitForElementPresent('@Total_Records',10000)
-             this.getText('@Total_Records', result => {
-                 const str = result.value;
-                 console.log(str)   //logged the text 'Total Records: 0'
-                const record = parseInt(str.match(/\d+/)[0], 10); 
-                console.log(record)
-                const pages = Math.ceil(record / 10); 
-                console.log(pages)
-                this.pause(10000); 
-                for (let i = 0; i < pages; i++) { 
-                    this.pause(2000); 
+        async scrollToElement() {
+            this.waitForElementPresent('@Total_Records', 10000)
+            this.getText('@Total_Records', result => {
+                const str = result.value;
+                const record = parseInt(str.match(/\d+/)[0], 10);
+                const pages = Math.ceil(record / 10);
+                this.pause(5000);
+                for (let i = 0; i < pages; i++) {
+                    this.pause(2000);
                     this.execute(function () {
                         const g = document.querySelector('.report-card div[infinitescroll]');
                         if (g) {
@@ -86,17 +83,5 @@ module.exports = {
             })
             return this;
         },
-
-
-        countElements(browser) {
-            return this.api
-                .elements('css selector', '@Request_Cards', function (result) {
-                const count = result.value.length
-                console.log(count)
-                
-                
-                })
-
-        }
     }]
 };
