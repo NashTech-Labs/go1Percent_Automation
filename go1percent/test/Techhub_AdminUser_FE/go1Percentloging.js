@@ -13,7 +13,5 @@ module.exports = {
     },
     "landing on dashboard page": function(browser) {
         browser.assert.urlContains("my-dashboard");
-    },
-
-   
+    }
 };

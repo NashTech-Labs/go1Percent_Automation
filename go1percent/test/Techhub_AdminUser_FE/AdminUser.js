@@ -1,6 +1,6 @@
 const login = require('./go1Percentloging');
 const dashboard = require('./go1PercentDashboard');
-const techhub = require('./go1Percenttechhub');
+const techhub = require('./go1PercentTechhub');
 
 module.exports = {
     beforeEach: function (browser) {
