@@ -14,6 +14,10 @@ function startTime(){
     return new Date().getTime()
 }
 
+function startTime(){
+    return new Date().getTime()
+}
+
 module.exports = {
 
     before: function (done) {
@@ -54,18 +58,32 @@ module.exports = {
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
     },
 
+
     after: function (done) {
         chromedriver.stop();
         done();
-    }, 
+    },
+
+    // Requested sessions
+    queryRequested:{
+        'pageNumber' : '1',
+        'filter' : 'requested', 
+        'pageSize' : '10',
+        'search' : '',
+    },
+
+    base_url : "https://knolx-backend.qa.go1percent.com/",
+    source : "https://nashtechglobal.qa.go1percent.com",
+    access_token : '',
     
     Add_Configuration:{
         BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/contribution/addContribution",
-        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"
-        
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"     
 
     },
+
+
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
@@ -129,7 +147,7 @@ module.exports = {
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
 
     access_token :"",
-    url : 'https://backend-radar.qa.go1percent.com/',
+    backend_url : 'https://backend-radar.qa.go1percent.com/',
 
     baseurl:'https://backend.qa.go1percent.com',
     	
@@ -171,4 +189,3 @@ module.exports = {
               }
         };
         
-
