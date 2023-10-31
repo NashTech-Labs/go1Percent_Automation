@@ -159,11 +159,15 @@ module.exports = {
                 .waitForElementVisible('@EditButton', 3000)
                 .click('@EditButton')
                 .waitForElementPresent('@TextBox', 5000)
-                .click('@TextBox')
+              //  .click('@TextBox')
+                .pause(6000)
+                .setValue('@TextBox',"") // simulating backspace
                 .pause(4000)
-                .setValue('@TextBox', ['text to delete', browser.Keys.BACK_SPACE]) // simulating backspace
-                //.pause(4000)
+                .sendKeys('@TextBox',"Testing Title")
+
+                .pause(4000)
                 //.clearValue('@TextBox')
+                .click('@SaveButton')
                 .pause(5000)
                 //.clearValue('@TextBox')
 
