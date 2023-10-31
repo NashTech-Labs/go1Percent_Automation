@@ -110,15 +110,15 @@ module.exports = {
 
         },
 
-        AfterClickingURLBox:{
+        AfterClickingURLBox: {
 
 
-            selector:'textarea[type="text"]'
+            selector: 'textarea[type="text"]'
         },
 
-        BackButton:{
+        BackButton: {
 
-            selector:'.btn.backBtn.overall-txt-color.card.addIcon'
+            selector: '.btn.backBtn.overall-txt-color.card.addIcon'
         }
 
 
@@ -161,10 +161,12 @@ module.exports = {
                 .waitForElementPresent('@TextBox', 5000)
                 .click('@TextBox')
                 .pause(4000)
-                .clearValue('@TextBox')
+                .setValue('@TextBox', ['text to delete', browser.Keys.BACK_SPACE]) // simulating backspace
+                //.pause(4000)
+                //.clearValue('@TextBox')
                 .pause(5000)
-                .clearValue('@TextBox')
-                
+                //.clearValue('@TextBox')
+
         },
 
         AddNewTag() {
@@ -327,16 +329,16 @@ module.exports = {
 
         },
 
-        BackButtonEnable(){
+        BackButtonEnable() {
 
             return this
-            .pause(4000)
-            .waitForElementVisible(Startingbox, 3000)
-            .click(Startingbox)
-            .pause(4000)
-            .waitForElementVisible('@BackButton',3000)
-            .click('@BackButton')
-            .pause(4000)
+                .pause(4000)
+                .waitForElementVisible(Startingbox, 3000)
+                .click(Startingbox)
+                .pause(4000)
+                .waitForElementVisible('@BackButton', 3000)
+                .click('@BackButton')
+                .pause(4000)
 
 
 
