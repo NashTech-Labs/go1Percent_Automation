@@ -2,9 +2,9 @@ module.exports = {
     url: "",
 
     elements: {
-        knolxButton:"[src='../../../assets/Icons/knolx.svg']",
+        knolxButton: "[src='../../../assets/Icons/knolx.svg']",
         sessionsButton: ".nav.subMenu li a[href='/knolx/upcoming-sessions']",
-       
+
         // Upcoming Sessions Page 
         allCompetency: {
             selector: "//select[option[contains(text(),'All Competency')]]",
@@ -22,28 +22,35 @@ module.exports = {
             selector: "//select[option[contains(text(),'All Location')]]",
             locateStrategy: 'xpath'
         },
-        addToCalaender:"button.add-btn",
-        closePopUp:".material-icons.close-icon",
+        addToCalaender: "button.add-btn",
+        closePopUp: ".material-icons.close-icon",
         bookmarkButton: ".book:first-of-type",
         nasher: ".text-bold",
 
         //Filter by All competency 
-        testAutomationCompetency: "select > option:nth-child(18)",
+        testAutomationCompetency: {
+            selector: "//option[contains(text(),' Test Automation Competency')]",
+            locateStrategy: 'xpath'
+        },
         testAutomationCompetencyDashboard: ".topic-text.mb-n1 + .font-weight-bold",
         // Filter by All Sessions
-        knolxSessions: "div:nth-child(2) > div:nth-child(2) > select > option:nth-child(2)",
-        knolxSessionsDashboard:".knolxBadge",
-        // Filter by Calender
-        calender:"input[name='date']",
-        nextCalenderButton: "button.next",
-        fourNov:{
-            selector:"(//span[text()='4'])[1]",
-            locateStrategy:'xpath'
+        knolxSessions:
+        {
+            selector: "//option[contains(text(),'Knolx')]",
+            locateStrategy: 'xpath'
         },
-      
-        fourteenOctInPast:{
-            selector:"(//span[text()='14'])",
-            locateStrategy:'xpath'
+        knolxSessionsDashboard: ".knolxBadge",
+        // Filter by Calender
+        calender: "input[name='date']",
+        nextCalenderButton: "button.next",
+        fourNov: {
+            selector: "(//span[text()='4'])[1]",
+            locateStrategy: 'xpath'
+        },
+
+        fourteenOctInPast: {
+            selector: "(//span[text()='14'])",
+            locateStrategy: 'xpath'
         },
         dateDashboard: ".ms-md-0 > .mb-n1",
 
@@ -84,13 +91,13 @@ module.exports = {
                 .clickOnElement('@sessionsButton')
         },
         // Upcoming Sessions Page 
-        selectDateFromCalenderUpcomingSessions(){
+        selectDateFromCalenderUpcomingSessions() {
             return this
                 .clickOnElement('@calender')
                 .clickOnElement('@nextCalenderButton')
                 .clickOnElement('@fourNov')
         },
-        selectDateFromCalenderPastSessions(){
+        selectDateFromCalenderPastSessions() {
             return this
                 .clickOnElement('@calender')
                 .clickOnElement('@fourteenOctInPast')
