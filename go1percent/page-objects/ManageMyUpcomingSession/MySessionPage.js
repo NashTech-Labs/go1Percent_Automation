@@ -1,47 +1,48 @@
-module.exports={
+module.exports = {
 
-    url:'',
+    url: '',
 
-    elements:{
+    elements: {
 
-        Knolx:{
+        Knolx: {
             locateStrategy: 'xpath',
-            selector:'(//div[@role="button"])[4]',
+            selector: '(//div[@role="button"])[4]',
         },
-        MySession:{
-        
+        MySession: {
+
             locateStrategy: 'xpath',
-            selector:'//a[@href="/knolx/my-sessions/my-upcoming-sessions"]',        },
-       
-
-},
-
-commands:[{
-
-ClickOnKnolx(){
-return this
-.waitForElementVisible('@Knolx',3000)
-.click('@Knolx')
-
-},
-
-ClickOnMySession(){
-return this
-.waitForElementVisible('@MySession',5000)
-.click('@MySession')
-},
+            selector: '//a[@href="/knolx/my-sessions/my-upcoming-sessions"]',
+        },
 
 
+    },
 
-}
+    commands: [{
+
+        ClickOnKnolx() {
+            return this
+                .waitForElementVisible('@Knolx', 3000)
+                .click('@Knolx')
+
+        },
+
+        ClickOnMySession() {
+            return this
+                .waitForElementVisible('@MySession', 5000)
+                .click('@MySession')
+        },
 
 
 
+    }
 
 
 
 
-]
+
+
+
+    ]
 
 
 
