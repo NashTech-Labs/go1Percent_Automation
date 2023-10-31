@@ -35,7 +35,7 @@ module.exports = {
     //plugins: ['@nightwatch/react'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  //globals_path: './globals.js',
+  globals_path: './globals.js',
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
@@ -124,17 +124,9 @@ module.exports = {
         ]
       }
     },
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
-      }
-   },
-
-   },
+   
 
     
-
     api_testing: {
       start_session: false,
       webdriver: {
@@ -399,7 +391,8 @@ module.exports = {
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
-  };
+  }
+}
 
   
 
