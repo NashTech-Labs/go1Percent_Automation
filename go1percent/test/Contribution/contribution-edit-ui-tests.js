@@ -57,7 +57,7 @@ module.exports = {
             .clickContributions()
             .clickContribution()
             .clickEditButton()
-            .editUrl()
+            .editUrl('testcontribution')
             .pause(2000)
             .expect.element('@saveButton').to.have.attribute('disabled');
     },
@@ -159,6 +159,22 @@ module.exports = {
             .clickOnlineCourseContribution()
             .clickEditButton()
             .expect.element('@saveButton').to.have.attribute('disabled')
+    },
+
+    // This test case verifies that it throws an error id we add an existing url.
+    "Verify that it throws an error id we add an existing url" : (browser) => {
+        const editContribution = browser.page.Contribution.contribution_page_object();
+        editContribution
+            .navigate() 
+            .clickSettings()
+            .clickProfile()   
+            .clickContributions()
+            .clickContribution()
+            .clickEditButton()
+            .editUrl('https://testcontribution.com')
+            .click('@saveButton')
+            .waitForElementVisible("div[role = 'alert']")
+            .assert.textContains("div[role = 'alert']",'Contribution with same url already exist')
     }
   
 };
