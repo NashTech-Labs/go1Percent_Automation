@@ -395,12 +395,14 @@ module.exports = {
         }
       }
     },
+
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
   };
 
   
+
 
   
 
