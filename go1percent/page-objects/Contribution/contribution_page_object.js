@@ -99,11 +99,11 @@ commands = [
                 .setValue('@description', 'test contribution')
         },
 
-        editUrl(){
+        editUrl(url){
             return this.
                 waitForElementVisible('@url')
                 .clearValue('@url')
-                .setValue('@url', 'testcontribution')
+                .setValue('@url', url)
         },
 
         clickOnlineCourseContribution(){
