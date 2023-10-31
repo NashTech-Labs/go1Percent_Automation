@@ -24,6 +24,11 @@ module.exports = {
         chromedriver.start();
         done();
     },
+    
+    reporter: (results,done)=>{
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results,done);
+      },
 
     admin: {
         headers: {
