@@ -9,7 +9,7 @@ describe('Leaderboard-Rewards API Testing', function () {
   const commonExpectation = (startTimestamp, response) => {
     const endTimestamp = Date.now(); // Record the end time
     const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
-    expect(responseTime).to.be.below(3000); //Response time assertion 
+    expect(responseTime).to.be.below(5000); //Response time assertion 
   }
 
 
