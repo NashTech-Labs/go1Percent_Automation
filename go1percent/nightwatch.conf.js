@@ -33,7 +33,7 @@ module.exports = {
      plugins: ['@nightwatch/apitesting'],
 
     //plugins: ['@nightwatch/react'],
-
+  
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
     globals: {
@@ -395,12 +395,14 @@ module.exports = {
         }
       }
     },
+
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
   };
 
   
+
 
   
 
