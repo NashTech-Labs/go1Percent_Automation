@@ -5,6 +5,8 @@ require('./My_Upcoming_Session')
 const Startingbox = My_Upcoming_Session.elements.ListPresent
 //var newText = existingText + " Your new information here"
 
+//My_Upcoming_Session.commands.
+
 module.exports = {
 
     elements: {
@@ -106,6 +108,17 @@ module.exports = {
 
             selector: '.error-message'
 
+        },
+
+        AfterClickingURLBox:{
+
+
+            selector:'textarea[type="text"]'
+        },
+
+        BackButton:{
+
+            selector:'.btn.backBtn.overall-txt-color.card.addIcon'
         }
 
 
@@ -148,12 +161,10 @@ module.exports = {
                 .waitForElementPresent('@TextBox', 5000)
                 .click('@TextBox')
                 .pause(4000)
-
-                // .clearValue('@TextBox')
+                .clearValue('@TextBox')
                 .pause(5000)
-                .click('@SaveButton')
-                .pause(5000)
-
+                .clearValue('@TextBox')
+                
         },
 
         AddNewTag() {
@@ -289,7 +300,7 @@ module.exports = {
                 .waitForElementVisible('@SlideURlBox', 3000)
                 .click('@SlideURlBox')
                 .pause(5000)
-                .clearValue('textarea[type="text"]')
+                .clearValue('@AfterClickingURLBox')
                 .pause(10000)
                 .waitForElementVisible('@URLSaveButton', 3000)
                 .click('@URLSaveButton')
@@ -306,11 +317,26 @@ module.exports = {
                 .waitForElementVisible('@SlideURlBox', 3000)
                 .click('@SlideURlBox')
                 .pause(5000)
-                .setValue('textarea[type="text"]', 'GoodEvening')
+                .setValue('@AfterClickingURLBox', 'GoodEvening')
                 .pause(5000)
                 .waitForElementVisible('@URLSaveButton', 3000)
                 .click('@URLSaveButton')
 
+
+
+
+        },
+
+        BackButtonEnable(){
+
+            return this
+            .pause(4000)
+            .waitForElementVisible(Startingbox, 3000)
+            .click(Startingbox)
+            .pause(4000)
+            .waitForElementVisible('@BackButton',3000)
+            .click('@BackButton')
+            .pause(4000)
 
 
 
