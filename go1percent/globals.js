@@ -65,6 +65,21 @@ module.exports = {
 
     },
 
+    Reward:{
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/rewards",
+        PutEndPoints:"/rewards",
+        GetEndPoints:["/rewards/getAllRewards" , "/rewards/getReward"]
+
+    },
+
+    Redeemed_Reward:{
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/rewards",
+        PutEndPoints:"/updateRedeemReward",
+        GetEndPoints:"/get/redeemRewards"     
+    },
+
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
