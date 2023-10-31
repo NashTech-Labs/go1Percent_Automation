@@ -124,19 +124,6 @@ module.exports = {
         ]
       }
     },
-<<<<<<< HEAD
-    
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
-      }
-   },
-
-   },
-=======
-   
->>>>>>> 1a042200c98d5c6e5a083eb02ebc62562f5959cb
 
     
     api_testing: {

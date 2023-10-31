@@ -186,5 +186,17 @@ module.exports = {
             reporter: (results,done)=>{
                 const reporter = new allureReporter.NightwatchAllureReporter({});
                 reporter.write(results,done);
-              }
+              },
+
+            
+              //My Past Session
+                  
+               queryMyPastSession: {
+               'pageNumber': '1',
+               'pageSize': '1000',
+               'filter': 'past',
+               'knolderOnly': 'true',
+               'sessionId' : '6529144d45bc9a797dfbcb19',
+            },
+
         };
