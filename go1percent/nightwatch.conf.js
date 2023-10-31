@@ -124,12 +124,16 @@ module.exports = {
         ]
       }
     },
+    
     api_testing: {
       start_session: false,
       webdriver: {
         start_process: false,
       }
-   },
+    },
+
+  
+
 
 
    chrome: {
@@ -382,13 +386,17 @@ module.exports = {
         }
       }
     },
+
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
   }
-  };
+
+}
+
 
   
+
 
   
 
