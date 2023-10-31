@@ -1,4 +1,5 @@
 const chromedriver = require('chromedriver');
+const allureReporter = require('nightwatch-allure');
 function startTime(){
     return new Date().getTime()
 }
@@ -163,6 +164,11 @@ module.exports = {
             badge:"KNOLX",
             date:"Nov 4, 2023",
             datePastSessions: "Oct 14, 2023",
+            // allure report
+            reporter: (results,done)=>{
+                const reporter = new allureReporter.NightwatchAllureReporter({});
+                reporter.write(results,done);
+              }
         };
         
 
