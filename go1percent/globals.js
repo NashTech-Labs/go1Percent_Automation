@@ -84,6 +84,20 @@ module.exports = {
     },
 
 
+    Reward:{
+        PostEndPoints:"/rewards",
+        PutEndPoints:"/rewards",
+        GetEndPoints:["/rewards/getAllRewards" , "/rewards/getReward"]
+
+    },
+
+    Redeemed_Reward:{
+        PostEndPoints:"/rewards",
+        PutEndPoints:"/updateRedeemReward",
+        GetEndPoints:"/get/redeemRewards"     
+    },
+
+
     // Upcoming Page
     queryNasher: {
         'pageNumber': '1',
