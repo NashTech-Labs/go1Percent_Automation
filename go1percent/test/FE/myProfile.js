@@ -1,7 +1,7 @@
 const DataSet = require('../../globals');
 //const MyProfilePage = require('../../page-objects/myProfilePage');
 //const Login=browser.page.login();
-const profilePicUploadSuccessMsg = ' Profile picture updated successfully! ';
+const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
     //this.timeout(25000)
@@ -10,10 +10,8 @@ describe("My Profile Page Frontend Automation", () => {
 
     beforeEach(function (browser) {
 
-
-
         browser
-        .window.maximize()
+            .window.maximize()
             //.maximizeWindow()
             .page.login()
             .navigate()
@@ -33,80 +31,120 @@ describe("My Profile Page Frontend Automation", () => {
     afterEach(function (browser) {
         browser.end();
     });
-    // it('View rewards button is present on the profile page when no reward is redeemed till now', function (browser) {
+    it('View rewards button is present on the profile page when no reward is redeemed till now', function (browser) {
+        myProfile
+            .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+            //.waitForElementVisible()
+            .pause(10000)
+            .assert.elementPresent('@ViewRewardBtn');
+    });
+
+    it('Re-directed to the rewards page when he clicks on view rewards button', function (browser) {
+        myProfile
+            .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+            //.waitForElementVisible()
+            .pause(8000)
+            .ClickOnRewardButton()
+            .pause(4000)
+            .assert.urlContains("rewards/list", 'You entered the View Rewards Page');
+
+
+    });
+    // it('Re-directed to the rewards page and can able to edit the rewards as well', function (browser) {//testadmin
     //     myProfile
+    //         .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+    //         .pause(8000)
+    //         .ClickOnRewardButton()
+    //         .pause(3000)
+    //         .ClickOnRewardEditCancelBtn()
+    //         .pause(2000)
+    //         //.console.log("Rewards can be edit from admin user");
+            
 
     // });
-
-    // it('Re-directed to the rewards page when he clicks on view rewards button', function (browser) {
+    // it("No Badges Earned' message when no badges were earned to their profile", function (browser) {//testemployee1
     //     myProfile
-
+    //         .pause(3000)
+    //         .BadgeCheck();
 
     // });
-    // it('Re-directed to the rewards page and can able to edit the rewards as well', function (browser) {
-    //     myProfile
-
-
-    // });
-    // it("No Badges Earned' message when no badges were earned to their profile", function (browser) {
-    //     myProfile
-
-
-    // });
-    // it('View the profile picture along with the monthly rank', function (browser) {
-    //     myProfile
-
-
-    // });
+    it('View the profile picture along with the monthly rank', function (browser) {
+        myProfile
+            .pause(5000)
+            //.assert.elementPresent('@NoProfilePic','No Profile Pic exist')
+            //.pause(5000)
+            .assert.elementPresent('@ProfilePicExist','Profile Pic exist')
+            .assert.elementPresent('@ViewMonthlyRank','Monthly Rank exist');
+    });
     it('Change their profile picture by clicking on update profile page', function (browser) {
         myProfile
 
             .ClickOnUpdateProfilePic()
-            .pause(10000)
+            .pause(1000)
             .assert.textContains('@ProfilePicSuccessMsg', profilePicUploadSuccessMsg)
-        //.assert.visible('@ViewRewardBtn', 'Button is visible')
-        //.click("//button[text()='View Rewards']") // XPath selector
-        //.assert.urlContains("rewards/list",'URL contains rewards/list')
-        .ViewRewardButton();
+            .pause(2000)
 
      });
-    // it('Name and competency name on the profile page', function (browser) {
-    //     myProfile
+    it('Name and competency name on the profile page', function (browser) {
+        myProfile
+        .pause(10000)
+        .assert.elementPresent('@UserName','User Name Visible')
+        .assert.elementPresent('@CompetencyName','Competency Name Visible');
+
+    });
+    it('View the points, overall rank and monthly score on the profile page', function (browser) {
+        myProfile
+        .pause(3000)
+        .assert.elementPresent('@Points','User Points Visible')
+        .assert.elementPresent('@OverallRank','User OverallRank Visible')
+        .assert.elementPresent('@MonthlyScore','User Monthly Score Visible')
+
+    });
+    it('See view rewards list by clicking on the view rewards button', function (browser) {
+        myProfile
+            .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+            //.waitForElementVisible()
+            .pause(8000)
+            .ClickOnRewardButton()
+            .pause(4000)
+            .assert.urlContains("rewards/list", 'View Rewards list Page is visible');
 
 
-    // });
-    // it('View the points, overall rank and monthly score on the profile page', function (browser) {
-    //     myProfile
+    });
+    it('View the reward if redeemed', function (browser) {
+        myProfile
+                .pause(12000)
+                .assert.elementPresent('@RewardExist','Reward redeemed for the user')
+                .assert.elementPresent('@ViewRewardBtn','No reward redeemed for the user');
 
 
-    // });
-    // it('See view rewards list by clicking on the view rewards button', function (browser) {
-    //     myProfile
+    });
+    it('View all the rewards redeemed by him/her', function (browser) {//testemploee.testemployee1,testadmin
+        myProfile
+        .pause(15000)
+        .assert.elementPresent('@RewardExist','All redeemed reward for the user displyed')
+        .assert.elementPresent('@ViewRewardBtn','No reward redeemed for the user');
 
 
-    // });
-    // it('View the reward if redeemed', function (browser) {
-    //     myProfile
-
-
-    // });
-    // it('View all the rewards redeemed by him/her', function (browser) {
-    //     myProfile
-
-
-    // });
+    });
     // it('View the badges and the count in the badges section', function (browser) {
     //     myProfile
-
-
-    // });
-    // it('See month and score and rank by clicking on the badges', function (browser) {
-    //     myProfile
-
+            
 
     // });
+    it('See month and score and rank by clicking on the badges', function (browser) {//testemployee
+        myProfile
+        .pause(12000)
+        .ClickOnBadge()
+        .pause(2000)
+        .assert.elementPresent('@BadgeRank','Badge Rank visible for the user')
+        .assert.elementPresent('@BadgeMonth','Badge Month visible for the user')
+        .assert.elementPresent('@BadgeScore','Badge Score visible for the user')
+        .ClickOnBadgeQuit();
 
-    
+    });
+
+
 
 
 });

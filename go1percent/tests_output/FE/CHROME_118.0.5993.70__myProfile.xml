@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="1"
-            tests="1">
+            tests="3">
 
   <testsuite name="FE.myProfile"
-    errors="0" failures="1" hostname="" id="" package="FE" skipped="0"
-    tests="1" time="105.8" timestamp="">
+    errors="0" failures="1" hostname="" id="" package="FE" skipped="7"
+    tests="3" time="148.9" timestamp="">
   
-    <testcase name="Change their profile picture by clicking on update profile page" classname="FE.myProfile" time="52.88" assertions="5">
+    <testcase name="View rewards button is present on the profile page when no reward is redeemed till now" classname="FE.myProfile" time="23.13" assertions="5">
 
     
 
@@ -15,9 +15,36 @@
 
     
 
-      <failure message="Timed out while waiting for element &lt;//button[normalize-space()=&#39;Update Profile Picture&#39;]&gt; to be present for 20000 milliseconds. - expected &#34;visible&#34; but got: &#34;not found&#34; (20103ms)">    at Page.ClickOnUpdateProfilePic (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/page-objects/myProfilePage.js:36:18)
-    at DescribeInstance.&lt;anonymous&gt; (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/FE/myProfile.js:64:14)</failure>
+    
 
+    
+    </testcase>
+  
+    <testcase name="Re-directed to the rewards page when he clicks on view rewards button" classname="FE.myProfile" time="28.65" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="View the profile picture along with the monthly rank" classname="FE.myProfile" time="22.68" assertions="5">
+
+    
+
+    
+
+    
+
+      <failure message="Profile Pic exist in 5000ms - expected &#34;is present&#34; but got: &#34;not present&#34; (5206ms)">    at DescribeInstance.&lt;anonymous&gt; (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/FE/myProfile.js:76:21)</failure>
+<system-out>[[ATTACHMENT|/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/screens/FE/myProfile/View-the-profile-picture-along-with-the-monthly-rank_FAILED_Nov-01-2023-050148-GMT+0530.png]]</system-out>
     
     </testcase>
   
@@ -26,6 +53,43 @@
 
     
 
+  
+    
+    <testcase
+      name="Change their profile picture by clicking on update profile page" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Name and competency name on the profile page" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="View the points, overall rank and monthly score on the profile page" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="See view rewards list by clicking on the view rewards button" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="View the reward if redeemed" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="View all the rewards redeemed by him/her" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="See month and score and rank by clicking on the badges" classname="FE.myProfile">
+      <skipped />
+    </testcase>
+    
   
   </testsuite>
 </testsuites>
