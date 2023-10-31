@@ -1,4 +1,5 @@
 const headers = require('../../globals')
+
 describe('Knolx|Sessions APIs', function () {
     it('Search session using Nasher as testadmin in Upcoming Sessions Page', async function ({ supertest }) {
         const startTime = new Date().getTime();
