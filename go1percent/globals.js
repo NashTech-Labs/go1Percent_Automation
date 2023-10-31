@@ -1,4 +1,5 @@
 const chromedriver = require('chromedriver');
+const allureReporter = require('nightwatch-allure');
 function startTime(){
     return new Date().getTime()
 }
@@ -144,6 +145,7 @@ module.exports = {
     base_url : "https://knolx-backend.qa.go1percent.com/",
     source : "https://nashtechglobal.qa.go1percent.com",
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
+
     access_token :"",
     backend_url : 'https://backend-radar.qa.go1percent.com/',
 
@@ -172,5 +174,18 @@ module.exports = {
             token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
             go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
-            }
-};
+            },
+            access_token :"",  
+            // Upcoming Sessions Page Frontend Automation
+            nasher : "employee",
+            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+            badge:"KNOLX",
+            date:"Nov 4, 2023",
+            datePastSessions: "Oct 14, 2023",
+            // allure report
+            reporter: (results,done)=>{
+                const reporter = new allureReporter.NightwatchAllureReporter({});
+                reporter.write(results,done);
+              }
+        };
+        
