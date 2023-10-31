@@ -13,6 +13,10 @@ function startTime(){
     return new Date().getTime()
 }
 
+function startTime(){
+    return new Date().getTime()
+}
+
 module.exports = {
 
     before: function (done) {
@@ -56,8 +60,19 @@ module.exports = {
     after: function (done) {
         chromedriver.stop();
         done();
+    },
 
-    }, 
+    // Requested sessions
+    queryRequested:{
+        'pageNumber' : '1',
+        'filter' : 'requested', 
+        'pageSize' : '10',
+        'search' : '',
+    },
+
+    base_url : "https://knolx-backend.qa.go1percent.com/",
+    source : "https://nashtechglobal.qa.go1percent.com",
+    access_token : '',
     
     Add_Configuration:{
         BaseUrl:"https://backend.qa.go1percent.com",
