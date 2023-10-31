@@ -32,13 +32,8 @@ hs_err_pid*
 
 
 replay_pid*
-/go1percent/node_modules/
+go1percent/node_modules/
 go1percent/tests_output/
-//go1percent/package.json
-//go1percent/package-lock.json
-//go1percent/globals.js
-go1percent/nightwatch.conf.js
-
-
-replay_pid*
-
+go1percent/package-lock.json
+go1percent/package.json
+go1percent/nightwatch

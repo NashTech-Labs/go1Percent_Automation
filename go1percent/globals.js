@@ -1,4 +1,5 @@
 const chromedriver = require('chromedriver');
+const allureReporter = require('nightwatch-allure');
 function startTime(){
     return new Date().getTime()
 }
@@ -8,6 +9,10 @@ function startTime(){
     return new Date().getTime()
 }
 
+
+function startTime(){
+    return new Date().getTime()
+}
 
 function startTime(){
     return new Date().getTime()
@@ -53,10 +58,23 @@ module.exports = {
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
     },
 
+
     after: function (done) {
         chromedriver.stop();
         done();
-    }, 
+    },
+
+    // Requested sessions
+    queryRequested:{
+        'pageNumber' : '1',
+        'filter' : 'requested', 
+        'pageSize' : '10',
+        'search' : '',
+    },
+
+    base_url : "https://knolx-backend.qa.go1percent.com/",
+    source : "https://nashtechglobal.qa.go1percent.com",
+    access_token : '',
     
     Add_Configuration:{
         BaseUrl:"https://backend.qa.go1percent.com",
@@ -65,8 +83,8 @@ module.exports = {
 
     },
 
+
     Reward:{
-        BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/rewards",
         PutEndPoints:"/rewards",
         GetEndPoints:["/rewards/getAllRewards" , "/rewards/getReward"]
@@ -74,11 +92,11 @@ module.exports = {
     },
 
     Redeemed_Reward:{
-        BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/rewards",
         PutEndPoints:"/updateRedeemReward",
         GetEndPoints:"/get/redeemRewards"     
     },
+
 
     // Upcoming Page
     queryNasher: {
@@ -141,8 +159,9 @@ module.exports = {
     base_url : "https://knolx-backend.qa.go1percent.com/",
     source : "https://nashtechglobal.qa.go1percent.com",
     sessionDescriptionInPast :"Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
+
     access_token :"",
-    url : 'https://backend-radar.qa.go1percent.com/',
+    backend_url : 'https://backend-radar.qa.go1percent.com/',
 
     baseurl:'https://backend.qa.go1percent.com',
     	
@@ -164,10 +183,34 @@ module.exports = {
 
         },
     },
+
+    dataToUpdate: {
+        sessionDescription: "The error message indicates that the property 'topic' is not present in the response body, which is why the assertion is failing. This could be due to the structure of the response body or the way the API is handling the request. Please ensure that the API response structure matches the expected response format.",
+        feedbackFormName: "sdv",
+        sessionId: "653105778555d37c0a4f8d96",
+        remarks: "have not updated the sessions",
+        slideURL: "www.google.com",
+        sessionTag: ["Python"],
+        topic: "Updated Title",
+        saveOption: true
+    },
          
     urls: {
             token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
             go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
-            }
-};
+            },
+            access_token :"",  
+            // Upcoming Sessions Page Frontend Automation
+            nasher : "employee",
+            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+            badge:"KNOLX",
+            date:"Nov 4, 2023",
+            datePastSessions: "Oct 14, 2023",
+            // allure report
+            reporter: (results,done)=>{
+                const reporter = new allureReporter.NightwatchAllureReporter({});
+                reporter.write(results,done);
+              }
+        };
+        
