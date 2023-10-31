@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="FE.myProfile"
+    errors="0" failures="1" hostname="" id="" package="FE" skipped="0"
+    tests="1" time="105.8" timestamp="">
+  
+    <testcase name="Change their profile picture by clicking on update profile page" classname="FE.myProfile" time="52.88" assertions="5">
+
+    
+
+    
+
+    
+
+      <failure message="Timed out while waiting for element &lt;//button[normalize-space()=&#39;Update Profile Picture&#39;]&gt; to be present for 20000 milliseconds. - expected &#34;visible&#34; but got: &#34;not found&#34; (20103ms)">    at Page.ClickOnUpdateProfilePic (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/page-objects/myProfilePage.js:36:18)
+    at DescribeInstance.&lt;anonymous&gt; (/home/knoldus/Desktop/feature-myProfile/go1Percent_Automation/go1percent/test/FE/myProfile.js:64:14)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
