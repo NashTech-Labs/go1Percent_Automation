@@ -35,7 +35,7 @@ module.exports = {
     //plugins: ['@nightwatch/react'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  //globals_path: './globals.js',
+  globals_path: './globals.js',
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
@@ -131,25 +131,12 @@ module.exports = {
       }
    },
 
-   },
-
-    
-
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
-      }
-    },
-
-  
-
 
    chrome: {
 
       desiredCapabilities: {
         browserName: 'chrome',
-        'goog:chromeOptions': {
+     'goog:chromeOptions': {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -165,7 +152,7 @@ module.exports = {
 
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: 'node_modules/.bin/chromedriver',
         cli_args: [
           // --verbose
         ]
@@ -398,6 +385,7 @@ module.exports = {
     "@nightwatch/apitesting" : {
       "log_responses": true
     }
+  }
   };
 
   

@@ -1,4 +1,5 @@
 const chromedriver = require('chromedriver');
+const allureReporter = require('nightwatch-allure');
 function startTime(){
     return new Date().getTime()
 }
@@ -14,6 +15,10 @@ function startTime(){
 }
 
 module.exports = {
+    reporter: (results,done)=>{
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results,done);
+      },
 
     before: function (done) {
         chromedriver.start();
