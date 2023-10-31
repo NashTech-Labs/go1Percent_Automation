@@ -11,8 +11,7 @@ module.exports={
         MySession:{
         
             locateStrategy: 'xpath',
-            selector:'//a[@href="/knolx/my-sessions/my-upcoming-sessions"]',//(//li[@class="nav-item"])[10]
-        },
+            selector:'//a[@href="/knolx/my-sessions/my-upcoming-sessions"]',        },
        
 
 },
