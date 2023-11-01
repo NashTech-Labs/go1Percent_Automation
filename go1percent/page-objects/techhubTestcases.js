@@ -9,7 +9,7 @@ module.exports = {
       Profile: 'div[class = "d-flex py-1 mt-1"]',
       Logout: '#navbar div:nth-child(2) > div:nth-child(2) h6 > span',
       TechhubPage: "li[class='nav-item my-1 cursor-pointer text-bold p-2']:nth-child(4)",
-      pendingTab: 'a[class="cursor-pointer"]',
+      pendingTab: 'body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-user-techhub > div > div.page-wrapper.me-2 > div.studio-member > div.row.row-cols-1.row-cols-sm-2.g-5 > div.col-xxl-5.col-lg-5.col-md-5.d-flex > div > ul > li:nth-child(2) > a',
       searchBar: 'body div.row.g-2 input',
       pendingTechhubRecords: 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]',
       NoOfRecords: 'span[class="ml-2"]',
@@ -78,7 +78,7 @@ module.exports = {
 
       navigateToTechhub: function () {
         return this
-        .waitForElementVisible('@TechhubPage', 10000)
+        .waitForElementVisible('@TechhubPage', 5000)
         .click('@TechhubPage')
       },
 
@@ -93,6 +93,7 @@ module.exports = {
       navigateToPendingTechHubSearch: function() {
         return this
         .waitForElementVisible('@pendingTab')
+        .click('@pendingTab')
         .click('@pendingTab')
         .click('@searchBar')
       },
@@ -151,7 +152,7 @@ module.exports = {
 
       navigateToPendingTechHub: function() {
         return this
-        .waitForElementVisible('@pendingTab')
+        .waitForElementVisible('@pendingTab', 2000)
         .click('@pendingTab')
       },
 
@@ -194,11 +195,11 @@ module.exports = {
 
       submitFirstTechhubInDraft: function() {
         return this
-        .waitForElementVisible('@pendingTab')
+        .waitForElementVisible('@pendingTab', 2000)
         .click('@pendingTab')
         .click('@searchBar')
         .setValue('@searchBar', "test")
-        .waitForElementPresent('@draftTab', 10000)
+        .waitForElementPresent('@draftTab', 5000)
         .click('@draftTab')
         .pause(5000)
         .waitForElementVisible('@draftTechhub')
@@ -223,14 +224,14 @@ module.exports = {
         .click('@submitTechhubTags')
         .setValue('@submitTechhubTags', "tagForTesting")
         .click('body button.btn.btn-primary.text-white.mx-2')
-        .waitForElementVisible('@submissionPopupAlert', 10000)
+        .waitForElementVisible('@submissionPopupAlert', 5000)
       },
 
       submitSecondTechhubInDraft: function() {
         return this
         .waitForElementVisible('@pendingTab', 5000)
         .click('@pendingTab')
-        .waitForElementPresent('@draftTab', 10000)
+        .waitForElementPresent('@draftTab', 5000)
         .click('@draftTab')
         .pause(5000)
         .waitForElementVisible('@draftTechhub')
@@ -243,7 +244,7 @@ module.exports = {
         .click('@submitTechhubBaseLanguage')
         .waitForElementVisible('@baseLanguageJava')
         .click('@baseLanguageJava')
-        .waitForElementVisible('@submitTechhubTitle', 10000)
+        .waitForElementVisible('@submitTechhubTitle', 5000)
         .click('@submitTechhubTitle')
         .setValue('@submitTechhubTitle', "TestAutomationPurpose")
         .click('@submitTechhubCaption')
@@ -255,7 +256,7 @@ module.exports = {
         .click('@submitTechhubTags')
         .setValue('@submitTechhubTags', "tagForTesting")
         .click('body button.btn.btn-primary.text-white.mx-2')
-        .waitForElementVisible('@submissionPopupAlert', 10000)
+        .waitForElementVisible('@submissionPopupAlert', 5000)
       },
 
       techhubInreviewPage: function() {
@@ -274,7 +275,7 @@ module.exports = {
         return this
         .waitForElementVisible('@allTechHubTab')
         .click('@allTechHubTab')
-        .waitForElementVisible('@approvedTab', 10000)
+        .waitForElementVisible('@approvedTab', 5000)
         .click('@approvedTab')
         .waitForElementPresent('@viewTechhub')
         .waitForElementPresent('@approvedStatusInTechhub')
@@ -290,7 +291,7 @@ module.exports = {
 
       clickOnapprovedTab: function() {
         return this
-        .waitForElementVisible('@approvedTab', 10000)
+        .waitForElementVisible('@approvedTab', 5000)
         .click('@approvedTab')
       },
 
