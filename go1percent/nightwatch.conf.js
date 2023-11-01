@@ -30,7 +30,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
 
-  //plugins: ['@nightwatch/apitesting'],
+  plugins: ['@nightwatch/apitesting'],
 
   //plugins: ['@nightwatch/react'],
 
@@ -174,7 +174,7 @@ module.exports = {
         start_process: true,
         // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
         // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
-        server_path: '/home/knoldus/Downloads/edgedriver_linux64',
+        server_path: '',
         cli_args: [
           // --verbose
         ]
