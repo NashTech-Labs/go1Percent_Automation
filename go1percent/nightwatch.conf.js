@@ -74,10 +74,6 @@ module.exports = {
       //   locateStrategy: 'xpath',
         
       // },
-      ,chromeOptions: {
-        args: ['--headless',"window-size=1920,1080"]
-        
-      }
       
       },
       
@@ -153,14 +149,15 @@ module.exports = {
             //'--no-sandbox',
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            // '--headless'
+            '--headless',
+            "window-size=1920,1080"
           ]
         }
       },
 
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: 'node_modules/.bin/chromedriver',
         cli_args: [
           // --verbose
         ]
