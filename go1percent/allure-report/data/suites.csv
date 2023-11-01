@@ -1,5 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Mon Oct 30 22:38:51 IST 2023","Mon Oct 30 22:40:04 IST 2023","72681","","","","","","Add_Contribution/FE/Add_Contribution",""
-"passed","Wed Nov 01 13:18:01 IST 2023","Wed Nov 01 13:20:27 IST 2023","146100","","","","","","Add_Contribution/FE/Add_Contribution",""
-"failed","Tue Oct 31 11:14:35 IST 2023","Tue Oct 31 11:14:35 IST 2023","0","","","","","","Add_Contribution/FE/Add_Contribution",""
-"broken","Tue Oct 31 13:28:05 IST 2023","Tue Oct 31 13:30:31 IST 2023","145400","","","","","","Add_Contribution/FE/Add_Contribution",""
