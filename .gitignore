@@ -2,7 +2,8 @@
 
 go1percent/tests_output/
 go1percent/node_modules/
-
+go1percent/allure-report/
+go1percent/allure-results
 
 
 
