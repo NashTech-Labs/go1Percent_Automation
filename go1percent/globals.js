@@ -24,6 +24,11 @@ module.exports = {
         chromedriver.start();
         done();
     },
+    
+    reporter: (results,done)=>{
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results,done);
+      },
 
     admin: {
         headers: {
@@ -53,7 +58,7 @@ module.exports = {
     },
 
 
-    urls: {
+    techhubUrls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
     },
@@ -81,6 +86,20 @@ module.exports = {
         PostEndPoints: "/contribution/addContribution",
         GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000"
 
+    },
+
+
+    Reward:{
+        PostEndPoints:"/rewards",
+        PutEndPoints:"/rewards",
+        GetEndPoints:["/rewards/getAllRewards" , "/rewards/getReward"]
+
+    },
+
+    Redeemed_Reward:{
+        PostEndPoints:"/rewards",
+        PutEndPoints:"/updateRedeemReward",
+        GetEndPoints:"/get/redeemRewards"     
     },
 
 
@@ -182,23 +201,34 @@ module.exports = {
     },
 
     urls: {
-        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
+            token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+            go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
-    },
-    access_token: "",
-    // Upcoming Sessions Page Frontend Automation
-    nasher: "employee",
-    testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
-    badge: "KNOLX",
-    date: "Nov 4, 2023",
-    datePastSessions: "Oct 14, 2023",
-    // allure report
-    reporter: (results, done) => {
-        const reporter = new allureReporter.NightwatchAllureReporter({});
-        reporter.write(results, done);
-    },
+            },
+            access_token :"",  
+            // Upcoming Sessions Page Frontend Automation
+            nasher : "employee",
+            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+            badge:"KNOLX",
+            date:"Nov 4, 2023",
+            datePastSessions: "Oct 14, 2023",
+            // allure report
+            reporter: (results,done)=>{
+                const reporter = new allureReporter.NightwatchAllureReporter({});
+                reporter.write(results,done);
+              },
 
+            
+              //My Past Session
+                  
+               queryMyPastSession: {
+               'pageNumber': '1',
+               'pageSize': '1000',
+               'filter': 'past',
+               'knolderOnly': 'true',
+               'sessionId' : '6529144d45bc9a797dfbcb19',
+            },
+  
     Session: 'Knolx',
     Date: '07 Nov 2023',
     Time: '8:40 - 9:25 AM IST',
@@ -207,5 +237,5 @@ module.exports = {
     ExpectedTitle: 'new newnewn ewn',
     Description: 'Description',
     SlideURL: 'Slide URL',
-};
 
+        };
