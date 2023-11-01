@@ -61,9 +61,9 @@ module.exports = {
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
 
       screenshots: {
-        enabled: false,
-        path: 'screens',
-        on_failure: true
+        enabled: true,
+        on_failure: true,
+        path: './screens'
       },
 
       desiredCapabilities: {
@@ -74,7 +74,10 @@ module.exports = {
       //   locateStrategy: 'xpath',
         
       // },
-      
+      ,chromeOptions: {
+        args: ['--headless',"window-size=1920,1080"]
+        
+      }
       
       },
       
@@ -150,7 +153,7 @@ module.exports = {
             //'--no-sandbox',
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            //'--headless'
+            // '--headless'
           ]
         }
       },
