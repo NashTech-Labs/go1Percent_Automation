@@ -36,17 +36,14 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: './globals.js',
-<<<<<<< HEAD
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
     },
-=======
   globals: {
     "userName": "testadmin", // this is placeholder username, make sure to update.
     "password": "testadmin" // this is placeholderPassword, Make sure to update.
   },
->>>>>>> 7ed35c7e27a0b8cfef3a86dd5a91b6ce6ed6b17e
 
   vite_dev_server: {
     start_vite: true,
@@ -116,20 +113,9 @@ module.exports = {
         ]
       }
     },
-<<<<<<< HEAD
 
+   
 
-<<<<<<< HEAD
-   chrome: {
-
-      desiredCapabilities: {
-        browserName: 'chrome',
-     'goog:chromeOptions': {
-=======
-
-=======
-    
->>>>>>> bced4ca90bc7d26102fb3cfb54546a7951fbb724
     api_testing: {
       start_session: false,
       webdriver: {
@@ -137,22 +123,16 @@ module.exports = {
       }
     },
 
-<<<<<<< HEAD
+
     chrome: {
-=======
-  
 
-
-
-   chrome: {
->>>>>>> bced4ca90bc7d26102fb3cfb54546a7951fbb724
 
       desiredCapabilities: {
         browserName: 'chrome',
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         'goog:chromeOptions': {
->>>>>>> 7ed35c7e27a0b8cfef3a86dd5a91b6ce6ed6b17e
+
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -172,14 +152,11 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver',
-<<<<<<< HEAD
-=======
         port: 9515,
         host: 'localhost',
         ssl: false,
         default_path_prefix: '',
         proxy: undefined,
->>>>>>> 7ed35c7e27a0b8cfef3a86dd5a91b6ce6ed6b17e
         cli_args: [
           // --verbose
         ]
@@ -416,19 +393,8 @@ module.exports = {
       "log_responses": true
     }
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-  };
-=======
 }
 
-=======
-
-}
->>>>>>> bced4ca90bc7d26102fb3cfb54546a7951fbb724
-
-
->>>>>>> 7ed35c7e27a0b8cfef3a86dd5a91b6ce6ed6b17e
 
 
 
