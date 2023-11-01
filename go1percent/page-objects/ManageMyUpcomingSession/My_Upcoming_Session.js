@@ -229,7 +229,7 @@ module.exports = {
                 .waitForElementVisible('@ListPresent', 10000)
             .getText('@ListPresent',function(result){
                 const AllData=result.value;
-                console.log(AllData);
+               // console.log(AllData);
             });
 
         },
@@ -310,7 +310,7 @@ module.exports = {
                 .waitForElementVisible('@DescriptionTextBox', 10000)
                 .getAttribute('@DescriptionTextBox', 'value', function (result) {
                     var attributeValue = result.value;
-                    console.log(attributeValue);
+                   // console.log(attributeValue);
 
                     this.setValue('textarea[type="text"]', attributeValue + 'NashTech')
                 })

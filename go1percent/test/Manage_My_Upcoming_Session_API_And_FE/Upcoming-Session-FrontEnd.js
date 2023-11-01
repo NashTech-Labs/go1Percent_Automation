@@ -12,7 +12,7 @@ describe("Manage My Upcoming Session", () => {
             .window.maximize()
             .page.login()
             .navigate()
-            .enterCredentials(browser.globals.userName, browser.globals.password)
+            .enterCredentials(DataSet.userName, DataSet.password)
             .signIn()
         // browser.pause(30000)
         Session
@@ -117,14 +117,14 @@ describe("Manage My Upcoming Session", () => {
 
         // }),
 
-       // it('Verify that user should not able to save the session when enter invalid slide URL (TC-188) -', function () {
+       it('Verify that user should not able to save the session when enter invalid slide URL (TC-188) -', function () {
 
-        //     Upcoming
-        //         .InvalideSlideURL()
-        //         .assert.textContains('@InvalidURlMessage', 'Url is invalid')
+            Upcoming
+                .InvalideSlideURL()
+                .assert.textContains('@InvalidURlMessage', 'Url is invalid')
 
 
-        // }),
+        }),
 
         it('verify that back button should enabled when user is on the descriptive page (TC-190)', function () {
 
