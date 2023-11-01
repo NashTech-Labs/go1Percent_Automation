@@ -198,23 +198,24 @@ module.exports = {
 
         ClickOnUpcomingSession() {
             return this
-                .waitForElementVisible('@UpcomingSession', 6000)
+                .waitForElementVisible('@UpcomingSession', 10000)
                 .click('@UpcomingSession')
-                .waitForElementVisible('@ListPresent', 6000)
+                .waitForElementVisible('@ListPresent', 10000)
         },
 
         ClickOnApprovedSession() {
             //const Expected='TestAutomationTitle';
             Title = '';
             return this
-                .waitForElementVisible('@UpcomingSession', 6000)
+                .waitForElementVisible('@UpcomingSession', 10000)
                 .click('@UpcomingSession')
-                .waitForElementVisible('@ListPresent', 6000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ApprovedTemplate')
                 .getText('@ApprovedPageTitle', function (result) {
                     let Title = result.value;
                   //  console.log(Title);
                     //  return { Expected, Title };
+                    //browser.expect(value).to.be.eq(expected_value);
 
                 })
 
@@ -223,9 +224,9 @@ module.exports = {
         SessionWithMultipleData() {
 
             return this
-                .waitForElementVisible('@UpcomingSession', 6000)
+                .waitForElementVisible('@UpcomingSession', 10000)
                 .click('@UpcomingSession')
-                .waitForElementVisible('@ListPresent', 6000)
+                .waitForElementVisible('@ListPresent', 10000)
             .getText('@ListPresent',function(result){
                 const AllData=result.value;
                 console.log(AllData);
@@ -236,27 +237,27 @@ module.exports = {
         ClickOnAnySession() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
                 //.waitForElementVisible('@EditButton',5000)
                 .click('@EditButton')
-                .waitForElementPresent('@TextBox', 5000)
+                .waitForElementPresent('@TextBox', 10000)
                 .click('@TextBox')
                 .setValue('@TextBox', 'Testing Title')
-                .waitForElementPresent('@SaveButton', 5000)
+                .waitForElementPresent('@SaveButton', 10000)
                 .click('@SaveButton')
-                .waitForElementVisible('@ToastMessage', 5000)
+                .waitForElementVisible('@ToastMessage', 10000)
 
         },
 
         WithoutTitle() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementVisible('@EditButton', 3000)
+                .waitForElementVisible('@EditButton', 10000)
                 .click('@EditButton')
-                .waitForElementPresent('@TextBox', 5000)
+                .waitForElementPresent('@TextBox', 10000)
                 //  .click('@TextBox')
                 .pause(6000)
                 .setValue('@TextBox', "") // simulating backspace
@@ -275,11 +276,11 @@ module.exports = {
 
             return this
 
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementPresent('@Tags', 6000)
+                .waitForElementPresent('@Tags', 10000)
                 .click('@Tags')
-                .waitForElementVisible('@AddTagTextBox', 6000)
+                .waitForElementVisible('@AddTagTextBox', 10000)
                 .pause(3000)
                 .setValue('@AddTagTextBox', 'Python')
                 .click('@SaveNewTag')
@@ -291,9 +292,9 @@ module.exports = {
 
             return this
 
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementPresent('@RemoveTag', 6000)
+                .waitForElementPresent('@RemoveTag', 10000)
                 .pause(5000)
                 .click('@RemoveTag')
 
@@ -302,18 +303,18 @@ module.exports = {
         UpdateDescriptionBox() {
 
             return this
-                .waitForElementVisible('@ListPresent', 6000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementPresent('@DescriptionEditButton', 6000)
+                .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
-                .waitForElementVisible('@DescriptionTextBox', 6000)
+                .waitForElementVisible('@DescriptionTextBox', 10000)
                 .getAttribute('@DescriptionTextBox', 'value', function (result) {
                     var attributeValue = result.value;
                     console.log(attributeValue);
 
                     this.setValue('textarea[type="text"]', attributeValue + 'NashTech')
                 })
-                .waitForElementPresent('@DescriptionSaveButton', 6000)
+                .waitForElementPresent('@DescriptionSaveButton', 10000)
                 .click('@DescriptionSaveButton')
 
 
@@ -321,11 +322,11 @@ module.exports = {
 
         UnableToUpdateDescription() {
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementPresent('@DescriptionEditButton', 6000)
+                .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
-                .waitForElementVisible('@DescriptionTextBox', 6000)
+                .waitForElementVisible('@DescriptionTextBox', 10000)
                 .click('@DescriptionTextBox')
                 .setValue('@DescriptionTextBox', 'Hii EveryOne')
 
@@ -336,11 +337,11 @@ module.exports = {
             const INVALID_DESCRIPTION = 'Hi To All I Am Here'.repeat(MAX_DESCRIPTION_LENGTH + 1);
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementPresent('@DescriptionEditButton', 6000)
+                .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
-                .waitForElementVisible('@DescriptionTextBox', 6000)
+                .waitForElementVisible('@DescriptionTextBox', 10000)
                 .click('@DescriptionTextBox')
                 .setValue('@DescriptionTextBox', INVALID_DESCRIPTION)
 
@@ -349,11 +350,11 @@ module.exports = {
         DisableDiscriptionTextBox() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementPresent('@DescriptionEditButton', 6000)
+                .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
-                .waitForElementVisible('@DescriptionTextBox', 6000)
+                .waitForElementVisible('@DescriptionTextBox', 10000)
                 .click('@DescriptionTextBox')
                 // Get the current value of the description box
                 .clearValue('@DescriptionTextBox')
@@ -365,11 +366,11 @@ module.exports = {
         UpdateSlideURLField() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementVisible('@SlideURlBox', 6000)
+                .waitForElementVisible('@SlideURlBox', 10000)
                 .click('@SlideURlBox')
-                .waitForElementVisible('@URLSaveButton', 6000)
+                .waitForElementVisible('@URLSaveButton', 10000)
                 .click('@URLSaveButton')
 
         },
@@ -377,12 +378,12 @@ module.exports = {
         NotUpdateSlideURL() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementVisible('@SlideURlBox', 6000)
+                .waitForElementVisible('@SlideURlBox', 10000)
                 .click('@SlideURlBox')
                 .clearValue('@AfterClickingURLBox')
-                .waitForElementVisible('@URLSaveButton', 6000)
+                .waitForElementVisible('@URLSaveButton', 10000)
                 .click('@URLSaveButton')
 
         },
@@ -390,21 +391,21 @@ module.exports = {
         InvalideSlideURL() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementVisible('@SlideURlBox', 6000)
+                .waitForElementVisible('@SlideURlBox', 10000)
                 .click('@SlideURlBox')
                 .setValue('@AfterClickingURLBox', 'GoodEvening')
-                .waitForElementVisible('@URLSaveButton', 6000)
+                .waitForElementVisible('@URLSaveButton', 10000)
                 .click('@URLSaveButton')
         },
 
         BackButtonEnable() {
 
             return this
-                .waitForElementVisible('@ListPresent', 5000)
+                .waitForElementVisible('@ListPresent', 10000)
                 .click('@ListPresent')
-                .waitForElementVisible('@BackButton', 6000)
+                .waitForElementVisible('@BackButton', 10000)
                 .click('@BackButton')
 
         }

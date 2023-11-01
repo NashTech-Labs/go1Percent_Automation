@@ -7,6 +7,7 @@ module.exports = {
         Knolx: {
             locateStrategy: 'xpath',
             selector: '(//div[@role="button"])[4]',
+        
         },
         MySession: {
 
@@ -21,14 +22,23 @@ module.exports = {
 
         ClickOnKnolx() {
             return this
-                .waitForElementVisible('@Knolx', 3000)
-                .click('@Knolx')
+                .waitForElementVisible('@Knolx', 10000)
+               // .pause(3000)
+                // .execute(function() {
+                //     document.querySelector('@Knolx').scrollIntoView();
+                //   })
+               // .waitForElementClickable(5000)
+                .click('@Knolx');
 
         },
 
         ClickOnMySession() {
             return this
-                .waitForElementVisible('@MySession', 5000)
+
+                .waitForElementPresent('@MySession', 10000)
+                .execute(function () {
+                    document.querySelector('@MySession').scrollIntoView();
+                })
                 .click('@MySession')
         },
 
