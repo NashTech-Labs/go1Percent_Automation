@@ -91,13 +91,13 @@ module.exports = {
     "Total_records": async function (browser) {
         const techhubPage = browser.page.techhub();
 
-        await techhubPage.scrollToElement(browser);
+        await techhubPage.scrollToElement(browser);                                                                                      
         const cardElements = techhubPage.element.findAll('@Request_Cards');
         const elements = await cardElements;
         const totalRecordsString = 'Total Records: ' + elements.length;
         techhubPage
             .assert.textEquals('@Total_Records', totalRecordsString);
-    },
+    },                                                                                                                                                                          
 
     "Navigate to Github URL and verify": async function (browser) {
         const url = await browser
