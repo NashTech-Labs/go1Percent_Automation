@@ -132,11 +132,12 @@ module.exports = {
           w3c: true,
           args: [
             '--headless',
-            "window-size=1920,1080"
-            // '--no-sandbox',
+            "window-size=1920,1080",
+            '--no-sandbox',
+            "disable-gpu",
+            "--disable-dev-shm-usage"
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            // "disable-gpu",
           ],
           "binary": "/usr/bin/google-chrome"
         }
