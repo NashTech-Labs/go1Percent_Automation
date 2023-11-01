@@ -15,7 +15,7 @@ module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
-
+  skip_testcases_on_fail: false,
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
@@ -62,6 +62,10 @@ module.exports = {
   skipTestcasesOnFail: false,
   test_settings: {
     default: {
+      globals: {
+        // defaultTimeout: 20000, this doesnt work
+        waitForConditionTimeout: 10000,
+      },
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
 
@@ -117,10 +121,21 @@ module.exports = {
 
    
 
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
+  chrome: {
+
+    desiredCapabilities: {
+      browserName: 'chrome',
+      'goog:chromeOptions': {
+        // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
+        //
+        // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
+        w3c: true,
+        args: [
+          //'--no-sandbox',
+          //'--ignore-certificate-errors',
+          //'--allow-insecure-localhost',
+          // '--headless'
+        ]
       }
     },
 
@@ -191,14 +206,31 @@ module.exports = {
       }
     },
 
-      webdriver: {
-        start_process: true,
-        // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
-        // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
-        server_path: '',
-        cli_args: [
-          // --verbose
-        ]
+    webdriver: {
+      start_process: true,
+      // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
+      // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
+      server_path: '',
+      cli_args: [
+        // --verbose
+      ]
+    }
+  },
+
+  'android.real.firefox': {
+    desiredCapabilities: {
+      real_mobile: true,
+      browserName: 'firefox',
+      acceptInsecureCerts: true,
+      'moz:firefoxOptions': {
+        args: [
+          // '-headless',
+          // '-verbose'
+        ],
+        androidPackage: 'org.mozilla.firefox',
+        // add the device serial to run tests on, if multiple devices are online
+        // Run command: `$ANDROID_HOME/platform-tools/adb devices`
+        // androidDeviceSerial: 'ZD2222W62Y'
       }
     },
 
@@ -227,6 +259,15 @@ module.exports = {
         ]
       }
     },
+    webdriver: {
+      start_process: true,
+      server_path: '',
+      cli_args: [
+        // very verbose geckodriver logs
+        // '-vv'
+      ]
+    }
+  },
 
   'android.emulator.firefox': {
     desiredCapabilities: {
