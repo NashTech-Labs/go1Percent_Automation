@@ -14,6 +14,8 @@ function startTime(){
 }
 
 module.exports = {
+    waitForConditionPollInterval : 1000,
+    waitForConditionTimeout: 30000,
 
     before: function (done) {
         chromedriver.start();
