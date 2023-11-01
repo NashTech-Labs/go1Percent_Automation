@@ -196,6 +196,15 @@ module.exports = {
         ]
       }
     },
+    webdriver: {
+      start_process: true,
+      server_path: '',
+      cli_args: [
+        // very verbose geckodriver logs
+        // '-vv'
+      ]
+    }
+  },
 
     webdriver: {
       start_process: true,
@@ -205,8 +214,8 @@ module.exports = {
       cli_args: [
         // --verbose
       ]
-    }
-  },
+    },
+  // },
 
   'android.real.firefox': {
     desiredCapabilities: {
