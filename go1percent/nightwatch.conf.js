@@ -36,6 +36,10 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: './globals.js',
+    globals: {
+      "userName": "testemployee", // this is placeholder username, make sure to update.
+      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+    },
   globals: {
     "userName": "testadmin", // this is placeholder username, make sure to update.
     "password": "testadmin" // this is placeholderPassword, Make sure to update.
@@ -110,7 +114,7 @@ module.exports = {
       }
     },
 
-
+   
 
     api_testing: {
       start_session: false,
@@ -119,13 +123,16 @@ module.exports = {
       }
     },
 
+
     chrome: {
+
 
       desiredCapabilities: {
         browserName: 'chrome',
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         'goog:chromeOptions': {
+
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -387,8 +394,6 @@ module.exports = {
     }
   }
 }
-
-
 
 
 
