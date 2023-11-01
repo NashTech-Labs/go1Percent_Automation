@@ -58,7 +58,7 @@ module.exports = {
     },
 
 
-    urls: {
+    techhubUrls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
     },

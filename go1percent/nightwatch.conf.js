@@ -16,30 +16,30 @@ module.exports = {
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
 
-  
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects','page-objects/Techhub_AdminUser_FE'],
+  page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  
+
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
 
-   // custom_assertions_path: ['nightwatch/custom-assertions'],
+  // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
 
-     //plugins: ['@nightwatch/apitesting'],
+  plugins: ['@nightwatch/apitesting'],
 
-    //plugins: ['@nightwatch/react'],
-  
+  //plugins: ['@nightwatch/react'],
+
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: './globals.js',
-    globals: {
-      "userName": "testadmin", // this is placeholder username, make sure to update.
-      "password": "testadmin" // this is placeholderPassword, Make sure to update.
-    },
+  globals: {
+    "userName": "testadmin", // this is placeholder username, make sure to update.
+    "password": "testadmin" // this is placeholderPassword, Make sure to update.
+  },
 
   vite_dev_server: {
     start_vite: true,
@@ -68,14 +68,14 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome'
-      // 'goog:chromeOptions': {
-      //   ...
-      //   // specify the locateStrategy as xpath
-      //   locateStrategy: 'xpath',
-        
-      // },
-      
-      
+        // 'goog:chromeOptions': {
+        //   ...
+        //   // specify the locateStrategy as xpath
+        //   locateStrategy: 'xpath',
+
+        // },
+
+
       },
 
       webdriver: {
@@ -109,9 +109,9 @@ module.exports = {
         ]
       }
     },
-   
 
-    
+
+
     api_testing: {
       start_session: false,
       webdriver: {
@@ -119,35 +119,44 @@ module.exports = {
       }
     },
 
-  
-
-
-   chrome: {
+    chrome: {
 
       desiredCapabilities: {
         browserName: 'chrome',
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
         'goog:chromeOptions': {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            //'--no-sandbox',
+            '--headless',
+            "window-size=1920,1080"
+            // '--no-sandbox',
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            //'--headless'
-          ]
+            // "disable-gpu",
+          ],
+          "binary": "/usr/bin/google-chrome"
         }
       },
 
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: 'node_modules/.bin/chromedriver',
+        port: 9515,
+        host: 'localhost',
+        ssl: false,
+        default_path_prefix: '',
+        proxy: undefined,
         cli_args: [
           // --verbose
         ]
       }
     },
+
+
 
     edge: {
       desiredCapabilities: {
@@ -373,15 +382,15 @@ module.exports = {
       }
     },
 
-    "@nightwatch/apitesting" : {
+    "@nightwatch/apitesting": {
       "log_responses": true
     }
   }
 }
 
-  
 
 
-  
+
+
 
 
