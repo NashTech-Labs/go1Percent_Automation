@@ -111,7 +111,7 @@ module.exports = {
   
 
     clickSlotTypeKnolx() {
-      return this.waitForElementVisible('@knolx', 10000)
+      return this.waitForElementVisible('@knolx', 50000)
         .click('@knolx');
     },
     
@@ -158,7 +158,7 @@ module.exports = {
 
     clickOnpastDate() {
       return this.waitForElementVisible('@pastDate', 5000)
-      .click('@pastDate',3000)
+      .click('@pastDate')
         },
 
 
