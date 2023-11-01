@@ -116,6 +116,7 @@ module.exports = {
         ]
       }
     },
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -126,6 +127,9 @@ module.exports = {
      'goog:chromeOptions': {
 =======
 
+=======
+    
+>>>>>>> bced4ca90bc7d26102fb3cfb54546a7951fbb724
     api_testing: {
       start_session: false,
       webdriver: {
@@ -133,7 +137,15 @@ module.exports = {
       }
     },
 
+<<<<<<< HEAD
     chrome: {
+=======
+  
+
+
+
+   chrome: {
+>>>>>>> bced4ca90bc7d26102fb3cfb54546a7951fbb724
 
       desiredCapabilities: {
         browserName: 'chrome',
@@ -405,10 +417,15 @@ module.exports = {
     }
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   };
 =======
 }
 
+=======
+
+}
+>>>>>>> bced4ca90bc7d26102fb3cfb54546a7951fbb724
 
 
 >>>>>>> 7ed35c7e27a0b8cfef3a86dd5a91b6ce6ed6b17e
