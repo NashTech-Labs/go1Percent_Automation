@@ -1,5 +1,5 @@
 describe('Go1percent techHub FE Testing', () => {
-    
+
     before((client) => {
         client
         .url("https://nashtechglobal.qa.go1percent.com")
@@ -103,8 +103,10 @@ describe('Go1percent techHub FE Testing', () => {
 
     it('Verify that user should be able to submit only one techhub a day', (browser) => {
         pageObject
+        // Scrolling Issue in Submitting Techhub
         .submitFirstTechhubInDraft()
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
+        // Scrolling Issue in Submitting Techhub
         .submitSecondTechhubInDraft()
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
     });
