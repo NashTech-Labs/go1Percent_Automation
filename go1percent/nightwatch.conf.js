@@ -61,7 +61,7 @@ module.exports = {
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
 
       screenshots: {
-        enabled: true,
+        enabled: false,
         path: 'screens',
         on_failure: true
       },

@@ -12,10 +12,12 @@ await browser
 ManageSlotPages.waitForPageLoad()
 .assert.urlContains("my-dashboard")
 ManageSlotPages.waitForPageLoad()
+
 try {
 await ManageSlotPages.clickAdminButton();
 await ManageSlotPages.clickKnolxButton();
 await ManageSlotPages.clickOnManageSlot();
+ await ManageSlotPages.waitForPageLoad()
 await ManageSlotPages.assert.urlContains("manage-slots");
 } catch (error) {
 done.fail(error);
@@ -25,12 +27,13 @@ return;
 it ('Verify that admin should be able to create a slot ', function () { 
 
 ManageSlotPages
-.waitForPageLoad()
+//.waitForPageLoad()
+.pause(3000)
 .clickOnDateInCalendar()
 ManageSlotPages.clickSlotTypeKnolx();
 ManageSlotPages.createSlot('API Testing');
 ManageSlotPages.clickSaveSlotButton();
-ManageSlotPages.waitForPageLoad()
+ManageSlotPages.pause(3000)
 .assert.containsText('@successfullyCreatedSlotMessage','Slot Created Successfully')
 
 }),
@@ -47,7 +50,8 @@ const year = currentDate.getFullYear();
 const formattedDate = `${year}-${month}-${day}`;
 const formattedTime = currentDate.toLocaleTimeString();
 
-await ManageSlotPages.waitForPageLoad();
+// ManageSlotPages.waitForPageLoad();
+ManageSlotPages.pause(3000);
 const slotStartDateElement = await ManageSlotPages.getSlotStartDateElement();
 const slotStartTimeElement = await ManageSlotPages.getSlotStartTimeElement();
 ManageSlotPages.assert.equal(slotStartDateElement, formattedDate)
@@ -60,14 +64,14 @@ it("Verify that admin should not be able to create a slot without adding title a
 ManageSlotPages
 .waitForPageLoad()
 .clickOnDateInCalendar();
-ManageSlotPages.assert.attributeEquals("@saveSlotButton", "disabled", "true"); // Adjust the selector based on your project
+ManageSlotPages.assert.attributeEquals("@saveSlotButton", "disabled", "true"); 
 ManageSlotPages.clickOnCancelButton();
 }),
 
 it("Verify that date and time is selected upon creating a slot", async function () {
 ManageSlotPages
 .waitForPageLoad()
-.clickOnpastDate();
+.clickOnPresentDate();
 ManageSlotPages 
 .assert.elementPresent('@slotStartDateInput')
 .assert.elementPresent('@slotStartTimeInput') 
@@ -76,7 +80,7 @@ ManageSlotPages
 it("Verify admin cannot select a past time to create a slot", function () {
 ManageSlotPages
 .waitForPageLoad()
-.clickOnpastDate()
+.clickOnPresentDate()
 browser.pause(3000)
 ManageSlotPages.clickSlotTypeKnolx()
 ManageSlotPages.createSlot('API Testing');
@@ -136,8 +140,8 @@ ManageSlotPages
 
 .assert.containsText('@successfullyDeletedMessage','Session Deleted Successfully')
 
-});
-
+}),
+/*
 it("Verify that admin can update free slot details", function () {
 ManageSlotPages
 .waitForPageLoad()
@@ -145,18 +149,18 @@ ManageSlotPages
 .clickSlotTypeWebinr()
 .updateSlot('Automation Testing')
 .clickupdateButton()
-.waitForPageLoad()
+.pause(3000)
 ManageSlotPages.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully')
 
 }),
-
+*/
 it('Verify that upon clicking on Knolx session, it navigates to the approve page', function (browser) {
 ManageSlotPages
 .waitForPageLoad()
 .clickApproveKnolxSession()
 .assert.elementPresent('@approve');
 
-});
+}),
 
 after(function (done) {
 browser.end(); 

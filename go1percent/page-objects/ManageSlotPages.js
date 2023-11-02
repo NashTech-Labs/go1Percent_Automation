@@ -20,12 +20,12 @@ module.exports = {
     },
     slotTitleInput: 'input[formcontrolname="slotTitle"]',
     saveSlotButton: 'button[class="btn btn-primary button submit-button"]',
-    slotStartDateInput: 'input[min="2023-11-01"]',
+    slotStartDateInput: 'input[min="2023-11-02"]',
     slotStartTimeInput: 'input[placeholder="HH"]',
     successfullyCreatedSlotMessage: 'div[aria-label="Slot Created Successfully"]',
     cancelButton: 'button[class="btn btn-primary button cancel-button ml-3 mr-2"]',
-    pastDate: {
-      selector: '//td//a[@aria-label="November 1, 2023"]',
+    presentDate: {
+      selector: '//td//a[@aria-label="November 2, 2023"]',
       locateStrategy: 'xpath',
     },
     errorMessage: {
@@ -58,7 +58,7 @@ module.exports = {
   },
   deleteButton: 'button[class="btn btn-primary button delete-button"]',
   deletefreeSlot: {
-    selector: '//div[contains(text(), "05:19 pm")]',
+    selector: '//div[contains(text(), "10:17 am")]',
     locateStrategy: 'xpath',
   },
   acceptPopUp: 'button[class="btn btn-primary button submit-button"]',
@@ -156,9 +156,9 @@ module.exports = {
 
     },
 
-    clickOnpastDate() {
-      return this.waitForElementVisible('@pastDate', 5000)
-      .click('@pastDate')
+    clickOnPresentDate() {
+      return this.waitForElementVisible('@presentDate', 5000)
+      .click('@presentDate')
         },
 
 

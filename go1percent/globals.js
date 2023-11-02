@@ -77,7 +77,7 @@ module.exports = {
         'search': '',
     },
 
-    base_url: "https://knolx-backend.qa.go1percent.com/",
+    manageSlotBase_url: "https://knolx-backend.qa.go1percent.com",
     source: "https://nashtechglobal.qa.go1percent.com",
     access_token: '',
 
@@ -166,6 +166,7 @@ module.exports = {
     sessionDescriptionInPast: "Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
 
     access_token: "",
+
     backend_url: 'https://backend-radar.qa.go1percent.com/',
 
     baseurl: 'https://backend.qa.go1percent.com',
