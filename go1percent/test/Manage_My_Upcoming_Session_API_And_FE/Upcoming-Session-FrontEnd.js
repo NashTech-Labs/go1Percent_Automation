@@ -12,7 +12,7 @@ describe("Manage My Upcoming Session", () => {
             .window.maximize()
             .page.login()
             .navigate()
-            .enterCredentials(DataSet.userName, DataSet.password)
+            .enterCredentials(DataSet.Employee.userName, DataSet.Employee.password)
             .signIn()
         // browser.pause(30000)
         Session
