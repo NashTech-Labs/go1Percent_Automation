@@ -19,24 +19,21 @@ function startTime() {
 }
 
 module.exports = {
-    reporter: (results,done)=>{
-        const reporter = new allureReporter.NightwatchAllureReporter({});
-        reporter.write(results,done);
-      },
 
     before: function (done) {
         chromedriver.start();
         done();
     },
-    
-    reporter: (results,done)=>{
+
+    reporter: (results, done) => {
         const reporter = new allureReporter.NightwatchAllureReporter({});
-        reporter.write(results,done);
-      },
+        reporter.write(results, done);
+    },
 
-      userName:'testemployee',
-      password:'testemployee',
-
+    Employee: {
+        userName: 'testemployee',
+        password: 'testemployee',
+    },
     admin: {
         headers: {
             'Authorization': '',
@@ -84,7 +81,6 @@ module.exports = {
         'search': '',
     },
 
-
     base_url : "https://knolx-backend.qa.go1percent.com/",
     source : "https://nashtechglobal.qa.go1percent.com",
     access_token : '',
@@ -93,7 +89,8 @@ module.exports = {
         BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/contribution/addContribution",
         GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
-        Contribution_url:"www.cou.org"   
+        Contribution_url:"www.cou.org"  } ,
+
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
@@ -104,21 +101,20 @@ module.exports = {
         PostEndPoints: "/contribution/addContribution",
         GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000"
 
-
     },
 
 
-    Reward:{
-        PostEndPoints:"/rewards",
-        PutEndPoints:"/rewards",
-        GetEndPoints:["/rewards/getAllRewards" , "/rewards/getReward"]
+    Reward: {
+        PostEndPoints: "/rewards",
+        PutEndPoints: "/rewards",
+        GetEndPoints: ["/rewards/getAllRewards", "/rewards/getReward"]
 
     },
 
-    Redeemed_Reward:{
-        PostEndPoints:"/rewards",
-        PutEndPoints:"/updateRedeemReward",
-        GetEndPoints:"/get/redeemRewards"     
+    Redeemed_Reward: {
+        PostEndPoints: "/rewards",
+        PutEndPoints: "/updateRedeemReward",
+        GetEndPoints: "/get/redeemRewards"
     },
 
 
@@ -220,34 +216,34 @@ module.exports = {
     },
 
     urls: {
-            token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-            go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
-            },
-            access_token :"",  
-            // Upcoming Sessions Page Frontend Automation
-            nasher : "employee",
-            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
-            badge:"KNOLX",
-            date:"Nov 4, 2023",
-            datePastSessions: "Oct 14, 2023",
-            // allure report
-            reporter: (results,done)=>{
-                const reporter = new allureReporter.NightwatchAllureReporter({});
-                reporter.write(results,done);
-              },
+    },
+    access_token: "",
+    // Upcoming Sessions Page Frontend Automation
+    nasher: "employee",
+    testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+    badge: "KNOLX",
+    date: "Nov 4, 2023",
+    datePastSessions: "Oct 14, 2023",
+    // allure report
+    reporter: (results, done) => {
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results, done);
+    },
 
-            
-              //My Past Session
-                  
-               queryMyPastSession: {
-               'pageNumber': '1',
-               'pageSize': '1000',
-               'filter': 'past',
-               'knolderOnly': 'true',
-               'sessionId' : '6529144d45bc9a797dfbcb19',
-            },
-  
+
+    //My Past Session
+
+    queryMyPastSession: {
+        'pageNumber': '1',
+        'pageSize': '1000',
+        'filter': 'past',
+        'knolderOnly': 'true',
+        'sessionId': '6529144d45bc9a797dfbcb19',
+    },
+
     Session: 'Knolx',
     Date: '07 Nov 2023',
     Time: '8:40 - 9:25 AM IST',
@@ -257,4 +253,4 @@ module.exports = {
     Description: 'Description',
     SlideURL: 'Slide URL',
 
-        };
+};
