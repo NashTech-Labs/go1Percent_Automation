@@ -43,7 +43,7 @@ module.exports = {
         imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
         imageInvalidSizeMessage: "File size is more than 500 KB.",
         popupMessage: "Are you sure you want to Redeem?",
-        redeemMessage: "'Hi, you have redeemed the reward'",
+        redeemMessage: "Hi, you have redeemed the reward",
         imageUploadMessage: "Click here to upload image"
     },
     

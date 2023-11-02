@@ -59,6 +59,7 @@ describe("Rewards Page Frontend Automation", () => {
         // Verify that user should able to click on yes button (TC-277) 
         it("should display message when yes button is clicked", () => {
             sessionsPage
+                .pause(2000)
                 .clickOnRedeemButton()
                 .clickOnYesButton()
                 .assert.textContains('@message',globalsData.messages.redeemMessage)
