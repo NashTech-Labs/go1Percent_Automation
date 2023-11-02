@@ -4,7 +4,7 @@ module.exports = {
             .maximizeWindow()
             .page.login()
             .navigate()
-            .enterCredentials(browser.globals.userName, browser.globals.password)
+            .enterCredentials(browser.globals.admin.userName, browser.globals.admin.password)
             .signIn()
        // browser.pause(30000)
     },
