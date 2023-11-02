@@ -20,8 +20,7 @@
     "nightwatch-allure": "^1.2.0"
   },
   "dependencies": {
-    "chromedriver": "^119.0.0",
-    "validator": "^13.11.0",
-    "webdriverio": "^8.21.0"
+    "chromedriver": "^118.0.1",
+    "validator": "^13.11.0"
   }
 }
