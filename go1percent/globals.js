@@ -37,7 +37,16 @@ module.exports = {
             grant_type: 'password',
         },
     },
-
+    messages:{
+        colorCode: "rgba(236, 64, 122, 1)",
+        successMessage: "Reward was successfully updated!",
+        imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
+        imageInvalidSizeMessage: "File size is more than 500 KB.",
+        popupMessage: "Are you sure you want to Redeem?",
+        redeemMessage: "'Hi, you have redeemed the reward'",
+        imageUploadMessage: "Click here to upload image"
+    },
+    
     employee: {
         headers: {
             "accept": "application/json, text/plain, */*",
