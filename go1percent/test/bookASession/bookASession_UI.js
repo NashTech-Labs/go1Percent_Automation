@@ -84,12 +84,13 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         .expect.element('@submitButton').to.have.css('pointer-events').which.equals('auto');
     }),
 
-    it('8. Verify that the session type should be highlighted according to the free slot type ',async function(){
+    it('8. Verify that the session type should be highlighted according to the free slot type ', async function() {
         bookASessionPage
-        .waitForPageLoad()
-        .sessionType()
-        .expect.element('@knolxLabel').to.have.css('background-color').which.matches(/rgba\(54, 143, 237, \d+\.\d+\)/);
-    }),
+            .waitForPageLoad()
+            .sessionType()
+            .expect.element('@knolxLabel').to.have.css('background-color').which.matches(/rgba\(54, 143, 237, \d+\.\d+\)/);
+    });
+    
 
     it('9. Verify that user should not be able to select the past date in the calender to book a slot ',async function(){
         bookASessionPage
