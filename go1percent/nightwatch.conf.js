@@ -17,6 +17,7 @@ module.exports = {
   src_folders: ['test'],
   skip_testcases_on_fail: false,
 
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
 
@@ -63,13 +64,8 @@ module.exports = {
   },
 
 
-  skipTestcasesOnFail: false,
   test_settings: {
     default: {
-      globals: {
-        // defaultTimeout: 20000, this doesnt work
-        waitForConditionTimeout: 10000,
-      },
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
 
@@ -122,6 +118,9 @@ module.exports = {
         ]
       }
     },
+
+   
+
     api_testing: {
       start_session: false,
       webdriver: {
@@ -129,7 +128,6 @@ module.exports = {
       }
     },
 
-  },
 
     chrome: {
 
@@ -186,15 +184,25 @@ module.exports = {
   // },
 
 
+    edge: {
+      desiredCapabilities: {
+        browserName: 'MicrosoftEdge',
+        'ms:edgeOptions': {
+          w3c: true,
+          // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
+          args: [
+            //'--headless'
+          ]
+        }
+      },
 
-  edge: {
-    desiredCapabilities: {
-      browserName: 'MicrosoftEdge',
-      'ms:edgeOptions': {
-        w3c: true,
-        // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
-        args: [
-          //'--headless'
+      webdriver: {
+        start_process: true,
+        // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
+        // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
+        server_path: '',
+        cli_args: [
+          // --verbose
         ]
       }
     },
@@ -235,193 +243,185 @@ module.exports = {
         // androidDeviceSerial: 'ZD2222W62Y'
       }
     },
-    webdriver: {
-      start_process: true,
-      server_path: '',
-      cli_args: [
-        // very verbose geckodriver logs
-        // '-vv'
-      ]
-    }
-  },
 
-  'android.emulator.firefox': {
-    desiredCapabilities: {
-      real_mobile: false,
-      avd: 'nightwatch-android-11',
-      browserName: 'firefox',
-      acceptInsecureCerts: true,
-      'moz:firefoxOptions': {
-        args: [
-          // '-headless',
-          // '-verbose'
-        ],
-        androidPackage: 'org.mozilla.firefox',
-        // add the device serial to run tests on, if multiple devices are online
-        // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-        // androidDeviceSerial: 'ZD2222W62Y'
-      }
-    },
-    webdriver: {
-      start_process: true,
-      server_path: '',
-      cli_args: [
-        // very verbose geckodriver logs
-        // '-vv'
-      ]
-    }
-  },
-
-  'android.real.chrome': {
-    desiredCapabilities: {
-      real_mobile: true,
-      browserName: 'chrome',
-      'goog:chromeOptions': {
-        // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-        //
-        // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
-        w3c: true,
-        args: [
-          //'--no-sandbox',
-          //'--ignore-certificate-errors',
-          //'--allow-insecure-localhost',
-          //'--headless'
-        ],
-        androidPackage: 'com.android.chrome',
-        // add the device serial to run tests on, if multiple devices are online
-        // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-        // androidDeviceSerial: ''
-      },
-    },
-
-    webdriver: {
-      start_process: true,
-      server_path: '',
-      cli_args: [
-        // --verbose
-      ]
-    }
-  },
-
-  'android.emulator.chrome': {
-    desiredCapabilities: {
-      real_mobile: false,
-      avd: 'nightwatch-android-11',
-      browserName: 'chrome',
-      'goog:chromeOptions': {
-        // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
-        //
-        // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
-        w3c: true,
-        args: [
-          //'--no-sandbox',
-          //'--ignore-certificate-errors',
-          //'--allow-insecure-localhost',
-          //'--headless'
-        ],
-        androidPackage: 'com.android.chrome',
-        // add the device serial to run tests on, if multiple devices are online
-        // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-        // androidDeviceSerial: ''
-      },
-    },
-
-    webdriver: {
-      start_process: true,
-      // path to chromedriver executable which can work with the factory
-      // version of Chrome mobile browser on the emulator (version 83).
-      server_path: 'chromedriver-mobile/chromedriver',
-      cli_args: [
-        // --verbose
-      ]
-    }
-  },
-
-  app: {
-    selenium: {
-      start_process: true,
-      use_appium: true,
-      host: 'localhost',
-      port: 4723,
-      server_path: '',
-      // args to pass when starting the Appium server
-      cli_args: [
-        // automatically download the required chromedriver
-        // '--allow-insecure=chromedriver_autodownload'
-      ],
-      // Remove below line if using Appium v1
-      default_path_prefix: ''
-    },
-    webdriver: {
-      timeout_options: {
-        timeout: 150000,
-        retry_attempts: 3
-      },
-      keep_alive: false,
-      start_process: false
-    }
-  },
-
-  'app.android.emulator': {
-    extends: 'app',
-    'desiredCapabilities': {
-      // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
-      browserName: null,
-      platformName: 'android',
-      // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
-      // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
-      // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
-      'appium:options': {
-        automationName: 'UiAutomator2',
-        // Android Virtual Device to run tests on
+    'android.emulator.firefox': {
+      desiredCapabilities: {
+        real_mobile: false,
         avd: 'nightwatch-android-11',
-        // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
-        // Appium v2 does not support relative paths.
-        app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
-        appPackage: 'org.wikipedia',
-        appActivity: 'org.wikipedia.main.MainActivity',
-        appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
-        // chromedriver executable to use for testing web-views in hybrid apps
-        chromedriverExecutable: `${__dirname}/chromedriver-mobile/chromedriver`,
-        newCommandTimeout: 0
+        browserName: 'firefox',
+        acceptInsecureCerts: true,
+        'moz:firefoxOptions': {
+          args: [
+            // '-headless',
+            // '-verbose'
+          ],
+          androidPackage: 'org.mozilla.firefox',
+          // add the device serial to run tests on, if multiple devices are online
+          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
+          // androidDeviceSerial: 'ZD2222W62Y'
+        }
+      },
+      webdriver: {
+        start_process: true,
+        server_path: '',
+        cli_args: [
+          // very verbose geckodriver logs
+          // '-vv'
+        ]
       }
-    }
-  },
+    },
 
-  'app.android.real': {
-    extends: 'app',
-    'desiredCapabilities': {
-      // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
-      browserName: null,
-      platformName: 'android',
-      // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
-      // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
-      // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
-      'appium:options': {
-        automationName: 'UiAutomator2',
-        // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
-        // Appium v2 does not support relative paths.
-        app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
-        appPackage: 'org.wikipedia',
-        appActivity: 'org.wikipedia.main.MainActivity',
-        appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
-        // 'chromedriver' binary is required while testing hybrid mobile apps.
-        // 
-        // Set `chromedriverExecutable` to '' to use binary from `chromedriver` NPM package (if installed).
-        // Or, put '--allow-insecure=chromedriver_autodownload' in `cli_args` property of `selenium`
-        // config (see 'app' env above) to automatically download the required version of chromedriver
-        // (delete `chromedriverExecutable` capability below in that case).
-        chromedriverExecutable: '',
-        newCommandTimeout: 0,
-        // add device id of the device to run tests on, if multiple devices are online
-        // Run command: `$ANDROID_HOME/platform-tools/adb devices` to get all connected devices
-        // udid: '',
+    'android.real.chrome': {
+      desiredCapabilities: {
+        real_mobile: true,
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
+          //
+          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
+          w3c: true,
+          args: [
+            //'--no-sandbox',
+            //'--ignore-certificate-errors',
+            //'--allow-insecure-localhost',
+            //'--headless'
+          ],
+          androidPackage: 'com.android.chrome',
+          // add the device serial to run tests on, if multiple devices are online
+          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
+          // androidDeviceSerial: ''
+        },
+      },
+
+      webdriver: {
+        start_process: true,
+        server_path: '',
+        cli_args: [
+          // --verbose
+        ]
       }
-    }
-  },
+    },
 
-  "@nightwatch/apitesting": {
-    "log_responses": true
+    'android.emulator.chrome': {
+      desiredCapabilities: {
+        real_mobile: false,
+        avd: 'nightwatch-android-11',
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
+          //
+          // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
+          w3c: true,
+          args: [
+            //'--no-sandbox',
+            //'--ignore-certificate-errors',
+            //'--allow-insecure-localhost',
+            //'--headless'
+          ],
+          androidPackage: 'com.android.chrome',
+          // add the device serial to run tests on, if multiple devices are online
+          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
+          // androidDeviceSerial: ''
+        },
+      },
+
+      webdriver: {
+        start_process: true,
+        // path to chromedriver executable which can work with the factory
+        // version of Chrome mobile browser on the emulator (version 83).
+        server_path: 'chromedriver-mobile/chromedriver',
+        cli_args: [
+          // --verbose
+        ]
+      }
+    },
+
+    app: {
+      selenium: {
+        start_process: true,
+        use_appium: true,
+        host: 'localhost',
+        port: 4723,
+        server_path: '',
+        // args to pass when starting the Appium server
+        cli_args: [
+          // automatically download the required chromedriver
+          // '--allow-insecure=chromedriver_autodownload'
+        ],
+        // Remove below line if using Appium v1
+        default_path_prefix: ''
+      },
+      webdriver: {
+        timeout_options: {
+          timeout: 150000,
+          retry_attempts: 3
+        },
+        keep_alive: false,
+        start_process: false
+      }
+    },
+
+    'app.android.emulator': {
+      extends: 'app',
+      'desiredCapabilities': {
+        // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
+        browserName: null,
+        platformName: 'android',
+        // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
+        // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
+        // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
+        'appium:options': {
+          automationName: 'UiAutomator2',
+          // Android Virtual Device to run tests on
+          avd: 'nightwatch-android-11',
+          // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
+          // Appium v2 does not support relative paths.
+          app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
+          appPackage: 'org.wikipedia',
+          appActivity: 'org.wikipedia.main.MainActivity',
+          appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
+          // chromedriver executable to use for testing web-views in hybrid apps
+          chromedriverExecutable: `${__dirname}/chromedriver-mobile/chromedriver`,
+          newCommandTimeout: 0
+        }
+      }
+    },
+
+    'app.android.real': {
+      extends: 'app',
+      'desiredCapabilities': {
+        // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
+        browserName: null,
+        platformName: 'android',
+        // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
+        // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
+        // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
+        'appium:options': {
+          automationName: 'UiAutomator2',
+          // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
+          // Appium v2 does not support relative paths.
+          app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
+          appPackage: 'org.wikipedia',
+          appActivity: 'org.wikipedia.main.MainActivity',
+          appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
+          // 'chromedriver' binary is required while testing hybrid mobile apps.
+          // 
+          // Set `chromedriverExecutable` to '' to use binary from `chromedriver` NPM package (if installed).
+          // Or, put '--allow-insecure=chromedriver_autodownload' in `cli_args` property of `selenium`
+          // config (see 'app' env above) to automatically download the required version of chromedriver
+          // (delete `chromedriverExecutable` capability below in that case).
+          chromedriverExecutable: '',
+          newCommandTimeout: 0,
+          // add device id of the device to run tests on, if multiple devices are online
+          // Run command: `$ANDROID_HOME/platform-tools/adb devices` to get all connected devices
+          // udid: '',
+        }
+      }
+    },
+
+    "@nightwatch/apitesting": {
+      "log_responses": true
+    }
   }
 }
 
