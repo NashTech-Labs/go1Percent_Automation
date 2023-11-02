@@ -20,6 +20,7 @@
     "nightwatch-allure": "^1.2.0"
   },
   "dependencies": {
+    "allure-commandline": "^2.24.1",
     "chromedriver": "^118.0.1",
     "validator": "^13.11.0"
   }

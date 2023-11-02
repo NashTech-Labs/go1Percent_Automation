@@ -1,18 +1,5 @@
 const chromedriver = require('chromedriver');
 const allureReporter = require('nightwatch-allure');
-function startTime() {
-    return new Date().getTime()
-}
-
-
-function startTime() {
-    return new Date().getTime()
-}
-
-
-function startTime() {
-    return new Date().getTime()
-}
 
 function startTime() {
     return new Date().getTime()
