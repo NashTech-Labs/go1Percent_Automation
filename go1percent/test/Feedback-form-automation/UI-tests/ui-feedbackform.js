@@ -12,20 +12,18 @@ describe('Feedback-form UI tests', function () {
 
     beforeEach(
         async function (browser) {
+
             const Homepage = browser.page.po_feedback_form.navbar();
             const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
             const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
 
-            Homepage
+            await Homepage
                 .navigate();
-            browser.window.maximize()
-            Homepage
+            await browser.window.maximize()
+            await Homepage
                 .inputUsername('testadmin')
                 .inputPassword('testadmin')
                 .loginAndMaximizeWindow()
-
-
-            // browser.window.maximize()
 
         });
 
@@ -83,7 +81,7 @@ describe('Feedback-form UI tests', function () {
         });
 
 
-    it.only('LB-1255 : Verify that admin should be able to update in feedback form in preview form mode (TC-260)',
+    it('LB-1255 : Verify that admin should be able to update in feedback form in preview form mode (TC-260)',
 
         async function (browser) {
 
@@ -131,10 +129,10 @@ describe('Feedback-form UI tests', function () {
 
 
             await browser.window.getAllHandles(async (res) => {
-                // console.log(res);
                 await browser.window.switchTo(res.value[1]);
             })
-                .assert.visible("app-preview-form")
+                .assert.visible("app-preview-form");
+
         });
 
     it('LB-1257 : Verify that admin should be able to delete existing feedback form. (TC-262) ',
@@ -147,14 +145,15 @@ describe('Feedback-form UI tests', function () {
 
             await FeedbackForm_page
                 .clickOnFormDeleteButton()
-                // .clickNoOnPopupMessage()
                 .assert.textContains('@deleteDialogBox_Message', "Are you sure want to delete this form ?")
 
         });
 
     it('LB-1258 : Verify that admin should not able to delete a feedback form (TC-263)',
         async function (browser) {
+
             const Homepage = browser.page.po_feedback_form.navbar();
+
             const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
 
             await Homepage
@@ -168,6 +167,7 @@ describe('Feedback-form UI tests', function () {
 
     it('LB-1259 : Verify that admin should be able to create a new feedback form (TC-264) ',
         async function (browser) {
+
             const Homepage = browser.page.po_feedback_form.navbar();
             const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
             const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
@@ -244,8 +244,6 @@ describe('Feedback-form UI tests', function () {
                 .click('@selectQuestionTypeNPS')
                 .saveForm()
                 .assertQuestionValidationIsShown(message)
-            //         .waitForElementVisible('@formEmptyQuestionValidationMessage')
-            // .assert.textContains('@formEmptyQuestionValidationMessage',message);
         });
 
     it('LB-1263 : Verify that admin should be able to save form by adding all the mandatory task (TC-268)',
@@ -274,7 +272,7 @@ describe('Feedback-form UI tests', function () {
         });
 
 
-    it('LB-1265 : Verify that admin should be able to search particular form from existing feedback form (TC-270)',
+    it.only('LB-1265 : Verify that admin should be able to search particular form from existing feedback form (TC-270)',
         async function (browser) {
             const Homepage = browser.page.po_feedback_form.navbar();
             const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
@@ -289,12 +287,10 @@ describe('Feedback-form UI tests', function () {
                 .inputInSearchField(message)
                 .pause(4500)
                 .findElements('@feedbackFormCardTitle', async function (result) {
-                    // console.log(result);
                     const key_id = Object.keys(result.value[0])[0];
                     await result.value.forEach(function (el) {
                         const val = browser
                             .elementIdText(el[key_id]);
-                        // console.log(val);
                         browser.expect(val).to.eq(message);
                     })
                 })
