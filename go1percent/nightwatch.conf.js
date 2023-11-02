@@ -42,13 +42,10 @@ module.exports = {
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
     },
   globals: 
-  { admin:
-    {
-      "userName": "testadmin", // this is placeholder username, make sure to update.
-      "password": "testadmin" // this is placeholderPassword, Make sure to update.
-    }
-  }
-  ,
+  {
+    "userName": "testadmin", // this is placeholder username, make sure to update.
+    "password": "testadmin" // this is placeholderPassword, Make sure to update.
+  },
 
   vite_dev_server: {
     start_vite: true,
