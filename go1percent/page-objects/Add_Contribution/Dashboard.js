@@ -1,7 +1,8 @@
 module.exports={
     elements:{
       body: 'body',
-      Setting:'.pt-2'   
+      setting:'.pt-2'  ,
+      profile:".d-flex.py-1.mt-1"
 
     },
     commands:[{
