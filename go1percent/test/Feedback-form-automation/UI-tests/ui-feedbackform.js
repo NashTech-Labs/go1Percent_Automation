@@ -37,7 +37,7 @@ describe('Feedback-form UI tests', function () {
     });
 
 
-    it.only('LB-1252 : Verify that admin should be able to see feedback form in feedback section (TC-257)',
+    it('LB-1252 : Verify that admin should be able to see feedback form in feedback section (TC-257)',
 
         async function (browser) {
 
@@ -83,7 +83,7 @@ describe('Feedback-form UI tests', function () {
         });
 
 
-    it('LB-1255 : Verify that admin should be able to update in feedback form in preview form mode (TC-260)',
+    it.only('LB-1255 : Verify that admin should be able to update in feedback form in preview form mode (TC-260)',
 
         async function (browser) {
 
@@ -98,6 +98,7 @@ describe('Feedback-form UI tests', function () {
 
             //clicking add question button
             await browser
+                .findElement('app-update-feedback-form div[formarrayname="feedbackQuestions"] button')
                 .waitForElementVisible('app-update-feedback-form div[formarrayname="feedbackQuestions"] button')
                 .click('app-update-feedback-form div[formarrayname="feedbackQuestions"] button')
 
@@ -273,7 +274,7 @@ describe('Feedback-form UI tests', function () {
         });
 
 
-    it.only('LB-1265 : Verify that admin should be able to search particular form from existing feedback form (TC-270)',
+    it('LB-1265 : Verify that admin should be able to search particular form from existing feedback form (TC-270)',
         async function (browser) {
             const Homepage = browser.page.po_feedback_form.navbar();
             const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
