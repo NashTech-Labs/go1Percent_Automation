@@ -30,6 +30,9 @@ module.exports = {
         reporter.write(results,done);
       },
 
+      userName:'testemployee',
+      password:'testemployee',
+
     admin: {
         headers: {
             'Authorization': '',
@@ -42,8 +45,8 @@ module.exports = {
         tokenBody: {
             client_id: 'leaderboard-ui',
             client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            username: 'testadmin',
-            password: 'testadmin',
+            // username: 'testadmin',
+            // password: 'testadmin',
             grant_type: 'password',
         },
     },
@@ -182,8 +185,8 @@ module.exports = {
         tokenBody: {
             client_id: 'leaderboard-ui',
             client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            username: 'testadmin',
-            password: 'testadmin',
+            // username: 'testadmin',
+            // password: 'testadmin',
             grant_type: 'password',
 
         },
