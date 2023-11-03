@@ -59,7 +59,7 @@ describe("Rewards Page Frontend Automation", () => {
         // Verify that user should able to click on yes button (TC-277) 
         it("should display message when yes button is clicked", () => {
             sessionsPage
-                .pause(2000)
+                .waitForElementPresent('@redeemButton')
                 .clickOnRedeemButton()
                 .clickOnYesButton()
                 .assert.textContains('@message',globalsData.messages.redeemMessage)
@@ -69,14 +69,14 @@ describe("Rewards Page Frontend Automation", () => {
         //  Verify that Admin should able to see Reward section (TC-280) 
         it("Should login as admin and should display rewards tab on expanding leaderboard", () => {
             sessionsPage.clickOnLogoutButton();
-            const user = "Admin User"
+            const user = "Test Admin"
             browser
             .page.login()
             .navigate()
             .enterCredentials('testadmin', 'testadmin')
             .signIn()
             .assert.urlContains("my-dashboard")
-            .assert.textContains('.ml-1 > h4:nth-child(1) > span:nth-child(2)',user);
+            sessionsPage.assert.textContains('@userType',user);
 
             sessionsPage
             .clickOnLeaderboardButton()
@@ -88,7 +88,7 @@ describe("Rewards Page Frontend Automation", () => {
         // Verify that Admin should be able to see rewards page after clicking reward tab(TC-281)
         it("Should display rewards page on clicking rewards button", () => {
             sessionsPage
-            .pause(2000)
+            .waitForElementPresent('@rewardsButton')
             .clickOnRewardsButton()
             .pause(2000)
             .assert.urlContains("/rewards/list");
@@ -97,11 +97,9 @@ describe("Rewards Page Frontend Automation", () => {
         // Verify that Admin should able to see all rewards present in reward page (TC-282)
         it("Should be able to see all rewards for admin on scrolling", (browser) => {
             browser
-            .pause(2000)
             .execute(function() {
                 window.scrollTo(0, document.body.scrollHeight);
             })
-            .pause(2000)
             .execute(function() {
                 window.scrollTo(0, 0);
             })
@@ -113,7 +111,7 @@ describe("Rewards Page Frontend Automation", () => {
         // Verify that Admin should able to switch between forCompetency from Individual (TC-283)  
         it("Should be able to switch between forCompetency from Individual Buttons", () => {
             sessionsPage
-               .pause(2000)
+               .waitForElementPresent('@forCompetencyButton')
                .clickOnForCompetencyButton()
                .waitForElementPresent('@currentButton')
                .assert.cssProperty('@currentButton','background-color',globalsData.messages.colorCode)
@@ -143,7 +141,7 @@ describe("Rewards Page Frontend Automation", () => {
        // Verify that admin should be able to edit Reward description (TC-289) 
         it("Should be able to see message on updating reward description", () => {
             sessionsPage
-               .pause(3000)
+               .waitForElementPresent('@rewardDescription')
                .setValue('@rewardDescription', 'testing reward description')
                .clickOnUpdateButton()
                .waitForElementPresent('@updateMessage')
@@ -153,7 +151,7 @@ describe("Rewards Page Frontend Automation", () => {
         //  Verify that admin should be able to edit Reward name and able to click on update button (TC-290)
         it("Should be able to see message on updating reward name", () => {
             sessionsPage
-               .pause(5000)
+               .waitForElementPresent('@editButton')
                .clickOnEditButton()
                .waitForElementPresent('@rewardName',3000)
                .setValue('@rewardName', 'testing reward name demo')
@@ -164,9 +162,9 @@ describe("Rewards Page Frontend Automation", () => {
         //  Verify that admin should be able to increase or decrease Required points (TC-291)
         it("Should be able to increase or decrease required points", () => {
             sessionsPage
-               .pause(5000)
+               .waitForElementPresent('@editButton')
                .clickOnEditButton()
-               .pause(4000)
+               .waitForElementPresent('@requiredPoints',3000)
                .clickOnRequiredPoint()
                .getValue("@requiredPoints",function (result) {
                 currentValue = parseInt(result.value);
@@ -181,9 +179,9 @@ describe("Rewards Page Frontend Automation", () => {
         it("Should be able to increase or decrease stock quantity for admin", () => {
             let updatedValue;
             sessionsPage
-           .pause(5000)
+           .waitForElementPresent('@editButton')
            .clickOnEditButton()
-           .pause(3000)
+           .waitForElementPresent('@stockQuantity',3000)
            .clickOnStockQuantity()
            .getValue('@stockQuantity', function (result) {
                currentValue = parseInt(result.value)
@@ -193,7 +191,7 @@ describe("Rewards Page Frontend Automation", () => {
                 sessionsPage
                 .clearValue('@stockQuantity')
                 .setValue('@stockQuantity', updatedValue)
-                .pause(1000)
+                .waitForElementPresent('@updateButton')
                 .clickOnUpdateButton()
                 .assert.textContains('@updateMessage', globalsData.messages.successMessage);
                 done()       
@@ -203,20 +201,20 @@ describe("Rewards Page Frontend Automation", () => {
         // Verify that admin should be able to delete existing pic in update rewards page (TC-286)   
         it("Should be able to see message on clicking cross button on image", () => {
             sessionsPage
-               .pause(5000)
+               .waitForElementPresent('@editButton',4000)
                .clickOnEditButton()
-               .pause(3000)
+               .waitForElementPresent('@crossButton',3000)
                .clickOnCrossButton()
-               .pause(2000)
+               .waitForElementPresent('@imageUploadMessage')
                .assert.textContains('@imageUploadMessage',globalsData.messages.imageUploadMessage)
         }),
 
         // Verify that admin should be able to upload new image to existing reward (TC-288)
         it("Should be able to to upload new image to existing reward image", () => {
             sessionsPage
-                .pause(2000)
+                .waitForElementPresent('@imageUploadMessage')
                 .clickOnImageUploadMessageButton()
-                .pause(8000)
+                .pause(7000)
                 .clickOnUpdateButton()
                 .assert.textContains('@updateMessage', globalsData.messages.successMessage)
         }),
@@ -224,7 +222,7 @@ describe("Rewards Page Frontend Automation", () => {
         //  Verify that admin should not be able to add any other extension files (TC-287)
         it("Should be able to see popup message on uploading invalid format image", () => {
              sessionsPage
-                .pause(5000)
+                .waitForElementPresent('@editButton')
                 .clickOnEditButton()
                 .clickOnCrossButton()
                 .clickOnImageUploadMessageButton()
@@ -235,7 +233,7 @@ describe("Rewards Page Frontend Automation", () => {
                     
          it("Should be able to see popup message on uploading image of invalid size", () => {
               sessionsPage
-                .pause(5000)
+                .waitForElementPresent('@imageUploadMessage')
                 .clickOnImageUploadMessageButton()
                 .pause(4000)
                 .assert.textContains('@imageInvalidSize', globalsData.messages.imageInvalidSizeMessage)
