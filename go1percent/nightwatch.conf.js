@@ -16,6 +16,7 @@ module.exports = {
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
 
+  skip_testcases_on_fail: false,
   
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects'],
@@ -37,8 +38,8 @@ module.exports = {
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: './globals.js',
     globals: {
-      "userName": "testemployee", // this is placeholder username, make sure to update.
-      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+      "userName": "testemployee1", // this is placeholder username, make sure to update.
+      "password": "testemployee1" // this is placeholderPassword, Make sure to update.
     },
 
   vite_dev_server: {

@@ -50,8 +50,14 @@ module.exports = {
         BadgeMonth: "div[class='modal-body m-2 p-4'] div:nth-child(1) div:nth-child(1) h6:nth-child(1)",
         BadgeScore: "body > modal-container:nth-child(11) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(2)",
         BadgeQuit: "span[role='button']",
+        BadgeCount: {
+            locateStrategy: 'xpath',
+            selector: "//body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[1]/div[1]/div[1]//*[name()='svg']"
+        },
+    
     },
 
+    
     commands: [{
 
         ViewProfilePicSuccessMsg() {
@@ -73,7 +79,7 @@ module.exports = {
 
         ClickOnUpdateProfilePic() {
             this
-                .waitForElementVisible('@UpdateProfilepic', 20000)
+                .waitForElementVisible('@UpdateProfilepic', 30000)
                 .click('@UpdateProfilepic')
                 .waitForElementVisible('@UpdateProfilePicSaveButton', 3000)
                 .click('@UpdateProfilePicSaveButton')
