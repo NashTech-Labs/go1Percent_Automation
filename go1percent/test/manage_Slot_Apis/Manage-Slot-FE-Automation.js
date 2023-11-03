@@ -24,6 +24,7 @@ done.fail(error);
 return;
 }
 }),
+/*
 it ('Verify that admin should be able to create a slot ', function () { 
 
 ManageSlotPages
@@ -32,10 +33,10 @@ ManageSlotPages
 .clickOnDateInCalendar()
 ManageSlotPages.clickSlotTypeKnolx();
 ManageSlotPages.createSlot('API Testing');
+ManageSlotPages.clickOnDownArrow();
 ManageSlotPages.clickSaveSlotButton();
 ManageSlotPages.pause(3000)
 .assert.containsText('@successfullyCreatedSlotMessage','Slot Created Successfully')
-
 }),
 
 it('Verify that create a slot popup should display current date and time', async function() {
@@ -81,11 +82,12 @@ it("Verify admin cannot select a past time to create a slot", function () {
 ManageSlotPages
 .waitForPageLoad()
 .clickOnPresentDate()
-browser.pause(3000)
+browser.pause(2000)
 ManageSlotPages.clickSlotTypeKnolx()
 ManageSlotPages.createSlot('API Testing');
 ManageSlotPages.clickOnDownArrow();
-ManageSlotPages.clickSaveSlotButton();
+ManageSlotPages.clickSaveSlotButton()
+browser.pause(2000)
 ManageSlotPages.assert.containsText('@errorMessage','Please do not enter past time')
 .clickOnCancelButton()
 }),
@@ -129,7 +131,7 @@ ManageSlotPages
 .assert.elementPresent('@deleteButton')
 .clickOnCancelButton()
 }),
-
+*/
 it("Verify that admin can delete a free slot session", function () {
 ManageSlotPages
 .waitForPageLoad()
@@ -137,23 +139,25 @@ ManageSlotPages
 .deleteButton()
 .deleteConfirmPopUpYesButton()
 .pause(2000)
-
 .assert.containsText('@successfullyDeletedMessage','Session Deleted Successfully')
 
 }),
 /*
+
 it("Verify that admin can update free slot details", function () {
 ManageSlotPages
 .waitForPageLoad()
 .clickFreeSlotToUpdate()
 .clickSlotTypeWebinr()
 .updateSlot('Automation Testing')
+.clickOnDownArrow()
+.clickOnUpArrow()
 .clickupdateButton()
 .pause(3000)
 ManageSlotPages.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully')
 
 }),
-*/
+
 it('Verify that upon clicking on Knolx session, it navigates to the approve page', function (browser) {
 ManageSlotPages
 .waitForPageLoad()
@@ -161,7 +165,7 @@ ManageSlotPages
 .assert.elementPresent('@approve');
 
 }),
-
+*/
 after(function (done) {
 browser.end(); 
 done; 

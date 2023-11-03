@@ -20,12 +20,12 @@ module.exports = {
     },
     slotTitleInput: 'input[formcontrolname="slotTitle"]',
     saveSlotButton: 'button[class="btn btn-primary button submit-button"]',
-    slotStartDateInput: 'input[min="2023-11-02"]',
+    slotStartDateInput: 'input[min="2023-11-03"]',
     slotStartTimeInput: 'input[placeholder="HH"]',
     successfullyCreatedSlotMessage: 'div[aria-label="Slot Created Successfully"]',
     cancelButton: 'button[class="btn btn-primary button cancel-button ml-3 mr-2"]',
     presentDate: {
-      selector: '//td//a[@aria-label="November 2, 2023"]',
+      selector: '//td//a[@aria-label="November 3, 2023"]',
       locateStrategy: 'xpath',
     },
     errorMessage: {
@@ -37,7 +37,12 @@ module.exports = {
       selector: "(//div[@class='ngx-timepicker-control']//span[@class='ngx-timepicker-control__arrow'])[2]",
       locateStrategy: 'xpath'
   },
-  automateSlot: {
+  upArrow:
+    {
+      selector: "(//div[@class='ngx-timepicker-control']//span[@class='ngx-timepicker-control__arrow'])[1]",
+      locateStrategy: 'xpath'
+  },
+  automateSlot: { 
     selector: "//button[text()='Automate Slot']",
     locateStrategy: 'xpath'
   },
@@ -48,7 +53,7 @@ module.exports = {
   meetup: 'label[for="meetup"]',
   knolmeet: 'label[for="knolmeet"]',
   freeSlot: {
-    selector: '//div[contains(text(), "06:38 am")]',
+    selector: "//td//div[contains(text(),'11:00 am')]",
     locateStrategy: 'xpath',
   },
   updateButton: 'button[class="btn btn-primary button submit-button"]',
@@ -58,13 +63,13 @@ module.exports = {
   },
   deleteButton: 'button[class="btn btn-primary button delete-button"]',
   deletefreeSlot: {
-    selector: '//div[contains(text(), "10:17 am")]',
+    selector: "//td//div[contains(text(),'04:00 pm')]",
     locateStrategy: 'xpath',
   },
   acceptPopUp: 'button[class="btn btn-primary button submit-button"]',
   successfullyDeletedMessage: 'div[aria-label="Session Deleted Successfully"]',
   updatefreeSlot: {
-    selector: '//div[contains(text(), "06:38 am")]',
+    selector: "//td//div[contains(text(),'12:00 pm')]",
     locateStrategy: 'xpath',
   },
   updateFreeSlotTitle: 'input[formcontrolname="newSlotTitle"]',
@@ -172,6 +177,12 @@ module.exports = {
             .click('@downArrow');
         },
 
+        clickOnUpArrow() {
+          return this.waitForElementVisible('@upArrow', 10000)
+            .click('@upArrow');
+        },
+
+        
         clickOnErrorMessage() {
           return this.waitForElementVisible('@errorMessage', 5000)
             .click('@errorMessage');
