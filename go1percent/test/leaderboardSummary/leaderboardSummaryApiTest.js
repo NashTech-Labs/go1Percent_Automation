@@ -1,5 +1,6 @@
 const header = require('../../globals')
 
+
 /**
  * Asserts the response time of an HTTP request.
  * @param {number} startTime - The start time of the request.
@@ -13,7 +14,6 @@ function assertResponseTime(startTime, maxTime) {
 
 
 describe('Leaderboard API Testing', function () {
-  const baseUrl = 'https://backend.qa.go1percent.com';
 
   /**
     * Generates a dynamic bearer token for API authentication.
@@ -24,13 +24,7 @@ describe('Leaderboard API Testing', function () {
     */
   it('token generation', async function ({ supertest }) {
     const tokenURl = "https://auth.go1percent.com";
-    const requestData = {
-      'client_id': 'leaderboard-ui',
-      'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
-      'username': 'testemployee',
-      'password': 'testemployee',
-      'grant_type': 'password'
-    }
+
     const headers = {
       'accept': '*/*',
       'source': 'https://nashtechglobal.qa.go1percent.com',
@@ -40,7 +34,7 @@ describe('Leaderboard API Testing', function () {
       .request(tokenURl)
       .post('/auth/realms/nashtech/protocol/openid-connect/token')
       .set(header.admin.tokenHeaders)
-      .send(requestData)
+      .send(header.requestData)
       .expect(200)
       .then(function (response) {
         const token = response._body.access_token;
@@ -58,7 +52,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/studios')
       .set(header.employee.headers)
       .expect(200) // Expect a successful response with HTTP status code 200
@@ -129,7 +123,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/summary?period=alltime')
       .set(header.employee.headers)
       .expect(200) // Expect a successful response with HTTP status code 200
@@ -175,7 +169,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/summary?period=monthly')
       .set(header.employee.headers)
       .expect(200)
@@ -225,7 +219,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/reputation')
       .set(header.employee.headers)
       .expect(200)
@@ -274,7 +268,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/reputation/666?month=October&year=2023')
       .set(header.employee.headers)
       .expect(200)
@@ -358,11 +352,11 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/profile/getProfilePic?email=testemployee@nashtechglobal.com')
       .set(header.employee.headers)
-      .expect('Content-Type', /json/); // Expect the specific content type
-
+      .expect('Content-Type', /json/) // Expect the specific content type
+      .expect(200);
     // Record the end time after receiving the response
 
     const responseBody = response.body;
@@ -388,10 +382,11 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/rewards/getAllRewards')   // https://nashtechglobal.qa.go1percent.com/assets/i18n/en.json
       .set(header.employee.headers)
-      .expect('Content-Type', /json/);
+      .expect('Content-Type', /json/)
+      .expect(200);
 
 
     const responseBody = response.body;
@@ -437,11 +432,11 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(baseUrl)
+      .request(header.baseurl)
       .get('/reputation/666')
       .set(header.employee.headers)
-      .expect('Content-Type', /json/); // Expect the specific content type
-
+      .expect('Content-Type', /json/) // Expect the specific content type
+      .expect(200)
 
     const responseBody = response.body;
 

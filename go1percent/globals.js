@@ -1,6 +1,14 @@
-
+const requestData = {
+    'client_id': 'leaderboard-ui',
+    'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
+    'username': 'testemployee',
+    'password': 'testemployee',
+    'grant_type': 'password'
+  }
 module.exports = {
 
+    requestData,
+    
     before: function (done) {
         chromedriver.start();
         done();
@@ -12,8 +20,17 @@ module.exports = {
         chromedriver.stop();
         done();
     },
-    
+ 
     admin: {
+      
+           
+       requestData : {
+        'client_id': 'leaderboard-ui',
+        'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
+        'username': 'testemployee',
+        'password': 'testemployee',
+        'grant_type': 'password'
+      },
         headers: {
             'Authorization': '',
             'Source': 'https://nashtechglobal.qa.go1percent.com'
@@ -161,5 +178,6 @@ module.exports = {
             reporter: (results,done)=>{
                 const reporter = new allureReporter.NightwatchAllureReporter({});
                 reporter.write(results,done);
-              }
+              },
+
             }
