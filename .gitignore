@@ -26,6 +26,9 @@ hs_err_pid*
 replay_pid*
 go1percent/node_modules/
 
-go1percent/test_output/
+go1percent/tests_output/
 
+go1percent/test/FE/tests_output/
 
+go1percent/allure-report
+go1percent/allure-results
