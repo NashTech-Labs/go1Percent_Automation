@@ -1,3 +1,4 @@
+
 module.exports = {
     url: "",
     elements: {
@@ -11,6 +12,11 @@ module.exports = {
         meetupLabel: "label[for='meetup']",
         coPresenterField:"input[placeholder='Search']",
         selectDateTime:"input[type='datetime-local']",
+        categoryDropDown: "select[formcontrolname='category']",
+        submitButton:"button[type='submit']",
+        knolxLabel:"label[for='knolx']",     
+        subCategoryDropDown: "select[formcontrolname='subCategory']",
+        
         unAvailableDates: {
             selector: '//span[@class="bg-unavailable text-white ng-star-inserted"]',
             locateStrategy: 'xpath'
@@ -27,30 +33,14 @@ module.exports = {
             selector: '(//span[@class="bg-unavailable text-white bg-available ng-star-inserted"])[1]',
             locateStrategy: 'xpath'
         },
-        categoryDropDown: {
-            selector: '//select[@formcontrolname="category"]',
-            locateStrategy: 'xpath'
-        },
         testAutomationOption: {
             selector: "//option[contains(text(),'TEST AUTOMATION COMPETENCY ')]",
             locateStrategy: 'xpath',
-        },
-        subCategoryDropDown: {
-            selector: '//select[@formcontrolname="subCategory"]',
-            locateStrategy: 'xpath'
         },
         cypressOption: {
             selector: "//option[contains(text(),' Cypress ')]",
             locateStrategy: 'xpath',
         },
-        submitButton:{
-            selector:'//button[@type="submit"]',
-            locateStrategy:'xpath'
-        },
-        knolxLabel:{
-            selector:'//label[@for="knolx"]',
-            locateStrategy:'xpath'
-        },     
         removeCoPresenter:{
             selector:"//delete-icon[@aria-label='Remove tag']//span//*[name()='svg']",
             locateStrategy:'xpath'
@@ -129,30 +119,30 @@ module.exports = {
             return this
               .clickOnElement('@firstAvailableDate')
               .clickOnElement('@availableSlots')
-          },
+        },
 
           validateCoPresenterEntry() {
             return this
               .clickOnElement("@coPresenterField")
               .setValue('@coPresenterField', ['Mayank Verma', this.api.Keys.ENTER])
-          },
+        },
 
           validateCoPresenterRemoval() {
             return this
               .clickOnElement("@removeCoPresenter")
-          },   
+        },   
           
         validateReset() {
             return this
             .setValue('@sessionBrief', 'This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test ')           
             .clickOnElement("@resetButton");
-          },
+        },
 
           validateSubCategoryDropdown() {
             return this
               .clickOnElement('@firstAvailableDate')
               .clickOnElement('@availableSlots')
-          },
+        },
           
         validateUnselect(){
             return this
@@ -164,7 +154,21 @@ module.exports = {
                 this.assert.strictEqual(result.value.trim(), expectedValue, `No date is selected: ${result.value}`);
               });
         },
-          verifyAvailableDatesGreenColor: function () {
+
+        verifyDropDown() {
+            return this
+            .clickOnElement('@firstAvailableDate')
+            .execute(function () {
+              window.scrollBy(0, 400);
+            })
+            .clickOnElement('@availableSlots')
+            .clickOnElement("@categoryDropDown")
+            .clickOnElement("@testAutomationOption")
+            .click('@subCategoryDropDown') 
+            .click('select[formcontrolname="subCategory"] option') 
+        },
+        
+        verifyAvailableDatesGreenColor() {
             return this
                 .waitForElementVisible('@availableDates', 10000)
                 .clickOnElement("@availableDates")

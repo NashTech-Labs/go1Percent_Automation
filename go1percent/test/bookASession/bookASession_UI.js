@@ -56,7 +56,6 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         .fillDetails()
         .setValue('@sessionBrief', 'This is a test')
         .assert.containsText('@errorMessage',"Description should contain atleast 250 characters.");
-
     }),
 
     it('5. Verify that user should not able to book a slot if the session brief more than 1000 words',async function(){
@@ -65,7 +64,6 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         .fillDetails()
         .setValue('@sessionBrief', 'This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test ')
         .assert.containsText('@errorMessage',"Exceeded the maxlength");
-
     }),
 
     it('6.Verify that user fill all the mandatory fields in book a session',async function(){
@@ -84,13 +82,12 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         .expect.element('@submitButton').to.have.css('pointer-events').which.equals('auto');
     }),
 
-    it('8. Verify that the session type should be highlighted according to the free slot type ', async function() {
+    it('8. Verify that the session type should be highlighted according to the free slot type', async function() {
         bookASessionPage
-            .waitForPageLoad()
-            .sessionType()
-            .expect.element('@knolxLabel').to.have.css('background-color').which.matches(/rgba\(54, 143, 237, \d+\.\d+\)/);
-    });
-    
+          .waitForPageLoad()
+          .sessionType()
+          .expect.element('@knolxLabel').to.have.css('background-color').which.matches(/rgba\(54, 143, 237, \d+(\.\d+)?\)/);
+    }),
 
     it('9. Verify that user should not be able to select the past date in the calender to book a slot ',async function(){
         bookASessionPage
@@ -105,7 +102,6 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         .validateDifferentSessions()
         .assert.attributeEquals('@webinarLabel', 'found', null, 'Webinar label does not have the "found" attribute')
         .assert.attributeEquals('@meetupLabel', 'found', null, 'Meetup label does not have the "found" attribute');
-
     }),
 
     it('11. Verify that user can add the co-presenter name ',async function(){
@@ -113,7 +109,7 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         .waitForPageLoad()
         .validateCoPresenterEntry()
         .expect.element('body').text.to.contain('Mayank Verma');
-     }),
+    }),
 
      it('12. Verify that user can remove the co-presenter name', async function() {
         try {
@@ -123,64 +119,77 @@ describe("KNolx|Sessions Page Frontend Automation", () => {
         } catch (error) {
           console.error('Error occurred:', error);
         }
-      }),
+    }),
 
       
-        it('13. Verify that user can reset the book a session page ',async function(){
-            bookASessionPage
-            .waitForPageLoad()
-            .fillDetails()
-            .expect.element('@sessionBrief').to.have.value.that.equals('');
-        }),
+    it('13. Verify that user can reset the book a session page ',async function(){
+        bookASessionPage
+        .waitForPageLoad()
+        .fillDetails()
+        .expect.element('@sessionBrief').to.have.value.that.equals('');
+    }),
 
-        it('14.Verify that user unable to select the sub-category without selecting category',async function(){
-            bookASessionPage
-            .waitForPageLoad()
-            .validateSubCategoryDropdown()
-            .expect.element('@subCategoryDropDown').to.not.have.attribute('found');            
-        }),
+    it('14.Verify that user unable to select the sub-category without selecting category',async function(){
+        bookASessionPage
+        .waitForPageLoad()
+        .validateSubCategoryDropdown()
+        .expect.element('@subCategoryDropDown').to.not.have.attribute('found');            
+    }),
 
-        it('15. Verify that in the calender the open slots should be visible in the green color',async function(){
-            bookASessionPage
-            .waitForPageLoad()
-            .verifyAvailableDatesGreenColor()
-            .assert.cssProperty('@availableDates', 'background-color', 'rgba(83, 203, 160, 1)', (result) => {
-                if (result.status === 0) {
-                    console.log('Background color is correct.');
-                } else {
-                    console.error('Background color is not correct.');
-                }
-            });
-        }),
+    it('15. Verify that in the calender the open slots should be visible in the green color',async function(){
+        bookASessionPage
+        .waitForPageLoad()
+        .verifyAvailableDatesGreenColor()
+        .assert.cssProperty('@availableDates', 'background-color', 'rgba(83, 203, 160, 1)', (result) => {
+            if (result.status === 0) {
+                console.log('Background color is correct.');
+            } else {
+                console.error('Background color is not correct.');
+            }
+        });
+    }),
 
-         it('16. Verify that the user should be able to book a session without co-presenter',async function(){
-            bookASessionPage
-            .waitForPageLoad()
-            .fillDetails()
-            .setValue('@sessionBrief', 'This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test ')
-            .expect.element('@submitButton').to.be.enabled;
-        }),
+        it('16. Verify that the user should be able to book a session without co-presenter',async function(){
+        bookASessionPage
+        .waitForPageLoad()
+        .fillDetails()
+        .setValue('@sessionBrief', 'This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test ')
+        .expect.element('@submitButton').to.be.enabled;
+    }),
 
-        it('17 .Verify that the user should be able to book a session with co-presenter',async function(){
-            bookASessionPage
-            .waitForPageLoad()
-            .fillDetails()
-            .validateCoPresenterEntry()
-            .setValue('@sessionBrief', 'This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test ')
-            .expect.element('@submitButton').to.be.enabled;
+    it('17 .Verify that the user should be able to book a session with co-presenter',async function(){
+        bookASessionPage
+        .waitForPageLoad()
+        .fillDetails()
+        .validateCoPresenterEntry()
+        .setValue('@sessionBrief', 'This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test This is a Automation Test ')
+        .expect.element('@submitButton').to.be.enabled;
+    }),
 
-        }),
-        
-        //18. Verify category dropdown should show the result according to the selected category
-
-        it('19.Verify that user can unselect the slots ',async function(){
+    it('18.Verify that user can unselect the slots ',async function(){
                 bookASessionPage
                 .waitForPageLoad()
                 .validateUnselect();
-            }),
+    }),
         
+    it('19. Verify category dropdown should show the result according to the selected category',async function(){   
+        const TEST_AUTOMATION = ["Lighthouse CI", "Test AI-based system", "Appium", "Perfecto", "Testim", "Playwright.dev", "Test Container Library", "Great Expectations", "OWASP ZAP (Zed Attack Proxy)", "NightwatchJS", "ReportPortal.io", "Selenium", "Robot Framework", "Cypress", "Playwright", "AI-based Testing", "Web Application Testing", "Mobile Application Testing", "Automation Testing", "Performance Testing", "Security Testing", "Agile Testing", "Static Application security Testing (SAST)", "Dynamic Application Security Testing (DAST)", "Jmeter", "axe DevTools", "Burp Suite", "Acunetix", "Azure Test Plan", "K6.io", "Healenium", "ReportPortal", "Others"];
+        bookASessionPage
+        .waitForPageLoad()
+        .verifyDropDown()
+        .execute(function () {
+            const dropdownOptions = Array.from(document.querySelectorAll('select[formcontrolname="subCategory"] option'));
+            const dropdownValues = dropdownOptions.map(option => option.textContent.trim());
+            return dropdownValues;
+          }, [], function (result) {
+            const dropdownValues = result.value;
+            const matchingValues = dropdownValues.filter(value => value !== '').filter(value => TEST_AUTOMATION.includes(value));        
+            this.assert.deepEqual(matchingValues, TEST_AUTOMATION, 'Dropdown values match TEST_AUTOMATION');
+          })
+    }),
+        
+    after(function (browser) {
+        browser.end();
+    })
 
-        after(function (browser) {
-            browser.end();
-        })
-});
+});       
