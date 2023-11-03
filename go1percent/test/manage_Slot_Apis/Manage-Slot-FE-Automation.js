@@ -11,7 +11,7 @@ await browser
 .signIn()
 ManageSlotPages.waitForPageLoad()
 .assert.urlContains("my-dashboard")
-ManageSlotPages.waitForPageLoad()
+.waitForPageLoad()
 
 try {
 await ManageSlotPages.clickAdminButton();
@@ -24,40 +24,34 @@ done.fail(error);
 return;
 }
 }),
-/*
+
 it ('Verify that admin should be able to create a slot ', function () { 
 
-ManageSlotPages
-//.waitForPageLoad()
+ManageSlotPage
 .pause(3000)
 .clickOnDateInCalendar()
-ManageSlotPages.clickSlotTypeKnolx();
+.clickSlotTypeKnolx();
 ManageSlotPages.createSlot('API Testing');
 ManageSlotPages.clickOnDownArrow();
 ManageSlotPages.clickSaveSlotButton();
 ManageSlotPages.pause(3000)
 .assert.containsText('@successfullyCreatedSlotMessage','Slot Created Successfully')
 }),
-
+/*
 it('Verify that create a slot popup should display current date and time', async function() {
 ManageSlotPages
 .waitForPageLoad()
 .clickOnDateInCalendar();
 const currentDate = new Date();
 const day = currentDate.getDate().toString().padStart(2, '0');
-const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
 const year = currentDate.getFullYear();
 
 const formattedDate = `${year}-${month}-${day}`;
-const formattedTime = currentDate.toLocaleTimeString();
-
-// ManageSlotPages.waitForPageLoad();
 ManageSlotPages.pause(3000);
 const slotStartDateElement = await ManageSlotPages.getSlotStartDateElement();
 const slotStartTimeElement = await ManageSlotPages.getSlotStartTimeElement();
 ManageSlotPages.assert.equal(slotStartDateElement, formattedDate)
-//ManageSlotPages.assert.equal(slotStartTimeElement, formattedTime)
-
 ManageSlotPages.clickOnCancelButton();
 }),
 
@@ -131,7 +125,7 @@ ManageSlotPages
 .assert.elementPresent('@deleteButton')
 .clickOnCancelButton()
 }),
-*/
+
 it("Verify that admin can delete a free slot session", function () {
 ManageSlotPages
 .waitForPageLoad()
@@ -142,7 +136,7 @@ ManageSlotPages
 .assert.containsText('@successfullyDeletedMessage','Session Deleted Successfully')
 
 }),
-/*
+
 
 it("Verify that admin can update free slot details", function () {
 ManageSlotPages

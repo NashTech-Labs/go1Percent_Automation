@@ -20,7 +20,7 @@ module.exports = {
     },
     slotTitleInput: 'input[formcontrolname="slotTitle"]',
     saveSlotButton: 'button[class="btn btn-primary button submit-button"]',
-    slotStartDateInput: 'input[min="2023-11-03"]',
+    slotStartDateInput: 'input[formcontrolname="date"]',
     slotStartTimeInput: 'input[placeholder="HH"]',
     successfullyCreatedSlotMessage: 'div[aria-label="Slot Created Successfully"]',
     cancelButton: 'button[class="btn btn-primary button cancel-button ml-3 mr-2"]',
