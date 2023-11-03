@@ -90,7 +90,7 @@ module.exports = {
         BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/contribution/addContribution",
         GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
-        Contribution_url:"www.cou.org"   
+        Contribution_url:"www.cou.org"  } ,
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
@@ -253,5 +253,5 @@ module.exports = {
     ExpectedTitle: 'new newnewn ewn',
     Description: 'Description',
     SlideURL: 'Slide URL',
-
+        
         };

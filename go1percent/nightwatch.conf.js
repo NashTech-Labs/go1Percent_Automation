@@ -36,11 +36,13 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: './globals.js',
+
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
     },
-  globals: {
+  globals: 
+  {
     "userName": "testadmin", // this is placeholder username, make sure to update.
     "password": "testadmin" // this is placeholderPassword, Make sure to update.
   },
@@ -138,12 +140,13 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            '--headless',
-            "window-size=1920,1080"
-            // '--no-sandbox',
+             '--headless',            //for headless mode and Jenkins
+             "window-size=1920,1080", //for headless mode and Jenkins
+             '--no-sandbox',          //for headless mode and Jenkins
+             "disable-gpu",           //for headless mode and Jenkins
+             "--disable-dev-shm-usage"  //for headless mode and Jenkins
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            // "disable-gpu",
           ],
           "binary": "/usr/bin/google-chrome"
         }

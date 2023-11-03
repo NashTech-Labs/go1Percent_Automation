@@ -72,8 +72,6 @@ module.exports = {
         techhub['Approve second request of same person on same day and check'](browser);
     },
 
-   
-
     //DCTGO1-1244 : Verify Admin user should be Able to view details of Approved TechHubs on All TechHubs page (TC-396) 
     "View details of Approved TechHubs on All TechHubs page":  function (browser) {
         techhub['Navigate to All Techhubs page'](browser);
