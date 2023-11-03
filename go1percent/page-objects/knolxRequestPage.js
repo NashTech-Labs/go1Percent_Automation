@@ -30,14 +30,14 @@ module.exports = {
 
         addTag: "a[role='button']",
         tagInput: {
-            selector: '/html/body/app-root/div/app-main/section/main/div/div/div/app-knolx/div/app-manage-session-detail/div[2]/div[1]/div[2]/form/form/div/div[1]/input',
+            selector: "//input[@aria-expanded='false']",
             locateStrategy: 'xpath'
         },
         saveTag: 'button.mx-2:nth-child(1)',
         removeTag: 'i.fa:nth-child(1)',
         describeEdit: '.btn.edit',
         descriptionSave: '.btn.btn-primary.saveBtn.mx-2.mt-2',
-        // descriptionInput not working with other selectors
+        // descriptionInput not working with other selectors as it keeps changing
         descriptionInput: 'body > app-root > div > app-main > section > main > div > div > div > app-knolx > div > app-manage-session-detail > div.card.page-wrapper > div.row.manage-session-detail > div.col-xl-8.col-lg-8.col-md-7 > form > div.mb-2.mt-4.px-4 > div:nth-child(2) > textarea',
         slideInput: '.bg-transparent.spanText.text-sm.px-1.mr-2.session-input.div-item.ng-untouched.ng-pristine.ng-valid',
         slideEdit: {
