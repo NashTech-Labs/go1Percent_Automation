@@ -1,5 +1,5 @@
-const header = require('../globals')
-const payload= require('../payload')
+const header = require('../../globals')
+const payload= require('../../payload')
 
 describe('TechHub Api Testing', function () {
   let approval_req = [];
