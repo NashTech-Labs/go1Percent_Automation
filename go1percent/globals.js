@@ -131,6 +131,7 @@ module.exports = {
 
     helpDesk_base_Url: 'https://ticket-backend.qa.go1percent.com',
     baseurl: 'https://backend.qa.go1percent.com',
+    expectedStatus: 'Ticket Updated Successfully!',
 
     admin: {
         headers: {

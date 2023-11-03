@@ -1,6 +1,3 @@
-// Refer to the online docs for more details:
-// https://nightwatchjs.org/gettingstarted/configuration/
-//
 
 //  _   _  _         _      _                     _          _
 // | \ | |(_)       | |    | |                   | |        | |
@@ -16,36 +13,36 @@ module.exports = {
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
 
-  
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  
+
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
 
-   // custom_assertions_path: ['nightwatch/custom-assertions'],
+  // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
 
-     plugins: ['@nightwatch/apitesting'],
+  plugins: ['@nightwatch/apitesting'],
 
-    //plugins: ['@nightwatch/react'],
-  
+  //plugins: ['@nightwatch/react'],
+
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   //globals_path: './globals.js',
-    globals: {
-      "userName": "testemployee", // this is placeholder username, make sure to update.
-      "password": "testemployee" // this is placeholderPassword, Make sure to update.
-    },
+  globals: {
+    "userName": "testemployee", // this is placeholder username, make sure to update.
+    "password": "testemployee" // this is placeholderPassword, Make sure to update.
+  },
 
   vite_dev_server: {
     start_vite: true,
     port: 5173
   },
-  
+
   webdriver: {},
 
   //Test Worker Configuration
@@ -68,24 +65,24 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome'
-      // 'goog:chromeOptions': {
-      //   ...
-      //   // specify the locateStrategy as xpath
-      //   locateStrategy: 'xpath',
-        
-      // },
-      
-      
+        // 'goog:chromeOptions': {
+        //   ...
+        //   // specify the locateStrategy as xpath
+        //   locateStrategy: 'xpath',
+
+        // },
+
+
       },
-      
+
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
 
       },
 
-      
-      
+
+
     },
     "qa": {
       "globals": {
@@ -93,14 +90,14 @@ module.exports = {
         "password": "testadmin" // this is placeholderPassword, Make sure to update.
       },
 
-      "employee":{
+      "employee": {
         "userName": "testemployee", // this is placeholder username, make sure to update.
         "password": "testemployee" // this is placeholderPassword, Make sure to update.
       }
     },
 
-    
-    
+
+
 
     firefox: {
       desiredCapabilities: {
@@ -124,16 +121,8 @@ module.exports = {
         ]
       }
     },
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
-      }
-   },
 
-   },
 
-    
 
     api_testing: {
       start_session: false,
@@ -142,10 +131,10 @@ module.exports = {
       }
     },
 
-  
 
 
-   chrome: {
+
+    chrome: {
 
       desiredCapabilities: {
         browserName: 'chrome',
@@ -171,7 +160,7 @@ module.exports = {
         ]
       }
     },
-    
+
     edge: {
       desiredCapabilities: {
         browserName: 'MicrosoftEdge',
@@ -194,7 +183,7 @@ module.exports = {
         ]
       }
     },
-    
+
     'android.real.firefox': {
       desiredCapabilities: {
         real_mobile: true,
@@ -247,7 +236,7 @@ module.exports = {
         ]
       }
     },
-    
+
     'android.real.chrome': {
       desiredCapabilities: {
         real_mobile: true,
@@ -269,7 +258,7 @@ module.exports = {
           // androidDeviceSerial: ''
         },
       },
-    
+
       webdriver: {
         start_process: true,
         server_path: '',
@@ -301,7 +290,7 @@ module.exports = {
           // androidDeviceSerial: ''
         },
       },
-    
+
       webdriver: {
         start_process: true,
         // path to chromedriver executable which can work with the factory
@@ -312,7 +301,7 @@ module.exports = {
         ]
       }
     },
-    
+
     app: {
       selenium: {
         start_process: true,
@@ -337,7 +326,7 @@ module.exports = {
         start_process: false
       }
     },
-    
+
     'app.android.emulator': {
       extends: 'app',
       'desiredCapabilities': {
@@ -382,7 +371,7 @@ module.exports = {
           appActivity: 'org.wikipedia.main.MainActivity',
           appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
           // 'chromedriver' binary is required while testing hybrid mobile apps.
-          // 
+          //
           // Set `chromedriverExecutable` to '' to use binary from `chromedriver` NPM package (if installed).
           // Or, put '--allow-insecure=chromedriver_autodownload' in `cli_args` property of `selenium`
           // config (see 'app' env above) to automatically download the required version of chromedriver
@@ -395,12 +384,8 @@ module.exports = {
         }
       }
     },
-    "@nightwatch/apitesting" : {
+    "@nightwatch/apitesting": {
       "log_responses": true
     }
-  };
-
-  
-
-  
-
+  }
+}
