@@ -82,9 +82,9 @@ module.exports = {
     },
 
 
-    base_url : "https://knolx-backend.qa.go1percent.com/",
-    source : "https://nashtechglobal.qa.go1percent.com",
-    access_token : '',
+     manageSlotBase_url:"https://knolx-backend.qa.go1percent.com",
+     source : "https://nashtechglobal.qa.go1percent.com",
+     access_token : '',
     
     Add_Contribution:{
         BaseUrl:"https://backend.qa.go1percent.com",
