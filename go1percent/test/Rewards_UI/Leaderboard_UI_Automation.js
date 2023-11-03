@@ -15,7 +15,6 @@ describe("Rewards Page Frontend Automation", () => {
             sessionsPage
             .clickOnLeaderboardButton()
             .clickOnRewardsButton()
-            .pause(2000)
             .assert.urlContains("/rewards/list");
         }),   
         
@@ -90,7 +89,6 @@ describe("Rewards Page Frontend Automation", () => {
             sessionsPage
             .waitForElementPresent('@rewardsButton')
             .clickOnRewardsButton()
-            .pause(2000)
             .assert.urlContains("/rewards/list");
         }),
 
