@@ -6,6 +6,8 @@ go1percent/test/Add_Contribution/FE/
 go1percent/page-objects/Profile.js
 go1percent/page-objects/Setting.js
 go1percent/allure-report/
+go1percent/allure-results/
+
 *.class
 
 # Log file
