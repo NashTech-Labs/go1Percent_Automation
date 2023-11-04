@@ -18,6 +18,8 @@ module.exports = {
   skip_testcases_on_fail: false,
 
 
+
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
 
@@ -65,9 +67,34 @@ module.exports = {
 
 
   test_settings: {
-    default: {
-      disable_error_log: false,
-      launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
+      // =========================
+   // this will overwrite the default polling interval (currently 500ms) for waitFor commands
+  // and expect assertions that use retry
+  // waitForConditionPollInterval : 300,
+
+  // default timeout value in milliseconds for waitFor commands and implicit waitFor value for
+  // expect assertions
+  
+  // this will cause waitFor commands on elements to throw an error if multiple
+  // elements are found using the given locate strategy and selector
+  // throwOnMultipleElementsReturned : false,
+  
+  // controls the timeout time for async hooks. Expects the done() callback to be invoked within this time
+  // or an error is thrown
+  // asyncHookTimeout : 10000,
+  // ==========================
+  
+  // waitForConditionTimeout: 10000,
+  
+  default: {
+    disable_error_log: false,
+    // launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
+
+    globals: {
+      waitForConditionTimeout : 20000,
+      abortOnAssertionFailure: false,
+
+    },
 
       screenshots: {
         enabled: false,
@@ -119,7 +146,7 @@ module.exports = {
       }
     },
 
-   
+
 
     api_testing: {
       start_session: false,

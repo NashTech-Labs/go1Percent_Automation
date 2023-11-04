@@ -1,4 +1,5 @@
 const cmd = {
+
     clickOnFormDeleteButton() {
         this
             .waitForElementVisible('@heading')
@@ -30,16 +31,11 @@ const cmd = {
             .waitForElementVisible('@heading')
             .waitForElementVisible('@feedbackFormCardTitle')
             .waitForElementVisible('@searchField')
-            .sendKeys('@searchField', message)
-            .pause(5000);
+            .sendKeys('@searchField', message);
 
         return this;
     },
 
-    // assertFormContains(message){
-
-    // }
-    // updateform
     clickOnFormEditButton_withNoSession() {
         this
             .waitForElementVisible('@heading')
@@ -47,13 +43,21 @@ const cmd = {
             .click('@noSession_feedbackFormCardEditButton');
 
         return this;
+    },
 
+    clickOnFormEditButton() {
+        this
+            .waitForElementVisible('@heading')
+            .waitForElementVisible('@feedbackFormCardTitle')
+            .click('@feedbackFormCardEditButton');
 
+        return this;
     },
 
 };
 
 const createFormCommands = {
+
     clickOnCreateFormButton() {
         this
             .waitForElementVisible('@createANewFormButton')
@@ -64,11 +68,13 @@ const createFormCommands = {
 }
 
 
+
 module.exports = {
     url: 'https://nashtechglobal.qa.go1percent.com/',
+    feedbackUrl: 'https://nashtechglobal.qa.go1percent.com/knolx/feedback-forms',
 
     commands: [
-        cmd, createFormCommands
+        cmd, createFormCommands, updateFormCommands
     ],
 
     elements: {
@@ -120,33 +126,33 @@ module.exports = {
         },
 
         noSession_feedbackFormCardContainer: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6)'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7)'
         },
 
         noSession_feedbackFormCard: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6) div'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div'
         },
 
 
         noSession_feedbackFormCardBody: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6) div div[class="card-body"]'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="card-body"]'
         },
 
 
         noSession_feedbackFormCardHeader: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6) div div[class="cardHeader"]'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="cardHeader"]'
         },
 
         noSession_feedbackFormCardTitle: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6) div div[class="cardHeader"] p'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="cardHeader"] p'
         },
 
         noSession_feedbackFormCardEditButton: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6) div div[class="card-body"]  span[title="Edit"]'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="card-body"]  span[title="Edit"]'
         },
 
         noSession_feedbackFormCardDeleteButton: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(6) div div[class="card-body"]  span[title="Delete"]'
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="card-body"]  span[title="Delete"]'
         },
 
         deleteDialogBox: {
@@ -176,6 +182,10 @@ module.exports = {
         sessionDialogBox: {
             selector: '[class="modal-content"]'
         },
+
+        dialogBox: {
+            selector: '*[class="modal-content"]'
+        }
 
 
     }

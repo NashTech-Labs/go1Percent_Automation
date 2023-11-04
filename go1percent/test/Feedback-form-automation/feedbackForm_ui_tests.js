@@ -1,29 +1,25 @@
-const globals = require('../../../globals')
+const globals = require('../../globals')
+const Homepage = browser.page.FeedbackForm.loginPage();
+const feedbackFormPage = browser.page.FeedbackForm.feedbackFormSectionPage();
+const formCreateUpdatePage = browser.page.FeedbackForm.formCreateUpdatePage();
+const feedbackUrl = 'https://nashtechglobal.qa.go1percent.com/knolx/feedback-forms';
 // ----------------------------------------------------------------------
 //   >> using command "npx nightwatch ./test/Feedback-form-automation/UI-tests/"
 // -------------------------------------------------------------------------
 describe('Feedback-form UI tests', function () {
-    const Homepage = browser.page.po_feedback_form.navbar();
-    const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-    const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
-
-
-
 
     beforeEach(
         async function (browser) {
 
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+            Homepage
+                .navigate();
+
+            await browser.window.maximize();
 
             await Homepage
-                .navigate();
-            await browser.window.maximize()
-            await Homepage
-                .inputUsername('testadmin')
-                .inputPassword('testadmin')
-                .loginAndMaximizeWindow()
+                .inputUsername(browser.globals.userName)
+                .inputPassword(browser.globals.password)
+                .login();
 
         });
 
@@ -40,10 +36,13 @@ describe('Feedback-form UI tests', function () {
         async function (browser) {
 
             await Homepage
-                .goToFeedbackFormSection()
-            await FeedbackForm_page
+                .goToFeedbackFormSection();
+
+            await feedbackFormPage
                 .waitForElementVisible('@heading')
-                .assert.textContains('@heading', 'Feedback Forms');
+                .assert.textContains('@heading', 'Feedback Forms')
+                .assert.urlContains('feedback-forms');
+
         });
 
 
@@ -52,13 +51,12 @@ describe('Feedback-form UI tests', function () {
         async function (browser) {
 
             await Homepage
-                .goToFeedbackFormSection()
+                .goToFeedbackFormSection();
 
-            await FeedbackForm_page
-                .clickOnFormEditButton_withNoSession();
+            await feedbackFormPage
+                .clickOnFormEditButton()
+                .waitForElementVisible('@dialogBox');
 
-            await createNewForm_page
-                .waitForElementVisible('@formUpdate');
         });
 
 
@@ -69,7 +67,7 @@ describe('Feedback-form UI tests', function () {
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
 
                 .waitForElementVisible('@feedbackFormCardTitle')
 
@@ -88,26 +86,15 @@ describe('Feedback-form UI tests', function () {
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
-                .waitForElementVisible('@noSession_feedbackFormCardTitle')
+            await feedbackFormPage
+                .clickOnFormEditButton_withNoSession();
 
-                .waitForElementVisible('@noSession_feedbackFormCardEditButton')
-                .click('@noSession_feedbackFormCardEditButton')
-
-            //clicking add question button
-            await browser
-                .findElement('app-update-feedback-form div[formarrayname="feedbackQuestions"] button')
-                .waitForElementVisible('app-update-feedback-form div[formarrayname="feedbackQuestions"] button')
-                .click('app-update-feedback-form div[formarrayname="feedbackQuestions"] button')
-
-                .waitForElementVisible('app-update-feedback-form [class="card p-5"] form')
-                .sendKeys('app-update-feedback-form [class="card p-5"] form input[formcontrolname="questionTitle"]', "New Question id Added")  //question title
-
-                .click('app-update-feedback-form [class="card p-5"] form select[name="questionType"] option[value="COMMENT"]')  //select question type
-                .click('app-update-feedback-form [class="card p-5"]  div[class="feedback row"] button:nth-of-type(1)')
-
-                .waitForElementVisible('div[role="alert"]')
-                .assert.textContains('div[role="alert"]', 'Form Updated Successfully')
+            await formCreateUpdatePage
+                .clickAddQuestion()
+                .setParagaphQuestion()
+                .saveUpdatedForm()
+                .waitForElementVisible('@alertOfFormUpdated')
+                .assert.textContains('@alertOfFormUpdated', 'Form Updated Successfully')
         });
 
 
@@ -118,13 +105,13 @@ describe('Feedback-form UI tests', function () {
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .waitForElementVisible('@noSession_feedbackFormCardTitle')
                 .waitForElementVisible('@noSession_feedbackFormCardEditButton')
                 .click('@noSession_feedbackFormCardEditButton');
 
-            await createNewForm_page
-                .waitForElementNotPresent('@previewButton')
+            await formCreateUpdatePage
+                .waitForElementPresent('@previewButton')
                 .click('@previewButton');
 
 
@@ -135,110 +122,106 @@ describe('Feedback-form UI tests', function () {
 
         });
 
+
     it('LB-1257 : Verify that admin should be able to delete existing feedback form. (TC-262) ',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
+            const Homepage = browser.page.FeedbackForm.loginPage();
+            const feedbackFormPage = browser.page.FeedbackForm.feedbackFormSectionPage();
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnFormDeleteButton()
                 .assert.textContains('@deleteDialogBox_Message', "Are you sure want to delete this form ?")
 
         });
 
+
     it('LB-1258 : Verify that admin should not able to delete a feedback form (TC-263)',
         async function (browser) {
 
-            const Homepage = browser.page.po_feedback_form.navbar();
+            const Homepage = browser.page.FeedbackForm.loginPage();
 
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
+            const feedbackFormPage = browser.page.FeedbackForm.feedbackFormSectionPage();
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnFormDeleteButtonSession()
                 .assert.textContains('@deleteDialogBox', "The Form is currently being used in following session(s)")
 
         });
 
+
     it('LB-1259 : Verify that admin should be able to create a new feedback form (TC-264) ',
         async function (browser) {
 
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnCreateFormButton();
 
-            await createNewForm_page
-                .assert.visible('@newForm')
-                .pause(3000);
+            await formCreateUpdatePage
+                .assert.visible('@newForm');
         });
+
 
     it('LB-1260 : Verify that admin should not able to save form until they add a NPS Question (TC-265) ',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+
 
             const message = 'Please add a NPS question';
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnCreateFormButton();
 
-            await createNewForm_page
+            await formCreateUpdatePage
                 .setFormTitle()
                 .setMCQQuestion()  //can be optional
                 .saveForm()
                 .assertPopUpMessageContains(message)
         });
 
+
     it('LB-1261 : Verify that admin should not be able to save form without adding Form Title (TC-266)',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
 
             const message = 'Please enter a Form Title';
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnCreateFormButton();
 
-            await createNewForm_page
+            await formCreateUpdatePage
                 .setNPSQuestion()  //can be optional
                 .saveForm()
                 .assertTitleValidationIsShown(message)
         });
 
+
     it('LB-1262 : Verify that admin should able to see validation message if they don\'t add Question in form. (TC-267)',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+
 
             const message = 'Question cannot be empty';
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnCreateFormButton();
 
-            await createNewForm_page
+            await formCreateUpdatePage
                 .setFormTitle()
                 .waitForElementVisible('@newFormQuestionTitle')
                 .click('@selectQuestionTypeNPS')
@@ -246,21 +229,20 @@ describe('Feedback-form UI tests', function () {
                 .assertQuestionValidationIsShown(message)
         });
 
+
     it('LB-1263 : Verify that admin should be able to save form by adding all the mandatory task (TC-268)',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+
 
             const message = 'Question cannot be empty';
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnCreateFormButton();
 
-            await createNewForm_page
+            await formCreateUpdatePage
                 .setFormTitle()
                 .addNewQuestion()
                 .addNewQuestion()
@@ -272,10 +254,10 @@ describe('Feedback-form UI tests', function () {
         });
 
 
-    it.only('LB-1265 : Verify that admin should be able to search particular form from existing feedback form (TC-270)',
+    it('LB-1265 : Verify that admin should be able to search particular form from existing feedback form (TC-270)',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
+            const Homepage = browser.page.FeedbackForm.loginPage();
+            const feedbackFormPage = browser.page.FeedbackForm.feedbackFormSectionPage();
 
 
             const message = 'Search Me';
@@ -283,35 +265,39 @@ describe('Feedback-form UI tests', function () {
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .inputInSearchField(message)
-                .pause(4500)
+                .pause(10000)
                 .findElements('@feedbackFormCardTitle', async function (result) {
+
+
                     const key_id = Object.keys(result.value[0])[0];
-                    await result.value.forEach(function (el) {
-                        const val = browser
-                            .elementIdText(el[key_id]);
-                        browser.expect(val).to.eq(message);
+                    const array = result.value;
+
+
+                    await array.forEach(async function (el) {
+                        await browser
+                            .expect(browser.elementIdText(el[key_id]))
+                            .to.eq(message);
                     })
                 })
 
         });
 
+
     it('LB-1266 : Verify that admin should be able to delete form in edit mode (TC-271)',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+
 
             const message = 'Search Me';
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnFormEditButton_withNoSession();
 
-            await createNewForm_page
+            await formCreateUpdatePage
                 .clickDeleteOnUpdateForm()
                 .waitForElementVisible('@formUpdate_dialogBox')
                 .assert.textContains('@formUpdate_dialogBox', 'Are you sure want to delete this form ?');
@@ -322,16 +308,14 @@ describe('Feedback-form UI tests', function () {
 
     it('LB-1267 : Verify that admin should be able to delete existing feedback form. (TC-272)',
         async function (browser) {
-            const Homepage = browser.page.po_feedback_form.navbar();
-            const FeedbackForm_page = browser.page.po_feedback_form.feedback_form_page();
-            const createNewForm_page = browser.page.po_feedback_form.create_new_form_page();
+
 
             const message = 'Search Me';
 
             await Homepage
                 .goToFeedbackFormSection();
 
-            await FeedbackForm_page
+            await feedbackFormPage
                 .clickOnFormDeleteButton()
                 .assert.textContains('@deleteDialogBox', 'Are you sure want to delete this form ?')
                 .assert.textContains('@deleteDialogBox_YesButton', 'Yes')
@@ -340,8 +324,5 @@ describe('Feedback-form UI tests', function () {
                 .assert.textContains('@feedbackFormAlert', 'Form Deleted Successfully');
 
         });
-
-
-
 
 });
