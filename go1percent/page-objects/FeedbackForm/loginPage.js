@@ -1,29 +1,5 @@
-// const searchCommands = {
-//     submit() {
-//         this.waitForElementVisible('@submitButton', 1000)
-//             .click('@submitButton');
-
-//         this.pause(1000);
-
-//         return this; // for command-chaining
-//     }
-// };
 const cmd = {
-    goToFeedbackFormSection() {
-        this
-            .waitForElementVisible("@navbar")
-            .click('@admins_link')
 
-            .waitForElementVisible("@admin_options")
-            .click('@knolx_link')
-
-            .waitForElementVisible('@knolx_options')
-            .click('@feedback_form_link')
-
-        this.pause(1000);
-
-        return this; // for command-chaining
-    },
 
     inputUsername(username) {
         this
@@ -41,7 +17,7 @@ const cmd = {
         return this;
     },
 
-    loginAndMaximizeWindow() {
+    login() {
         this
 
             .waitForElementVisible('@loginButton')
@@ -49,12 +25,29 @@ const cmd = {
 
         return this;
 
-    }
+    },
+
+    goToFeedbackFormSection() {
+        this
+        .waitForElementVisible("@navbar")
+        .click('@admins_link')
+        
+        .waitForElementVisible("@admin_options")
+        .click('@knolx_link')
+        
+        .waitForElementVisible('@knolx_options')
+        .click('@feedback_form_link');
+
+
+        return this; // for command-chaining
+    },
+
 };
 
 
 module.exports = {
     // url: 'https://google.no',
+    url: 'https://nashtechglobal.qa.go1percent.com/',
 
     commands: [
         cmd
