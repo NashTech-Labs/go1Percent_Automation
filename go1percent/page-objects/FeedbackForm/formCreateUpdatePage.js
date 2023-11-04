@@ -10,13 +10,7 @@ const cmds = {
 
 
     clearAllFormQuestions() {
-        // while(this.waitForElementVisible('@formsQuestionDeleteButtonArray')){
-        //     this
-        //     .click('@formsQuestionDeleteButtonArray')
-        // }
 
-
-        // return this;
     },
 
     addNewQuestion() {
@@ -37,25 +31,14 @@ const cmds = {
             .waitForElementVisible('@questionDefaultTitle')
             .sendKeys('@questionDefaultTitle', 'Default MCQ Question')
 
-            // .waitForElementVisible('@createNewOption')
-            // .click('@createNewOption')
-
             .waitForElementVisible('@questionDefaultOption1')
             .sendKeys('@questionDefaultOption1', 'Yes')
-
-        // .waitForElementVisible('@questionDefaultOption2')
-        // .setValue('@questionDefaultOption2', 'No');
 
         return this;
 
     },
     setParagraphQuestion() {
-        // this
-        //     .waitForElementVisible('@newFormQuestionTitle')  //nth last
-        //     .setValue('@newFormQuestionTitle', 'Paragraph Question')
-        //     .click('@selectQuestionTypeParagraph')
 
-        // .click('@selectQuestionTypeNPS');
         this
             .waitForElementVisible('@questionTwoParagraph')
             .click('@questionTwoParagraph')
@@ -66,15 +49,11 @@ const cmds = {
     },
 
     setNPSQuestion() {
-        // this
-        //     .waitForElementVisible('@newFormQuestionTitle')
-        //     .setValue('@newFormQuestionTitle', 'NPS Question')
-        //     .click('@selectQuestionTypeNPS')
+
         this
-            .click('@questionOneNPS')
             .waitForElementVisible('@newFormQuestionTitle')
+            .click('@questionOneNPS')
             .setValue('@questionOneTitle', 'NPS Question')
-        // .click('@selectQuestionTypeNPS');
 
         return this;
 
@@ -119,7 +98,6 @@ const cmds = {
         this
             .waitForElementVisible('@formUpdate_deleteButton')
             .click('@formUpdate_deleteButton')
-        // .pause(4500);
 
         return this;
     }
@@ -132,10 +110,40 @@ const cmds = {
 
 }
 
+// =========================
+const updateFormCommands = {
+
+    clickAddQuestion() {
+        this
+            .findElement('@formUpdate_addQuestionButton')  // add question selctor
+            .waitForElementVisible('@formUpdate_addQuestionButton')
+            .click('@formUpdate_addQuestionButton');
+
+        return this;
+
+    },
+
+    setParagaphQuestion() {
+        return this
+            .waitForElementVisible('@formUpdate_newQuestionFormField')
+            .sendKeys('@formUpdate_newQuestionTitle', "New Question id Added")  //question title
+            .click('@formUpdate_selectParagraph')  //select question type
+        // save button
+
+    },
+
+    saveUpdatedForm() {
+        return this
+            .click('@formUpdate_saveFormButton');
+
+    }
+}
+
+
 module.exports = {
 
     commands: [
-        cmds
+        cmds, updateFormCommands
     ],
 
     elements: {
@@ -252,6 +260,21 @@ module.exports = {
         previewButton: {
             selector: 'app-update-feedback-form div[class="feedback row"] div:nth-of-type(2) button'
         },
+
+        formUpdate_addQuestionButton: 'app-update-feedback-form div[formarrayname="feedbackQuestions"] button',
+
+        formUpdate_newQuestionFormField: 'app-update-feedback-form [class="card p-5"] form',
+
+        formUpdate_newQuestionTitle: 'app-update-feedback-form [class="card p-5"] form input[formcontrolname="questionTitle"]',
+
+        formUpdate_selectParagraph: 'app-update-feedback-form [class="card p-5"] form select[name="questionType"] option[value="COMMENT"]',
+
+        formUpdate_saveFormButton: 'app-update-feedback-form [class="card p-5"]  div[class="feedback row"] div:nth-of-type(1) button:nth-of-type(1)',
+
+        alertOfFormUpdated: 'div[role="alert"]'
+
+
+
         // ==============
 
     }
