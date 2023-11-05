@@ -74,7 +74,7 @@ module.exports = {
     feedbackUrl: 'https://nashtechglobal.qa.go1percent.com/knolx/feedback-forms',
 
     commands: [
-        cmd, createFormCommands, updateFormCommands
+        cmd, createFormCommands
     ],
 
     elements: {
