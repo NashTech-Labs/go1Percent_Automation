@@ -1,12 +1,30 @@
-const headers = require('../../globals');
+const globals = require('../../globals');
+const headers = globals.admin.headers;
+const token_body = globals.admin.tokenBody;
+const urls = globals.urls;
+const token_headers = globals.admin.tokenHeaders;
 
 describe('MyProfile API', function () {
+    it('Configuring Bearer Token', async function ({ supertest }) {
+        // const startTime = performance.now();
+        await supertest
+          .request(urls.token)
+          .post("/token")
+          .send(token_body)
+          .set(token_headers)
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .then(function (response) {
+            const token = response.body.access_token;
+            headers['Authorization'] = 'Bearer ' + token;
+          });
+      });
     it('Check All Rewards Data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
             .request(headers.base_url)
-            .get('/rewards/getAllRewards')
-            .set('source', headers.source)
+            .get('rewards/getAllRewards')
+            .set( headers)
             .expect(200);
 
         const endTime = performance.now();
