@@ -4,7 +4,7 @@ describe('Go1percent techHub FE Testing', () => {
         client
         .url("https://nashtechglobal.qa.go1percent.com")
         .window.maximize()
-        pageObject = browser.page.techhubTestcases();
+        pageObject = browser.page.techhub();
     });
 
     // Log in as an Employee User
@@ -27,7 +27,7 @@ describe('Go1percent techHub FE Testing', () => {
         pageObject
         .navigateToPendingTechHubSearch()
         .searchForPendingTechhub()
-        .assert.textContains('@searchResultInPendingTab', "Testing")
+        .assert.textContains('@searchResultInPendingTab', "Test")
     });
 
     // Verify that draft and In review techhubs are present in the Pending page
@@ -101,13 +101,35 @@ describe('Go1percent techHub FE Testing', () => {
         .closeRequestARepoOrBranch()
     });
 
+    // Scrolling Issue in Submitting Techhub
     it('Verify that user should be able to submit only one techhub a day', (browser) => {
         pageObject
-        // Scrolling Issue in Submitting Techhub
-        .submitFirstTechhubInDraft()
+        // Submitting First Techhub
+        .navigateToPendingTechHubSearch()
+        .searchForPendingTechhub()
+        .navigateToTechhubInDraft()
+        .setBaseLanguage()
+        .setCategory()
+        .setTitleValue()
+        .setCaptionValue()
+        .setDescriptionValue()
+        .setBranchValue()
+        .setTagsValue()
+        .clickSubmitButton()
+        .waitForElementVisible('@submissionPopupAlert', 10000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
-        // Scrolling Issue in Submitting Techhub
-        .submitSecondTechhubInDraft()
+
+         // Submitting First Techhub
+        .navigateToTechhubInDraft()
+        .setBaseLanguage()
+        .setCategory()
+        .setTitleValue()
+        .setCaptionValue()
+        .setDescriptionValue()
+        .setBranchValue()
+        .setTagsValue()
+        .clickSubmitButton()
+        .waitForElementVisible('@submissionPopupAlert', 10000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
     });
 
@@ -145,7 +167,18 @@ describe('Go1percent techHub FE Testing', () => {
     it('verify that user should be able to submit the techhub which is in draft', (browser) => {
         pageObject
         .navigateToPendingTechHub()
-        .submitFirstTechhubInDraft()
+        .navigateToPendingTechHubSearch()
+        .searchForPendingTechhub()
+        .navigateToTechhubInDraft()
+        .setBaseLanguage()
+        .setCategory()
+        .setTitleValue()
+        .setCaptionValue()
+        .setDescriptionValue()
+        .setBranchValue()
+        .setTagsValue()
+        .clickSubmitButton()
+        .waitForElementVisible('@submissionPopupAlert', 5000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
     });
 

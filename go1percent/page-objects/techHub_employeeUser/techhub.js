@@ -5,32 +5,32 @@ module.exports = {
       username: '#username',
       password: '#password',
       submit: '#kc-login',
-      SettingsButton: '#navbar div.desktop-header app-dropdown-wrapper i',
+      SettingsButton: 'i[class="material-icons user-icon"]',
       Profile: 'div[class = "d-flex py-1 mt-1"]',
       Logout: '#navbar div:nth-child(2) > div:nth-child(2) h6 > span',
-      TechhubPage: "li[class='nav-item my-1 cursor-pointer text-bold p-2']:nth-child(4)",
+      TechhubPage: "li[class*='nav-item ']:nth-child(4)",
       pendingTab: 'li.mt-2:nth-child(2) > a:nth-child(1)',
-      searchBar: 'body div.row.g-2 input',
+      searchBar: 'div.row.g-2 input',
       pendingTechhubRecords: 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]',
       NoOfRecords: 'span[class="ml-2"]',
       requestRepoOrBranchTab: 'span.addRewardTxt',
-      descriptionTextarea: 'form textarea',
-      closeTab: 'body button.btn.btn-primary.button.cancel-button.mx-2',
+      descriptionTextarea: 'textarea[formcontrolname="description"]',
+      closeTab: 'button.btn.btn-primary.button.cancel-button.mx-2',
       closeApprovedTechhub: 'button[class="btn btn-primary button cancel-button mx-2"]',
       allTechHubTab: 'li.mt-2:nth-child(1) > a:nth-child(1)',
-      allTechHubSearchBar: 'body div.row.g-2 input',
+      allTechHubSearchBar: 'div.row.g-2 input',
       approvedTab: 'h6[class="mb-0 rank status approvedStatus"]',
-      githubUrl: 'body div.col.mb-3.mx-2.d-flex.flex-column a',
+      githubUrl: 'div.col.mb-3.mx-2.d-flex.flex-column a',
       draftTechhub: 'h6[class="mb-0 rank status pendingStatus"]',
-      submitTechhubPage: 'body div.modal-header.bg-gradient-dark.px-4.pt-4 > h5',
-      submitTechhubTitle: 'body div:nth-child(1) > div:nth-child(1) > input',
-      submitTechhubCaption: 'body form > div:nth-child(1) > div:nth-child(2) > input',
-      submitTechhubDescription: 'body textarea',
-      submitTechhubBranch: 'body div:nth-child(4) > div:nth-child(1) > input',
-      submitTechhubTags: 'body div:nth-child(4) > div:nth-child(2) > input',
-      submitTechhubCategory: '#category',
+      techhubPage: 'div.modal-header.bg-gradient-dark.px-4.pt-4 h5',
+      techhubTitle: 'input[formcontrolname="title"]',
+      techhubCaption: 'input[formcontrolname="caption"]',
+      techhubDescription: 'textarea[type = "text"]',
+      techhubBranch: 'input[formcontrolname="branch"]',
+      techhubTags: 'input[formcontrolname="tags"]',
+      techhubCategory: '#category',
       learningCategory: '#category > option:nth-child(2)',
-      submitTechhubBaseLanguage: '#baseLanguage',
+      techhubBaseLanguage: '#baseLanguage',
       baseLanguageJava: '#baseLanguage > option:nth-child(12)',
       approvedTechhub: 'h6[class="mb-0 rank status approvedStatus"]',
       searchResultInReview: 'body div.studio-member > div:nth-child(2)',
@@ -47,6 +47,7 @@ module.exports = {
       repoName: 'input[formcontrolname="name"]',
       repoTechnology: 'select[id="technology"]',
       repoDescription: 'textarea[formcontrolname="description"]',
+      submitButton: 'button.btn.btn-primary.text-white.mx-2'
     },
 
     commands: {
@@ -99,7 +100,7 @@ module.exports = {
 
       searchForPendingTechhub: function() {
         return this
-        .setValue('@searchBar', "Testing")
+        .setValue('@searchBar', "Test")
         .pause(10000)
         .waitForElementVisible('@searchResultInPendingTab')
       },
@@ -192,70 +193,68 @@ module.exports = {
         .pause(10000)
       },
 
-      submitFirstTechhubInDraft: function() {
+      setTitleValue: function() {
         return this
-        .waitForElementVisible('@pendingTab', 2000)
-        .click('@pendingTab')
-        .click('@searchBar')
-        .setValue('@searchBar', "test")
-        .waitForElementPresent('@draftTab', 5000)
-        .click('@draftTab')
-        .pause(5000)
-        .waitForElementVisible('@draftTechhub')
-        .click('@draftTechhub')
-        .waitForElementPresent('@submitTechhubPage')
-        .waitForElementPresent('@submitTechhubCategory')
-        .click('@submitTechhubCategory')
-        .waitForElementVisible('@learningCategory')
-        .click('@learningCategory')
-        .click('@submitTechhubBaseLanguage')
-        .waitForElementVisible('@baseLanguageJava')
-        .click('@baseLanguageJava')
-        .waitForElementVisible('@submitTechhubTitle')
-        .click('@submitTechhubTitle')
-        .setValue('@submitTechhubTitle', "TestAutomationPurpose")
-        .click('@submitTechhubCaption')
-        .setValue('@submitTechhubCaption', "TestingTechHubSubmission")
-        .click('@submitTechhubDescription')
-        .setValue('@submitTechhubDescription', "testingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtesting")
-        .click('@submitTechhubBranch')
-        .setValue('@submitTechhubBranch', "main")
-        .click('@submitTechhubTags')
-        .setValue('@submitTechhubTags', "tagForTesting")
-        .click('body button.btn.btn-primary.text-white.mx-2')
-        .waitForElementVisible('@submissionPopupAlert', 5000)
+        .waitForElementVisible('@techhubTitle')
+        .click('@techhubTitle')
+        .setValue('@techhubTitle', "TestAutomationPurpose")
       },
 
-      submitSecondTechhubInDraft: function() {
+      setCaptionValue:function() {
         return this
-        .waitForElementVisible('@pendingTab', 5000)
-        .click('@pendingTab')
+        .click('@techhubCaption')
+        .setValue('@techhubCaption', "TestingTechHubSubmission")
+        
+      },
+
+      setDescriptionValue: function() {
+        return this
+        .click('@techhubDescription')
+        .setValue('@techhubDescription', "testingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtesting")
+      },
+
+      setBranchValue: function() {
+        return this
+        .click('@techhubBranch')
+        .setValue('@techhubBranch', "main")
+      },
+
+      setTagsValue: function() {
+        return this
+        .click('@techhubTags')
+        .setValue('@techhubTags', "tagForTesting")
+      },
+
+      clickSubmitButton: function() {
+        return this
+        .waitForElementVisible('@submitButton')
+        .click('@submitButton')
+      },
+
+      setBaseLanguage: function() {
+        return this
+        .waitForElementPresent('@techhubBaseLanguage')
+        .click('@techhubBaseLanguage')
+        .waitForElementVisible('@baseLanguageJava')
+        .click('@baseLanguageJava')
+      },
+
+      setCategory: function() {
+        return this
+        .waitForElementPresent('@techhubCategory')
+        .click('@techhubCategory')
+        .waitForElementVisible('@learningCategory')
+        .click('@learningCategory')
+      },
+
+      navigateToTechhubInDraft: function() {
+        return this
         .waitForElementPresent('@draftTab', 5000)
         .click('@draftTab')
         .pause(5000)
         .waitForElementVisible('@draftTechhub')
         .click('@draftTechhub')
-        .waitForElementPresent('@submitTechhubPage')
-        .waitForElementPresent('@submitTechhubCategory')
-        .click('@submitTechhubCategory')
-        .waitForElementVisible('@learningCategory')
-        .click('@learningCategory')
-        .click('@submitTechhubBaseLanguage')
-        .waitForElementVisible('@baseLanguageJava')
-        .click('@baseLanguageJava')
-        .waitForElementVisible('@submitTechhubTitle', 5000)
-        .click('@submitTechhubTitle')
-        .setValue('@submitTechhubTitle', "TestAutomationPurpose")
-        .click('@submitTechhubCaption')
-        .setValue('@submitTechhubCaption', "TestingTechHubSubmission")
-        .click('@submitTechhubDescription')
-        .setValue('@submitTechhubDescription', "testingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtesting")
-        .click('@submitTechhubBranch')
-        .setValue('@submitTechhubBranch', "main")
-        .click('@submitTechhubTags')
-        .setValue('@submitTechhubTags', "tagForTesting")
-        .click('body button.btn.btn-primary.text-white.mx-2')
-        .waitForElementVisible('@submissionPopupAlert', 5000)
+        .waitForElementPresent('@techhubPage')
       },
 
       techhubInreviewPage: function() {
@@ -303,13 +302,23 @@ module.exports = {
       },
 
       verifyTechHubDate: function() {
-        return this
-        .waitForElementVisible('@dateOfTechhubInreview')
-        .getText('@dateOfTechhubInreview', function verifyDate(date){
-          expect(date.value).to.equal("06 Nov 2023");
-        })
-      },
+        const currentDate = new Date();
+      // Convert the numeric month to the format used on the page
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const currentMonthOnPage = months[currentDate.getMonth()];
 
+      return this
+      .waitForElementVisible('@dateOfTechhubInreview')
+      .getText('@dateOfTechhubInreview', function verifyDate(date) {
+      const dateOnPage = date.value;
+      const dateParts = dateOnPage.split(' ');
+      const dayOnPage = dateParts[0];
+      const currentDay = String(currentDate.getDate()).padStart(2, '0'); // Add leading zeros
+      expect(dayOnPage).to.equal(currentDay);
+      expect(dateParts[1]).to.equal(currentMonthOnPage);
+      expect(dateParts[2]).to.equal(currentDate.getFullYear().toString());
+        });
+      },
     }
   };
   
