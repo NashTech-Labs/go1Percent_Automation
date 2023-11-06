@@ -254,4 +254,5 @@ module.exports = {
     Description: 'Description',
     SlideURL: 'Slide URL',
 
-        };
+        },
+    };
