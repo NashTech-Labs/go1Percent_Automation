@@ -175,6 +175,7 @@ module.exports = {
             .click('@saveButton')
             .waitForElementVisible('@alert')
             .assert.textContains('@alert','Contribution with same url already exist')
+
     }
   
 };

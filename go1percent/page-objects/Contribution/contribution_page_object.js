@@ -34,6 +34,7 @@ elements = {
 
     url: {
         selector: "body modal-container:nth-child(12) div app-add-contribution form div.col.form-group.mb-3.mx-2 input"
+
     },
 
     saveButton: {
@@ -131,7 +132,8 @@ commands = [
             waitForElementVisible('@searchBar')
             .setValue('@searchBar', value)
             .pause(3000)
-        }, 
+
+        }
 
     }
 ]
