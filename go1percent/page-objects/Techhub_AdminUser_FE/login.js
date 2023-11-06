@@ -1,8 +1,8 @@
-const { test_settings } = require("../nightwatch.conf");
-
 module.exports = {
 
-    url: test_settings.default.launch_url,
+    url: "https://nashtechglobal.qa.go1percent.com/",
+
+
 
 
     elements: {
