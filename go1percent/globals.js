@@ -143,6 +143,10 @@ module.exports = {
             PostEndPoints: "/contribution/addContribution",
             GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000"
 
+        Reward: {
+            PostEndPoints: "/rewards",
+            PutEndPoints: "/rewards",
+            GetEndPoints: ["/rewards/getAllRewards", "/rewards/getReward"]
 
         },
 
