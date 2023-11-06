@@ -155,4 +155,5 @@ describe('Go1percent techHub FE Testing', () => {
         .verifyTechHubTitle()
         .verifyTechHubDate()
     });
+
 });
