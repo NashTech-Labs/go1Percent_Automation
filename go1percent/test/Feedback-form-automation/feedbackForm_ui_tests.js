@@ -14,6 +14,8 @@ const formCreatedMessage = 'Form created successfully';
 const searchQuery = 'Search Me';
 const formDeletedMessage = 'Form Deleted Successfully';
 
+const data = globals.feedbackForm.uiData;
+
 // ----------------------------------------------------------------------
 //   >> using command "npx nightwatch ./test/Feedback-form-automation/UI-tests/"
 // -------------------------------------------------------------------------
@@ -88,7 +90,7 @@ describe('Feedback-form UI tests', function () {
                 .click('@feedbackFormCardEditButton')
 
                 .waitForElementVisible('@sessionDialogBox')
-                .assert.textContains('@sessionDialogBox', sessionInUseMessage);
+                .assert.textContains('@sessionDialogBox', data.sessionInUseMessage);
         });
 
 
@@ -109,7 +111,7 @@ describe('Feedback-form UI tests', function () {
                 .setParagaphQuestion()
                 .saveUpdatedForm()
                 .waitForElementVisible('@alertOfFormUpdated')
-                .assert.textContains('@alertOfFormUpdated', formUpdateMessage);
+                .assert.textContains('@alertOfFormUpdated', data.formUpdateMessage);
         });
 
 
@@ -148,7 +150,7 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .clickOnFormDeleteButton()
-                .assert.textContains('@deleteDialogBox_Message', deleteDialogBoxMessage);
+                .assert.textContains('@deleteDialogBox_Message', data.deleteDialogBoxMessage);
 
         });
 
@@ -162,7 +164,7 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .clickOnFormDeleteButtonSession()
-                .assert.textContains('@deleteDialogBox', sessionInUseMessage);
+                .assert.textContains('@deleteDialogBox', data.sessionInUseMessage);
 
         });
 
@@ -196,7 +198,7 @@ describe('Feedback-form UI tests', function () {
                 .setFormTitle()
                 .setMCQQuestion()  //can be optional
                 .saveForm()
-                .assertPopUpMessageContains(addNPSMessage)
+                .assertPopUpMessageContains(data.addNPSMessage)
         });
 
 
@@ -212,7 +214,7 @@ describe('Feedback-form UI tests', function () {
             await formCreateUpdatePage
                 .setNPSQuestion()  //can be optional
                 .saveForm()
-                .assertTitleValidationIsShown(addFormTitleMessage)
+                .assertTitleValidationIsShown(data.addFormTitleMessage)
         });
 
 
@@ -232,7 +234,7 @@ describe('Feedback-form UI tests', function () {
                 .waitForElementVisible('@newFormQuestionTitle')
                 .click('@selectQuestionTypeNPS')
                 .saveForm()
-                .assertQuestionValidationIsShown(addQuestionMessage)
+                .assertQuestionValidationIsShown(data.addQuestionMessage)
         });
 
 
@@ -254,7 +256,7 @@ describe('Feedback-form UI tests', function () {
                 .setNPSQuestion()
                 .setParagraphQuestion()
                 .saveForm()
-                .assert.textContains('@formSavedSuccessfullyAlert', formCreatedMessage);
+                .assert.textContains('@formSavedSuccessfullyAlert', data.formCreatedMessage);
         });
 
 
@@ -266,7 +268,7 @@ describe('Feedback-form UI tests', function () {
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
-                .inputInSearchField(searchQuery)
+                .inputInSearchField(data.searchQuery)
                 .pause(10000)
                 .findElements('@feedbackFormCardTitle', async function (result) {
 
@@ -278,7 +280,7 @@ describe('Feedback-form UI tests', function () {
                     await array.forEach(async function (el) {
                         await browser
                             .expect(browser.elementIdText(el[key_id]))
-                            .to.eq(searchQuery);
+                            .to.eq(data.searchQuery);
                     })
                 })
 
@@ -298,7 +300,7 @@ describe('Feedback-form UI tests', function () {
             await formCreateUpdatePage
                 .clickDeleteOnUpdateForm()
                 .waitForElementVisible('@formUpdate_dialogBox')
-                .assert.textContains('@formUpdate_dialogBox', deleteDialogBoxMessage);
+                .assert.textContains('@formUpdate_dialogBox', data.deleteDialogBoxMessage);
 
         });
 
@@ -312,11 +314,11 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .clickOnFormDeleteButton()
-                .assert.textContains('@deleteDialogBox', deleteDialogBoxMessage)
+                .assert.textContains('@deleteDialogBox', data.deleteDialogBoxMessage)
                 .assert.textContains('@deleteDialogBox_YesButton', 'Yes')
                 .assert.textContains('@deleteDialogBox_NoButton', 'No')
                 .click('@deleteDialogBox_YesButton')
-                .assert.textContains('@feedbackFormAlert', formDeletedMessage);
+                .assert.textContains('@feedbackFormAlert', data.formDeletedMessage);
 
         });
 

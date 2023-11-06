@@ -76,6 +76,22 @@ module.exports = {
         redeemMessage: "Hi, you have redeemed the reward",
         imageUploadMessage: "Click here to upload image"
     },
+
+    feedbackForm: {
+        uiData: {
+            sessionInUseMessage : 'The Form is currently being used in following session(s)',
+            formUpdateMessage : 'Form Updated Successfully',
+            deleteDialogBoxMessage : 'Are you sure want to delete this form ?',
+            addNPSMessage : 'Please add a NPS question',
+            addFormTitleMessage : 'Please enter a Form Title',
+            addQuestionMessage : 'Question cannot be empty',
+            formCreatedMessage : 'Form created successfully',
+            searchQuery : 'Search Me',
+            formDeletedMessage : 'Form Deleted Successfully',
+
+        },
+
+    },
     
     employee: {
         headers: {
@@ -142,6 +158,9 @@ module.exports = {
             BaseUrl: "https://backend.qa.go1percent.com",
             PostEndPoints: "/contribution/addContribution",
             GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000"
+
+
+        },
 
         Reward: {
             PostEndPoints: "/rewards",
