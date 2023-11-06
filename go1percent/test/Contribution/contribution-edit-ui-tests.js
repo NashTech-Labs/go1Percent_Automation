@@ -173,8 +173,8 @@ module.exports = {
             .clickEditButton()
             .editUrl('https://testcontribution.com')
             .click('@saveButton')
-            .waitForElementVisible("div[role = 'alert']")
-            .assert.textContains("div[role = 'alert']",'Contribution with same url already exist')
+            .waitForElementVisible('@alert')
+            .assert.textContains('@alert','Contribution with same url already exist')
     }
   
 };

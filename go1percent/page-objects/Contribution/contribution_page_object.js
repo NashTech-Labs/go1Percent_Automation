@@ -13,11 +13,11 @@ elements = {
     },
 
     onlineCourseContribution: {
-        selector: "div.studio-member > div:nth-child(2) > div > div > div.col-xxl-3.col-lg-3.col-md-3.col-sm-6.d-flex.flex-column.text-center"
+        selector: "div.studio-member div:nth-child(2)  div.col-xxl-3.col-lg-3.col-md-3.col-sm-6.d-flex"
     },
 
     contribution: {
-        selector: "div.studio-member > div:nth-child(3) > div > div > div.col-xxl-3.col-lg-3.col-md-3.col-sm-6.d-flex.flex-column.text-center"
+        selector: "div.studio-member div:nth-child(3)  div.col-xxl-3.col-lg-3.col-md-3.col-sm-6.d-flex"
     },
         
     editButton: {
@@ -33,7 +33,7 @@ elements = {
     },
 
     url: {
-        selector: "body > modal-container:nth-child(12) > div.modal-dialog.right-contribution-modal > div > div.modal-body.px-5 > app-add-contribution > form > div.col.form-group.mb-3.mx-2 > input"
+        selector: "body modal-container:nth-child(12) div app-add-contribution form div.col.form-group.mb-3.mx-2 input"
     },
 
     saveButton: {
@@ -49,7 +49,15 @@ elements = {
     },
 
     searchBar: {
-        selector: "div.col-lg-8 > div:nth-child(3) > app-contribution > div > div.row.g-2 > div > div > div > div:nth-child(2) > input"
+        selector: "div.col-lg-8 div:nth-child(3) app-contribution div.row.g-2 div:nth-child(2) input"
+    }, 
+
+    alert: {
+        selector: "div[role = 'alert']"
+    },
+
+    results: {
+        selector: 'div.studio-member div div div.col-xxl-3.col-lg-3.col-md-3.col-sm-6.d-flex.flex-column.text-center'
     }
 };
 
@@ -123,7 +131,7 @@ commands = [
             waitForElementVisible('@searchBar')
             .setValue('@searchBar', value)
             .pause(3000)
-        }
+        }, 
 
     }
 ]
