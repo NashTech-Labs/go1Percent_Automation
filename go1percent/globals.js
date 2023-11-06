@@ -180,7 +180,7 @@ module.exports = {
             nasher : "employee",
             testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
             badge:"KNOLX",
-            date:"Nov 4, 2023",
+            date:"Nov 7, 2023",
             datePastSessions: "Oct 14, 2023",
             // allure report
             reporter: (results,done)=>{
