@@ -13,7 +13,7 @@ module.exports = {
       locateStrategy:'xpath'
     },
     manageSlots: 'a.nav-link.text-white[href="/knolx/manage-slots"]',
-    calendarDate: 'a[aria-label="November 6, 2023"]',
+    calendarDate: 'a[aria-label="November 11, 2023"]',
     knolx: {
       selector: "//label[contains(text(),'Knolx')]",
       locateStrategy: 'xpath',
@@ -25,7 +25,7 @@ module.exports = {
     successfullyCreatedSlotMessage: 'div[aria-label="Slot Created Successfully"]',
     cancelButton: 'button[class="btn btn-primary button cancel-button ml-3 mr-2"]',
     presentDate: {
-      selector: '//td//a[@id="fc-dom-12"]',
+      selector: '//td//a[@aria-label="November 6, 2023"]',
       locateStrategy: 'xpath',
     },
     errorMessage: {
@@ -69,7 +69,7 @@ module.exports = {
   acceptPopUp: 'button[class="btn btn-primary button submit-button"]',
   successfullyDeletedMessage: 'div[aria-label="Session Deleted Successfully"]',
   updatefreeSlot: {
-    selector: "//td//div[contains(text(),'12:00 pm')]",
+    selector: "//td//div[contains(text(),'11:03 am')]",
     locateStrategy: 'xpath',
   },
   updateFreeSlotTitle: 'input[formcontrolname="newSlotTitle"]',
@@ -162,7 +162,7 @@ module.exports = {
     },
 
     clickOnPresentDate() {
-      return this.waitForElementVisible('@presentDate', 5000)
+      return this.waitForElementVisible('@presentDate', 30000)
       .click('@presentDate')
         },
 

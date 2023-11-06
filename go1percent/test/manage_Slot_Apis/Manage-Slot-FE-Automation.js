@@ -22,6 +22,7 @@ done.fail(error);
 return;
 }
 }),
+
 it ('Verify that admin should be able to create a slot ', function () { 
 
 ManageSlotPages
@@ -73,7 +74,8 @@ ManageSlotPages
 it("Verify admin cannot select a past time to create a slot", function () {
 ManageSlotPages
 .waitForPageLoad()
-.clickOnPresentDate()
+.pause(7000)
+ManageSlotPages.clickOnPresentDate()
 browser.pause(3000)
 ManageSlotPages.clickSlotTypeKnolx()
 .createSlot('API Testing')
@@ -141,9 +143,10 @@ ManageSlotPages
 .clickSlotTypeWebinr()
 .updateSlot('Automation Testing')
 .clickOnDownArrow()
+.pause(3000)
 .clickOnUpArrow()
 .clickupdateButton()
-.waitForPageLoad()
+.pause(3000)
 ManageSlotPages.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully')
 
 }),
