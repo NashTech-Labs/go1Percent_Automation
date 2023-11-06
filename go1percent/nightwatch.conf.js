@@ -63,24 +63,6 @@ module.exports = {
 
 
   test_settings: {
-      // =========================
-   // this will overwrite the default polling interval (currently 500ms) for waitFor commands
-  // and expect assertions that use retry
-  // waitForConditionPollInterval : 300,
-
-  // default timeout value in milliseconds for waitFor commands and implicit waitFor value for
-  // expect assertions
-  
-  // this will cause waitFor commands on elements to throw an error if multiple
-  // elements are found using the given locate strategy and selector
-  // throwOnMultipleElementsReturned : false,
-  
-  // controls the timeout time for async hooks. Expects the done() callback to be invoked within this time
-  // or an error is thrown
-  // asyncHookTimeout : 10000,
-  // ==========================
-  
-  // waitForConditionTimeout: 10000,
   
   default: {
     disable_error_log: false,
@@ -177,9 +159,11 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            '--headless',
-            "window-size=1920,1080"
-            // '--no-sandbox',
+             '--headless',            //for headless mode and Jenkins
+             "window-size=1920,1080", //for headless mode and Jenkins
+             '--no-sandbox',          //for headless mode and Jenkins
+             "disable-gpu",           //for headless mode and Jenkins
+             "--disable-dev-shm-usage"  //for headless mode and Jenkins
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
             // "disable-gpu",
@@ -188,19 +172,19 @@ module.exports = {
         }
       },
 
-    webdriver: {
-      start_process: true,
-      server_path: 'node_modules/.bin/chromedriver',
-      port: 9515,
-      host: 'localhost',
-      ssl: false,
-      default_path_prefix: '',
-      proxy: undefined,
-      cli_args: [
-        // --verbose
-      ]
-    }
-  },
+      webdriver: {
+        start_process: true,
+        server_path: 'node_modules/.bin/chromedriver',
+        port: 9515,
+        host: 'localhost',
+        ssl: false,
+        default_path_prefix: '',
+        proxy: undefined,
+        cli_args: [
+          // --verbose
+        ]
+      }
+    },
 
     webdriver: {
       start_process: true,
@@ -215,6 +199,7 @@ module.exports = {
       ]
     },
   // },
+
 
     edge: {
       desiredCapabilities: {
@@ -238,58 +223,6 @@ module.exports = {
         ]
       }
     },
-
-    'android.real.firefox': {
-      desiredCapabilities: {
-        real_mobile: true,
-        browserName: 'firefox',
-        acceptInsecureCerts: true,
-        'moz:firefoxOptions': {
-          args: [
-            // '-headless',
-            // '-verbose'
-          ],
-          androidPackage: 'org.mozilla.firefox',
-          // add the device serial to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-          // androidDeviceSerial: 'ZD2222W62Y'
-        }
-      },
-      webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // very verbose geckodriver logs
-          // '-vv'
-        ]
-      }
-    },
-
-    'android.real.firefox': {
-      desiredCapabilities: {
-        real_mobile: true,
-        browserName: 'firefox',
-        acceptInsecureCerts: true,
-        'moz:firefoxOptions': {
-          args: [
-            // '-headless',
-            // '-verbose'
-          ],
-          androidPackage: 'org.mozilla.firefox',
-          // add the device serial to run tests on, if multiple devices are online
-          // Run command: `$ANDROID_HOME/platform-tools/adb devices`
-          // androidDeviceSerial: 'ZD2222W62Y'
-        }
-      },
-      webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // very verbose geckodriver logs
-          // '-vv'
-        ]
-      }
-    },
     webdriver: {
       start_process: true,
       server_path: '',
@@ -299,6 +232,34 @@ module.exports = {
       ]
     }
   },
+
+    webdriver: {
+      start_process: true,
+      // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
+      // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
+      server_path: '',
+      cli_args: [
+        // --verbose
+      ]
+    },
+  // },
+
+  'android.real.firefox': {
+    desiredCapabilities: {
+      real_mobile: true,
+      browserName: 'firefox',
+      acceptInsecureCerts: true,
+      'moz:firefoxOptions': {
+        args: [
+          // '-headless',
+          // '-verbose'
+        ],
+        androidPackage: 'org.mozilla.firefox',
+        // add the device serial to run tests on, if multiple devices are online
+        // Run command: `$ANDROID_HOME/platform-tools/adb devices`
+        // androidDeviceSerial: 'ZD2222W62Y'
+      }
+    },
 
     'android.emulator.firefox': {
       desiredCapabilities: {
@@ -475,10 +436,16 @@ module.exports = {
       }
     },
 
-    "@nightwatch/apitesting": {
-      "log_responses": true
-    }
-  }
+  },
+  "@nightwatch/apitesting": {
+    "log_responses": true
+  },
+
+  usage_analytics: {
+    enabled: true,
+    log_path: './logs/analytics',
+    client_id: 'd4fd0945-9d4c-4b5c-bbea-8f7dc0bbf484'
+  },
 }
 
 
