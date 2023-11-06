@@ -14,38 +14,46 @@
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['test'],
+  src_folders: ['./test'],
 
-  
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects'],
+  page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  
+
   //custom_commands_path: ['nightwatch/custom-commands'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
 
-   // custom_assertions_path: ['nightwatch/custom-assertions'],
+  // custom_assertions_path: ['nightwatch/custom-assertions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
 
-     plugins: ['@nightwatch/apitesting'],
+  plugins: ['@nightwatch/apitesting'],
 
-    //plugins: ['@nightwatch/react'],
-  
+  //plugins: ['@nightwatch/react'],
+
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  //globals_path: './globals.js',
+
+  // globals_path: './globals.js',
+
+
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
     },
+  globals: 
+  {
+    "userName": "testadmin", // this is placeholder username, make sure to update.
+    "password": "testadmin" // this is placeholderPassword, Make sure to update.
+  },
 
   vite_dev_server: {
     start_vite: true,
     port: 5173
   },
-  
+
   webdriver: {},
 
   //Test Worker Configuration
@@ -68,39 +76,24 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome'
-      // 'goog:chromeOptions': {
-      //   ...
-      //   // specify the locateStrategy as xpath
-      //   locateStrategy: 'xpath',
-        
-      // },
-      
-      
+        // 'goog:chromeOptions': {
+        //   ...
+        //   // specify the locateStrategy as xpath
+        //   locateStrategy: 'xpath',
+
+        // },
+
+
       },
-      
+
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
 
       },
 
-      
-      
-    },
-    "qa": {
-      "globals": {
-        "userName": "testadmin", // this is placeholder username, make sure to update.
-        "password": "testadmin" // this is placeholderPassword, Make sure to update.
-      },
-
-      "employee":{
-        "userName": "testemployee", // this is placeholder username, make sure to update.
-        "password": "testemployee" // this is placeholderPassword, Make sure to update.
-      }
     },
 
-    
-    
 
     firefox: {
       desiredCapabilities: {
@@ -124,9 +117,9 @@ module.exports = {
         ]
       }
     },
+
    
 
-    
     api_testing: {
       start_session: false,
       webdriver: {
@@ -134,24 +127,30 @@ module.exports = {
       }
     },
 
-  
 
+    chrome: {
 
-   chrome: {
 
       desiredCapabilities: {
         browserName: 'chrome',
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
         'goog:chromeOptions': {
+
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            //'--no-sandbox',
+             '--headless',            //for headless mode and Jenkins
+             "window-size=1920,1080", //for headless mode and Jenkins
+             '--no-sandbox',          //for headless mode and Jenkins
+             "disable-gpu",           //for headless mode and Jenkins
+             "--disable-dev-shm-usage"  //for headless mode and Jenkins
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            //'--headless'
-          ]
+          ],
+          "binary": "/usr/bin/google-chrome"
         }
       },
 
@@ -168,7 +167,9 @@ module.exports = {
         ]
       }
     },
-    
+
+
+
     edge: {
       desiredCapabilities: {
         browserName: 'MicrosoftEdge',
@@ -191,7 +192,7 @@ module.exports = {
         ]
       }
     },
-    
+
     'android.real.firefox': {
       desiredCapabilities: {
         real_mobile: true,
@@ -244,7 +245,7 @@ module.exports = {
         ]
       }
     },
-    
+
     'android.real.chrome': {
       desiredCapabilities: {
         real_mobile: true,
@@ -266,7 +267,7 @@ module.exports = {
           // androidDeviceSerial: ''
         },
       },
-    
+
       webdriver: {
         start_process: true,
         server_path: '',
@@ -298,7 +299,7 @@ module.exports = {
           // androidDeviceSerial: ''
         },
       },
-    
+
       webdriver: {
         start_process: true,
         // path to chromedriver executable which can work with the factory
@@ -309,7 +310,7 @@ module.exports = {
         ]
       }
     },
-    
+
     app: {
       selenium: {
         start_process: true,
@@ -334,7 +335,7 @@ module.exports = {
         start_process: false
       }
     },
-    
+
     'app.android.emulator': {
       extends: 'app',
       'desiredCapabilities': {
@@ -392,14 +393,15 @@ module.exports = {
         }
       }
     },
-    "@nightwatch/apitesting" : {
+
+    "@nightwatch/apitesting": {
       "log_responses": true
     }
   }
 }
 
-  
 
-  
+
+
 
 
