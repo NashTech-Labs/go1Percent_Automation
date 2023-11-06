@@ -1,7 +1,7 @@
 // Refer to the online docs for more details:
 // https://nightwatchjs.org/gettingstarted/configuration/
 //
-
+ 
 //  _   _  _         _      _                     _          _
 // | \ | |(_)       | |    | |                   | |        | |
 // |  \| | _   __ _ | |__  | |_ __      __  __ _ | |_   ___ | |__
@@ -10,11 +10,20 @@
 // \_| \_/|_| \__, ||_| |_| \__|  \_/\_/   \__,_| \__| \___||_| |_|
 //             __/ |
 //            |___/
-
+ 
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
+  skip_testcases_on_fail: false,
+ 
+ 
+  // See https://nightwatchjs.org/guide/concepts/page-object-model.html
+  page_objects_path: ['page-objects'],
+ 
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+ 
+  src_folders: ['./test'],
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
@@ -23,23 +32,27 @@ module.exports = {
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
   //custom_commands_path: ['nightwatch/custom-commands'],
-
+ 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
 
   // custom_assertions_path: ['nightwatch/custom-assertions'],
-
+ 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
-
+ 
   plugins: ['@nightwatch/apitesting'],
-
+ 
   //plugins: ['@nightwatch/react'],
-
+ 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  globals_path: './globals.js',
+
+  // globals_path: './globals.js',
+
+
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
     },
+
   globals: {
     "userName": "testadmin", // this is placeholder username, make sure to update.
     "password": "testadmin" // this is placeholderPassword, Make sure to update.
@@ -51,25 +64,25 @@ module.exports = {
   },
 
   webdriver: {},
-
+ 
   //Test Worker Configuration
   test_workers: {
     enabled: true,
     workers: 'auto'
   },
-
-
+ 
+ 
   test_settings: {
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
-
+ 
       screenshots: {
         enabled: true,
         path: 'screens',
         on_failure: true
       },
-
+ 
       desiredCapabilities: {
         browserName: 'chrome'
         // 'goog:chromeOptions': {
@@ -114,8 +127,6 @@ module.exports = {
       }
     },
 
-   
-
     api_testing: {
       start_session: false,
       webdriver: {
@@ -123,9 +134,9 @@ module.exports = {
       }
     },
 
-
+ 
+ 
     chrome: {
-
 
       desiredCapabilities: {
         browserName: 'chrome',
@@ -138,17 +149,18 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            '--headless',
-            "window-size=1920,1080"
-            // '--no-sandbox',
+             '--headless',            //for headless mode and Jenkins
+             "window-size=1920,1080", //for headless mode and Jenkins
+             '--no-sandbox',          //for headless mode and Jenkins
+             "disable-gpu",           //for headless mode and Jenkins
+             "--disable-dev-shm-usage"  //for headless mode and Jenkins
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
-            // "disable-gpu",
           ],
           "binary": "/usr/bin/google-chrome"
         }
       },
-
+ 
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver',
@@ -163,8 +175,6 @@ module.exports = {
       }
     },
 
-
-
     edge: {
       desiredCapabilities: {
         browserName: 'MicrosoftEdge',
@@ -176,7 +186,7 @@ module.exports = {
           ]
         }
       },
-
+ 
       webdriver: {
         start_process: true,
         // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
@@ -213,7 +223,7 @@ module.exports = {
         ]
       }
     },
-
+ 
     'android.emulator.firefox': {
       desiredCapabilities: {
         real_mobile: false,
@@ -271,7 +281,7 @@ module.exports = {
         ]
       }
     },
-
+ 
     'android.emulator.chrome': {
       desiredCapabilities: {
         real_mobile: false,
@@ -356,7 +366,7 @@ module.exports = {
         }
       }
     },
-
+ 
     'app.android.real': {
       extends: 'app',
       'desiredCapabilities': {
@@ -375,7 +385,7 @@ module.exports = {
           appActivity: 'org.wikipedia.main.MainActivity',
           appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
           // 'chromedriver' binary is required while testing hybrid mobile apps.
-          // 
+          //
           // Set `chromedriverExecutable` to '' to use binary from `chromedriver` NPM package (if installed).
           // Or, put '--allow-insecure=chromedriver_autodownload' in `cli_args` property of `selenium`
           // config (see 'app' env above) to automatically download the required version of chromedriver
@@ -394,8 +404,4 @@ module.exports = {
     }
   }
 }
-
-
-
-
 
