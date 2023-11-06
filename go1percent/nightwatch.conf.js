@@ -157,12 +157,7 @@ module.exports = {
 
       webdriver: {
         start_process: true,
-        server_path: 'node_modules/.bin/chromedriver',
-        port: 9515,
-        host: 'localhost',
-        ssl: false,
-        default_path_prefix: '',
-        proxy: undefined,
+        server_path: '',
         cli_args: [
           // --verbose
         ]

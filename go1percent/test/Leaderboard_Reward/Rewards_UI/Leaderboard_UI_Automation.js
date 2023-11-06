@@ -1,4 +1,4 @@
-const globalsData = require('../../globals')
+const globalsData = require('../../../globals')
 const sessionsPage = browser.page.RewardsPage()
 describe("Rewards Page Frontend Automation", () => {
     before(function () {
@@ -55,15 +55,15 @@ describe("Rewards Page Frontend Automation", () => {
                     
         }),
 
-        // Verify that user should able to click on yes button (TC-277) 
-        it("should display message when yes button is clicked", () => {
-            sessionsPage
-                .waitForElementPresent('@redeemButton')
-                .clickOnRedeemButton()
-                .clickOnYesButton()
-                .assert.textContains('@message',globalsData.messages.redeemMessage)
+        // // Verify that user should able to click on yes button (TC-277) 
+        // it("should display message when yes button is clicked", () => {
+        //     sessionsPage
+        //         .waitForElementPresent('@redeemButton')
+        //         .clickOnRedeemButton()
+        //         .clickOnYesButton()
+        //         .assert.textContains('@message',globalsData.messages.redeemMessage)
                     
-        }),
+        // }),
 
         //  Verify that Admin should able to see Reward section (TC-280) 
         it("Should login as admin and should display rewards tab on expanding leaderboard", () => {

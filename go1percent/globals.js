@@ -37,7 +37,7 @@ module.exports = {
             grant_type: 'password',
         },
     },
-    messages:{
+    rewardSectionMessages:{
         colorCode: "rgba(236, 64, 122, 1)",
         successMessage: "Reward was successfully updated!",
         imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
