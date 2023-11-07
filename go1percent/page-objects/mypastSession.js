@@ -6,7 +6,8 @@ module.exports = {
        
 
         knolxButton: {
-            selector: 'body > app-root:nth-child(1) > div:nth-child(1) > app-main:nth-child(2) > section:nth-child(1) > aside:nth-child(1) > div:nth-child(3) > ul:nth-child(1) > li:nth-child(4) > div:nth-child(1) > h6:nth-child(2)',
+           selector: "//h6[normalize-space()='Knolx']",
+           locateStrategy: 'xpath'
         },
         mysession: {
             selector: "a[href='/knolx/my-sessions/my-upcoming-sessions']",
