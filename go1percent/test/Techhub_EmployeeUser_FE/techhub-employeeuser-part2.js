@@ -4,7 +4,7 @@ describe('Go1percent techHub FE Testing', () => {
         client
         .url("https://nashtechglobal.qa.go1percent.com")
         .window.maximize()
-        pageObject = browser.page.techhub();
+        pageObject = browser.page.techHub_employeeUser.techhub()
     });
 
     // Log in as an Employee User
