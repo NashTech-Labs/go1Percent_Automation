@@ -1,4 +1,8 @@
 
+// Refer to the online docs for more details:
+// https://nightwatchjs.org/gettingstarted/configuration/
+//
+
 //  _   _  _         _      _                     _          _
 // | \ | |(_)       | |    | |                   | |        | |
 // |  \| | _   __ _ | |__  | |_ __      __  __ _ | |_   ___ | |__
@@ -11,6 +15,15 @@
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
+  src_folders: ['test'],
+  skip_testcases_on_fail: false,
+
+
+  // See https://nightwatchjs.org/guide/concepts/page-object-model.html
+  page_objects_path: ['page-objects'],
+
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+
   src_folders: ['./test'],
 
 
@@ -34,11 +47,13 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
 
+
   globals_path: './globals.js',
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
     "password": "testemployee" // this is placeholderPassword, Make sure to update.
+
   },
 
 
@@ -69,8 +84,8 @@ module.exports = {
 
       desiredCapabilities: {
         browserName: 'chrome',
-        chromeOptions : {
-          args : ['headless']
+        chromeOptions: {
+          args: ['headless']
         }
         // 'goog:chromeOptions': {
         //   ...
@@ -90,6 +105,7 @@ module.exports = {
 
 
     },
+
 
 
     "employee": {
@@ -125,6 +141,7 @@ module.exports = {
   },
 
 
+
   api_testing: {
     start_session: false,
     webdriver: {
@@ -137,45 +154,33 @@ module.exports = {
 
 
   chrome: {
-
+ 
     desiredCapabilities: {
       browserName: 'chrome',
-      "javascriptEnabled": true,
-      "acceptSslCerts": true,
       'goog:chromeOptions': {
-
         // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
         //
         // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
         w3c: true,
         args: [
-          '--headless',            //for headless mode and Jenkins
-          "window-size=1920,1080", //for headless mode and Jenkins
-          '--no-sandbox',          //for headless mode and Jenkins
-          "disable-gpu",           //for headless mode and Jenkins
-          "--disable-dev-shm-usage"  //for headless mode and Jenkins
+          //'--no-sandbox',
           //'--ignore-certificate-errors',
           //'--allow-insecure-localhost',
-        ],
-        "binary": "/usr/bin/google-chrome"
+          //'--headless'
+        ]
       }
     },
 
     webdriver: {
       start_process: true,
-      server_path: 'node_modules/.bin/chromedriver',
-      port: 9515,
-      host: 'localhost',
-      ssl: false,
-      default_path_prefix: '',
-      proxy: undefined,
+      server_path: '',
+
       cli_args: [
         // --verbose
       ]
     }
   },
-
-
+  
   edge: {
     desiredCapabilities: {
       browserName: 'MicrosoftEdge',
@@ -251,7 +256,7 @@ module.exports = {
       ]
     }
   },
-
+  
   'android.real.chrome': {
     desiredCapabilities: {
       real_mobile: true,
@@ -273,7 +278,7 @@ module.exports = {
         // androidDeviceSerial: ''
       },
     },
-
+  
     webdriver: {
       start_process: true,
       server_path: '',
@@ -305,7 +310,7 @@ module.exports = {
         // androidDeviceSerial: ''
       },
     },
-
+  
     webdriver: {
       start_process: true,
       // path to chromedriver executable which can work with the factory
@@ -316,7 +321,7 @@ module.exports = {
       ]
     }
   },
-
+  
   app: {
     selenium: {
       start_process: true,
@@ -341,7 +346,7 @@ module.exports = {
       start_process: false
     }
   },
-
+  
   'app.android.emulator': {
     extends: 'app',
     'desiredCapabilities': {
@@ -399,9 +404,7 @@ module.exports = {
       }
     }
   },
-
-  "@nightwatch/apitesting": {
+  "@nightwatch/apitesting" : {
     "log_responses": true
   }
 }
-
