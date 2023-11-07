@@ -34,7 +34,7 @@ describe("Requested session Frontend Automation", () => {
             fetchedElements
                 .chatPage()
                 .clickOnattachFile()
-                .pause(10000)
+                .pause(5000)
                 .clickOnsendButton()
                 .end();
         }),

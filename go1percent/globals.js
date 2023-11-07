@@ -249,6 +249,11 @@ module.exports = {
         'sessionId': '6529144d45bc9a797dfbcb19',
     },
 
+    reporter: (results,done)=>{
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results,done);
+      },
+
     Session: 'Knolx',
     Date: '07 Nov 2023',
     Time: '8:40 - 9:25 AM IST',
@@ -257,5 +262,6 @@ module.exports = {
     ExpectedTitle: 'new newnewn ewn',
     Description: 'Description',
     SlideURL: 'Slide URL',
+
 
 };

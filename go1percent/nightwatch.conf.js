@@ -68,7 +68,10 @@ module.exports = {
       },
 
       desiredCapabilities: {
-        browserName: 'chrome'
+        browserName: 'chrome',
+        chromeOptions : {
+          args : ['headless']
+        }
         // 'goog:chromeOptions': {
         //   ...
         //   // specify the locateStrategy as xpath
