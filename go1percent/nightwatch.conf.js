@@ -18,7 +18,7 @@ module.exports = {
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
+  page_objects_path: ['page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
@@ -36,7 +36,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
 
-  // globals_path: './globals.js',
+  globals_path: './globals.js',
 
 
     globals: {
@@ -115,6 +115,14 @@ module.exports = {
           // very verbose geckodriver logs
           // '-vv'
         ]
+    //     start_process: true,
+    //  server_path: '',
+    //  port: 4444,
+    //  host: 'localhost',
+    //  ssl: false,
+    //  default_path_prefix: '',
+    //  proxy: undefined,
+    //  cli_args: []
       }
     },
 
@@ -399,9 +407,3 @@ module.exports = {
     }
   }
 }
-
-
-
-
-
-
