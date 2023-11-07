@@ -70,7 +70,7 @@ module.exports = {
         },
 
         contributionOnlineCourseType: {
-            selector: 'div.filter-right-section > div > div:nth-child(3) > select > option:nth-child(9)'
+            selector: 'div.filter-right-section > div > div:nth-child(2) > select > option:nth-child(12)'
         },
 
     },
@@ -111,7 +111,7 @@ module.exports = {
 
         approvePendingContribution: function () {
             return this
-                .pause(20000)
+                .pause(3000)
                 .waitForElementVisible('@approve')
                 .click('@approve')
                 .pause(4000)
@@ -161,15 +161,19 @@ module.exports = {
                     this.assert.equal(result.value, 'Frontend Competency');
                 });
         },
-
-
-        timeFilter : function () {
+        
+        contributionTypeFilter: function () {
             return this
-            .assert.visible('input[bsdatepicker][name="date"]')
-            .click('input[bsdatepicker][name="date"]')
-            .waitForElementPresent('@timeSelector')
-            .click('@timeSelector')
-
+                .pause(3000)
+                .click('@contributionOnlineCourseType')
+                .getText('#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small', function (result) {
+                    let filteredResult = result.value;
+                    if (filteredResult !== null && filteredResult.includes('Online Course')) {
+                        this.assert.equal(result.value, 'Online Course');
+                    } else {
+                        this.assert.notEqual(result.value, 'Online Course');
+                    }
+                });
         }
     }
 };

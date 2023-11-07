@@ -1,26 +1,24 @@
+/**
+ * Automated testing script for Approvals and Contributions page.
+ * This script performs various actions on the page using Nightwatch.js.
+ */
+
 module.exports = {
+    /**
+     * Before all test cases, perform setup actions:
+     * @param {Object} browser - Nightwatch.js browser object
+     */
+
     before: function (browser) {
         browser
             .maximizeWindow()
             .page.login()
             .navigate()
-            .setValue('@emailInput', 'testadmin')
-            .setValue('@passwordInput', 'testadmin')
+            .enterCredentials('testadmin', 'testadmin')
             .signIn()
-    },
-
-    beforeEach:(function(browser){
-        pageObject = browser.page.review_contribution.approvals();
-   
-       }),
-
-    'Approvals': function (browser) {
-        pageObject.approvalsPage();
-    },
-
-    'Approvals Contribution Page': function (browser) {
+        pageObject = browser.page.review_contribution.approvals()
+        pageObject.approvalsPage()
         pageObject.openApprovalsContributionPage();
-
     },
 
     'Verify Filter fields': function (browser) {
@@ -35,7 +33,7 @@ module.exports = {
         pageObject.rejectPendingContribution();
     },
 
-    'Search a nasher': function (browser) {
+    'Search a Nasher': function (browser) {
         pageObject.searchNasher();
     },
 
@@ -43,9 +41,11 @@ module.exports = {
         pageObject.competencyFilter();
     },
 
+    'Filter by competency type': function (browser) {
+        pageObject.contributionTypeFilter();
+    },
+
     after: function (browser) {
         browser.end();
     },
 };
-
-

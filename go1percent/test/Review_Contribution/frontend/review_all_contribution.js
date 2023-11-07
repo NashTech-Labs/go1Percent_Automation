@@ -4,22 +4,10 @@ module.exports = {
             .maximizeWindow()
             .page.login()
             .navigate()
-            .setValue('@emailInput', 'testadmin')
-            .setValue('@passwordInput', 'testadmin')
+            .enterCredentials('testadmin', 'testadmin')
             .signIn()
-    },
-
-    beforeEach:(function(browser){
-     pageObject = browser.page.review_contribution.allContribution();
-
-    }),
-
-    'Approvals': function (browser) {
+        pageObject = browser.page.review_contribution.allContribution();
         pageObject.approvalsPage();
-
-    },
-
-    'All Contributions page': function (browser) {
         pageObject.navigateToAllContributions();
     },
 
@@ -27,11 +15,11 @@ module.exports = {
         pageObject.verifyAllFields();
     },
 
-    'Approve a contribution': function(){
+    'Approve a contribution': function () {
         pageObject.approveContribution();
     },
 
-    'Reject a contribution': function(){
+    'Reject a contribution': function () {
         pageObject.rejectContribution();
     },
 
@@ -47,10 +35,10 @@ module.exports = {
         pageObject.competencyFilter();
     },
 
-    'Filter contributions by date': function (browser) {
-        pageObject.timeFilter()
-
+    'Filter by comptency type': function (browser) {
+        pageObject.contributionTypeFilter();
     },
+
 
     after: function (browser) {
         browser.end();

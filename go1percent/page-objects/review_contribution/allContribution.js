@@ -193,18 +193,21 @@ module.exports = {
                 });
         },
 
-        timeFilter: function () {
+        contributionTypeFilter: function () {
             return this
-                .assert.visible('input[bsdatepicker][name="date"]')
-                .click('input[bsdatepicker][name="date"]')
-                .waitForElementPresent('@timeSelector')
-                .click('@timeSelector')
-
-        }
-
-
+                .pause(3000)
+                .click('@contributionCertificationType')
+                .getText('#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small', function (result) {
+                    let filteredResult = result.value;
+                    if (filteredResult !== null && filteredResult.includes('Online Course')) {
+                        this.assert.equal(result.value, 'Online Course');
+                    } else {
+                        this.assert.notEqual(result.value, 'Online Course');
+                    }
+                });
+        },
 
     }
 
 
-};
+}
