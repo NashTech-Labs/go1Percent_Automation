@@ -27,7 +27,7 @@ module.exports = {
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
+  page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE', 'page-objects/Techhub_EmployeeUser_FE'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
@@ -143,7 +143,6 @@ module.exports = {
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         'goog:chromeOptions': {
-
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
