@@ -36,17 +36,16 @@ module.exports ={
     },
     'verify user created ticket should be closed by admin': function(browser){
         
-        var admin=browser.page.admin()
-        ticket =browser.page.tickets()
-        ticket.fillAllFields().submitAndVerifySuccess().pause()
+        var admin=browser.page.ticket_raised.admin()
+        var ticket=browser.page.ticket_raised.tickets()
+        ticket.fillAllFields().submitAndVerifySuccess()
         admin.switchToAdminHelpDesk()
         var ticketId=admin.updateTicket('@setStatusClose')
-        var ticket=browser.page.tickets()
         ticket.verifyUpdatedTicketStatus(ticketId,'@closedTickets')
     },
     'verify admin should be able to reopen closed tickets': function(){
 
-        var admin=browser.page.admin()
+        var admin=browser.page.ticket_raised.admin()
         admin
         .switchToAdminHelpDesk().selectClosedTickets()
         reopnenedTicketId=admin.updateTicket('@setStatusOpen')
