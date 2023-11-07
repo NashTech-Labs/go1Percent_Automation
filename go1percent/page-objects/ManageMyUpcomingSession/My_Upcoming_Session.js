@@ -30,7 +30,7 @@ module.exports = {
 
         ListPresent: {
             locateStrategy: 'xpath',
-            selector: '(//div[@class="p-3"])[7]',
+            selector: '//div[@class="p-3"]',
         },
 
         ApprovedTemplate: {
@@ -190,11 +190,27 @@ module.exports = {
         BackButton: {
 
             selector: '.btn.backBtn.overall-txt-color.card.addIcon'
-        }
+        },
+
+        PendingForApproval: {
+
+            selector: '(//span[text()=" Pending for Approval "])[1]',
+            locateStrategy: 'xpath',
+        },
+
+
 
     },
 
     commands: [{
+
+        ClickOnListedSession() {
+
+            return this
+                .waitForElementVisible('@ListPresent', 10000)
+                .click('@ListPresent')
+
+        },
 
         ClickOnUpcomingSession() {
             return this
@@ -213,7 +229,7 @@ module.exports = {
                 .click('@ApprovedTemplate')
                 .getText('@ApprovedPageTitle', function (result) {
                     let Title = result.value;
-                  //  console.log(Title);
+                    //  console.log(Title);
                     //  return { Expected, Title };
                     //browser.expect(value).to.be.eq(expected_value);
 
@@ -227,23 +243,22 @@ module.exports = {
                 .waitForElementVisible('@UpcomingSession', 10000)
                 .click('@UpcomingSession')
                 .waitForElementVisible('@ListPresent', 10000)
-            .getText('@ListPresent',function(result){
-                const AllData=result.value;
-               // console.log(AllData);
-            });
+                .getText('@ListPresent', function (result) {
+                    const AllData = result.value;
+                    // console.log(AllData);
+                });
 
         },
 
         ClickOnAnySession() {
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 //.waitForElementVisible('@EditButton',5000)
                 .click('@EditButton')
                 .waitForElementPresent('@TextBox', 10000)
                 .click('@TextBox')
-                .setValue('@TextBox', 'Testing Title')
+                .setValue('@TextBox', 'Testing Automation')
                 .waitForElementPresent('@SaveButton', 10000)
                 .click('@SaveButton')
                 .waitForElementVisible('@ToastMessage', 10000)
@@ -276,8 +291,6 @@ module.exports = {
 
             return this
 
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
                 .waitForElementPresent('@Tags', 10000)
                 .click('@Tags')
                 .waitForElementVisible('@AddTagTextBox', 10000)
@@ -292,8 +305,6 @@ module.exports = {
 
             return this
 
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
                 .waitForElementPresent('@RemoveTag', 10000)
                 .pause(5000)
                 .click('@RemoveTag')
@@ -303,14 +314,13 @@ module.exports = {
         UpdateDescriptionBox() {
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
                 .waitForElementVisible('@DescriptionTextBox', 10000)
                 .getAttribute('@DescriptionTextBox', 'value', function (result) {
                     var attributeValue = result.value;
-                   // console.log(attributeValue);
+                    // console.log(attributeValue);
 
                     this.setValue('textarea[type="text"]', attributeValue + 'NashTech')
                 })
@@ -322,8 +332,7 @@ module.exports = {
 
         UnableToUpdateDescription() {
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
                 .waitForElementVisible('@DescriptionTextBox', 10000)
@@ -337,8 +346,7 @@ module.exports = {
             const INVALID_DESCRIPTION = 'Hi To All I Am Here'.repeat(MAX_DESCRIPTION_LENGTH + 1);
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 .waitForElementPresent('@DescriptionEditButton', 10000)
                 .click('@DescriptionEditButton')
                 .waitForElementVisible('@DescriptionTextBox', 10000)
@@ -366,8 +374,7 @@ module.exports = {
         UpdateSlideURLField() {
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 .waitForElementVisible('@SlideURlBox', 10000)
                 .click('@SlideURlBox')
                 .waitForElementVisible('@URLSaveButton', 10000)
@@ -378,8 +385,7 @@ module.exports = {
         NotUpdateSlideURL() {
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 .waitForElementVisible('@SlideURlBox', 10000)
                 .click('@SlideURlBox')
                 .clearValue('@AfterClickingURLBox')
@@ -391,8 +397,7 @@ module.exports = {
         InvalideSlideURL() {
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
+
                 .waitForElementVisible('@SlideURlBox', 10000)
                 .click('@SlideURlBox')
                 .setValue('@AfterClickingURLBox', 'GoodEvening')
@@ -403,8 +408,6 @@ module.exports = {
         BackButtonEnable() {
 
             return this
-                .waitForElementVisible('@ListPresent', 10000)
-                .click('@ListPresent')
                 .waitForElementVisible('@BackButton', 10000)
                 .click('@BackButton')
 
