@@ -2,22 +2,11 @@ const globals = require('../../globals')
 const Homepage = browser.page.FeedbackForm.loginPage();
 const feedbackFormPage = browser.page.FeedbackForm.feedbackFormSectionPage();
 const formCreateUpdatePage = browser.page.FeedbackForm.formCreateUpdatePage();
-const feedbackUrl = 'https://nashtechglobal.qa.go1percent.com/knolx/feedback-forms';
-
-const sessionInUseMessage = 'The Form is currently being used in following session(s)';
-const formUpdateMessage = 'Form Updated Successfully';
-const deleteDialogBoxMessage = 'Are you sure want to delete this form ?';
-const addNPSMessage = 'Please add a NPS question';
-const addFormTitleMessage = 'Please enter a Form Title';
-const addQuestionMessage = 'Question cannot be empty';
-const formCreatedMessage = 'Form created successfully';
-const searchQuery = 'Search Me';
-const formDeletedMessage = 'Form Deleted Successfully';
 
 const data = globals.feedbackForm.uiData;
 
 // ----------------------------------------------------------------------
-//   >> using command "npx nightwatch ./test/Feedback-form-automation/UI-tests/"
+//    >> using command "npx nightwatch ./test/Feedback-form-automation/feedbackForm_ui_tests.js"
 // -------------------------------------------------------------------------
 describe('Feedback-form UI tests', function () {
 
