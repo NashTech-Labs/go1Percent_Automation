@@ -1,5 +1,9 @@
 module.exports = {
-    url: "",
+
+    url: "https://nashtechglobal.qa.go1percent.com/",
+
+
+
 
     elements: {
         emailInput: '#username',

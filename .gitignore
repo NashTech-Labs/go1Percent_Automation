@@ -1,6 +1,12 @@
-go1percent/node_modules/
+
+
 go1percent/tests_output/
-# Compiled class file
+go1percent/node_modules/
+go1percent/allure-report/
+go1percent/allure-results/
+
+
+
 *.class
 
 # Log file
@@ -23,4 +29,11 @@ go1percent/tests_output/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
 replay_pid*
+go1percent/node_modules/
+go1percent/tests_output/
+go1percent/package-lock.json
+go1percent/package.json
+go1percent/nightwatch
