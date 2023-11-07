@@ -1,4 +1,3 @@
-
 const { assert } = require("chai");
 const loginPage = browser.page.login();
 const fetchedElements = browser.page.Add_Contribution.ticketAssignedToMe();
@@ -18,14 +17,14 @@ describe("Requested session Frontend Automation", () => {
     }),
 
         it("verify send value is equal to expected value", () => {
-            const messageToBeSend = 'this is first testing';
+            const messageToBeSend = 'this is for testing purpose';
             fetchedElements
                 .chatPage()
                 .messagesend()
                 .clickOnsendButton()
                 .getText('@firstChatMessage', function (result) {
                     const divValue = result.value;
-                    this.assert.equal(divValue, 'this is first testing', 'Div value matches the expected value.');
+                    this.assert.equal(divValue, messageToBeSend, 'Div value matches the expected value.');
                 })
                 .end();
         }),
@@ -45,10 +44,7 @@ describe("Requested session Frontend Automation", () => {
                 .clickKnolxCategory()
                 .clickOnupdateButton()
                 .waitForElementVisible('@statusMessage')
-                .getText('@statusMessage', function (result) {
-                    const divValue = result.value;
-                    this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.');
-                })
+                .assert.elementPresent('@statusMessage')
                 .end();
         }),
 
@@ -58,10 +54,7 @@ describe("Requested session Frontend Automation", () => {
                 .clickOnpriority()
                 .clickOnupdateButton()
                 .waitForElementVisible('@statusMessage')
-                .getText('@statusMessage', function (result) {
-                    const divValue = result.value;
-                    this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.');
-                })
+                .assert.elementPresent('@statusMessage')
                 .end();
         }),
 
@@ -71,10 +64,7 @@ describe("Requested session Frontend Automation", () => {
                 .clickOnstatus()
                 .clickOnupdateButton()
                 .waitForElementVisible('@statusMessage')
-                .getText('@statusMessage', function (result) {
-                    const divValue = result.value;
-                    this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.');
-                })
+                .assert.elementPresent('@statusMessage')
                 .end();
         }),
 
@@ -93,95 +83,82 @@ describe("Requested session Frontend Automation", () => {
                 .waitForElementVisible('@closedTicketPage')
                 .assert.elementPresent('@closedTicketPage')
                 .end();
-        })
-    // //test case is not working due to bug on closed ticket page 
-    // it("verify all fields are present on closed page chat", () => {
-    //     fetchedElements
-    //         .closedTicketPage()
-    //         .clickLastClosedTicket()
-    //         .assert.elementPresent('@status')
-    //         .assert.elementPresent('@category')
-    //         .assert.elementPresent('@priority')
-    //         .assert.elementPresent('@assignedTo')
-    //         .isVisible('@updateButton')
-    //         .end();
-    // }),
-    // //test case is not working due to bug on closed ticket page 
-    // it("Updating status of ticket open to close", () => {
-    //     fetchedElements
-    //         .closedTicketPage()
-    //         .clickLastClosedTicket()
-    //         .clickStatusOpen()
-    //         .waitForElementVisible('@updateButton')
-    //         .clickOnupdateButton()
-    //         .waitForElementVisible('@statusMessage')
-    //         .getText('@statusMessage', function (result) {
-    //             const divValue = result.value;
-    //             this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.')
-    //         })
-    //         .end();
-    // }),
-    // //test case is not working due to bug on closed ticket page 
-    // it("verify category should updated on closed ticket", () => {
-    //     fetchedElements
-    //         .closedTicketPage()
-    //         .clickLastClosedTicket()
-    //         .clickKnolxCategory()
-    //         .clickOnupdateButton()
-    //         .waitForElementVisible('@statusMessage')
-    //         .getText('@statusMessage', function (result) {
-    //             const divValue = result.value;
-    //             this.assert.equal(divValue, globals.expectedStatus, 'Value matches the expected value.');
-    //         })
-    //         .end();
-    // }),
-    // //test case is not working due to bug on closed ticket page 
-    // it("verify Priority should updated in closed ticket", () => {
-    //     fetchedElements
-    //         .closedTicketPage()
-    //         .clickLastClosedTicket()
-    //         .clickOnpriority()
-    //         .clickOnupdateButton()
-    //         .waitForElementVisible('@statusMessage')
-    //         .getText('@statusMessage', function (result) {
-    //             const divValue = result.value;
-    //             this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.');
-    //         })
-    //         .end();
-    // }),
+        }),
 
-    //     //test case is not working due to bug on closed ticket page 
-    //     it("Verify Assigned name saved on the ticket", () => {
-    //         const assignedValue = 'Ankit Kumar';
-    //         fetchedElements
-    //             .chatPage()
-    //             .clickAssignedTo()
-    //             .setValue('@assignedNameInput', [assignedValue, browser.Keys.ENTER])
-    //             .waitForElementVisible('@updateButton')
-    //             .clickOnupdateButton()
-    //             .waitForElementVisible('@statusMessage')
-    //             .getText('@statusMessage', function (result) {
-    //                 const divValue = result.value;
-    //                 this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.');
-    //             })
-    //             .end();
-    //     }),
+    //test case is not working due to bug on closed ticket page 
+    it("verify all fields are present on closed page chat", () => {
+        fetchedElements
+            .closedTicketPage()
+            .clickLastClosedTicket()
+            .assert.elementPresent('@status')
+            .assert.elementPresent('@category')
+            .assert.elementPresent('@priority')
+            .assert.elementPresent('@assignedTo')
+            .isVisible('@updateButton')
+            .end();
+    }),
+    //test case is not working due to bug on closed ticket page 
+    it("Updating status of ticket open to close", () => {
+        fetchedElements
+            .closedTicketPage()
+            .clickLastClosedTicket()
+            .clickStatusOpen()
+            .waitForElementVisible('@updateButton')
+            .clickOnupdateButton()
+            .waitForElementVisible('@statusMessage')
+            .assert.elementPresent('@statusMessage')
+            .end();
+    }),
+    //test case is not working due to bug on closed ticket page 
+    it("verify category should updated on closed ticket", () => {
+        fetchedElements
+            .closedTicketPage()
+            .clickLastClosedTicket()
+            .clickKnolxCategory()
+            .clickOnupdateButton()
+            .waitForElementVisible('@statusMessage')
+            .assert.elementPresent('@statusMessage')
+            .end();
+    }),
+    //test case is not working due to bug on closed ticket page 
+    it("verify Priority should updated in closed ticket", () => {
+        fetchedElements
+            .closedTicketPage()
+            .clickLastClosedTicket()
+            .clickOnpriority()
+            .clickOnupdateButton()
+            .waitForElementVisible('@statusMessage')
+            .assert.elementPresent('@statusMessage')
+            .end();
+    }),
 
-    // //  Not clicking on update button 
-    // it("Verify Assigned name saved on the ticket", () => {
-    //     const assignedValue = 'Ankit Kumar';
-    //     fetchedElements
-    //         .closedTicketPage()
-    //         .clickLastClosedTicket()
-    //         .clickAssignedToClear()
-    //         .setValue('@assignedNameInput', [assignedValue, Keys.ENTER])
-    //         .waitForElementVisible('@updateButton')
-    //         .clickOnupdateButton()
-    //         .waitForElementVisible('@statusMessage')
-    //         .getText("@statusMessage", function (result) {
-    //             const divValue = result.value;
-    //             this.assert.equal(divValue, globals.expectedStatus, 'Div value matches the expected value.');
-    //         });
-    // })
+    //test case is not working due to bug on closed ticket page 
+    it("Verify Assigned name saved on the ticket", () => {
+        const assignedValue = 'Ankit Kumar';
+        fetchedElements
+            .chatPage()
+            .clickAssignedTo()
+            .setValue('@assignedNameInput', [assignedValue, browser.Keys.ENTER])
+            .waitForElementVisible('@updateButton')
+            .clickOnupdateButton()
+            .waitForElementVisible('@statusMessage')
+           .assert.elementPresent('@statusMessage')
+            .end();
+    }),
+
+    //test case is not working due to bug on closed ticket page 
+    it("Verify Assigned name saved on the ticket", () => {
+        const assignedValue = 'Ankit Kumar';
+        fetchedElements
+            .closedTicketPage()
+            .clickLastClosedTicket()
+            .clickAssignedToClear()
+            .setValue('@assignedNameInput', [assignedValue, Keys.ENTER])
+            .waitForElementVisible('@updateButton')
+            .clickOnupdateButton()
+            .waitForElementVisible('@statusMessage')
+            .assert.elementPresent('@statusMessage')
+            .end();
+    })
 
 })

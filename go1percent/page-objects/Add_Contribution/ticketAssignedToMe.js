@@ -1,4 +1,4 @@
-const message = 'this is first testing';
+const message = 'this is for testing purpose';
 module.exports = {
 
     url: 'https://ticket-backend.qa.go1percent.com',
@@ -45,10 +45,6 @@ module.exports = {
             selector: 'button[class="send-button bg-gradient-info"]'
         },
 
-        lastSendMessage: {
-            selector: "body > app-root > div > app-main > section > main > div > div > div > app-helpdesk > div > app-assigned-ticket-detail-view > div.row > div > div.col-xl-7.col-lg-6 > div > div:nth-child(14) > div:nth-child(2)"
-        },
-
         attachFile: {
             selector: 'label[class="attach_file cursor-point"]'
         },
@@ -90,7 +86,7 @@ module.exports = {
         },
 
         savedConversation: {
-            selector: "/html/body/app-root/div/app-main/section/main/div/div/div/app-helpdesk/div/app-assigned-ticket-detail-view/div[2]/div/div[1]/div",
+            selector: "//div[@class='card tab-bar border-0 mt-4 pr-2 pb-3 p-4']",
             locateStrategy: 'xpath'
         },
         assignedNameInput: {
@@ -221,7 +217,6 @@ module.exports = {
                     .click('@helpdesk')
                     .click('@ticketAssignedTome')
                     .click('@closeTicketButton')
-                //.click('@latestClosedTicket')
             },
 
             clickLastClosedTicket() {

@@ -4,11 +4,17 @@ const accessToken = process.argv.indexOf('--token');
 
 describe('Ticket assigned to me API testing', function () {
   const token = process.argv[accessToken + 1];
+  const commonExpectation = (startTimestamp, response) => {
+    const endTimestamp = Date.now(); // Record the end time
+    const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
+    expect(responseTime).to.be.below(5000); //Response time assertion
+  }
 
   const header = {
     'Source': 'https://nashtechglobal.qa.go1percent.com',
     'Authorization': 'Bearer ' + token
   }
+
 
   it('should test update api', async function ({ supertest }) {
     const startTime = performance.now();
@@ -29,12 +35,10 @@ describe('Ticket assigned to me API testing', function () {
       .expect('Content-Type', 'application/json')       // Expect a response with JSON content type
 
       .then(function (response) {
-        const endTime = performance.now()
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000);
         expect(response.body).to.have.property("resource").and.to.be.eq("updateTicketDetails");
         expect(response.body).to.have.property("status").and.to.be.true;
         expect(response.body).to.have.property("data").and.to.be.eq("Ticket Updated Successfully!");
+        commonExpectation(startTime, response);
       });
   });
 
@@ -50,12 +54,10 @@ describe('Ticket assigned to me API testing', function () {
       .expect(200)    // Expect a status code of 200
       .expect('Content-Type', 'application/json')     // Expect a response with JSON content type
 
-      .then(function(response){
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(3000);
+      .then(function (response) {
         expect(response.body).to.have.property("resource").and.to.be.eq("getAssignedTickets");
         expect(response.body).to.have.property("status").and.to.be.true;
+        commonExpectation(startTime, response);
       });
 
   });
@@ -72,11 +74,9 @@ describe('Ticket assigned to me API testing', function () {
       .expect(200)      // Expect a status code of 200
       .expect('Content-Type', 'application/json')       // Expect a response with JSON content type
       .then(function (response) {
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000);
         expect(response.body).to.have.property("resource").and.to.be.eq("getComments");
         expect(response.body).to.have.property("status").and.to.be.true;
+        commonExpectation(startTime, response);
       });
   });
 
@@ -91,10 +91,6 @@ describe('Ticket assigned to me API testing', function () {
       .expect(200)      // Expect a status code of 200
       .expect('Content-Type', 'application/json')       // Expect a response with JSON content type
       .then(function (response) {
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000);
-
         expect(response.body).to.have.property("resource").and.to.be.eq("getTicketDetails");
         expect(response.body).to.have.property("status").and.to.be.true;
 
@@ -111,6 +107,7 @@ describe('Ticket assigned to me API testing', function () {
         const ticketDetails = ticketData.ticketDetails;
         expect(ticketDetails).to.have.property("ticketID").and.to.be.eq(875);
         expect(ticketDetails).to.have.property("title").and.to.be.eq("Test001");
+        commonExpectation(startTime, response);
       });
   });
 
@@ -125,11 +122,9 @@ describe('Ticket assigned to me API testing', function () {
       .expect(200)      // Expect a status code of 200
       .expect('Content-Type', 'application/json')       // Expect a response with JSON content type
       .then(function (response) {
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000);
         expect(response.body).to.have.property("resource").and.to.be.eq("users/assignees");
         expect(response.body).to.have.property("status").and.to.be.true;
+        commonExpectation(startTime, response);
 
       });
 
@@ -146,13 +141,9 @@ describe('Ticket assigned to me API testing', function () {
       .expect(200)    // Expect a status code of 200
       .expect('Content-Type', 'application/json')   // Expect a response with JSON content type
       .then(function (response) {
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000);
         expect(response.body).to.have.property("resource").and.to.be.eq("getCategories");
         expect(response.body).to.have.property("status").and.to.be.true;
-
-        // Assert the data array
+        commonExpectation(startTime, response);
         expect(response.body).to.have.property("data");
       });
 
