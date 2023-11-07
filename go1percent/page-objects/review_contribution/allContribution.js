@@ -30,11 +30,11 @@ module.exports = {
         },
 
         allStatus: {
-            selector: 'body > app-root > div > app-main > section > main > div > div > div > app-contribution > div > div > div.col-12 > div > div.d-flex.mb-3.filter-tab > div.filter-right-section > div > div:nth-child(2) > select'
+            selector: 'div.filter-right-section > div > div:nth-child(2)'
         },
 
         approvedStatus: {
-            selector: 'body > app-root > div > app-main > section > main > div > div > div > app-contribution > div > div > div.col-12 > div > div.d-flex.mb-3.filter-tab > div.filter-right-section > div > div:nth-child(2) > select > option:nth-child(2)'
+            selector: 'div.filter-right-section > div > div:nth-child(2) > select > option:nth-child(2)'
         },
 
         approvedButton: {
