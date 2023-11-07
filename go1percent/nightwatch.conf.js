@@ -91,8 +91,6 @@ module.exports = {
         //   locateStrategy: 'xpath',
 
         // },
-
-
       },
 
       webdriver: {
