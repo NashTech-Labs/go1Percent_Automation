@@ -32,14 +32,14 @@ module.exports={
              return ticketid;
         },
         verifyUpdatedTicketStatus(ticketNumber){
-            browser.page.logout().signOut()
-            browser.page.login().enterCredentials('testemployee','testemployee').signIn()
-            browser.page.tickets().navigateToHelpDesk()
+             browser.page.ticket_raised.logout().signOut()
+             browser.page.login().enterCredentials('testemployee','testemployee').signIn()
+             browser.page.ticket_raised.tickets().navigateToHelpDesk()
             .click('@closedTickets')
             .assert.textContains('@selectFirstTicket',ticketNumber)
         },
         switchToAdminHelpDesk(){
-            browser.page.logout().signOut()
+            browser.page.ticket_raised.logout().signOut()
             browser.page.login().enterCredentials('testadmin','testadmin').signIn()
             return this.navigateToAdminHelpDesk()
         },
