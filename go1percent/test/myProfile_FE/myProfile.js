@@ -1,6 +1,8 @@
 const DataSet = require('../../globals');
 //const MyProfilePage = require('../../page-objects/myProfilePage');
 //const Login=browser.page.login();
+const userName = browser.globals.userName;
+const password = browser.globals.password;
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
@@ -16,7 +18,7 @@ describe("My Profile Page Frontend Automation", () => {
             .page.login()
             .navigate()
             .pause(3000)
-            .enterCredentials(browser.globals.userName, browser.globals.password)
+            .enterCredentials(userName, password)
             //browser.pause(3000);
             .signIn()
             .assert.urlContains("my-dashboard", 'URL contains my-dashboard');
@@ -31,38 +33,9 @@ describe("My Profile Page Frontend Automation", () => {
     afterEach(function (browser) {//testadmin
         browser.end();
     });
-    // it('View rewards button is present on the profile page when no reward is redeemed till now', function (browser) {
-    //     myProfile
-    //         .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
-    //         //.waitForElementVisible()
-    //         .pause(10000)
-    //         .assert.elementPresent('@ViewRewardBtn');
-    // });
-
-    // it('Re-directed to the rewards page when he clicks on view rewards button', function (browser) {//testadmin
-    //     myProfile
-    //         .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
-    //         //.waitForElementVisible()
-    //         .pause(8000)
-    //         .ClickOnRewardButton()
-    //         .pause(4000)
-    //         .assert.urlContains("rewards/list", 'You entered the View Rewards Page');
-
-
-    // });
-    // it('Re-directed to the rewards page and can able to edit the rewards as well', function (browser) {//testadmin
-    //     myProfile
-    //         .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
-    //         .pause(8000)
-    //         .ClickOnRewardButton()
-    //         .pause(3000)
-    //         .ClickOnRewardEditCancelBtn()
-    //         .pause(2000)
-    //         //.console.log("Rewards can be edit from admin user");
-            
-
-    // });
+    
     it("No Badges Earned' message when no badges were earned to their profile", function (browser) {//testemployee1
+        
         myProfile
             .pause(3000)
             .BadgeCheck();
@@ -85,7 +58,6 @@ describe("My Profile Page Frontend Automation", () => {
             //.assert.textContains('@ProfilePicSuccessMsg', profilePicUploadSuccessMsg)
             .expect('@ProfilePicSuccessMsg').to.be.eq(profilePicUploadSuccessMsg)
             .pause(2000);
-//npx nightwatch test/knolx_session/Knolx_sessions_fe.js --env default,edge,firefox
      });
     it('Name and competency name on the profile page', function (browser) {
         myProfile
@@ -102,17 +74,17 @@ describe("My Profile Page Frontend Automation", () => {
         .assert.elementPresent('@MonthlyScore','User Monthly Score Visible')
 
     });
-    // it('See view rewards list by clicking on the view rewards button', function (browser) {//testadmin
-    //     myProfile
-    //         .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
-    //         //.waitForElementVisible()
-    //         .pause(8000)
-    //         .ClickOnRewardButton()
-    //         .pause(4000)
-    //         .assert.urlContains("rewards/list", 'View Rewards list Page is visible');
+    it('See view rewards list by clicking on the view rewards button', function (browser) {//testadmin
+        myProfile
+            .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+            //.waitForElementVisible()
+            .pause(8000)
+            .ClickOnRewardButton()
+            .pause(4000)
+            .assert.urlContains("rewards/list", 'View Rewards list Page is visible');
 
 
-    // });
+    });
     it('View the reward if redeemed', function (browser) {
         myProfile
                 .pause(12000)
@@ -134,7 +106,7 @@ describe("My Profile Page Frontend Automation", () => {
             
 
     // });
-    it('See month and score and rank by clicking on the badges', function (browser) {//testemployee
+    it('See month and score and rank by clicking on the badges', function (browser) {
         myProfile
         .pause(12000)
         .ClickOnBadge()
