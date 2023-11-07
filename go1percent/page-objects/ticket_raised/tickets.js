@@ -1,4 +1,4 @@
-const elementsVisibility = {
+const customcommands = {
     isElementVisible: function (element) {
         return this.isVisible(element, function (result) {
             this.assert.equal(result.value, true, "[element is visible]");
@@ -14,7 +14,7 @@ const elementsVisibility = {
     },
 
     navigateToHelpDesk() {
-        return this.waitForElementVisible('@helpdeskSection')
+        return this.waitForElementVisible('@helpdeskSection',10000)
             .click('@helpdeskSection')
             .click('@ticketRaisedByMeSelector')
 
@@ -148,5 +148,5 @@ module.exports = {
 
    
     },
-    commands: [elementsVisibility]
+    commands: [customcommands]
 }
