@@ -43,6 +43,7 @@ module.exports = {
         // Filter by Calender
         calender: "input[name='date']",
         nextCalenderButton: "button.next",
+        previousCalenderButton: "button.previous",
         fourNov: {
             selector: "(//span[text()='4'])[1]",
             locateStrategy: 'xpath'
@@ -94,12 +95,13 @@ module.exports = {
         selectDateFromCalenderUpcomingSessions() {
             return this
                 .clickOnElement('@calender')
-                .clickOnElement('@nextCalenderButton')
+                // .clickOnElement('@nextCalenderButton')
                 .clickOnElement('@fourNov')
         },
         selectDateFromCalenderPastSessions() {
             return this
                 .clickOnElement('@calender')
+                .clickOnElement('@previousCalenderButton')
                 .clickOnElement('@fourteenOctInPast')
         },
 

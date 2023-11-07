@@ -5,7 +5,7 @@ describe('api testing', function () {
   const headers = globals.admin.headers;
   const tokenHeaders = globals.admin.tokenHeaders;
   const tokenBody = globals.admin.tokenBody;
-  const urls = globals.urls;
+  const urls = globals.techhubUrls;
 
   let approval_req = [];
 
@@ -57,7 +57,7 @@ describe('api testing', function () {
       });
   });
 
-  it.skip('Approves Request', async function ({ supertest }) {
+  it ('Approves Request', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
       .request(urls.go1percentBase + "/template")
@@ -73,7 +73,7 @@ describe('api testing', function () {
       });
   });
 
-  it.skip('Rejects Request', async function ({ supertest }) {
+  it ('Rejects Request', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
       .request(urls.go1percentBase + "/template")

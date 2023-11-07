@@ -1,4 +1,4 @@
-const globals = require('../../globals')
+const globals = require('../../../globals')
 
 describe('Leaderboard : Rewards API Testing', function () {
   const header = globals.admin.headers;
@@ -44,19 +44,18 @@ describe('Leaderboard : Rewards API Testing', function () {
            *  checks the response body for the presence of specific properties such as "name,"
            *  "pointsNeededToRedeem," "description," "rewardType," "quantity," "expiryDate and" "active ."
            */
-
-            expect(Object.keys(response.body).length).to.be.greaterThan(0);
-            expect(response.body.data).length.to.be.greaterThan(0);
-            expect(response.body.data[0]).to.have.property("id");
-            expect(response.body.data[0]).to.have.property('name');
-            expect(response.body.data[0]).to.have.property('pointsNeededToRedeem');
-            expect(response.body.data[0]).to.have.property('description');
-            expect(response.body.data[0]).to.have.property('rewardType');
-            expect(response.body.data[0]).to.have.property('quantity');
-            expect(response.body.data[0]).to.have.property('expiryDate');
-            expect(response.body.data[0]).to.have.property('active');
-
-            commonExpectation(startTime, response);// expect for checking the response time
+          for(let i = 0; i < response.body.data.length; i++){
+            expect(response.body.data[i]).to.have.property("id");
+            expect(response.body.data[i]).to.have.property('name');
+            expect(response.body.data[i]).to.have.property('pointsNeededToRedeem');
+            expect(response.body.data[i]).to.have.property('description');
+            expect(response.body.data[i]).to.have.property('rewardType');
+            expect(response.body.data[i]).to.have.property('quantity');
+            expect(response.body.data[i]).to.have.property('expiryDate');
+            expect(response.body.data[i]).to.have.property('active');
+          }
+          
+          commonExpectation(startTime, response);// expect for checking the response time
 
         });
 

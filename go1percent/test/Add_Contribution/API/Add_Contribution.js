@@ -23,8 +23,8 @@ const headers = {
       const startTime = new Date().getTime();
         await supertest
         
-          .request(globals.access_token.BaseUrl)
-          .post(globals.Add_Configuration.PostEndPoints)
+          .request(globals.Add_Contribution.BaseUrl)
+          .post(globals.Add_Contribution.PostEndPoints)
           .set(headers)
           .send({
             "title":"Test employee contribution",
@@ -47,8 +47,8 @@ const headers = {
         const startTime = new Date().getTime();
         await supertest
         
-          .request(globals.Add_Configuration.BaseUrl)
-          .get(globals.Add_Configuration.GetEndPoints)
+          .request(globals.Add_Contribution.BaseUrl)
+          .get(globals.Add_Contribution.GetEndPoints)
           .set(headers)
           .expect(200) //Asserting Response Code
          .then(function(response){
