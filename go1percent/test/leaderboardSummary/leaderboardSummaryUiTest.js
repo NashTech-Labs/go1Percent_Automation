@@ -1,4 +1,3 @@
-const { internals } = require("@azure/msal-browser");
 
 // Describe block for UI automation of the leaderboard summary option
 describe('UI automation for leaderboard summary option', () => {
@@ -155,14 +154,6 @@ describe('UI automation for leaderboard summary option', () => {
     leadingpage.pointsSection().selectDate();
   });
 
-  /**
-   * Test case to validate hover functionality on a graph to see contribution types with scores.
-   */
-  it('When i hover on graph Then i should able to see contribution type with score', (client) => {
-    leadingNasherCommonActions()
-    leadingpage.pointsSection()
-    // Include the relevant code for hovering on the graph here.
-  });
 
   /**
  * Test case to expand any contribution and verify visibility of one's own contribution for that type with topic name and date.

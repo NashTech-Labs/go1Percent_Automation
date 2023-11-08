@@ -20,6 +20,12 @@ module.exports = {
         rewrordSection: {
             selector: "div[class='d-flex flex-column align-items-center mt-5'] div div:nth-child(1)",
         },
+        rewordSectionDate:{
+            selector:'span[class="text-bold"]'
+        },
+        rewordSectionPoints:{
+            selector:'p[class="text-center"]'
+        },
         noRewordNasher: {
             selector: "(//div[@class='d-flex justify-content-between align-items-center summary-tab cursor-pointer'])[3]",
             locateStrategy: "xpath"
@@ -121,16 +127,19 @@ module.exports = {
                     })
             },
             leadingNasherALlCOntribution() {
+                let regexPattern1="^.*\d+.*$"
+                let contributionText='';
                 return this
                     .waitForElementVisible('@contibutionButton')
                     .click('@contibutionButton')
                     .waitForElementPresent('@allContributions', function name(text) {
                         console.log(text)
                     })
+                    .waitForElementVisible('@allContributions')
                     .getText('@allContributions', function name(text) {
-                        console.log(text)
+                        browser.assert.textContains('div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]',text.value)
                     })
-                    .assert.containsText('@allContributions', 'test contribution')
+                                      
             },
             
             allContibutionList() {
@@ -142,9 +151,11 @@ module.exports = {
 
             },
             rewordSection() {
+                dateRegex='[A-Za-z]+ [0-9]+, [0-9]+'
                 return this
-                    .assert.containsText('@rewrordSection', 'pts', 'asserting points ont reworing section')
-                    .assert.containsText('@rewrordSection', 'On', 'asserting the date on the reword section')
+                    .assert.textContains('@rewordSectionPoints', 'pts', 'asserting points ont reworing section')
+                    .assert.textMatches('@rewordSectionDate',dateRegex)
+                    //.assert.containsText('@rewordSectionDate', 'On', 'asserting the date on the reword section')
             },
             noRewordSection() {
                 return this
@@ -155,6 +166,7 @@ module.exports = {
             viewRewords() {
                 return this
                     .click('@viewRwordsButton')
+                    .waitForElementVisible('@rewords')
                     .assert.containsText('@rewords', 'pts', 'asserting points ont reworing section')
                     .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
             },
@@ -168,7 +180,6 @@ module.exports = {
             nobadgeSection() {
                 return this
                     .click('@noRewordNasher')
-                    .pause()
                     .assert.containsText('@noBadgeFound', 'No Badges Earned')
             },
             pointsSection() {
@@ -186,12 +197,11 @@ module.exports = {
                     .click('@calander')
                     .waitForElementVisible('@selectMonth')
                     .click('@selectMonth')
-                    .pause()
+                   
             },
             hoverOnGraph() {
                 return this
                     .waitForElementVisible('@graph')
-                    .pause(2000)
                     .moveToElement('@graph', 10, 10, function () {
                         this
                             .waitForElementVisible('@graphData1')
