@@ -6,7 +6,7 @@ module.exports = {
     beforeEach: function (browser) {
         login.beforeEach(browser);
         login['landing on dashboard page'](browser);
-        browser.pause(20000);
+        browser.pause(40000);
         dashboard['navigate to Techhub page'](browser);
         browser.pause(30000);        
     },
@@ -14,21 +14,12 @@ module.exports = {
         login.after(browser);
     },
 
-    //DCTGO1-1244 : Verify Admin user should be Able to view details of Approved TechHubs on All TechHubs page (TC-396) 
-    "View details of Approved TechHubs on All TechHubs page":  function (browser) {
-        techhub['Navigate to All Techhubs page'](browser);
-        techhub['Apply Approved status filter'](browser);
-        browser.pause(2000);
-        techhub['Navigate to request detail page'](browser);
-        techhub['Verify detail page'](browser);
-    },
-
-    //DCTGO1-1245 : Verify user should be able to approve a TechHub request on TechHub details page (TC-397)
-    "Approve a TechHub request on TechHub details page":  function (browser) {
+     //DCTGO1-1245 : Verify user should be able to approve a TechHub request on TechHub details page (TC-397)
+     "Approve a TechHub request on TechHub details page":  function (browser) {
         techhub['Navigate to request detail page'](browser);
         techhub['Approve techhub request and verify'](browser);
     },
-
+    
     //DCTGO1-1247 : Verify user should be able to reject a TechHub request on TechHub details page (TC-399)
      "Reject a TechHub request on TechHub details page":  function(browser){
         techhub['Navigate to request detail page'](browser);
@@ -79,6 +70,15 @@ module.exports = {
         browser.pause(20000);
         techhub['Navigate to request detail page'](browser);
         techhub['Approve second request of same person on same day and check'](browser);
+    },
+
+    //DCTGO1-1244 : Verify Admin user should be Able to view details of Approved TechHubs on All TechHubs page (TC-396) 
+    "View details of Approved TechHubs on All TechHubs page":  function (browser) {
+        techhub['Navigate to All Techhubs page'](browser);
+        techhub['Apply Approved status filter'](browser);
+        browser.pause(2000);
+        techhub['Navigate to request detail page'](browser);
+        techhub['Verify detail page'](browser);
     },
 
     //DCTGO1-1346 : Verify Admin user should be able to navigate to GitHub URL provided in techhub details page
