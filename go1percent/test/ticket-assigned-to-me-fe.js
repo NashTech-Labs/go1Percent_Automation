@@ -1,4 +1,4 @@
-const { assert } = require("chai");
+
 const loginPage = browser.page.login();
 const fetchedElements = browser.page.Add_Contribution.ticketAssignedToMe();
 const globals = require('../globals')
