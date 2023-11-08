@@ -25,7 +25,7 @@ describe('Knolx|Book A Session API', function () {
     it('Check all studio competencies data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
-            .request(headers.url)
+            .request(headers.backend_url)
             .get('knoldus-backend/rest/radar-service/technology/studio')
             .expect(200);
             const expectedStudioIds = [
