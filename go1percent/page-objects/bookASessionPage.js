@@ -29,7 +29,7 @@ module.exports = {
             selector: '//span[@class="bg-unavailable text-white bg-available ng-star-inserted"]',
             locateStrategy: 'xpath'
         },
-        firstAvailableDate: {
+        lastAvailableDate: {
             selector: '(//span[@class="bg-unavailable text-white bg-available ng-star-inserted"])[last()]',
             locateStrategy: 'xpath'
         },
@@ -88,7 +88,7 @@ module.exports = {
 
         fillDetails(){
             return this
-            .clickOnElement('@firstAvailableDate')
+            .clickOnElement('@lastAvailableDate')
             .execute(function () {
               window.scrollBy(0, 400);
             })
@@ -105,19 +105,19 @@ module.exports = {
         
         sessionType(){
             return this
-            .clickOnElement('@firstAvailableDate')
+            .clickOnElement('@lastAvailableDate')
             .clickOnElement('@availableSlots')     
         },
         
         validateDateTime() {
             return this
-            .clickOnElement('@firstAvailableDate')
+            .clickOnElement('@lastAvailableDate')
             .clickOnElement('@availableSlots')
         },
 
         validateDifferentSessions() {
             return this
-              .clickOnElement('@firstAvailableDate')
+              .clickOnElement('@lastAvailableDate')
               .clickOnElement('@availableSlots')
         },
 
@@ -140,15 +140,15 @@ module.exports = {
 
           validateSubCategoryDropdown() {
             return this
-              .clickOnElement('@firstAvailableDate')
+              .clickOnElement('@lastAvailableDate')
               .clickOnElement('@availableSlots')
         },
           
         validateUnselect(){
             return this
-            .clickOnElement('@firstAvailableDate')
+            .clickOnElement('@lastAvailableDate')
             .clickOnElement('@availableSlots')
-            .clickOnElement('@firstAvailableDate')
+            .clickOnElement('@lastAvailableDate')
             .getText('input[type="datetime-local"]', (result) => {
                 const expectedValue = "";
                 this.assert.strictEqual(result.value.trim(), expectedValue, `No date is selected: ${result.value}`);
@@ -157,7 +157,7 @@ module.exports = {
 
         verifyDropDown() {
             return this
-            .clickOnElement('@firstAvailableDate')
+            .clickOnElement('@lastAvailableDate')
             .execute(function () {
               window.scrollBy(0, 400);
             })
