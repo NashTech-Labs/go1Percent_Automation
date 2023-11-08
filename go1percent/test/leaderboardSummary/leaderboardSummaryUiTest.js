@@ -1,4 +1,3 @@
-
 // Describe block for UI automation of the leaderboard summary option
 describe('UI automation for leaderboard summary option', () => {
   let summaryPage;
