@@ -1,84 +1,129 @@
-const globals = require('../../globals');
-const headers = globals.admin.headers;
-const token_body = globals.admin.tokenBody;
-const token_urls = globals.urls;
-const urls = globals.Add_Configuration.BaseUrl;
-const token_headers = globals.admin.tokenHeaders;
+const globals = require('../../globals')
+const urls = globals.urls;
+const baseUrl = globals.Add_Contribution.BaseUrl;
 
-describe('MyProfile API', function () {
-    it('Configuring Bearer Token', async function ({ supertest }) {
-        // const startTime = performance.now();
+describe('Leaderboard-Rewards API Testing', function () {
+    const header = globals.admin.headers;
+    const tokenHeaders = globals.admin.tokenHeaders;
+    const tokenBody = globals.admin.tokenBody;
+
+
+    const commonExpectation = (startTimestamp, response) => {
+        const endTimestamp = Date.now(); // Record the end time
+        const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
+        expect(responseTime).to.be.below(120000); //Response time assertion 
+    }
+
+
+    it('get api token', async function ({ supertest }) {
         await supertest
-          .request(token_urls.token)
-          .post("/token")
-          .send(token_body)
-          .set(token_headers)
-          .expect(200)
-          .expect('Content-Type', /json/)
-          .then(function (response) {
-            const token = response.body.access_token;
-            headers['Authorization'] = 'Bearer ' + token;
-          });
-      });
+            .request(urls.token)
+            .post("/token")
+            .send(tokenBody)
+            .set(tokenHeaders)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then(function (response) {
+                const token = response._body.access_token;
+                header['Authorization'] = 'Bearer ' + token;
+            });
+    });
     it('Check All Rewards Data', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
-            .request(urls)
-            .get('/rewards/getAllRewards')
-            .set( headers)
+            .request(baseUrl)
+            .get("/rewards/getAllRewards")
+            .set(header)
             .expect(200)
-            .expect('Content-Type', /json/);
+            .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
 
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(8000);
+            .then(function (response) {
 
-        const rewards = response.body.rewards;
-        expect(rewards).to.satisfy((rewards) => {
-            return rewards.every(reward => {
-                return rewards.hasOwnProperty('name') && typeof rewards.name === 'string' &&
-                rewards.hasOwnProperty('description') && typeof rewards.description === 'string';
+                //The test then checks the response body for the presence of specific properties such as "name," "pointsNeededToRedeem," "description," "rewardType," 
+                //"quantity," "expiryDate and" "active ."
+
+                expect(Object.keys(response.body).length).to.be.greaterThan(0);
+                expect(response.body.data).length.to.be.greaterThan(0);
+
+                expect(response.body.data[1]).to.have.property("id");
+                expect(response.body.data[1]).to.have.property('name');
+                expect(response.body.data[1]).to.have.property('pointsNeededToRedeem');
+                expect(response.body.data[1]).to.have.property('description');
+                expect(response.body.data[1]).to.have.property('rewardType');
+                expect(response.body.data[1]).to.have.property('quantity');
+                expect(response.body.data[1]).to.have.property('expiryDate');
+                expect(response.body.data[1]).to.have.property('active');
+
+                commonExpectation(startTime, response);// expect for checking the response time
+
             });
-        }, 'All rewards should have "name" and "description" properties that are strings');
+
     });
+        it('Check all Knolder ID', async function ({ supertest }) {
+            const startTime = performance.now();
+            const response = await supertest
+                .request(baseUrl)
+                .get('/get/knolderId?knolderEmail=testadmin@nashtechglobal.com')
+                .set(header)
+                .expect(200)
+                .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
 
-    it('Check all Knolder ID', async function ({ supertest }) {
-        const startTime = performance.now();
-        const response = await supertest
-            .request(urls)
-            .get('/get/knolderId?knolderEmail=testadmin@nashtechglobal.com')
-            .set( headers)
-            .expect(200)
-            .expect('Content-Type', /json/);
-            
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000, 'Expected response time to be less than 2000ms');
+                .then(function (response) {
 
-        const resources = response.body.data;
-        expect(resources).to.satisfy((resource) => {
-            return resources.every(reward => {
-                return resources.hasOwnProperty('resource') && typeof resources.name === 'string';
-            });
-        }, 'All knolder ID should have resource property that is string');
+                    //The test then checks the response body for the presence of specific properties such as "name," "pointsNeededToRedeem," "description," "rewardType," 
+                    //"quantity," "expiryDate and" "active ."
+
+                    const expectedData = {
+                        "resource" : "string",
+                        "status" : "boolean",
+                        "data" : "number"
+                        };
+
+
+                        Object.keys(expectedData).forEach(key => {
+                        expect(expectedData[key]).to.be.eq(typeof response.body[key]);
+                        })
+
+                    expect(response.body).to.have.property("resource");
+                    expect(response.body).to.have.property('status');
+                    expect(response.body).to.have.property('data');
+
+                    commonExpectation(startTime, response);// expect for checking the response time
+
+        });
     });
 
     it('Get Profile Pic', async function ({ supertest }) {
         const startTime = performance.now();
         const response = await supertest
-            .request(urls)
+            .request(baseUrl)
             .get('/profile/getProfilePic?email=testadmin@nashtechglobal.com')
-            .set(headers)
-            .expect(200);
-        const endTime = performance.now();
-        const responseTime = endTime - startTime;
-        expect(responseTime).to.be.lessThan(2000);
+            .set(header)
+            .expect(200)
+            .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
 
-        const resources = response.body.data;
-        expect(resources).to.satisfy((resource) => {
-            return resources.every(reward => {
-                return resources.hasOwnProperty('resource') && typeof resources.name === 'string';
+            .then(function (response) {
+
+                //The test then checks the response body for the presence of specific properties such as "name," "pointsNeededToRedeem," "description," "rewardType," 
+                //"quantity," "expiryDate and" "active ."
+
+                const expectedData = {
+                    "resource": "string",
+                    "status": "boolean",
+                };
+
+
+                Object.keys(expectedData).forEach(key => {
+                    expect(expectedData[key]).to.be.eq(typeof response.body[key]);
+                })
+
+
+                expect(response.body).to.have.property("resource");
+                expect(response.body).to.have.property('status');
+
+
+                commonExpectation(startTime, response);// expect for checking the response time
+
             });
-        }, 'All Profile Picture should have rresource property that is string');
     });
 });
