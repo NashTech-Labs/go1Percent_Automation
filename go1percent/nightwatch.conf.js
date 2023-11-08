@@ -132,8 +132,6 @@ module.exports = {
       }
     },
 
- 
- 
     chrome: {
 
       desiredCapabilities: {
