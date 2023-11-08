@@ -1,23 +1,38 @@
 const { base } = require('mocha/lib/reporters');
 const globals = require('../globals')
-const accessToken = process.argv.indexOf('--token');
 
 describe('Ticket assigned to me API testing', function () {
-  const token = process.argv[accessToken + 1];
+  const baseUrl = "https://ticket-backend.qa.go1percent.com";
+  const header = globals.admin.headers;
+  const tokenHeaders = globals.admin.tokenHeaders;
+  const tokenBody = globals.admin.tokenBody;
+
+  // const token = process.argv[accessToken + 1];
   const commonExpectation = (startTimestamp, response) => {
     const endTimestamp = Date.now(); // Record the end time
     const responseTime = endTimestamp - startTimestamp; // Calculate response time in milliseconds
-    expect(responseTime).to.be.below(5000); //Response time assertion
+    console.log("time" + responseTime);
+    expect(responseTime).to.be.below(2000); //Response time assertion
+
   }
 
-  const header = {
-    'Source': 'https://nashtechglobal.qa.go1percent.com',
-    'Authorization': 'Bearer ' + token
-  }
 
+  it('get api token', async function ({ supertest }) {
+    await supertest
+      .request("https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect")
+      .post("/token")
+      .send(tokenBody)
+      .set(tokenHeaders)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        const token = response._body.access_token;
+        header['Authorization'] = 'Bearer ' + token;
+      });
+  });
 
   it('should test update api', async function ({ supertest }) {
-    const startTime = performance.now();
+    const startTime = Date.now();
     const payloadData = {
       assignedTo: 'testemployee@nashtechglobal.com',
       category: 'Knolx',
@@ -27,7 +42,7 @@ describe('Ticket assigned to me API testing', function () {
     };
     //https://ticket-backend.qa.go1percent.com/tickets/update
     await supertest
-      .request(globals.helpDesk_base_Url)
+      .request(baseUrl)
       .put("/tickets/update")
       .set(header)
       .send(payloadData) // Send the payload data
@@ -38,17 +53,18 @@ describe('Ticket assigned to me API testing', function () {
         expect(response.body).to.have.property("resource").and.to.be.eq("updateTicketDetails");
         expect(response.body).to.have.property("status").and.to.be.true;
         expect(response.body).to.have.property("data").and.to.be.eq("Ticket Updated Successfully!");
+        expect(response.t)
         commonExpectation(startTime, response);
       });
   });
 
 
   it('should test ticket assigned to me', async function ({ supertest }) {
-    const startTime = performance.now();
+    const startTime = Date.now();
     const ticketId = 875;
     //https://ticket-backend.qa.go1percent.com/tickets/assigned/me?status=Open&limit=10&pageNumber=1
     const response = await supertest
-      .request(globals.helpDesk_base_Url)
+      .request(baseUrl)
       .get("/tickets/assigned/me?status=Open&limit=10&pageNumber=1")
       .set(header)
       .expect(200)    // Expect a status code of 200
@@ -64,11 +80,11 @@ describe('Ticket assigned to me API testing', function () {
 
 
   it('should test comments api', async function ({ supertest }) {
-    const startTime = performance.now();
+    const startTime = Date.now();
     const ticketId = 875;
     //https://ticket-backend.qa.go1percent.com/tickets/875/comments
     await supertest
-      .request(globals.helpDesk_base_Url)
+      .request(baseUrl)
       .get("/tickets/875/comments")
       .set(header)
       .expect(200)      // Expect a status code of 200
@@ -82,10 +98,10 @@ describe('Ticket assigned to me API testing', function () {
 
 
   it('should test ticket 875 api', async function ({ supertest }) {
-    const startTime = performance.now();
+    const startTime = Date.now();
     //https://ticket-backend.qa.go1percent.com/tickets/ticket/875
     await supertest
-      .request(globals.helpDesk_base_Url)
+      .request(baseUrl)
       .get("/tickets/ticket/875")
       .set(header)
       .expect(200)      // Expect a status code of 200
@@ -113,10 +129,10 @@ describe('Ticket assigned to me API testing', function () {
 
 
   it('should test assignees API', async function ({ supertest }) {
-    const startTime = performance.now();
+    const startTime = Date.now();
     //https://ticket-backend.qa.go1percent.com/users/assignees
     await supertest
-      .request(globals.helpDesk_base_Url)
+      .request(baseUrl)
       .get("/users/assignees")
       .set(header)
       .expect(200)      // Expect a status code of 200
@@ -127,15 +143,14 @@ describe('Ticket assigned to me API testing', function () {
         commonExpectation(startTime, response);
 
       });
-
   });
 
 
   it('should test categories API', async function ({ supertest }) {
-    const startTime = performance.now();
+    const startTime = Date.now();
     //https://ticket-backend.qa.go1percent.com/tickets/categories
     await supertest
-      .request(globals.helpDesk_base_Url)
+      .request(baseUrl)
       .get("/tickets/categories")
       .set(header)
       .expect(200)    // Expect a status code of 200
