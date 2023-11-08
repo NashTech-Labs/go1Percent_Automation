@@ -30,7 +30,8 @@ module.exports = {
 
         ListPresent: {
             locateStrategy: 'xpath',
-            selector: '//div[@class="p-3"]',
+            selector: '(//div[@class="p-3"])[2]',
+            //.pending-badge
         },
 
         ApprovedTemplate: {

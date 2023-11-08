@@ -13,6 +13,8 @@ module.exports = {
 
             locateStrategy: 'xpath',
             selector: '//a[@href="/knolx/my-sessions/my-upcoming-sessions"]',
+        //a[href$="my-upcoming-sessions"].nav-link
+        
         },
 
 
