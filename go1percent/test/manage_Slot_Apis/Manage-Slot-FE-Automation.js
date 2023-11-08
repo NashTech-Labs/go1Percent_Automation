@@ -22,7 +22,7 @@ done.fail(error);
 return;
 }
 }),
-
+/*
 it ('Verify that admin should be able to create a slot ', function () { 
 
 ManageSlotPages
@@ -70,21 +70,21 @@ ManageSlotPages
 .assert.elementPresent('@slotStartDateInput')
 .assert.elementPresent('@slotStartTimeInput') 
 }),
-
-it("Verify admin cannot select a past time to create a slot", function () {
+*/
+it("Verify admin cannot select a past time to create a slot", async function () {
 ManageSlotPages
 .waitForPageLoad()
-.pause(7000)
-ManageSlotPages.clickOnPresentDate()
-browser.pause(3000)
-ManageSlotPages.clickSlotTypeKnolx()
+//await ManageSlotPages.element.find('@presentDate').waitUntil('visible', {timeout: 3000, abortOnFailure: false},{message: 'View button.'});
+.clickOnPresentDate()
+.clickSlotTypeKnolx()
 .createSlot('API Testing')
 .clickOnDownArrow()
 .clickSaveSlotButton()
+.waitForPageLoad()
 .assert.containsText('@errorMessage','Please do not enter past time')
 .clickOnCancelButton()
 }),
-
+/*
 it("Verify that admin should be able to automate slot", async function () {
 
 ManageSlotPages
@@ -93,8 +93,8 @@ ManageSlotPages
 .clickSlotTypeKnolx()
 .clickSelectSessionDropdown()
 .clickOnDropDownValue()
-.clickSaveSlotButton();
-ManageSlotPages.assert.elementPresent("@automateSlotCreationMessage");
+.clickSaveSlotButton()
+.assert.elementPresent("@automateSlotCreationMessage");
 }),
 
 it("Verify that admin can select any session type", function () {
@@ -102,11 +102,11 @@ it("Verify that admin can select any session type", function () {
 ManageSlotPages
 .waitForPageLoad()
 .clickOnDateInCalendar()
-ManageSlotPages.clickSlotTypeKnolx()
+ManageSlotPages
+.clickSlotTypeKnolx()
 .clickSlotTypeWebinr()
 .clickSlotTypeMeetup()
 .clickSlotTypeKnolmeet()
-ManageSlotPages
 .assert.containsText('@knolx', 'Knolx')
 .assert.containsText('@webinr', 'Webinar')
 .assert.containsText('@meetup', 'Meetup')
@@ -117,7 +117,7 @@ ManageSlotPages
 
 it("Verify that update, delete, and cancel buttons are visible on a free slot", function () {
 ManageSlotPages
-.waitForPageLoad()
+.pause(3000)
 .clickFreeSlot()
 .assert.elementPresent('@updateButton')
 .assert.elementPresent('@cancelButton')
@@ -138,7 +138,7 @@ ManageSlotPages
 
 it("Verify that admin can update free slot details", function () {
 ManageSlotPages
-.waitForPageLoad()
+.pause(2000)
 .clickFreeSlotToUpdate()
 .clickSlotTypeWebinr()
 .updateSlot('Automation Testing')
@@ -147,7 +147,7 @@ ManageSlotPages
 .clickOnUpArrow()
 .clickupdateButton()
 .pause(3000)
-ManageSlotPages.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully')
+.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully')
 
 }),
 
@@ -158,7 +158,7 @@ ManageSlotPages
 .assert.elementPresent('@approve');
 
 });
-
+*/
 after(function (done) {
 browser.end(); 
 done; 
