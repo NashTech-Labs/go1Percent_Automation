@@ -52,6 +52,11 @@ module.exports = {
         chromedriver.stop();
         done();
     },
+
+    techhubUrls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://techhub-backend.qa.go1percent.com",
+    },
  
     admin: {
       
@@ -106,10 +111,7 @@ module.exports = {
         'search' : '',
 
 
-    techhubUrls: {
-        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        go1percentBase: "https://techhub-backend.qa.go1percent.com",
-    },
+    
 
 
     after: function (done) {
