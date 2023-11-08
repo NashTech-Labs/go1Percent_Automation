@@ -22,7 +22,7 @@ done.fail(error);
 return;
 }
 }),
-/*
+
 it ('Verify that admin should be able to create a slot ', function () { 
 
 ManageSlotPages
@@ -70,11 +70,10 @@ ManageSlotPages
 .assert.elementPresent('@slotStartDateInput')
 .assert.elementPresent('@slotStartTimeInput') 
 }),
-*/
+
 it("Verify admin cannot select a past time to create a slot", async function () {
 ManageSlotPages
 .waitForPageLoad()
-//await ManageSlotPages.element.find('@presentDate').waitUntil('visible', {timeout: 3000, abortOnFailure: false},{message: 'View button.'});
 .clickOnPresentDate()
 .clickSlotTypeKnolx()
 .createSlot('API Testing')
@@ -84,7 +83,7 @@ ManageSlotPages
 .assert.containsText('@errorMessage','Please do not enter past time')
 .clickOnCancelButton()
 }),
-/*
+
 it("Verify that admin should be able to automate slot", async function () {
 
 ManageSlotPages
@@ -158,7 +157,7 @@ ManageSlotPages
 .assert.elementPresent('@approve');
 
 });
-*/
+
 after(function (done) {
 browser.end(); 
 done; 

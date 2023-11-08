@@ -79,10 +79,6 @@ module.exports = {
     locateStrategy: 'xpath',
     
   },
-  presentDate: {
-    selector: 'a[aria-label="November 8, 2023"]',
-    locateStrategy: 'xpath',
-    },
   },  
 
   commands: [{
@@ -180,10 +176,6 @@ module.exports = {
       .useCss();
     },
 
-    // clickOnPresentDate(){
-    //   return this.waitForElementVisible('@presentDate', 10000)
-    //   .click('@presentDate')
-    // },
     clickOnCancelButton() {
       return this.waitForElementVisible('@cancelButton', 5000)
       .click('@cancelButton')
