@@ -25,7 +25,6 @@ module.exports = {
       selector :"//a[normalize-space()='Upcoming']", 
       locateStrategy: 'xpath'
       },
-
     totalrecords: '.ml-2',
 
     edittitlebutton: {
@@ -42,6 +41,7 @@ module.exports = {
     savetitle: {
       selector :"div[class='mt-2'] button[class='btn btn-primary save-session-button']",
       },
+    titlecheck: "div[class='topic-div'] h3",
     
     addtags: {
       selector :"a[role='button']",
@@ -52,6 +52,7 @@ module.exports = {
     savetag: {
       selector :"button[type='submit']",
       },
+    tagcheck:".items",
 
     adddescription: {
       selector :"div[class='d-flex justify-content-end'] button[class='btn btn-primary edit-session-button']",
@@ -62,6 +63,7 @@ module.exports = {
     savedescription: {
       selector :"div[class='d-flex justify-content-end'] button[class='btn btn-primary save-session-button ng-star-inserted']",
       },
+    descriptioncheck: 'div[class="desc-outline-div ng-star-inserted"]',
     
     //both slider and youtube url keep switching and swapping the input field selector we im using the full path for no conflicts during updates
     addsliderurl: {
@@ -74,7 +76,8 @@ module.exports = {
     savesliderurl: {
       selector :".btn.btn-primary.save-session-button.ng-star-inserted",
       },
-
+    sliderurlcheck: ".outline-div.div-item.ng-star-inserted",
+    
     addyturl: {
       selector :"div[class='youtube-url-button-div mt-3'] button[class='btn btn-primary edit-session-button']",
       },
@@ -85,6 +88,7 @@ module.exports = {
     saveyturl: {
       selector :"div[class='youtube-url-button-div mt-3'] button[class='btn btn-primary save-session-button']",
       },
+    yturlcheck:".outline-div.w-100.ng-star-inserted",
 
     sessioncancelling: {
       selector :".bg-transparent.border.border-white.spanText.mt-1.yes-button",
@@ -104,6 +108,7 @@ module.exports = {
     updateform: {
       selector :".btn.btn-primary.save-session-button.save-session",
       },
+    formcheck: "select[name='quarter']",
 
     sendinstructions: {
       selector :".btn.btn-secondary.instructionButton",

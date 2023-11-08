@@ -43,7 +43,7 @@ describe('Test Automation', () => {
       .updateTitle(newTitle)
       .waitForElementVisible('@savetitle')
       .clickSaveTitle()
-      .expect.element("div[class='topic-div'] h3").text.to.equal(newTitle);
+      .expect.element("@titlecheck").text.to.equal(newTitle);
   });
 
   it('Verify that admin should not able to approve the session without title', () => {
@@ -61,7 +61,7 @@ describe('Test Automation', () => {
       .TagUpdate(newTag)
       .waitForElementVisible('@savetag')
       .clickSaveTag()
-      .expect.element('.items').text.to.equal(newTag);
+      .expect.element('@tagcheck').text.to.equal(newTag);
   });
 
   it(' verify that admin should able to update the description', () => {
@@ -71,7 +71,7 @@ describe('Test Automation', () => {
       .DescriptionUpdate(newDescription)
       .waitForElementVisible('@savedescription')
       .clickSavedesciption()
-      .expect.element('div[class="desc-outline-div ng-star-inserted"]').text.to.equal(newDescription);
+      .expect.element('@descriptioncheck').text.to.equal(newDescription);
   });
 
   it(' Verify that admin should not able to save the session without description', () => {
@@ -90,7 +90,7 @@ describe('Test Automation', () => {
     loginPage
       .SliderUrlUpdate(newSliderUrl)
       .clickSaveSliderUrl()
-      .expect.element(".outline-div.div-item.ng-star-inserted").text.to.equal(newSliderUrl);
+      .expect.element("@sliderurlcheck").text.to.equal(newSliderUrl);
   });
 
   it('verify that youtube URL should not be added or updated in the upcoming session', () => {
@@ -100,7 +100,7 @@ describe('Test Automation', () => {
     loginPage
       .YoutubeUrlUpdate(newYoutubeUrl)
       .clickSaveYoutubeUrl()
-      .expect.element('.outline-div.w-100.ng-star-inserted').text.to.equal(null);
+      .expect.element('@turlcheck').text.to.equal(null);
   });
 
   it('verify that admin should able to report the session only if the approve button is enabled', () => {
@@ -118,7 +118,7 @@ describe('Test Automation', () => {
     browser.pause(2000);
     loginPage.clickUpdateform();
     browser.pause(2000);
-    loginPage.expect.element("select[name='quarter']").value.to.equal("Knolx - Share Your Experience");
+    loginPage.expect.element("@formcheck").value.to.equal("Knolx - Share Your Experience");
   });
 
 
