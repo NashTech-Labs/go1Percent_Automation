@@ -1,4 +1,4 @@
-const headers = require('../globals')
+const headers = require('../../globals')
 // Parsing the command-line arguments to find the '--token' parameter.
 const accessToken = process.argv.indexOf('--token');
 

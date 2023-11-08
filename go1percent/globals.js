@@ -321,8 +321,11 @@ module.exports = {
             searchQuery: 'Search Me',
             formDeletedMessage: 'Form Deleted Successfully',
 
+
         },
 
     },
 
 };
+
+        
