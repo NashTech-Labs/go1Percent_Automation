@@ -35,11 +35,14 @@ module.exports = {
     //plugins: ['@nightwatch/react'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  //globals_path: './globals.js',
+    globals_path: './globals.js',
+
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee" // this is placeholderPassword, Make sure to update.
     },
+
+    
 
   vite_dev_server: {
     start_vite: true,
@@ -61,7 +64,7 @@ module.exports = {
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
 
       screenshots: {
-        enabled: false,
+        enabled: true,
         path: 'screens',
         on_failure: true
       },
@@ -147,17 +150,22 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            //'--no-sandbox',
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
-            //'--headless'
-          ]
+            '--headless',            //for headless mode and Jenkins
+            "window-size=1920,1080", //for headless mode and Jenkins
+            '--no-sandbox',          //for headless mode and Jenkins
+            "disable-gpu",           //for headless mode and Jenkins
+            "--disable-dev-shm-usage"  //for headless mode and Jenkins
+           //'--ignore-certificate-errors',
+           //'--allow-insecure-localhost',
+         ],
+         "binary": "/usr/bin/google-chrome"
         }
       },
 
       webdriver: {
         start_process: true,
         server_path: '',
+
         cli_args: [
           // --verbose
         ]
