@@ -30,7 +30,7 @@ module.exports = {
             locateStrategy: 'xpath'
         },
         firstAvailableDate: {
-            selector: '(//*[@class="bg-unavailable text-white bg-available ng-star-inserted"])[last()]',
+            selector: '(//span[@class="bg-unavailable text-white bg-available ng-star-inserted"])[last()]',
             locateStrategy: 'xpath'
         },
         testAutomationOption: {
