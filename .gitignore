@@ -34,14 +34,19 @@ hs_err_pid*
 replay_pid*
 go1percent/node_modules/
 go1percent/tests_output/
-<<<<<<< HEAD
+
 //go1percent/package.json
 //go1percent/package-lock.json
 //go1percent/globals.js
 go1percent/nightwatch.conf.js
 replay_pid*
-=======
+
 go1percent/package-lock.json
 go1percent/package.json
 go1percent/nightwatch
->>>>>>> 9b70a03335155c139035e21bae39ceefeca32186
+
+
+
+go1percent/log/
+go1percent/screens/
+
