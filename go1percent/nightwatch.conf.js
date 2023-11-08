@@ -26,12 +26,11 @@ module.exports = {
   src_folders: ['./test'],
 
 
-  skip_testcases_on_fail: false,
-  
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+
   //custom_commands_path: ['nightwatch/custom-commands'],
  
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
