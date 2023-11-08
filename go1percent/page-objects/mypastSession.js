@@ -6,7 +6,8 @@ module.exports = {
        
 
         knolxButton: {
-           selector: "//h6[normalize-space()='Knolx']",
+           
+        selector: "//h6[normalize-space()='Knolx']",
            locateStrategy: 'xpath'
         },
         mysession: {
