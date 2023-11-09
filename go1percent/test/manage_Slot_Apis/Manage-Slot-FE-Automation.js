@@ -22,18 +22,33 @@ done.fail(error);
 return;
 }
 }),
+
 it ('Verify that admin should be able to create a slot ', function () { 
 
 ManageSlotPages
-.waitForPageLoad()
+.pause(3000)
 .clickOnDateInCalendar()
 ManageSlotPages.clickSlotTypeKnolx();
-ManageSlotPages.createSlot('API Testing');
+ManageSlotPages.createSlot('API Testing')
+.clickOnDownArrow();
 ManageSlotPages.clickSaveSlotButton();
-ManageSlotPages.waitForPageLoad()
-.assert.containsText('@successfullyCreatedSlotMessage','Slot Created Successfully')
+ManageSlotPages.pause(2000)
+.assert.containsText('@successfullyCreatedSlotMessage','Slot Created Successfully');
 
 }),
+
+it("Verify admin cannot select a past time to create a slot",  function () {
+    ManageSlotPages
+    .waitForPageLoad()
+    .clickOnPresentDate()
+    .clickSlotTypeKnolx()
+    .createSlot('API Testing')
+    .clickOnDownArrow()
+    .clickSaveSlotButton()
+    .waitForPageLoad()
+    .assert.containsText('@errorMessage','Please do not enter past time')
+    .clickOnCancelButton();
+    }),
 
 it('Verify that create a slot popup should display current date and time', async function() {
 ManageSlotPages
@@ -41,61 +56,47 @@ ManageSlotPages
 .clickOnDateInCalendar();
 const currentDate = new Date();
 const day = currentDate.getDate().toString().padStart(2, '0');
-const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
 const year = currentDate.getFullYear();
 
 const formattedDate = `${year}-${month}-${day}`;
-const formattedTime = currentDate.toLocaleTimeString();
-
 await ManageSlotPages.waitForPageLoad();
 const slotStartDateElement = await ManageSlotPages.getSlotStartDateElement();
 const slotStartTimeElement = await ManageSlotPages.getSlotStartTimeElement();
 ManageSlotPages.assert.equal(slotStartDateElement, formattedDate)
-//ManageSlotPages.assert.equal(slotStartTimeElement, formattedTime)
-
 ManageSlotPages.clickOnCancelButton();
 }),
 
 it("Verify that admin should not be able to create a slot without adding title and type", function () {
 ManageSlotPages
 .waitForPageLoad()
-.clickOnDateInCalendar();
-ManageSlotPages.assert.attributeEquals("@saveSlotButton", "disabled", "true"); // Adjust the selector based on your project
-ManageSlotPages.clickOnCancelButton();
+.clickOnDateInCalendar()
+ManageSlotPages
+.assert.attributeEquals("@saveSlotButton", "disabled", "true")
+.clickOnCancelButton();
 }),
 
-it("Verify that date and time is selected upon creating a slot", async function () {
+it("Verify that date and time is selected upon creating a slot",  function () {
 ManageSlotPages
 .waitForPageLoad()
-.clickOnpastDate();
-ManageSlotPages 
+.clickOnPresentDate()
+//ManageSlotPages 
 .assert.elementPresent('@slotStartDateInput')
 .assert.elementPresent('@slotStartTimeInput') 
+.clickOnCancelButton();
 }),
 
-it("Verify admin cannot select a past time to create a slot", function () {
-ManageSlotPages
-.waitForPageLoad()
-.clickOnpastDate()
-browser.pause(3000)
-ManageSlotPages.clickSlotTypeKnolx()
-ManageSlotPages.createSlot('API Testing');
-ManageSlotPages.clickOnDownArrow();
-ManageSlotPages.clickSaveSlotButton();
-ManageSlotPages.assert.containsText('@errorMessage','Please do not enter past time')
-.clickOnCancelButton()
-}),
-
-it("Verify that admin should be able to automate slot", async function () {
+it("Verify that admin should be able to automate slot",  function () {
 
 ManageSlotPages
 .waitForPageLoad()
+//.pause(3000)
 .clickOnAutomateSlot()
 .clickSlotTypeKnolx()
 .clickSelectSessionDropdown()
 .clickOnDropDownValue()
-.clickSaveSlotButton();
-ManageSlotPages.assert.elementPresent("@automateSlotCreationMessage");
+.clickSaveSlotButton()
+.assert.elementPresent("@automateSlotCreationMessage");
 }),
 
 it("Verify that admin can select any session type", function () {
@@ -103,16 +104,16 @@ it("Verify that admin can select any session type", function () {
 ManageSlotPages
 .waitForPageLoad()
 .clickOnDateInCalendar()
-ManageSlotPages.clickSlotTypeKnolx()
+ManageSlotPages
+.clickSlotTypeKnolx()
 .clickSlotTypeWebinr()
 .clickSlotTypeMeetup()
 .clickSlotTypeKnolmeet()
-ManageSlotPages
 .assert.containsText('@knolx', 'Knolx')
 .assert.containsText('@webinr', 'Webinar')
 .assert.containsText('@meetup', 'Meetup')
 .assert.containsText('@knolmeet', 'Knolmeet')
-.clickOnCancelButton()
+.clickOnCancelButton();
 
 }),
 
@@ -123,7 +124,7 @@ ManageSlotPages
 .assert.elementPresent('@updateButton')
 .assert.elementPresent('@cancelButton')
 .assert.elementPresent('@deleteButton')
-.clickOnCancelButton()
+.clickOnCancelButton();
 }),
 
 it("Verify that admin can delete a free slot session", function () {
@@ -133,8 +134,7 @@ ManageSlotPages
 .deleteButton()
 .deleteConfirmPopUpYesButton()
 .pause(2000)
-
-.assert.containsText('@successfullyDeletedMessage','Session Deleted Successfully')
+.assert.containsText('@successfullyDeletedMessage','Session Deleted Successfully');
 
 });
 
@@ -144,13 +144,15 @@ ManageSlotPages
 .clickFreeSlotToUpdate()
 .clickSlotTypeWebinr()
 .updateSlot('Automation Testing')
+.clickOnDownArrow()
+.clickOnUpArrow()
 .clickupdateButton()
-.waitForPageLoad()
-ManageSlotPages.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully')
+.pause(2000)
+.assert.containsText('@successfullyUpdateFreeSlot','Session Updated Successfully');
 
 }),
 
-it('Verify that upon clicking on Knolx session, it navigates to the approve page', function (browser) {
+it('Verify that upon clicking on Knolx session, it navigates to the approve page', function () {
 ManageSlotPages
 .waitForPageLoad()
 .clickApproveKnolxSession()

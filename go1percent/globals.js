@@ -1,4 +1,5 @@
 
+
 const requestData = {
     'client_id': 'leaderboard-ui',
     'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
@@ -33,9 +34,8 @@ module.exports = {
         const reporter = new allureReporter.NightwatchAllureReporter({});
         reporter.write(results,done);
       },
-
     requestData,
-    
+
     before: function (done) {
         chromedriver.start();
         done();
@@ -80,6 +80,16 @@ module.exports = {
         },
     },
   
+    rewardSectionMessages:{
+        colorCode: "rgba(236, 64, 122, 1)",
+        successMessage: "Reward was successfully updated!",
+        imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
+        imageInvalidSizeMessage: "File size is more than 500 KB.",
+        popupMessage: "Are you sure you want to Redeem?",
+        redeemMessage: "Hi, you have redeemed the reward",
+        imageUploadMessage: "Click here to upload image"
+    },
+    
     employee: {
         headers: {
             "accept": "application/json, text/plain, */*",
@@ -117,9 +127,9 @@ module.exports = {
     },
 
 
-    base_url : "https://knolx-backend.qa.go1percent.com/",
-    source : "https://nashtechglobal.qa.go1percent.com",
-    access_token : '',
+     manageSlotBase_url:"https://knolx-backend.qa.go1percent.com",
+     source : "https://nashtechglobal.qa.go1percent.com",
+     access_token : '',
     
     Add_Contribution:{
         BaseUrl:"https://backend.qa.go1percent.com",
@@ -261,7 +271,7 @@ module.exports = {
             nasher : "employee",
             testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
             badge:"KNOLX",
-            date:"Nov 4, 2023",
+            date:"Nov 7, 2023",
             datePastSessions: "Oct 14, 2023",
             // allure report
             reporter: (results,done)=>{
@@ -291,6 +301,21 @@ module.exports = {
     ExpectedTitle: 'new newnewn ewn',
     Description: 'Description',
     SlideURL: 'Slide URL',
+
+    feedbackForm: {
+        uiData: {
+            sessionInUseMessage : 'The Form is currently being used in following session(s)',
+            formUpdateMessage : 'Form Updated Successfully',
+            deleteDialogBoxMessage : 'Are you sure want to delete this form ?',
+            addNPSMessage : 'Please add a NPS question',
+            addFormTitleMessage : 'Please enter a Form Title',
+            addQuestionMessage : 'Question cannot be empty',
+            formCreatedMessage : 'Form created successfully',
+            searchQuery : 'Search Me',
+            formDeletedMessage : 'Form Deleted Successfully',
+
+        },
+
+    },
         
         };
-
