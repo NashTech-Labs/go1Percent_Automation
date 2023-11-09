@@ -26,7 +26,7 @@ var addRewardCommands = {
         return this
         .waitForElementPresent('@cancelButton', 5000)
         .click('@cancelButton')
-        .expect.element('@addRewardTitle ').not.to.be.present; // h5.modal-title.pull-left.ms-2
+        .expect.element('@addRewardTitle').not.to.be.present; // h5.modal-title.pull-left.ms-2
     },
 
     addARewardDetails : function(rewardName, description, pointsNeededToRedeem, quantity, expiryDate){
@@ -86,6 +86,9 @@ module.exports = {
         addRewardButton : {
             selector: 'button.btn.btn-primary.addRewardBtn.px-2'
         },
+        cancelButton : {
+            selector: 'button.btn.btn-light'
+        },
         addRewardTitle: {
             selector: 'div.modal-header.ps-5'  
         },
@@ -127,10 +130,10 @@ module.exports = {
         }, 
         competencyButton: {
             selector: 'button.no-button.font-weight-light.bg-transparent'
-        },  
-        enableButton: {
-            selector: 'div:nth-child(5)  button.yes-button.font-weight-light.bg-transparent'
         }
+        // enableButton: {
+        //     selector: 'div:nth-child(5)  button.yes-button.font-weight-light.bg-transparent'
+        // }
     }
 }
 

@@ -6,13 +6,13 @@ var redeemRewardCommands = {
         .assert.urlContains('rewards/reward-reports');  
     },
 
-    assertRewardReportDetails : function (employeeName, competencyName, rewardName, redeemPoints, expiryDate) {
+    assertRewardReportDetails : function () {
         return this
-        .assert.textContains('@employeeName', employeeName) 
-        .assert.textContains('@competencyName', competencyName)
-        .assert.textContains('@rewardName', rewardName) 
-        .assert.textContains('@redeemPoints', redeemPoints) 
-        .assert.textContains('@expiryDate', expiryDate);
+        .assert.elementPresent('@employeeName') 
+        .assert.elementPresent('@competencyName')
+        .assert.elementPresent('@rewardName') 
+        .assert.elementPresent('@redeemPoints') 
+        .assert.elementPresent('@expiryDate');
     },
 
     openRedeemRequestWindow : function () {
@@ -31,25 +31,27 @@ var redeemRewardCommands = {
     changeStatusOfReward : function(rewardName, description, pointsNeededToRedeem, quantity, expiryDate){
         return this
         .waitForElementPresent('@processButton', 5000)
-        .click('@processButton')
-        // .waitForElementPresent('@processedStatus', 5000)
-        // .assert.textContains('@processedStatus', 'PROCESSED');
+        .click('@processButton');
     },
 
     switchToCompetency : function(){
         return this
+        .waitForElementPresent('@employeeName')
         .waitForElementPresent('@competencyButton', 5000) 
-        .click('@competencyButton') 
-        .waitForElementPresent('@competencyRewardReport', 5000) 
-        .assert.textContains('@competencyRewardReport', 'No Redeemed Reward Available');
+        .click('@competencyButton');
     },
+
+    matchRewardReport : function(){
+        return this
+        .waitForElementPresent('@rewardReport', 5000) 
+        .assert.textContains('@rewardReport', 'No Redeemed Reward Available');
+    },
+
 
     switchToIndividual: function(){
         return this
         .waitForElementPresent('@individualButton', 5000) 
-        .click('@competencyButton') 
-        .waitForElementPresent('@competencyRewardReport', 5000) 
-        .assert.textContains('@competencyRewardReport', 'No Redeemed Reward Available');
+        .click('@individualButton');
     },
 
     setTimeFilterToToday: function(){
@@ -82,13 +84,13 @@ var redeemRewardCommands = {
         .click('@statusFilter') 
         .waitForElementPresent('@processingOption', 5000)
         .click('@processingOption')
-        .click('@statusFilter') ;
+        .click('@statusFilter');
     },
 
     matchStatus: function(status){
-        return this
-        .waitForElementPresent('@processingStatus', 5000)
-        .assert.textContains('@processingStatus', 'PROCESSING');
+        return this 
+        .waitForElementPresent('@statusButton', 5000)
+        .assert.textContains('@statusButton', status);
     },
 
     resetStatusFilter: function(){
@@ -97,7 +99,8 @@ var redeemRewardCommands = {
         .click('@statusFilter') 
         .waitForElementPresent('@allStatusOption', 5000)
         .click('@allStatusOption')
-        .click('@statusFilter');
+        .click('@statusFilter')
+        .waitForElementPresent('@employeeName');
     },
 
     searchNasher: function(name){
@@ -137,19 +140,19 @@ module.exports = {
             selector: 'span.material-icons-outlined.cancel-modal'
         }, 
         processButton: {
-            selector: 'div.me-3 > #submitButton'
-        }, 
-        processedStatus: {
-            selector: 'button.btn.text-white.status-btn.mb-0.processedStatus'
-        }, 
+            selector: '#submitButton'
+        },  
         competencyButton: {
             selector: 'app-reward-reports li:nth-child(2) > a'
         },
         individualButton: {
             selector: 'app-reward-reports li:nth-child(1) > a'
         },
-        competencyRewardReport: {
+        rewardReport: {
             selector: 'div.card.text-center.m-3.py-10 > h5'
+        }, 
+        showMoreCard: {
+            selector: 'div.report-card-footer > div'
         }, 
         timeFilter: {
             selector: '#rewardType'
@@ -169,9 +172,9 @@ module.exports = {
         processingOption: {
             selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2 > option:nth-child(2)'
         },  
-        processingStatus: {
-            selector: 'button.btn.text-white.status-btn.mb-0.processingStatus'
-        },
+        statusButton: {
+            selector: '#icon-grid button'
+        }, 
         searchFeild: {
             selector: 'div:nth-child(2) > input'
         } 

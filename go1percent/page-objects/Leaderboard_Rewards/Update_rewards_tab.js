@@ -20,7 +20,7 @@ var updateRewardsCommands = {
         return this
         .waitForElementPresent('@cancelButton', 5000)
         .click('@cancelButton')
-        .expect.element('h5.modal-title.pull-left.ms-2').not.to.be.present;
+        .expect.element('@updateRewardTitle').not.to.be.present;
     },
 
     changeExpiryDate : function () {
