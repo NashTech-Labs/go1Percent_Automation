@@ -39,7 +39,7 @@ describe("My Profile Page Frontend Automation", () => {
     it('View rewards button is present on the profile page when no reward is redeemed till now', async function (browser) {
 
             await myProfile.element.find('@ViewRewardBtn').waitUntil('visible', {timeout: 3000, abortOnFailure: false},{message: 'View Reward button found.'});
-            //.assert.elementPresent('@ViewRewardBtn');
+          
     });
 
     it('Re-directed to the rewards page when he clicks on view rewards button', function (browser) {//testadmin
@@ -67,8 +67,7 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it('See view rewards list by clicking on the view rewards button', function (browser) {//testadmin
         myProfile
-            //.navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
-            //.waitForElementVisible()
+
             .pause(8000)
             .ClickOnRewardButton()
             .pause(4000)

@@ -24,10 +24,9 @@ module.exports = {
         RewardEditBtn: "div[class='row me-2'] div:nth-child(1) div:nth-child(1) span:nth-child(1)",
         RewardEditCancelBtn: ".btn.btn-light",
         NoBadgeEarned: "div[class='d-flex flex-column align-items-center my-auto'] p",
-        EarnedBadge:{
-            locateStrategy: 'xpath',
-            selector:"//body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[2]/div[1]/div[1]//*[name()='svg']"
-        },
+        BadgesContainer: "div[class='d-flex justify-content-start align-items-center no-scroll-badges']",
+        EachBadge: ".no-scroll-badges .w-20",
+        EachBadgeInside: "div[class='d-flex flex-column align-items-center outer-div']",
         NoProfilePic: {
             locateStrategy: 'xpath',
             selector: "//div[@id='img']//*[name()='svg']"},
@@ -50,7 +49,6 @@ module.exports = {
             locateStrategy: 'xpath',
             selector: "//body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[1]/div[1]/div[1]//*[name()='svg']"
         },
-        BadgesContainer: '.d-flex.justify-content-start.align-items-center.no-scroll-badges',
         BadgeRank: ".font-weight-light.overall-txt-color.rankSize",
         BadgeMonth: "div[class='modal-body m-2 p-4'] div:nth-child(1) div:nth-child(1) h6:nth-child(1)",
         BadgeScore: "body > modal-container:nth-child(11) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(2)",
