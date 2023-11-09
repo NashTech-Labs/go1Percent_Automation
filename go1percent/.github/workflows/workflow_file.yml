@@ -33,4 +33,4 @@ jobs:
     - name: Run Go1PercentFEAutomation Tests
       run: npx nightwatch test/Go1PercentFEAutomation --env chrome
     - run: npm test
-    
+  
