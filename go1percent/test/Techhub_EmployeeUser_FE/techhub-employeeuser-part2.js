@@ -118,8 +118,6 @@ describe('Go1percent techHub FE Testing', () => {
         .clickSubmitButton()
         .waitForElementVisible('@submissionPopupAlert', 10000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
-
-         // Submitting First Techhub
         .navigateToTechhubInDraft()
         .setBaseLanguage()
         .setCategory()
@@ -129,6 +127,7 @@ describe('Go1percent techHub FE Testing', () => {
         .setBranchValue()
         .setTagsValue()
         .clickSubmitButton()
+        // Submitting Second Techhub
         .waitForElementVisible('@submissionPopupAlert', 10000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
     });
