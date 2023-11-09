@@ -65,7 +65,7 @@ describe("Rewards Page Frontend Automation", () => {
                     
         }),
         
-         //  Verify that Admin should able to see Reward section (TC-280) 
+        //  Verify that Admin should able to see Reward section (TC-280) 
     it("Should display rewards tab on expanding leaderboard", () => {
         sessionsPage.clickOnLogoutButton();
         const user = "Test Admin"
