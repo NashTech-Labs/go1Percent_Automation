@@ -105,7 +105,7 @@ module.exports = {
         'pageSize' : '10',
         'search' : '',
 
-
+    },
     techhubUrls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
@@ -132,22 +132,32 @@ module.exports = {
      access_token : '',
     
     Add_Contribution:{
+        headers: {
+            'Authorization': '',
+            'Source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenHeaders: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenBody: {
+            client_id: 'leaderboard-ui',
+            client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            username: 'testadmin',
+            password: 'testadmin',
+            grant_type: 'password',
+        },
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         BaseUrl:"https://backend.qa.go1percent.com",
         PostEndPoints:"/contribution/addContribution",
         GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
-        Contribution_url:"www.cou.org"  } ,
+        Contribution_url:"www.codsfcdu.org"  
+    } ,
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
     access_token: '',
 
-    Add_Configuration: {
-        BaseUrl: "https://backend.qa.go1percent.com",
-        PostEndPoints: "/contribution/addContribution",
-        GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000"
-
-
-    },
 
 
     Reward:{
@@ -280,9 +290,8 @@ module.exports = {
               },
 
 
-            }
-,
-            
+        
+      
               //My Past Session
                   
                queryMyPastSession: {
