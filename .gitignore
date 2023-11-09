@@ -1,12 +1,4 @@
 
-
-go1percent/tests_output/
-go1percent/node_modules/
-go1percent/test/Add_Contribution/FE/
-go1percent/page-objects/Profile.js
-go1percent/page-objects/Setting.js
-
-
 *.class
 
 # Log file
@@ -39,3 +31,6 @@ go1percent/package.json
 go1percent/nightwatch
 go1percent/allure-report/
 go1percent/allure-results/
+go1percent/log/
+go1percent/screens/
+
