@@ -1,4 +1,4 @@
-const url = require('../globals')
+const url = require('../../../globals')
 const accessToken = process.argv.indexOf('--token'); //npx nightwatch test/Add_Config.js --env api_testing --token youracesstoken
 describe('api testing', function () {
 
