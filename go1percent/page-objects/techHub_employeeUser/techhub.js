@@ -47,7 +47,8 @@ module.exports = {
       repoName: 'input[formcontrolname="name"]',
       repoTechnology: 'select[id="technology"]',
       repoDescription: 'textarea[formcontrolname="description"]',
-      submitButton: 'button.btn.btn-primary.text-white.mx-2'
+      submitButton: 'button.btn.btn-primary.text-white.mx-2',
+      obscureElement: 'label[class="mb-2 form-header input-label"]'
     },
 
     commands: {
@@ -252,10 +253,14 @@ module.exports = {
         .waitForElementPresent('@draftTab', 5000)
         .click('@draftTab')
         .pause(5000)
-        .waitForElementVisible('@draftTechhub')
-        .click('@draftTechhub')
         .waitForElementPresent('@techhubPage')
+        // .waitForElementVisible('@draftTechhub')
+        // // .moveToElement('@draftTechhub', 10, 10)
+        // // .waitForElementNotPresent('@obscureElement', 10000)
+        // .click('@draftTechhub')
+        // .waitForElementPresent('@techhubPage')
       },
+
 
       techhubInreviewPage: function() {
         return this

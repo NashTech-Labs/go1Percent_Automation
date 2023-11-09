@@ -107,6 +107,13 @@ describe('Go1percent techHub FE Testing', () => {
         // Submitting First Techhub
         .navigateToPendingTechHubSearch()
         .searchForPendingTechhub()
+        
+        browser.execute(function() {
+            // Scroll to the element
+            document.querySelector('h6[class="mb-0 rank status pendingStatus"]').scrollIntoView();
+          });
+
+        pageObject
         .navigateToTechhubInDraft()
         .setBaseLanguage()
         .setCategory()
@@ -119,7 +126,11 @@ describe('Go1percent techHub FE Testing', () => {
         .waitForElementVisible('@submissionPopupAlert', 10000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
 
-         // Submitting First Techhub
+        // browser.execute(function() {
+        //     // Scroll to the element
+        //     document.querySelector('h6[class="mb-0 rank status pendingStatus"]').scrollIntoView();
+        //   });
+        pageObject
         .navigateToTechhubInDraft()
         .setBaseLanguage()
         .setCategory()
@@ -129,6 +140,7 @@ describe('Go1percent techHub FE Testing', () => {
         .setBranchValue()
         .setTagsValue()
         .clickSubmitButton()
+        // Submitting Second Techhub
         .waitForElementVisible('@submissionPopupAlert', 10000)
         .assert.textContains("@submissionPopupAlert",'Template successfully submitted, please wait for your studio head to review it.')
     });
@@ -169,6 +181,13 @@ describe('Go1percent techHub FE Testing', () => {
         .navigateToPendingTechHub()
         .navigateToPendingTechHubSearch()
         .searchForPendingTechhub()
+
+        // browser.execute(function() {
+        //     // Scroll to the element
+        //     document.querySelector('h6[class="mb-0 rank status pendingStatus"]').scrollIntoView();
+        //   });
+          
+        pageObject
         .navigateToTechhubInDraft()
         .setBaseLanguage()
         .setCategory()
