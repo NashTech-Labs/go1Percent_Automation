@@ -24,10 +24,6 @@ module.exports = {
     slotStartTimeInput: 'input[placeholder="HH"]',
     successfullyCreatedSlotMessage: 'div[aria-label="Slot Created Successfully"]',
     cancelButton: 'button[class="btn btn-primary button cancel-button ml-3 mr-2"]',
-    presentDate: {
-      selector: '//td//a[@aria-label="November 6, 2023"]',
-      locateStrategy: 'xpath',
-    },
     errorMessage: {
       selector: "//span[contains(text(),'Please do not enter past time')]",
       locateStrategy: 'xpath',
@@ -53,7 +49,7 @@ module.exports = {
   meetup: 'label[for="meetup"]',
   knolmeet: 'label[for="knolmeet"]',
   freeSlot: {
-    selector: "//td//div[contains(text(),'11:00 am')]",
+    selector: "//td//div[contains(text(),'12:50 pm')]",
     locateStrategy: 'xpath',
   },
   updateButton: 'button[class="btn btn-primary button submit-button"]',
@@ -69,25 +65,26 @@ module.exports = {
   acceptPopUp: 'button[class="btn btn-primary button submit-button"]',
   successfullyDeletedMessage: 'div[aria-label="Session Deleted Successfully"]',
   updatefreeSlot: {
-    selector: "//td//div[contains(text(),'11:03 am')]",
+    selector: "//td//div[contains(text(),'06:41 pm')]",
     locateStrategy: 'xpath',
   },
   updateFreeSlotTitle: 'input[formcontrolname="newSlotTitle"]',
   successfullyUpdateFreeSlot: 'div[aria-label="Session Updated Successfully"]',
   knolxSession: {
-    selector: '//div[contains(text(), "08:40 am")]',
+    selector: '//div[contains(text(), "Testing1")]',
     locateStrategy: 'xpath',
   },
   approve: {
-    selector: "//div[@class='action-button-div mt-4']//button[contains(text(),'Approve')]",
+    selector: "//span[contains(text(),'Session is Approved')]",
     locateStrategy: 'xpath',
+    
   },
   },  
 
   commands: [{
     waitForPageLoad() {
     return this
-    .waitForElementVisible('body', 10000)
+    .waitForElementVisible('body', 20000)
     },
 
        clickAdminButton() {
@@ -162,10 +159,22 @@ module.exports = {
     },
 
     clickOnPresentDate() {
-      return this.waitForElementVisible('@presentDate', 30000)
-      .click('@presentDate')
-        },
-
+      const currentDate = new Date();
+    
+      const formattedDate = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }).format(currentDate);
+    
+      const xpathSelector = `//a[contains(@aria-label, "${formattedDate}")]`;
+    
+      return this
+      .useXpath() 
+      .waitForElementVisible(xpathSelector, 10000)
+      .click(xpathSelector)
+      .useCss();
+    },
 
     clickOnCancelButton() {
       return this.waitForElementVisible('@cancelButton', 5000)

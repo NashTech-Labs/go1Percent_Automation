@@ -2,6 +2,8 @@ const header = require('../../globals')
 const payload= require('../../payload')
 
 describe('TechHub Api Testing', function () {
+
+  const urls = header.techhubUrls;
   let approval_req = [];
   
   const commonExpectation = (startTimestamp, response) => {
@@ -49,7 +51,7 @@ describe('TechHub Api Testing', function () {
   it('Get API test for All TechHubs Button in TechHub', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/templates/my?state=approvedAndRejected&limit=10000&page=1")
       .set(header.employee.headers)
       .expect(200)
@@ -64,7 +66,7 @@ describe('TechHub Api Testing', function () {
   it('should verify the search template endpoint', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/search/template?text=tags&page=2")
       .set(header.employee.headers)
       .expect(200)
@@ -78,7 +80,7 @@ describe('TechHub Api Testing', function () {
   it('should retrieve a specific template', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/template?tempId=" + approval_req[0]._id)
       .set(header.employee.headers)
       .expect(200)
@@ -92,7 +94,7 @@ describe('TechHub Api Testing', function () {
   it('should retrieve trending tags', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/trending/tags")
       .set(header.employee.headers)
       .expect(200)
@@ -106,7 +108,7 @@ describe('TechHub Api Testing', function () {
   it('should retrieve recent templates', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/recent/templates?count=Two")
       .set(header.employee.headers)
       .expect(200)
@@ -120,7 +122,7 @@ describe('TechHub Api Testing', function () {
   it('should retrieve trending templates', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/trending/templates")
       .set(header.employee.headers)
       .expect(200)
@@ -134,7 +136,7 @@ describe('TechHub Api Testing', function () {
   it('Get API test for Pending Button in TechHub', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/templates/my?state=draftAndReview&limit=10000&page=1")
       .set(header.employee.headers)
       .expect(200)
@@ -148,7 +150,7 @@ describe('TechHub Api Testing', function () {
   it('Get API for other Technologies in TechHub', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/other/technologies?id=101")
       .set(header.employee.headers)
       .expect(200)
@@ -162,7 +164,7 @@ describe('TechHub Api Testing', function () {
   it('Get API to Get Trending Technology', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/trending/technologies")
       .set(header.employee.headers)
       .expect(200)
@@ -176,7 +178,7 @@ describe('TechHub Api Testing', function () {
   it('Get API To Get All templates of TechHub', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .get("/templates?technology=Java&category=Kafka&page=1")
       .set(header.employee.headers)
       .expect(200)
@@ -192,7 +194,7 @@ describe('TechHub Api Testing', function () {
     const startTimestamp = Date.now();
     const uniqueName = `TestingNightwatchTestcase1-${Math.floor(Math.random() * 1000000)}`;
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .post("/user/request")
       .send({
         "name": uniqueName,
@@ -213,7 +215,7 @@ describe('TechHub Api Testing', function () {
     const startTimestamp = Date.now();
     const uniqueId = `TestingNightwatchTestcase1-${Math.floor(Math.random() * 1000000)}`;
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .post("/insert/technology")
       .send(payload.insertPayload)
       .set(header.employee.headers)
@@ -228,7 +230,7 @@ describe('TechHub Api Testing', function () {
   it('update technology successfully', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .post("/update/technology")
       .send(payload.updatePayload)
       .set(header.employee.headers)
@@ -243,7 +245,7 @@ describe('TechHub Api Testing', function () {
   it('Submit user feedback', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .post("/submit/feedback")
       .send({
         "_id": "string",
@@ -264,7 +266,7 @@ describe('TechHub Api Testing', function () {
   it('should submit a draft repository or branch', async function ({ supertest }) {
     const startTimestamp = Date.now();
     await supertest
-      .request(header.urls.go1percentBase)
+      .request(urls.go1percentBase)
       .post("/user/submit")
       .send(payload.draftRepoPayload)
       .set(header.employee.headers)
