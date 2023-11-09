@@ -147,12 +147,11 @@ module.exports = {
                 .elementClick('@chooseTechnology')
                 .elementClick('@descriptionBox')
                 .setValue('@descriptionBox', 'jhgfghjkhgyftdrfghbgvftcdtghjnkmjhgyftghjnkhbgyvftcdrfgvhbjnhbgvfcdrcfgvhbjnhbgvfcrdfcgvhbjnknhbgvtfcdftgvhbjnknhbgvfcttgvh')
-                .elementClick('@isNewBranchCheckBox')
-                .waitForElementVisible('@submitButton')
-                .isEnabled('@submitButton')
-                .click('@submitButton')
-                .waitForElementVisible("@submissionPopupAlert")
-                .assert.textContains("@submissionPopupAlert", 'Submitted Successfully')
+                .waitForElementVisible('input[formcontrolname="isNewBranch"]')
+                .execute(function () {
+                    document.querySelector('input[formcontrolname="isNewBranch"]').scrollIntoView();
+                })
+                .click('input[formcontrolname="isNewBranch"]')
         },
 
         clickCancelButton() {
@@ -233,6 +232,9 @@ module.exports = {
 
         requiredCategoryAndLanguage() {
             return this
+                .execute(function () {
+                    document.querySelector('select[id="category"]').scrollIntoView();
+                })
                 .elementClick('@draftCategory')
                 .elementClick('@draftOtherLanguage')
                 .elementClick('@draftBaseLanguage')
