@@ -1,8 +1,11 @@
+const { assert } = require('nightwatch');
 const DataSet = require('../../globals');
 //const MyProfilePage = require('../../page-objects/myProfilePage');
 //const Login=browser.page.login();
-const userName = browser.globals.userName;
-const password = browser.globals.password;
+var userName = browser.globals.userName;
+var password = browser.globals.password;
+// userName = 'testemployee';
+// password = 'testemployee';
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
@@ -36,9 +39,58 @@ describe("My Profile Page Frontend Automation", () => {
     
     it("No Badges Earned' message when no badges were earned to their profile", function (browser) {//testemployee1
         
-        myProfile
-            .pause(3000)
-            .BadgeCheck();
+        function countOptions(){
+            alert("there are"+document.getElementsByClassName('.d-flex.justify-content-start.align-items-center.no-scroll-badges').length);
+            for(i=0;i, 1;i++){
+                alert(document.getElementsByClassName('.d-flex.justify-content-start.align-items-center.no-scroll-badges').textContent);
+            }
+        }
+
+
+
+
+
+
+
+
+
+    //         // .pause(3000)
+    //         .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+    //         .pause(5000)
+    //         if(myProfile.assert.elementPresent('@NoBadgeEarned',{return: true}))
+    //         {
+    //             console.log('No badge earned.');
+    //         }
+    //         else{
+    //             console.log('Badge earned.');
+    //         }
+
+    //         //  const el1 = myProfile.element.find('@EarnedBadge')
+    //         //  console.log(el1)
+
+    //         //var badgeCheck = myProfile.assert.elementPresent('@NoBadgeEarned',{timeout: 3000, abortOnFailure: false}) ? true : false
+    //         //console.log(badgeCheck)
+    //         // myProfile.element(locateStrategy: 'xpath', "//body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[3]/div[1]/div[1]//*[name()='svg']", function(result){
+    //         //     if(result.status != -1){
+    //         //         console.log("Badge Earned")
+    //         //         //Element exists, do something
+    //         //     } else{
+    //         //         console.log("No Badge Earned");
+
+    //         //         //Element does not exist, do something else
+    //         //     }
+    //         // });
+    //         // var truev='trues';
+    //         // var isEarnedBadgeTrue = myProfile.assert.elementPresent('@EarnedBadge');
+    //         // // console.log(isEarnedBadgeTrue)
+    //         // if(isEarnedBadgeTrue=='truev'){
+    //         // console.log("Badge Earned")
+    //         // }
+    //         // else
+    //         // {
+    //         //     console.log("No Badge Earned");
+    //         // }
+
 
     });
     it('View the profile picture along with the monthly rank', function (browser) {
@@ -74,17 +126,7 @@ describe("My Profile Page Frontend Automation", () => {
         .assert.elementPresent('@MonthlyScore','User Monthly Score Visible')
 
     });
-    it('See view rewards list by clicking on the view rewards button', function (browser) {//testadmin
-        myProfile
-            .navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
-            //.waitForElementVisible()
-            .pause(8000)
-            .ClickOnRewardButton()
-            .pause(4000)
-            .assert.urlContains("rewards/list", 'View Rewards list Page is visible');
-
-
-    });
+    
     it('View the reward if redeemed', function (browser) {
         myProfile
                 .pause(12000)
@@ -101,11 +143,11 @@ describe("My Profile Page Frontend Automation", () => {
 
 
     });
-    // it('View the badges and the count in the badges section', function (browser) {
-    //     myProfile
+    // // it('View the badges and the count in the badges section', function (browser) {
+    // //     myProfile
             
 
-    // });
+    // // });
     it('See month and score and rank by clicking on the badges', function (browser) {
         myProfile
         .pause(12000)

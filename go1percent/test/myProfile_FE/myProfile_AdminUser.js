@@ -65,4 +65,15 @@ describe("My Profile Page Frontend Automation", () => {
             
 
     });
+    it('See view rewards list by clicking on the view rewards button', function (browser) {//testadmin
+        myProfile
+            //.navigate("https://nashtechglobal.go1percent.com/my-profile?id=656")
+            //.waitForElementVisible()
+            .pause(8000)
+            .ClickOnRewardButton()
+            .pause(4000)
+            .assert.urlContains("rewards/list", 'View Rewards list Page is visible');
+
+
+    });
 });
