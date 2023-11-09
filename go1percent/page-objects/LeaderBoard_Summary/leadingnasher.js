@@ -63,14 +63,14 @@ module.exports = {
             selector: 'td:nth-child(1)'
         },
         graph: {
-            selector: "canvas[data-zr-dom-id='zr_0']"
+            // selector: "canvas[data-zr-dom-id='zr_0']"
+            selector:'canvas'
         },
         graphData1: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(2)"
         },
         graphData2: {
-            selector: "//span[text()='400']",
-            locateStrategy: 'xpath'
+            selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(3)",
         },
         exanContribution: {
             selector: 'div[class="accordion mb-3 br spanText"]'
@@ -155,7 +155,6 @@ module.exports = {
                 return this
                     .assert.textContains('@rewordSectionPoints', 'pts', 'asserting points ont reworing section')
                     .assert.textMatches('@rewordSectionDate',dateRegex)
-                    //.assert.containsText('@rewordSectionDate', 'On', 'asserting the date on the reword section')
             },
             noRewordSection() {
                 return this
@@ -200,17 +199,22 @@ module.exports = {
                    
             },
             hoverOnGraph() {
+                let graphDetail1sRegex = '[A-Za-z]+';
+                let graphDetail2sRegex = '[0-9]+';
+                
                 return this
-                    .waitForElementVisible('@graph')
-                    .moveToElement('@graph', 10, 10, function () {
-                        this
-                            .waitForElementVisible('@graphData1')
-                        // .assert.containsText('@graphData1', 'Book')
-                        // .assert.containsText('@graphData2', '400') // Use the second selector from graphData
-                        // You can pause as needed
-                    });
+                    .waitForElementVisible('@graph',3000)
+                    .moveToElement('@graph', 10, 10)
+                    .pause(5000)
+                    .moveToElement('@graph', 60, 60)
+                    .pause(5000)
+                    .moveToElement('@graph',60,60,function name(params) {
+                    })
+                    .waitForElementVisible('@graphData1')
+                    .assert.textMatches('@graphData1', new RegExp(graphDetail1sRegex))
+                    .assert.textMatches('@graphData2', new RegExp(graphDetail2sRegex))
             },
-
+            
             //we expand our configuration here
             expandContribution() {
                 regexPattern = '[A-Za-z]+ [A-Za-z]+ [0-9]+-[A-Za-z]+-[0-9]+';

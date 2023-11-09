@@ -67,7 +67,11 @@ module.exports = {
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
-
+      globals: {
+        waitForConditionTimeout : 20000,
+        abortOnAssertionFailure: false,
+  
+      },
       screenshots: {
         enabled: true,
         path: 'screens',
