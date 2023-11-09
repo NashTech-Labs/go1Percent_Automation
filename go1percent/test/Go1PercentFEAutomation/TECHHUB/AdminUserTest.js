@@ -6,7 +6,8 @@ module.exports = {
     beforeEach: function (browser) {
         login.beforeEach(browser);
         login['landing on dashboard page'](browser);
-        dashboard['navigate to Techhub page'](browser);       
+        dashboard['navigate to Techhub page'](browser);
+        browser.pause(2000);       
     },
     afterEach: function (browser) {
         login.after(browser);
