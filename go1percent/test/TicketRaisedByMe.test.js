@@ -177,7 +177,7 @@ describe('Ticket Raised By Me Api testing', function () {
                 const expectedAssignees=[
                 'Nitin Saxena','Ankit Kumar','Prateek Gupta','Aman Verma','Aanchal Agarwal',
                 'Jony Mandal','Rahul Khowal','Anirudh','Rahul Soni','Amit Nair','Saurabh Choudhary','Piyush Rana',
-                'Amelia','Himanshu Gupta','Testemployee','Hitesh Mahi','Ben Antony Joshua','Divyansh Devrani','Akash Kumar'
+                'Amelia','Himanshu Gupta','Testemployee','Hitesh Mahi','Ben Antony Joshua','Divyansh Devrani','Akash Kumar','Testadmin','Testadmin2'
                 ]
                 for(let index= 0; index < responseBody.length; index++){
 
@@ -197,7 +197,7 @@ describe('Ticket Raised By Me Api testing', function () {
     it('should update the details of Ticket', async function ({ supertest }) {
 
         const requestedData={
-            "ticketID":1185,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
+            "ticketID":1526,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
         }
         const startTimestamp = Date.now();
         await supertest
