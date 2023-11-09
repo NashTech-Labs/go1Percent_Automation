@@ -55,7 +55,7 @@ module.exports = {
  
     admin: {
       
-           
+        base_url:'https://backend.qa.go1percent.com',
        requestData : {
         'client_id': 'leaderboard-ui',
         'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',

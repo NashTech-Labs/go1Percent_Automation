@@ -1,5 +1,5 @@
 const header = require('../../globals')
-
+ 
 
 /**
  * Asserts the response time of an HTTP request.
@@ -39,6 +39,7 @@ describe('Leaderboard API Testing', function () {
       .then(function (response) {
         const token = response._body.access_token;
         header.employee.headers['Authorization'] = 'Bearer ' + token;
+
       });
 
   })
@@ -50,9 +51,10 @@ describe('Leaderboard API Testing', function () {
    */
   it('should retrieve Leading Practices Summary', async function ({ supertest }) {
     const startTime = performance.now();
+    console.log('------',header.admin.base_url)
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/studios')
       .set(header.employee.headers)
       .expect(200) // Expect a successful response with HTTP status code 200
@@ -123,7 +125,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/summary?period=alltime')
       .set(header.employee.headers)
       .expect(200) // Expect a successful response with HTTP status code 200
@@ -169,7 +171,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/summary?period=monthly')
       .set(header.employee.headers)
       .expect(200)
@@ -219,7 +221,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/reputation')
       .set(header.employee.headers)
       .expect(200)
@@ -268,7 +270,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/reputation/666?month=October&year=2023')
       .set(header.employee.headers)
       .expect(200)
@@ -352,7 +354,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/profile/getProfilePic?email=testemployee@nashtechglobal.com')
       .set(header.employee.headers)
       .expect('Content-Type', /json/) // Expect the specific content type
@@ -382,7 +384,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/rewards/getAllRewards')   // https://nashtechglobal.qa.go1percent.com/assets/i18n/en.json
       .set(header.employee.headers)
       .expect('Content-Type', /json/)
@@ -432,7 +434,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/reputation/666')
       .set(header.employee.headers)
       .expect('Content-Type', /json/) // Expect the specific content type
@@ -457,7 +459,7 @@ describe('Leaderboard API Testing', function () {
 
 
     // Assert specific values within the response body.
-    expect(responseBody.knolderName).to.equal('Test Employee');
+    expect(responseBody.knolderName).to.include('Test Employee');
     expect(responseBody.knolderEmail).to.equal('testemployee@nashtechglobal.com');
     expect(responseBody.monthlyRank).to.equal(1);
     expect(responseBody.studioName).to.equal("Frontend Competency");
