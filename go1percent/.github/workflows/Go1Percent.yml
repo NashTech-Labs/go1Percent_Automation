@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: ["feature/Techhub_Admin_User" ]
+    branches: ["main" ]
   pull_request:
-    branches: ["feature/Techhub_Admin_User"]
+    branches: ["main"]
 
 jobs:
   build:
