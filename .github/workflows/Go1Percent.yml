@@ -29,7 +29,7 @@ jobs:
         cache-dependency-path: './go1percent/package-lock.json'
 
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       working-directory: go1percent  # Set the working directory to your project folder
 
     - name: Build project
