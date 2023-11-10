@@ -57,9 +57,12 @@ module.exports = {
     selector: "//div//button[contains(text(),'Cancel')]",
     locateStrategy: 'xpath',
   },
-  deleteButton: 'button[class="btn btn-primary button delete-button"]',
+  deleteButton: {
+    selector: "//button[contains(text(),' Delete')]",
+    locateStrategy: 'xpath',
+  },
   deletefreeSlot: {
-    selector: "//td//div[contains(text(),'04:00 pm')]",
+    selector: "//td//div[contains(text(),'10:40 am')]",
     locateStrategy: 'xpath',
   },
   acceptPopUp: 'button[class="btn btn-primary button submit-button"]',
@@ -250,7 +253,7 @@ module.exports = {
           return this.waitForElementVisible('@cancelButton', 5000)
         },
         deleteButton(){
-          return this.waitForElementVisible('@deleteButton', 5000)
+          return this.waitForElementVisible('@deleteButton', 10000)
           .click('@deleteButton');
 
         },

@@ -1,4 +1,5 @@
 
+
 const requestData = {
     'client_id': 'leaderboard-ui',
     'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
@@ -43,9 +44,8 @@ module.exports = {
         const reporter = new allureReporter.NightwatchAllureReporter({});
         reporter.write(results,done);
       },
-
     requestData,
-    
+
     before: function (done) {
         chromedriver.start();
         done();
@@ -90,7 +90,7 @@ module.exports = {
         },
     },
   
-    messages:{
+    rewardSectionMessages:{
         colorCode: "rgba(236, 64, 122, 1)",
         successMessage: "Reward was successfully updated!",
         imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
