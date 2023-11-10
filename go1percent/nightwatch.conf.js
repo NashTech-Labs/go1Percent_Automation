@@ -107,7 +107,7 @@ module.exports = {
           acceptInsecureCerts: true,
           'moz:firefoxOptions': {
             args: [
-              // '-headless',
+              '-headless',
               // '-verbose'
             ]
           }
@@ -147,8 +147,8 @@ module.exports = {
              '--no-sandbox',          //for headless mode and Jenkins
              "disable-gpu",           //for headless mode and Jenkins
              "--disable-dev-shm-usage"  //for headless mode and Jenkins
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
+            // '--ignore-certificate-errors',
+            // '--allow-insecure-localhost',
           ],
           "binary": "/usr/bin/google-chrome"
         }
@@ -175,7 +175,7 @@ module.exports = {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
-            //'--headless'
+            // '--headless'
           ]
         }
       },

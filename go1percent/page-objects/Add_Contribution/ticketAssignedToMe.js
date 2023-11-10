@@ -55,14 +55,22 @@ module.exports = {
         },
 
         assignedNameInput: {
-            selector: '//input[@placeholder="Search"]',
+            selector: "input[placeholder='Search']",
             locateStrategy: 'xpath'
+        },
+
+        assignedNameSuggestion: {
+            selector: "span[class='ng-star-inserted']"
         },
 
         status: {
             selector: "//option[normalize-space()='Closed']",
             locateStrategy: 'xpath'
         },
+        statusCheck: {
+            selector: '#status'
+        },
+
         statusOpen: {
             selector: "select[id='status'] option:nth-child(1)"
         },
@@ -75,7 +83,13 @@ module.exports = {
             selector: '//option[normalize-space()="Low"]',
             locateStrategy: 'xpath'
         },
-
+        priorityCheck: {
+            selector: '#priority'
+        },
+        assignedCheck: {
+            selector: "//tag-input[@class='ng-tns-c229-0 ng-untouched ng-pristine ng-valid ng-star-inserted']",
+            locateStrategy: 'xpath'
+        },
         updateButton: {
             selector: '//button[normalize-space()="Update"]',
             locateStrategy: 'xpath'
@@ -89,6 +103,11 @@ module.exports = {
             selector: "//div[@class='card tab-bar border-0 mt-4 pr-2 pb-3 p-4']",
             locateStrategy: 'xpath'
         },
+        allFieldsForm: {
+            selector: "//form[@class='w-100 ng-untouched ng-pristine ng-valid']//div[@class='card tab-bar mt-4 p-4']",
+            locateStrategy: 'xpath'
+        },
+
         assignedNameInput: {
             selector: 'input[formcontrolname="item"]'
         },
@@ -135,7 +154,7 @@ module.exports = {
             },
             clickOnHelpdesk() {
                 return this
-                    // .waitForElementVisible('@helpdesk')
+                    .waitForElementVisible('@helpdesk')
                     .click('@helpdesk')
             },
             clickOnTicketAssignedTome() {
@@ -190,11 +209,8 @@ module.exports = {
             },
             clickOnupdateButton() {
                 return this
+                    .waitForElementVisible('@updateButton', 5000)
                     .click('@updateButton')
-            },
-            clickOnstatusMessage() {
-                return this
-                    .click('@statusMessage')
             },
             clickOncloseTicketButton() {
                 return this
