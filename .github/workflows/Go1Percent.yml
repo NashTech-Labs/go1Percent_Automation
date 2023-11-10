@@ -27,12 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: './go1percent/package-lock.json'
-    - name: Chrome Upgrade
-      run: CHROME_VERSION=$(google-chrome-stable --version | awk '{print $3}' | cut -d. -f1)
-          CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
-          wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
 
     - name: Install dependencies
       run: npm install
