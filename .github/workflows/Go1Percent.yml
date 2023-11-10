@@ -29,6 +29,15 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './go1percent/package-lock.json'
 
+    - name: Clear node modules
+      run: rm -rf node_modules
+
+    - name: Clear package-lock.json
+      run: rm -f package-lock.json
+      
+    - name: Clear package-lock.json
+      run: npm cache clean --force
+
     - name: Install dependencies
       run: npm install
       working-directory: go1percent
