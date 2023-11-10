@@ -7,7 +7,7 @@ module.exports = {
             .windowMaximize()
             .url("https://nashtechglobal.qa.go1percent.com/my-dashboard")
 
-        var techHub = browser.page.TechHub_EmployeeUser_part1.techHubPage();
+        var techHub = browser.page.TECHHUB.EmployeeUser.techHubPage();
         techHub
             .enterCredentials('testemployee', 'testemployee')
             .signIn()
@@ -21,7 +21,7 @@ module.exports = {
      */
 
     'verify all the fields in techhub page': function (browser) {
-        var fields = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var fields = browser.page.TECHHUB.EmployeeUser.techHubPage();
         fields
             .displayAllTechHub()
             .assert.textContains('@allTechHubs', 'All TechHubs')
@@ -39,7 +39,7 @@ module.exports = {
      */
 
     'Verify user should not be able to Request a Repo or Branch without filling mandatory field': function (browser) {
-        var submitButtonDisable = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var submitButtonDisable = browser.page.TECHHUB.EmployeeUser.techHubPage();
         submitButtonDisable
             .disableSubmitButtonInRequestRepo()
             .assert.attributeEquals('@submitButton', 'disabled', 'true') // to verify that the button is disabled
@@ -51,7 +51,7 @@ module.exports = {
      */
 
     'Verify user should be able to see the minimum 15 characters required error': function (browser) {
-        var repoNameError = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var repoNameError = browser.page.TECHHUB.EmployeeUser.techHubPage();
         repoNameError
             .requiredNameInRepo()
             .assert.textContains('@errorMessage', 'Repo name is Required')
@@ -65,7 +65,7 @@ module.exports = {
      */
 
     'Verify user should be able to see the Technology is required error': function (browser) {
-        var technologyError = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var technologyError = browser.page.TECHHUB.EmployeeUser.techHubPage();
         technologyError
             .technologyRequiredError()
             .assert.textContains('@errorMessage', 'Technology is Required')
@@ -77,7 +77,7 @@ module.exports = {
      */
 
     'Verify user should be able to Request a Repo or Branch successfully': async function (browser) {
-        var enableSubmitButton = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var enableSubmitButton = browser.page.TECHHUB.EmployeeUser.techHubPage();
         enableSubmitButton
             .requestRepoBranchSubmission()
             .assert.textContains("@submissionPopupAlert", 'Submitted Successfully')
@@ -89,7 +89,7 @@ module.exports = {
      */
 
     'Verify user should be able to Request a Repo or Branch and New Branch from existing repo': function (browser) {
-        var checkBox = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var checkBox = browser.page.TECHHUB.EmployeeUser.techHubPage();
         checkBox
         .newBranchFromExistingRepo()
         .enableSubmitButton()
@@ -102,7 +102,7 @@ module.exports = {
      */
 
     'Verify user should be able to click cancel button on Request Repo or Branch page' : function(browser) {
-        var cancelButton = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+        var cancelButton = browser.page.TECHHUB.EmployeeUser.techHubPage();
         cancelButton
             .clickCancelButton()
             .end()
@@ -113,7 +113,7 @@ module.exports = {
  */
 
 'Verify user should not be able to submit the draft without filling mandatory fields' : function(browser) {
-    var draftFields = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+    var draftFields = browser.page.TECHHUB.EmployeeUser.techHubPage();
     draftFields
         .draftAndPendingButton()
         .draftSubmitButtonDisable()
@@ -126,7 +126,7 @@ module.exports = {
  */
 
 'Verify user should be able to see minimum requirement error messages for Title, Caption' : function(browser) {
-    var titleCaptionErrorMessage = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+    var titleCaptionErrorMessage = browser.page.TECHHUB.EmployeeUser.techHubPage();
     titleCaptionErrorMessage
         .draftAndPendingButton()
         .requiredCharactersForDescription()
@@ -144,7 +144,7 @@ module.exports = {
  */
 
 'Verify user should be able to see blank fields error messages' : function(browser) {
-    var blankFields = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+    var blankFields = browser.page.TECHHUB.EmployeeUser.techHubPage();
     blankFields
         .draftAndPendingButton()
         .requiredTitle()
@@ -172,7 +172,7 @@ module.exports = {
  */
 
 'Verify user should be able to see Category and Language is required error message' : function(browser) {
-    var categoryAndLanguageError = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+    var categoryAndLanguageError = browser.page.TECHHUB.EmployeeUser.techHubPage();
     categoryAndLanguageError
         .draftAndPendingButton()
         .requiredCategoryAndLanguage()
@@ -186,7 +186,7 @@ module.exports = {
  */
 
 'Verify user should be able to submit the draft by filling mandatory fields only' : function(browser) {
-    var fields = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+    var fields = browser.page.TECHHUB.EmployeeUser.techHubPage();
     fields
         .draftAndPendingButton()
         .setBranchValue()
@@ -206,7 +206,7 @@ module.exports = {
  */
 
 'Verify user should be able to submit the draft by filling all fields ': function(browser) {
-    var allFields = browser.page.TechHub_EmployeeUser_part1.techHubPage()
+    var allFields = browser.page.TECHHUB.EmployeeUser.techHubPage();
     allFields
         .waitForElementVisible('@pendingButton', 10000)
         .draftAndPendingButton()
@@ -221,5 +221,6 @@ module.exports = {
         .setDescriptionValue()
         .enableSubmitButton()
         .assert.textContains("@submissionPopupAlert", 'Template successfully submitted, please wait for your studio head to review it.')
+        .end()
     }
   }
