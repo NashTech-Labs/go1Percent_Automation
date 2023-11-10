@@ -18,6 +18,11 @@ jobs:
         node-version: [18.x]
 
     steps:
+    - name: Set up Chrome
+      uses: browser-actions/setup-chrome@latest
+      with:
+        chrome-version: '119'
+    
     - name: Checkout repository
       uses: actions/checkout@v2
 
