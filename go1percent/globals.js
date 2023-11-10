@@ -1,4 +1,5 @@
 
+
 const requestData = {
     'client_id': 'leaderboard-ui',
     'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
@@ -33,9 +34,8 @@ module.exports = {
         const reporter = new allureReporter.NightwatchAllureReporter({});
         reporter.write(results,done);
       },
-
     requestData,
-    
+
     before: function (done) {
         chromedriver.start();
         done();
@@ -80,7 +80,7 @@ module.exports = {
         },
     },
   
-    messages:{
+    rewardSectionMessages:{
         colorCode: "rgba(236, 64, 122, 1)",
         successMessage: "Reward was successfully updated!",
         imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
@@ -301,6 +301,21 @@ module.exports = {
     ExpectedTitle: 'new newnewn ewn',
     Description: 'Description',
     SlideURL: 'Slide URL',
+
+    feedbackForm: {
+        uiData: {
+            sessionInUseMessage : 'The Form is currently being used in following session(s)',
+            formUpdateMessage : 'Form Updated Successfully',
+            deleteDialogBoxMessage : 'Are you sure want to delete this form ?',
+            addNPSMessage : 'Please add a NPS question',
+            addFormTitleMessage : 'Please enter a Form Title',
+            addQuestionMessage : 'Question cannot be empty',
+            formCreatedMessage : 'Form created successfully',
+            searchQuery : 'Search Me',
+            formDeletedMessage : 'Form Deleted Successfully',
+
+        },
+
+    },
         
         };
-
