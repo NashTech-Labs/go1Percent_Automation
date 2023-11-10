@@ -1,12 +1,4 @@
 
-
-go1percent/tests_output/
-go1percent/node_modules/
-go1percent/allure-report/
-go1percent/allure-results/
-
-
-
 *.class
 
 # Log file
@@ -39,7 +31,7 @@ go1percent/tests_output/
 //go1percent/package-lock.json
 //go1percent/globals.js
 go1percent/nightwatch.conf.js
-replay_pid*
+
 
 go1percent/package-lock.json
 go1percent/package.json
@@ -47,6 +39,9 @@ go1percent/nightwatch
 
 
 
+
+go1percent/allure-report/
+go1percent/allure-results/
 
 go1percent/log/
 go1percent/screens/
