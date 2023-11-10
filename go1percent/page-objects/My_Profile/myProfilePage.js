@@ -4,7 +4,7 @@ module.exports = {
 
     elements: {
 
-        Setting: "ul[class='navbar-nav justify-content-end'] app-dropdown-wrapper div[class='position-relative'] div[class='pt-2'] li[class='icon nav-item dropdown px-2 d-flex align-items-center justify-content-center'] a[class='nav-link text-body p-0 text-white'] div i[class='material-icons user-icon']",
+        Setting: "#navbar  div:nth-of-type(2) ul app-dropdown-wrapper i",
         MyProfile: "div[class='d-flex py-1 mt-1'] span",
         UpdateProfilepic: {
 
@@ -25,7 +25,9 @@ module.exports = {
         RewardEditCancelBtn: ".btn.btn-light",
         NoBadgeEarned: "div[class='d-flex flex-column align-items-center my-auto'] p",
         BadgesContainer: "div[class='d-flex justify-content-start align-items-center no-scroll-badges']",
-        EachBadge: ".no-scroll-badges .w-20",
+        EachBadge: {
+            locateStrategy: 'xpath',
+            selector: "//div[@class='w-20']"},
         EachBadgeInside: "div[class='d-flex flex-column align-items-center outer-div']",
         NoProfilePic: {
             locateStrategy: 'xpath',
@@ -53,10 +55,6 @@ module.exports = {
         BadgeMonth: "div[class='modal-body m-2 p-4'] div:nth-child(1) div:nth-child(1) h6:nth-child(1)",
         BadgeScore: "body > modal-container:nth-child(11) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(2)",
         BadgeQuit: "span[role='button']",
-        BadgeCount: {
-            locateStrategy: 'xpath',
-            selector: "//body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[1]/div[1]/div[1]//*[name()='svg']"
-        },
     
     },
 
