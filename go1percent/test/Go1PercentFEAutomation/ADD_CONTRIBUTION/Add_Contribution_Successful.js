@@ -1,3 +1,4 @@
+const randomString = Math.random().toString(36).substring(7);
 const Login = require('../../../helpers/Go1PercentFEAutomation/ADD_CONTRIBUTION/go1Percentloging');
 const globals = require('../../../globals')
 const dashboard = browser.page.Add_Contribution.Dashboard();
@@ -45,7 +46,7 @@ module.exports =
           .sendKeys("@title", ['Nightwatchjs test script'])
           .setValue('@contributiontype', 'Online Course')
           .sendKeys("@description", ['Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to'])
-          .sendKeys("@videourl", [globals.Add_Contribution.Contribution_url])
+          .sendKeys("@videourl", ["www."+ randomString+".com"])
           .click("@submit")
        contribution
           .Textcontain('successfully');

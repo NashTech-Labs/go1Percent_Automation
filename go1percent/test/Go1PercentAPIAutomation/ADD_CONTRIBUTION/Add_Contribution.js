@@ -1,4 +1,5 @@
 const globals = require('../../../globals')
+const randomString = Math.random().toString(36).substring(7);
 
 describe('api testing', function () {
 
@@ -6,6 +7,7 @@ describe('api testing', function () {
   const tokenHeaders = globals.Add_Contribution.tokenHeaders;
   const tokenBody = globals.Add_Contribution.tokenBody;
   const token = globals.Add_Contribution.token;
+  const randomURL = "www."+ randomString+".com"
 
     const ResponseTime = (startTime)=>{ // Function to check Response Time
     const endTime = new Date().getTime();
@@ -41,7 +43,7 @@ describe('api testing', function () {
             "title":"Test employee contribution",
             "contributionType":"Research paper",
             "contributionDate":"2023-10-19 00:00:00",
-            "urlDetails":globals.Add_Contribution.Contribution_url, // Change this url before running this call
+            "urlDetails":randomURL,
             "technologyDetails":"ddcscdcmjjicjdjc hdfiwic jocdjoicwd fcdiocd chojvwofeefhevdvhvhnvjvjdwehuihefkjcnjkvnwbrihfuvbhjbdjfre"
           })
           .expect(200) //Asserting Response Code
