@@ -89,6 +89,26 @@ module.exports = {
         }
     },
 
+    queryRequested:{
+        'pageNumber' : '1',
+        'filter' : 'requested', 
+        'pageSize' : '10',
+        'search' : '',
+
+    },
+    techhubUrls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://techhub-backend.qa.go1percent.com",
+    },
+
+
+    after: function (done) {
+        chromedriver.stop();
+        done();
+    },
+
+    // Requested sessions
+
     queryRequested: {
         'pageNumber': '1',
         'filter': 'requested',
@@ -102,20 +122,39 @@ module.exports = {
         },
 
 
+     manageSlotBase_url:"https://knolx-backend.qa.go1percent.com",
+     source : "https://nashtechglobal.qa.go1percent.com",
+     access_token : '',
+    
+    Add_Contribution:{
+        headers: {
+            'Authorization': '',
+            'Source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenHeaders: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'source': 'https://nashtechglobal.qa.go1percent.com'
+        },
+        tokenBody: {
+            client_id: 'leaderboard-ui',
+            client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            username: 'testadmin',
+            password: 'testadmin',
+            grant_type: 'password',
+        },
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/contribution/addContribution",
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
+        Contribution_url:"www.codsfcdu.org"  
+    } ,
+
+
         after: function (done) {
             chromedriver.stop();
             done();
         },
 
-
-        // Requested sessions
-        queryRequested: {
-            'pageNumber': '1',
-            'filter': 'requested',
-            'pageSize': '10',
-            'search': '',
-
-        },
 
 
 
@@ -237,9 +276,35 @@ module.exports = {
                 'Authorization': '',
                 'Source': 'https://nashtechglobal.qa.go1percent.com'
             },
+
             tokenHeaders: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'source': 'https://nashtechglobal.qa.go1percent.com'
+                'source': 'https://nashtechglobal.qa.go1percent.com',
+
+            access_token :"",  
+            // Upcoming Sessions Page Frontend Automation
+            nasher : "employee",
+            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+            badge:"KNOLX",
+            date:"Nov 7, 2023",
+            datePastSessions: "Oct 14, 2023",
+            // allure report
+            reporter: (results,done)=>{
+                const reporter = new allureReporter.NightwatchAllureReporter({});
+                reporter.write(results,done);
+              },
+
+
+        
+      
+              //My Past Session
+                  
+               queryMyPastSession: {
+               'pageNumber': '1',
+               'pageSize': '1000',
+               'filter': 'past',
+               'knolderOnly': 'true',
+               'sessionId' : '6529144d45bc9a797dfbcb19',
             },
             tokenBody: {
                 client_id: 'leaderboard-ui',
