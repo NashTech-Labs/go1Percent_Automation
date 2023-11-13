@@ -97,7 +97,7 @@ describe("Rewards Page Frontend Automation", () => {
     //  Verify that admin should be able to increase or decrease Required points (TC-291)
     it("Should be able to increase or decrease required points", () => {
         sessionsPage
-           .waitForElementPresent('@editButton')
+           .waitForElementPresent('@editButton',6000)
            .clickOnEditButton()
            .waitForElementPresent('@requiredPoints',3000)
            .clickOnRequiredPoint()
@@ -114,7 +114,7 @@ describe("Rewards Page Frontend Automation", () => {
     it("Should be able to increase or decrease stock quantity for admin", () => {
         let updatedValue;
         sessionsPage
-       .waitForElementPresent('@editButton')
+       .waitForElementPresent('@editButton',6000)
        .clickOnEditButton()
        .waitForElementPresent('@stockQuantity',3000)
        .clickOnStockQuantity()
@@ -136,7 +136,7 @@ describe("Rewards Page Frontend Automation", () => {
     // Verify that admin should be able to delete existing pic in update rewards page (TC-286)   
     it("Should be able to see message on clicking cross button on image", () => {
         sessionsPage
-           .waitForElementPresent('@editButton',4000)
+           .waitForElementPresent('@editButton',6000)
            .clickOnEditButton()
            .waitForElementPresent('@crossButton',3000)
            .clickOnCrossButton()
@@ -145,11 +145,15 @@ describe("Rewards Page Frontend Automation", () => {
     }),
 
     // Verify that admin should be able to upload new image to existing reward (TC-288)
-    it("Should be able to to upload new image to existing reward image", () => {
+    it("Should be able to upload new image to existing reward image", () => {
         sessionsPage
-            .waitForElementPresent('@imageUploadMessage')
-            .clickOnImageUploadMessageButton()
-            .pause(7000)
+            .waitForElementPresent('@imageUploadMessage');
+            browser
+                .isEnabled('div.ImageMinWidthClass > input', function () {
+                        browser.uploadFile('div.ImageMinWidthClass > input', '/home/knoldus/Downloads/eardopes.jpg');
+                    });
+            sessionsPage
+           // .pause(2000)    
             .clickOnUpdateButton()
             .assert.textContains('@updateMessage', globalsData.rewardSectionMessages.successMessage)
     }),
@@ -157,11 +161,15 @@ describe("Rewards Page Frontend Automation", () => {
     //  Verify that admin should not be able to add any other extension files (TC-287)
     it("Should be able to see popup message on uploading invalid format image", () => {
          sessionsPage
-            .waitForElementPresent('@editButton')
+            .waitForElementPresent('@editButton',6000)
             .clickOnEditButton()
             .clickOnCrossButton()
-            .clickOnImageUploadMessageButton()
-            .pause(4000)
+            .waitForElementPresent('@imageUploadMessage')
+            browser
+            .isEnabled('div.ImageMinWidthClass > input', function () {
+                    browser.uploadFile('div.ImageMinWidthClass > input', '/home/knoldus/Downloads/giphy1.gif');
+                });
+        sessionsPage    
             .assert.textContains('@imageFormatMessage', globalsData.rewardSectionMessages.imageFormatFailureMessage)
     }),
 
@@ -169,8 +177,11 @@ describe("Rewards Page Frontend Automation", () => {
      it("Should be able to see popup message on uploading image of invalid size", () => {
           sessionsPage
             .waitForElementPresent('@imageUploadMessage')
-            .clickOnImageUploadMessageButton()
-            .pause(4000)
+            browser
+            .isEnabled('div.ImageMinWidthClass > input', function () {
+                    browser.uploadFile('div.ImageMinWidthClass > input', '/home/knoldus/Downloads/nature.jpg');
+                });
+        sessionsPage    
             .assert.textContains('@imageInvalidSize', globalsData.rewardSectionMessages.imageInvalidSizeMessage)
     }),
 
