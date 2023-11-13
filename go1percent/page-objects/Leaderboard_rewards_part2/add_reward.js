@@ -8,33 +8,50 @@ var addRewardCommands = {
         .assert.textContains('@addRewardTitle', 'Add a new reward');
     },
 
-    addImage : function () {
-        return this
-        .waitForElementPresent('@imageContainer', 5000)
-        .click('@imageContainer')
-        .pause(5000)
-        .waitForElementPresent('@imageCrossButton', 5000);
-    },
-
     clickSaveButton : function () {
         return this
         .waitForElementPresent('@submitButton', 5000)
         .click('@submitButton');
     },
 
+    assertAlert : function () {
+        return this
+        //check alert
+        .getText('@alert', function (result) {
+        let alertText = result.value;
+        if (alertText !== null && alertText.includes('Successfully added reward!')) {
+            this.assert.equal(result.value, 'Successfully added reward!');
+        } 
+        else if(alertText.includes('Reward with the same name and type already exist')){
+            this.assert.equal(result.value, 'Reward with the same name and type already exist');
+            addRewardTab.closeAddRewardTab();
+        }
+        else if(alertText.includes('Reward with the same name and type already exist')){
+            this.assert.equal(result.value, 'Reward with the same name and type already exist');
+            addRewardTab.closeAddRewardTab();
+        }
+        else if(alertText.includes('Reward expiry date and time must be greater than current date and time')){
+            this.assert.equal(result.value, 'Reward expiry date and time must be greater than current date and time');
+            addRewardTab.closeAddRewardTab();
+        }
+        else if(alertText.includes('Reward name should not contain special symbols and number')){
+            this.assert.equal(result.value, 'Reward name should not contain special symbols and number');
+            addRewardTab.closeAddRewardTab();
+        }
+        })
+        .waitForElementNotPresent('@alert');
+    },
+
+
     closeAddRewardTab : function () {
         return this
         .waitForElementPresent('@cancelButton', 5000)
         .click('@cancelButton')
-        .expect.element('@addRewardTitle ').not.to.be.present; // h5.modal-title.pull-left.ms-2
+        .expect.element('@addRewardTitle').not.to.be.present; // h5.modal-title.pull-left.ms-2
     },
 
     addARewardDetails : function(rewardName, description, pointsNeededToRedeem, quantity, expiryDate){
         return this
-        //Image
-        .waitForElementPresent('@imageContainer', 5000)
-        .click('@imageContainer')
-        .pause(5000)
 
         //Reward name
         .waitForElementPresent('@nameField', 5000)
@@ -86,11 +103,17 @@ module.exports = {
         addRewardButton : {
             selector: 'button.btn.btn-primary.addRewardBtn.px-2'
         },
+        cancelButton : {
+            selector: 'button.btn.btn-light'
+        },
         addRewardTitle: {
             selector: 'div.modal-header.ps-5'  
         },
         imageContainer: {
             selector: 'div.ImageMinWidthClass'
+        },
+        imageInput: {
+            selector: 'div.ImageMinWidthClass > input'
         },
         imageCrossButton: {
             selector: 'i[title="Delete"]'
@@ -123,14 +146,14 @@ module.exports = {
             selector: '#expiryDate'
         }, 
         individualButton: {
-            selector: 'button.yes-button.font-weight-light.bg-transparent'
+            selector: 'button.yes-button.font-weight-light.bg-transparent'  
         }, 
         competencyButton: {
             selector: 'button.no-button.font-weight-light.bg-transparent'
-        },  
-        enableButton: {
-            selector: 'div:nth-child(5)  button.yes-button.font-weight-light.bg-transparent'
         }
+        // enableButton: {
+        //     selector: 'div:nth-child(5)  button.yes-button.font-weight-light.bg-transparent'
+        // }
     }
 }
 

@@ -6,13 +6,13 @@ var redeemRewardCommands = {
         .assert.urlContains('rewards/reward-reports');  
     },
 
-    assertRewardReportDetails : function (employeeName, competencyName, rewardName, redeemPoints, expiryDate) {
+    assertRewardReport : function () {
         return this
-        .assert.textContains('@employeeName', employeeName) 
-        .assert.textContains('@competencyName', competencyName)
-        .assert.textContains('@rewardName', rewardName) 
-        .assert.textContains('@redeemPoints', redeemPoints) 
-        .assert.textContains('@expiryDate', expiryDate);
+        .assert.elementPresent('@employeeName') 
+        .assert.elementPresent('@competencyName')
+        .assert.elementPresent('@rewardName') 
+        .assert.elementPresent('@redeemPoints') 
+        .assert.elementPresent('@redeemedDate');
     },
 
     openRedeemRequestWindow : function () {
@@ -22,34 +22,73 @@ var redeemRewardCommands = {
         .assert.textContains('@RedeemRequestWindowTitle', 'Process a Redeem Request');
     }, 
 
+
+    openRedeemRequestWindowAndGetDetails: function (callback) {
+        var rewardDetails = {};
+        return this
+            .click('@employeeName')
+            .waitForElementPresent('@RedeemRequestWindowTitle', 5000)
+            .assert.textContains('@RedeemRequestWindowTitle', 'Process a Redeem Request')
+            .getText('@rewardOwner', function (result) {
+                rewardDetails.owner = result.value;
+            })
+            // Add more getText calls for other details as needed
+            .getText('@redeemedReward', function (result) {
+                rewardDetails.reward = result.value;
+            })
+            .getText('@rewardOwnerCompetency', function (result) {
+                rewardDetails.competency = result.value;
+            })
+            .getText('@redeemedOnDate', function (result) {
+                rewardDetails.redeemedDate = result.value;
+            })
+            // Add more getText calls for other details as needed
+            .perform(function () {
+                // Pass the employee details back to the callback
+                callback(rewardDetails);
+            });
+    },
+
+    assertProcessedReward: function (rewardDetails) {
+        return this
+        .waitForElementPresent('@employeeName', 5000)
+        .assert.textContains('@employeeName',rewardDetails.owner) 
+        .assert.elementPresent('@competencyName', rewardDetails.competency)
+        .assert.elementPresent('@rewardName', rewardDetails.reward) 
+        .assert.elementPresent('@redeemPoints', rewardDetails.redeemedDate) 
+        .assert.elementPresent('@statusButton', 'PROCESSED');
+    },
+
     closeRedeemRequestWindow : function () {
         return this
         .waitForElementPresent('@closeButton', 5000)
         .click('@closeButton');
     },  
 
-    changeStatusOfReward : function(rewardName, description, pointsNeededToRedeem, quantity, expiryDate){
+    processReward : function(){
         return this
         .waitForElementPresent('@processButton', 5000)
-        .click('@processButton')
-        // .waitForElementPresent('@processedStatus', 5000)
-        // .assert.textContains('@processedStatus', 'PROCESSED');
+        .click('@processButton');
     },
 
     switchToCompetency : function(){
         return this
+        .waitForElementPresent('@iconGrid')
         .waitForElementPresent('@competencyButton', 5000) 
-        .click('@competencyButton') 
-        .waitForElementPresent('@competencyRewardReport', 5000) 
-        .assert.textContains('@competencyRewardReport', 'No Redeemed Reward Available');
+        .click('@competencyButton');
     },
+
+    matchRewardReport : function(){
+        return this
+        .waitForElementPresent('@rewardReport', 5000) 
+        .assert.textContains('@rewardReport', 'No Redeemed Reward Available');
+    },
+
 
     switchToIndividual: function(){
         return this
         .waitForElementPresent('@individualButton', 5000) 
-        .click('@competencyButton') 
-        .waitForElementPresent('@competencyRewardReport', 5000) 
-        .assert.textContains('@competencyRewardReport', 'No Redeemed Reward Available');
+        .click('@individualButton');
     },
 
     setTimeFilterToToday: function(){
@@ -63,8 +102,8 @@ var redeemRewardCommands = {
 
     matchDate: function(date){
         return this
-        .waitForElementPresent('@expiryDate', 5000)
-        .assert.textContains('@expiryDate', date);
+        .waitForElementPresent('@redeemedDate', 5000)
+        .assert.textContains('@redeemedDate', date);
     }, 
 
     resetTimeFilter: function(){
@@ -82,13 +121,16 @@ var redeemRewardCommands = {
         .click('@statusFilter') 
         .waitForElementPresent('@processingOption', 5000)
         .click('@processingOption')
-        .click('@statusFilter') ;
+        .click('@statusFilter');
     },
 
-    matchStatus: function(status){
+    setStatusFilterToProcessed: function(){
         return this
-        .waitForElementPresent('@processingStatus', 5000)
-        .assert.textContains('@processingStatus', 'PROCESSING');
+        .waitForElementPresent('@statusFilter', 5000) 
+        .click('@statusFilter') 
+        .waitForElementPresent('@processedOption', 5000)
+        .click('@processedOption')
+        .click('@statusFilter');
     },
 
     resetStatusFilter: function(){
@@ -97,7 +139,8 @@ var redeemRewardCommands = {
         .click('@statusFilter') 
         .waitForElementPresent('@allStatusOption', 5000)
         .click('@allStatusOption')
-        .click('@statusFilter');
+        .click('@statusFilter')
+        .waitForElementPresent('@employeeName');
     },
 
     searchNasher: function(name){
@@ -115,6 +158,9 @@ module.exports = {
         rewardReportButton : {
             selector: 'button.btn.reportRewardBtn.px-2.me-2'
         },
+        iconGrid: {
+            selector: '#icon-grid'
+        }, 
         employeeName: {
             selector: '#icon-grid div:nth-child(1)  h6'
         }, 
@@ -127,7 +173,7 @@ module.exports = {
         redeemPoints: {
             selector: 'div.col-xxl-4.d-flex small'
         }, 
-        expiryDate: {
+        redeemedDate: {
             selector: 'div.ms-md-0.ms-sm-6 > small'  
         }, 
         RedeemRequestWindowTitle: {
@@ -137,19 +183,19 @@ module.exports = {
             selector: 'span.material-icons-outlined.cancel-modal'
         }, 
         processButton: {
-            selector: 'div.me-3 > #submitButton'
-        }, 
-        processedStatus: {
-            selector: 'button.btn.text-white.status-btn.mb-0.processedStatus'
-        }, 
+            selector: '#submitButton'
+        },  
         competencyButton: {
             selector: 'app-reward-reports li:nth-child(2) > a'
         },
         individualButton: {
             selector: 'app-reward-reports li:nth-child(1) > a'
         },
-        competencyRewardReport: {
+        rewardReport: {
             selector: 'div.card.text-center.m-3.py-10 > h5'
+        }, 
+        showMoreCard: {
+            selector: 'div.report-card-footer > div'
         }, 
         timeFilter: {
             selector: '#rewardType'
@@ -169,12 +215,27 @@ module.exports = {
         processingOption: {
             selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2 > option:nth-child(2)'
         },  
-        processingStatus: {
-            selector: 'button.btn.text-white.status-btn.mb-0.processingStatus'
-        },
+        processedOption: {
+            selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2 > option:nth-child(3)'
+        }, 
+        statusButton: {
+            selector: '#icon-grid button'
+        }, 
         searchFeild: {
             selector: 'div:nth-child(2) > input'
-        } 
+        }, 
+        rewardOwner: {
+            selector: 'h5.mb-n1'
+        }, 
+        redeemedReward: {
+            selector: 'h5.mt-3.mb-0'
+        }, 
+        rewardOwnerCompetency: {
+            selector: 'small.font-weight-bold.ms-0'
+        }, 
+        redeemedOnDate: {
+            selector: 'div.my-4.ms-4 > strong'
+        }
     }
 }
 

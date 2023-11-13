@@ -20,7 +20,7 @@ var updateRewardsCommands = {
         return this
         .waitForElementPresent('@cancelButton', 5000)
         .click('@cancelButton')
-        .expect.element('h5.modal-title.pull-left.ms-2').not.to.be.present;
+        .expect.element('@updateRewardTitle').not.to.be.present;
     },
 
     changeExpiryDate : function () {
@@ -40,9 +40,10 @@ var updateRewardsCommands = {
 
     switchToCompetency : function () {
         return this
+        .waitForElementPresent('@editButton', 5000)
         .waitForElementPresent('@competencyOption', 5000)
         .click('@competencyOption')
-        .assert.cssProperty('@currentButton','background-color','rgba(236, 64, 122, 1)');
+        .assert.cssProperty('@competencyOption','background-color','rgba(236, 64, 122, 1)');
     }
     
 }
@@ -80,6 +81,9 @@ module.exports = {
         }, 
         competencyOption: {
             selector: 'li:nth-child(2) > a.cursor-pointer'
+        },
+        rewardName: {
+            selector: 'input[formcontrolname="name"]'
         },
         currentButton: {
             selector: '.cursor-pointer.newTabs'
