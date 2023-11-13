@@ -47,8 +47,8 @@ module.exports = {
     globals_path: './globals.js',
 
     globals: {
-      "userName": "testemployee", // this is placeholder username, make sure to update.
-      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+      "userName": "testemployee1", // this is placeholder username, make sure to update.
+      "password": "testemployee1" // this is placeholderPassword, Make sure to update.
     },
 
   vite_dev_server: {

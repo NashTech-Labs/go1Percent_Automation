@@ -1,5 +1,7 @@
 const globalsData = require('../../../globals')
 const sessionsPage = browser.page.RewardsPage()
+const imageContainer = ".ImageMinWidthClass > input"
+
 describe("Rewards Page Frontend Automation", () => {
     before(function () {
         const user = "Test Admin"
@@ -39,7 +41,7 @@ describe("Rewards Page Frontend Automation", () => {
             window.scrollTo(0, 0);
         })
         sessionsPage
-        .waitForElementPresent('@lastReward')
+        .waitForElementPresent('@lastReward',8000)
         .assert.elementPresent('@lastReward')
      }),
    
@@ -149,37 +151,36 @@ describe("Rewards Page Frontend Automation", () => {
         sessionsPage
             .waitForElementPresent('@imageUploadMessage');
             browser
-                .isEnabled('div.ImageMinWidthClass > input', function () {
-                        browser.uploadFile('div.ImageMinWidthClass > input', '/home/knoldus/Downloads/eardopes.jpg');
+                .isEnabled(imageContainer, function () {
+                        browser.uploadFile(imageContainer, '/home/knoldus/Downloads/eardopes.jpg');
                     });
-            sessionsPage
-           // .pause(2000)    
+        sessionsPage  
             .clickOnUpdateButton()
             .assert.textContains('@updateMessage', globalsData.rewardSectionMessages.successMessage)
     }),
 
     //  Verify that admin should not be able to add any other extension files (TC-287)
     it("Should be able to see popup message on uploading invalid format image", () => {
-         sessionsPage
+        sessionsPage
             .waitForElementPresent('@editButton',6000)
             .clickOnEditButton()
             .clickOnCrossButton()
             .waitForElementPresent('@imageUploadMessage')
             browser
-            .isEnabled('div.ImageMinWidthClass > input', function () {
-                    browser.uploadFile('div.ImageMinWidthClass > input', '/home/knoldus/Downloads/giphy1.gif');
+            .isEnabled(imageContainer, function () {
+                    browser.uploadFile(imageContainer, '/home/knoldus/Downloads/giphy1.gif');
                 });
         sessionsPage    
             .assert.textContains('@imageFormatMessage', globalsData.rewardSectionMessages.imageFormatFailureMessage)
     }),
 
-                
+    //  Verify that admin should not be able to add any image files of invalid size            
      it("Should be able to see popup message on uploading image of invalid size", () => {
-          sessionsPage
+        sessionsPage
             .waitForElementPresent('@imageUploadMessage')
             browser
-            .isEnabled('div.ImageMinWidthClass > input', function () {
-                    browser.uploadFile('div.ImageMinWidthClass > input', '/home/knoldus/Downloads/nature.jpg');
+            .isEnabled(imageContainer, function () {
+                    browser.uploadFile(imageContainer, '/home/knoldus/Downloads/nature.jpg');
                 });
         sessionsPage    
             .assert.textContains('@imageInvalidSize', globalsData.rewardSectionMessages.imageInvalidSizeMessage)
