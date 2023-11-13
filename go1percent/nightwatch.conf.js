@@ -1,4 +1,3 @@
-
 // Refer to the online docs for more details:
 // https://nightwatchjs.org/gettingstarted/configuration/
 //
@@ -28,7 +27,7 @@ module.exports = {
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  //page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
+  page_objects_path: ['page-objects', 'page-objects/TECHHUB/AdminUser'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
@@ -49,8 +48,11 @@ module.exports = {
 
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
-      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+      "password": "testemployee", // this is placeholderPassword, Make sure to update.
+      "adminUserName": "testadmin", // this is placeholder username, make sure to update.
+      "adminPassword": "testadmin" // this is placeholderPassword, Make sure to update.
     },
+  
 
   vite_dev_server: {
     start_vite: true,
@@ -70,10 +72,7 @@ module.exports = {
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
-      globals: {
-        waitForConditionTimeout : 20000,
-        abortOnAssertionFailure: false,
-      },
+ 
       screenshots: {
         enabled: true,
         path: 'screens',
@@ -81,10 +80,13 @@ module.exports = {
       },
  
       desiredCapabilities: {
-        browserName: 'chrome',
-        chromeOptions: {
-           args: ['--headless', '--no-sandbox']
-           }
+        browserName: 'chrome'
+        // 'goog:chromeOptions': {
+        //   ...
+        //   // specify the locateStrategy as xpath
+        //   locateStrategy: 'xpath',
+
+        // },
       },
 
       webdriver: {
@@ -103,7 +105,7 @@ module.exports = {
           acceptInsecureCerts: true,
           'moz:firefoxOptions': {
             args: [
-              '-headless',
+              // '-headless',
               // '-verbose'
             ]
           }
@@ -138,15 +140,15 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-             '--headless',            //for headless mode and Jenkins
-             "window-size=1920,1080", //for headless mode and Jenkins
-             '--no-sandbox',          //for headless mode and Jenkins
-             "disable-gpu",           //for headless mode and Jenkins
-             "--disable-dev-shm-usage"  //for headless mode and Jenkins
-            // '--ignore-certificate-errors',
-            // '--allow-insecure-localhost',
-          ],
-          "binary": "/usr/bin/google-chrome"
+            '--headless',            //for headless mode and Jenkins
+            "window-size=1920,1080", //for headless mode and Jenkins
+            '--no-sandbox',          //for headless mode and Jenkins
+            "disable-gpu",           //for headless mode and Jenkins
+            "--disable-dev-shm-usage"  //for headless mode and Jenkins
+           //'--ignore-certificate-errors',
+           //'--allow-insecure-localhost',
+         ],
+         "binary": "/usr/bin/google-chrome"
         }
       },
  
@@ -171,7 +173,7 @@ module.exports = {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
-            // '--headless'
+            //'--headless'
           ]
         }
       },
@@ -393,4 +395,3 @@ module.exports = {
     }
   }
 }
-
