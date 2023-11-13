@@ -6,7 +6,7 @@ module.exports = {
             .navigate()
             .enterCredentials(browser.globals.adminUserName, browser.globals.adminPassword)
             .signIn()
-       // browser.pause(30000)
+        //browser.pause(30000)
     },
     after: function(browser) {
         browser.end();
