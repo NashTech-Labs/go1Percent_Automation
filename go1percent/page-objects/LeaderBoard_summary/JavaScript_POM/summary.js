@@ -2,7 +2,6 @@ const { assert } = require("nightwatch");
 
 module.exports = {
     elements: {
-
         leaderboard: {
             selector: '//h6[text()=" LEADERBOARD "]',
             locateStrategy: 'xpath'
@@ -72,16 +71,16 @@ module.exports = {
             },
 
             switchBetweenAlltimeandThisMonth() {
-             return this
-                  .click('@allTime')
+                return this
+                    .click('@allTime')
             },
-            
-            containsLeadingnasherList(){
+
+            containsLeadingnasherList() {
                 browser.waitForElementVisible('div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]')
-                browser.elements('css selector', 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]', function(result) {
+                browser.elements('css selector', 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]', function (result) {
                     const elementCount = result.value.length;
                     browser.assert.ok(elementCount > 0, 'elementCount should be greater than 0')
-                  });
+                });
             }
 
         }

@@ -13,7 +13,7 @@ function assertResponseTime(startTime, maxTime) {
 
 
 describe('Leaderboard API Testing', function () {
-
+  
   /**
     * Generates a dynamic bearer token for API authentication.
     *
@@ -21,6 +21,7 @@ describe('Leaderboard API Testing', function () {
     * @param {string} password - The password for authentication.
     * @returns {string} accessToken - The dynamically generated bearer token.
     */
+
   it('token generation', async function ({ supertest }) {
     const tokenURl = "https://auth.go1percent.com";
 
