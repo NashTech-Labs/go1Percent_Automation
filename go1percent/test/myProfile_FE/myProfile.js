@@ -66,7 +66,7 @@ describe("My Profile Page Frontend Automation", () => {
             .assert.elementPresent('@CompetencyName', 'Competency Name Visible');
 
     });
-    it('View the points, overall rank and monthly score on the profile page', function (browser) {
+    it.only('View the points, overall rank and monthly score on the profile page', function (browser) {
         myProfile
             .pause(3000)
             .assert.elementPresent('@Points', 'User Points Visible')
