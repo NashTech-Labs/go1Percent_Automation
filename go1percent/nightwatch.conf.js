@@ -18,7 +18,7 @@ module.exports = {
   skip_testcases_on_fail: false,
   
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects'],
+  page_objects_path: ['page-objects','page-objects/ManageMyUpcomingSession'],
  
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
  
@@ -147,7 +147,7 @@ module.exports = {
              "window-size=1920,1080", //for headless mode and Jenkins
              '--no-sandbox',          //for headless mode and Jenkins
              "disable-gpu",           //for headless mode and Jenkins
-             "--disable-dev-shm-usage"  //for headless mode and Jenkins
+            //  "--disable-dev-shm-usage"  //for headless mode and Jenkins
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
           ],

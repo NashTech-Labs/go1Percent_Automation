@@ -21,8 +21,6 @@
   },
   "dependencies": {
     "allure-commandline": "^2.24.1",
-    "chromedriver": "^118.0.1",
-    "validator": "^13.11.0",
     "chromedriver": "^119.0.0",
     "validator": "^13.11.0",
     "webdriverio": "^8.21.0"

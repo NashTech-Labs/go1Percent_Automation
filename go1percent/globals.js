@@ -51,6 +51,12 @@ module.exports = {
         chromedriver.stop();
         done();
     },
+
+    Employee:{
+         Username: 'testemployee',
+         Password: 'testemployee',
+
+    },
  
     admin: {
       
@@ -73,8 +79,8 @@ module.exports = {
         tokenBody: {
             client_id: 'leaderboard-ui',
             client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            username: 'testadmin',
-            password: 'testadmin',
+            username: 'testemployee',
+            password: 'testemployee',
             grant_type: 'password',
         },
     },
@@ -260,11 +266,12 @@ module.exports = {
         saveOption: true
     },
 
-    urls: {
+    Urls: {
             token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
             go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
             },
+
             access_token :"",  
             // Upcoming Sessions Page Frontend Automation
             nasher : "employee",
@@ -293,11 +300,11 @@ module.exports = {
             },
   
     Session: 'Knolx',
-    Date: '07 Nov 2023',
-    Time: '8:40 - 9:25 AM IST',
-    SessionTitle: 'Testing Title',
+    Date: '01 Dec 2023',
+    Time: '4:15 - 5:00 PM IST',
+    SessionTitle: 'Testing Automation',
     SessionStatus: 'Pending for Approval',
-    ExpectedTitle: 'new newnewn ewn',
+    ExpectedTitle: 'Sample Text Title Update',
     Description: 'Description',
     SlideURL: 'Slide URL',
         
