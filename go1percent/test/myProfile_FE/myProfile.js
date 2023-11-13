@@ -46,22 +46,22 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it('View the profile picture along with the monthly rank', function (browser) {
         myProfile
-            .pause(5000)
+            .waitForElementVisible('@ProfilePicExist', 5000)
             .assert.elementPresent('@ProfilePicExist', 'Profile Pic exist')
             .assert.elementPresent('@ViewMonthlyRank', 'Monthly Rank exist');
     });
     it('Change their profile picture by clicking on update profile page', function (browser) {
         myProfile
 
-            .pause(7000)
+        .waitForElementVisible('@UpdateProfilepic', 7000)
             .ClickOnUpdateProfilePic()
-            .pause(5000)
+            .waitForElementVisible('@ProfilePicSuccessMsg', 7000)
             .expect('@ProfilePicSuccessMsg').to.be.eq(profilePicUploadSuccessMsg)
             .pause(2000);
     });
     it('Name and competency name on the profile page', function (browser) {
         myProfile
-            .pause(10000)
+            .waitForElementVisible('@UserName', 7000)
             .assert.elementPresent('@UserName', 'User Name Visible')
             .assert.elementPresent('@CompetencyName', 'Competency Name Visible');
 
@@ -77,7 +77,7 @@ describe("My Profile Page Frontend Automation", () => {
 
     it('View the reward if redeemed', function (browser) {
         myProfile
-            .pause(12000)
+            .waitForElementVisible('@RewardExist', 10000)
             .assert.elementPresent('@RewardExist', 'Reward redeemed for the user')
             .assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
 
@@ -86,15 +86,15 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it('View all the rewards redeemed by him/her', function (browser) {
         myProfile
-            .pause(15000)
+            .waitForElementVisible('@RewardExist', 10000)
             .assert.elementPresent('@RewardExist', 'All redeemed reward for the user displyed')
             .assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
 
 
     });
-    it('View the badges and the count in the badges section', function (browser) {
+    it.only('View the badges and the count in the badges section', function (browser) {
 
-        browser.elements('xpath', "//div[@class='w-20']", function (result) {
+        browser.elements("xpath","@BadgeCounts", function (result) {
             if (result.status === 0) {
                 let Pending = result.value;
                 let Total = Pending.length;
@@ -106,7 +106,7 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it('See month and score and rank by clicking on the badges', function (browser) {
         myProfile
-            .pause(12000)
+            .waitForElementVisible('@Badge', 10000)
             .ClickOnBadge()
             .pause(2000)
             .assert.elementPresent('@BadgeRank', 'Badge Rank visible for the user')

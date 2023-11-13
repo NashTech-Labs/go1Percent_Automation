@@ -52,6 +52,9 @@ module.exports = {
         BadgeMonth: "div[class='modal-body m-2 p-4'] div:nth-child(1) div:nth-child(1) h6:nth-child(1)",
         BadgeScore: "div[class='info-div d-flex flex-column justify-content-center'] span[class='score-size']",
         BadgeQuit: "span[role='button']",
+        BadgeCounts:  {
+            localStrategy: 'xpath',
+            selector: "//div[@class='w-20']"},
     
     },
 
