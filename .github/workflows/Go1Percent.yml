@@ -1,0 +1,59 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Clear node modules
+      run: rm -rf node_modules
+
+    - name: Clear package-lock.json
+      run: rm -f package-lock.json
+      
+    - name: Clear package-lock.json
+      run: npm cache clean --force
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentAPIAutomation Tests
+      run: npx nightwatch test/Go1PercentAPIAutomation --env api_testing
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch test/Go1PercentFEAutomation --env chrome
+      working-directory: go1percent  
+
+    - name: Run npm test
+      run: npm test
+      working-directory: go1percent  

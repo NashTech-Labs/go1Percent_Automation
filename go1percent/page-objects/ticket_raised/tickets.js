@@ -48,7 +48,7 @@ const customcommands = {
                     }
                 })
                     .uploadFile('@attachfile',path
-                    .resolve(__dirname ,'..','..','files','Nightwatch.jpg')).pause(5000)
+                    .resolve(__dirname ,'..','..','helpers/Go1PercentFEAutomation/TicketRaised/files','Nightwatch.jpg')).pause(5000)
     },
     submitAndVerifySuccess() {
         return this.click('@submitbtn')

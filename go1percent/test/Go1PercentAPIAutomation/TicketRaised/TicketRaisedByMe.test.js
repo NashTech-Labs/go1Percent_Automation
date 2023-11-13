@@ -1,15 +1,24 @@
-const globals = require('../globals')
-const accessToken = process.argv.indexOf('--token');
-
+const globals = require('../../../globals')
 
 describe('Ticket Raised By Me Api testing', function () {
-    const token = process.argv[accessToken + 1];
-    
-    const header ={
-      'Source': 'https://nashtechglobal.qa.go1percent.com',
-      'Authorization': 'Bearer ' + token,
-    }
 
+    const header = globals.admin.headers;
+    const tokenHeaders = globals.admin.tokenHeaders;
+    const tokenBody = globals.admin.tokenBody;
+    const urls = globals.techhubUrls;
+    it('get api token', async function ({ supertest }) {
+        await supertest
+          .request(urls.token)
+          .post("/token")
+          .send(tokenBody)
+          .set(tokenHeaders)
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .then(function (response) {
+            const token = response._body.access_token;
+            header['Authorization'] = 'Bearer ' + token;
+          });
+    });
     /**
      * Test case to verify the retrieval of open tickets.
      * @param {Object} supertest - The supertest object for making HTTP requests.
@@ -196,7 +205,7 @@ describe('Ticket Raised By Me Api testing', function () {
     it('should update the details of Ticket', async function ({ supertest }) {
 
         const requestedData={
-            "ticketID":1547,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
+            "ticketID":1578,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
         }
         const startTimestamp = Date.now();
         await supertest
