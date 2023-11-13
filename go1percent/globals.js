@@ -52,7 +52,7 @@ module.exports = {
         chromedriver.stop();
         done();
     },
- 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
     admin: {
       
            
@@ -222,6 +222,7 @@ module.exports = {
         'filter': 'past',
         'time': '1697259310000'
     },
+   
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
     sessionDescriptionInPast: "Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
@@ -230,6 +231,8 @@ module.exports = {
     backend_url: 'https://backend-radar.qa.go1percent.com/',
 
     baseurl: 'https://backend.qa.go1percent.com',
+    
+
 
     admin: {
         headers: {

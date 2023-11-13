@@ -3,7 +3,6 @@ const headers = require('../../globals')
 const accessToken = process.argv.indexOf('--token');
 
 describe('Review Contribution API Testing', function () {
-
     // Extracting the token value from the command-line arguments.
     const token = process.argv[accessToken + 1];
     const header = {
@@ -41,7 +40,7 @@ describe('Review Contribution API Testing', function () {
 
         await supertest
 
-            .request(headers.baseurl)
+            .request('https://nashtechglobal.qa.go1percent.com')
 
             .get("/contribution/allContribution?pageNumber=1&limit=10")
 

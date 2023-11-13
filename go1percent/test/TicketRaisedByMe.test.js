@@ -1,14 +1,13 @@
 const globals = require('../globals')
 const accessToken = process.argv.indexOf('--token');
-const fs = require('fs');
+
 
 describe('Ticket Raised By Me Api testing', function () {
-    const baseUrl = "https://ticket-backend.qa.go1percent.com"
     const token = process.argv[accessToken + 1];
     
     const header ={
       'Source': 'https://nashtechglobal.qa.go1percent.com',
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + token,
     }
 
     /**
@@ -19,7 +18,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .get("/tickets/my?status=Open&limit=10&page=1")
             .set(header)
 
@@ -62,7 +61,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .get("/tickets/my?status=Closed&limit=10&page=1")
             .set(header)
 
@@ -96,7 +95,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .get("/tickets/ticket/1162")
             .set(header)
             .expect(200)
@@ -132,7 +131,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .get("/tickets/1137/comments")
             .set(header)
             .expect(200)
@@ -165,7 +164,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .get("/users/assignees")
             .set(header)
             .expect(200)
@@ -197,11 +196,11 @@ describe('Ticket Raised By Me Api testing', function () {
     it('should update the details of Ticket', async function ({ supertest }) {
 
         const requestedData={
-            "ticketID":1526,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
+            "ticketID":1547,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
         }
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .put("/tickets/update")
             .set(header)
             .send(requestedData)
@@ -221,7 +220,7 @@ describe('Ticket Raised By Me Api testing', function () {
 
         const startTimestamp = Date.now();
         await supertest
-            .request(baseUrl)
+            .request(globals.ticketraise_url)
             .get("/tickets/categories")
             .set(header)
             .expect(200)

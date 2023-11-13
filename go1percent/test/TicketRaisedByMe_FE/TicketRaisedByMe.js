@@ -88,6 +88,7 @@ module.exports ={
      */
     'user views reopened ticket details': function () {
         ticket
+            .hasTicketId(reopenedTicketId)
             .verifyUpdatedTicketStatus(reopenedTicketId, '@openedTickets')
             .assert.textContains('@selectFirstTicket', reopenedTicketId)
             .verifyStatusOfReopenedTicket();
@@ -107,13 +108,13 @@ module.exports ={
      */
     'user attaches a file to reopened ticket': function () {
         ticket
+            .hasTicketId(reopenedTicketId)
             .assert.textContains('@selectFirstTicket', reopenedTicketId)
             .click('@selectFirstTicket')
             .waitForElementVisible('@commentBox')
             .waitForElementVisible('@messageSection')
             .enterMessage('sending test message')
             .attachFile()
-            .pause()
             .sendMessage().pause(5000)
             .assertFileSentSuccessfully();
         }

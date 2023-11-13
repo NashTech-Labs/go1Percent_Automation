@@ -27,6 +27,7 @@ module.exports={
              })
              .click('@selectFirstTicket')
              .click(status)
+             .assert.not.attributeEquals('@updateBtn', 'disabled', 'true', 'Button is not disabled')
              .click('@updateBtn')
              .waitForElementVisible('@successMessage')
              return ticketid;
