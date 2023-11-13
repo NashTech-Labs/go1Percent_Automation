@@ -86,7 +86,7 @@ module.exports = {
         },
 
         contributionOnlineCourseType: {
-            selector: 'div.filter-right-section > div > div:nth-child(2) > select > option:nth-child(12)'
+            selector: 'div.filter-right-section > div > div:nth-child(3) > select > option:nth-child(12)'
         },
 
         timeSelector: {

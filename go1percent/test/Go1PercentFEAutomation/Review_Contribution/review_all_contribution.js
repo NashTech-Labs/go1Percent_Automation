@@ -39,7 +39,6 @@ module.exports = {
         pageObject.contributionTypeFilter();
     },
 
-
     after: function (browser) {
         browser.end();
     },

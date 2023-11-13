@@ -1,15 +1,6 @@
-const headers = require('../../globals')
-// Parsing the command-line arguments to find the '--token' parameter.
-const accessToken = process.argv.indexOf('--token');
+const globals = require('../../../globals')
 
 describe('Review Contribution API Testing', function () {
-
-    // Extracting the token value from the command-line arguments.
-    const token = process.argv[accessToken + 1];
-    const header = {
-        'Source': 'https://nashtechglobal.qa.go1percent.com',
-        'Authorization': 'Bearer ' + token
-    }
 
     /**
      * Asserts the response time and status in a Nightwatch program.
@@ -30,6 +21,28 @@ describe('Review Contribution API Testing', function () {
 
     }
 
+    const header = globals.admin.headers;
+    const tokenHeaders = globals.admin.tokenHeaders;
+    const tokenBody = globals.admin.tokenBody;
+    const urls = globals.techhubUrls;
+
+    // Making a POST request to obtain the API token
+
+    it('get api token', async function ({ supertest }) {
+        await supertest
+            .request(urls.token)
+            .post("/token")
+            .send(tokenBody)
+            .set(tokenHeaders)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then(function (response) {
+                // Extracting the access token from the response body
+                const token = response._body.access_token;
+                header['Authorization'] = 'Bearer ' + token;
+            });
+    });
+
     /**
      * Test case to retrieve all the pending contributions for approval or rejection on Approvals page.
      * @param {object} supertest - The supertest object for making HTTP requests.
@@ -41,7 +54,7 @@ describe('Review Contribution API Testing', function () {
 
         await supertest
 
-            .request(headers.baseurl)
+            .request(globals.baseurl)
 
             .get("/contribution/allContribution?pageNumber=1&limit=10")
 
@@ -80,7 +93,7 @@ describe('Review Contribution API Testing', function () {
 
         await supertest
 
-            .request(headers.baseurl)
+            .request(globals.baseurl)
 
             .put('/contribution')
 
@@ -117,7 +130,7 @@ describe('Review Contribution API Testing', function () {
         const startTimestamp = Date.now();
 
         await supertest
-            .request(headers.baseurl)
+            .request(globals.baseurl)
             .get("/contribution/getApprovedContributionsForAll?pageNumber=1&limit=10")
             .set(header)
             .expect(200)
@@ -155,7 +168,7 @@ describe('Review Contribution API Testing', function () {
 
         await supertest
 
-            .request(headers.baseurl)
+            .request(globals.baseurl)
 
             .get("/contribution?contributionId=2702")
 
@@ -202,7 +215,7 @@ describe('Review Contribution API Testing', function () {
         const startTimestamp = Date.now();
 
         await supertest
-            .request(headers.baseurl)
+            .request(globals.baseurl)
             .get("/contribution/allContribution?pageNumber=1&limit=10&date=2023-10-16")
             .set(header)
             .expect(200)

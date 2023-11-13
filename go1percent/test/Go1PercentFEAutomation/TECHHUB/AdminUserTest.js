@@ -1,14 +1,13 @@
-const login = require('./go1Percentloging');
-const dashboard = require('./go1PercentDashboard');
-const techhub = require('./go1PercentTechhub');
+const login = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1Percentloging');
+const dashboard = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1PercentDashboard');
+const techhub = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1PercentTechhub');
 
 module.exports = {
     beforeEach: function (browser) {
         login.beforeEach(browser);
         login['landing on dashboard page'](browser);
-        browser.pause(40000);
         dashboard['navigate to Techhub page'](browser);
-        browser.pause(30000);        
+        browser.pause(2000);       
     },
     afterEach: function (browser) {
         login.after(browser);
