@@ -17,6 +17,7 @@ describe('UI automation for leaderboard summary option', () => {
       leadingpage = client.page.LeaderBoard_summary.JavaScript_POM.leadingnasher();
     });
 
+    //go1percent/page-objects/LeaderBoard_summary/JAvaScript_POM/login.js
     // Define common actions in the beforeEach hook
     const commonActions = () => {
       summaryPage
