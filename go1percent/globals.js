@@ -30,6 +30,16 @@ function startTime() {
 
 
 module.exports = {
+    urls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
+
+        },
+    Add_Contribution:{
+            BaseUrl:"https://backend.qa.go1percent.com",
+            PostEndPoints:"/contribution/addContribution",
+            GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
+            Contribution_url:"www.cou.org"  } ,
     reporter: (results,done)=>{
         const reporter = new allureReporter.NightwatchAllureReporter({});
         reporter.write(results,done);
@@ -270,11 +280,7 @@ module.exports = {
         saveOption: true
     },
 
-    urls: {
-            token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-            go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
-
-            },
+    
             access_token :"",  
             // Upcoming Sessions Page Frontend Automation
             nasher : "employee",
@@ -287,7 +293,6 @@ module.exports = {
                 const reporter = new allureReporter.NightwatchAllureReporter({});
                 reporter.write(results,done);
               },
-
               //My Past Session
                   
                queryMyPastSession: {
@@ -322,5 +327,6 @@ module.exports = {
         },
 
     },
+
         
         };
