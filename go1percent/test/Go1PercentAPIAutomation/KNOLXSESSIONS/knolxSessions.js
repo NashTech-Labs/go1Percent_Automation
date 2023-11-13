@@ -1,6 +1,26 @@
 const headers = require('../../../globals')
 
 describe('Knolx|Sessions APIs', function () {
+    const header = headers.admin.headers;
+    const tokenHeaders = headers.admin.tokenHeaders;
+    const tokenBody = headers.admin.tokenBody;
+    const urls = headers.techhubUrls;
+
+    //Generate Bearer Token
+    before( async function ({ supertest }) {
+        await supertest
+            .request(urls.token)
+            .post("/token")
+            .set(tokenHeaders) // Set your custom headers here
+            .send(tokenBody)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then(function (response) {
+                const token = response.body.access_token;
+                header['Authorization'] = 'Bearer ' + token;
+            });
+    });
+
     it('Search session using Nasher as testadmin in Upcoming Sessions Page', async function ({ supertest }) {
         const startTime = new Date().getTime();
         await supertest
@@ -35,8 +55,6 @@ describe('Knolx|Sessions APIs', function () {
 
                 expect(response.body.knolx[0].presenterDetail.fullName).to.be.eq('test admin')
             })
-
-
     }),
         it('Search session using Session Title as TestAutomationTitle in Upcoming Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
@@ -141,7 +159,7 @@ describe('Knolx|Sessions APIs', function () {
                 })
 
         }),
-        
+
         it('Filter Session using All Time as 1700831564000 in Upcoming Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
@@ -151,7 +169,6 @@ describe('Knolx|Sessions APIs', function () {
                 .set('source', headers.source)
                 .expect(200)
                 .expect('Content-Type', /json/)
-
                 .then((response) => {
                     endTime = new Date().getTime();
                     const responseTime = endTime - startTime;
@@ -177,7 +194,7 @@ describe('Knolx|Sessions APIs', function () {
                 })
 
         }),
-        
+
         it('GET session Details about test employee in Past Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
@@ -185,7 +202,7 @@ describe('Knolx|Sessions APIs', function () {
                 .get('v02/getSession/6529144d45bc9a797dfbcb19')
                 .query(headers.queryAllTime)
                 .set('source', headers.source)
-                .set('authorization', headers.access_token)
+                .set(header) //Authorization Token and Source 
                 .expect(200)
                 .expect('Content-Type', /json/)
 
