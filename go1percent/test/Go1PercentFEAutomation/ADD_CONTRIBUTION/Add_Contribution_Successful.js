@@ -1,4 +1,4 @@
-const Login = require('./go1Percentloging');
+const Login = require('../../../helpers/Go1PercentFEAutomation/ADD_CONTRIBUTION/go1Percentloging');
 const globals = require('../../../globals')
 const dashboard = browser.page.Add_Contribution.Dashboard();
 const profile = browser.page.Add_Contribution.Profile();

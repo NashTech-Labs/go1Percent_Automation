@@ -1,4 +1,4 @@
-const Login = require('./go1Percentloging');
+const Login = require('../../../helpers/Go1PercentFEAutomation/ADD_CONTRIBUTION/go1Percentloging');
 const dashboard = browser.page.Add_Contribution.Dashboard();
 const profile = browser.page.Add_Contribution.Profile();
 const contribution = browser.page.Add_Contribution.Contribution(); 
@@ -45,7 +45,7 @@ module.exports =
             .setValue('@contributiontype', 'Book')
             .Futuredate()
             .sendKeys("@description", ['Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to'])
-            .sendKeys("@bookurl", ['www.cofdsa.org'])
+            .sendKeys("@bookurl", ['www.cklmnlfdsa.org'])
             .click("@submit")
             .Alerttext()
             .Submitdisabled('disabled')

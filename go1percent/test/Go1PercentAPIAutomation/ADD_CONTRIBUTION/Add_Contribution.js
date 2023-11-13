@@ -41,7 +41,7 @@ describe('api testing', function () {
             "title":"Test employee contribution",
             "contributionType":"Research paper",
             "contributionDate":"2023-10-19 00:00:00",
-            "urlDetails":globals.Add_Contribution.Contribution_url,
+            "urlDetails":globals.Add_Contribution.Contribution_url, // Change this url before running this call
             "technologyDetails":"ddcscdcmjjicjdjc hdfiwic jocdjoicwd fcdiocd chojvwofeefhevdvhvhnvjvjdwehuihefkjcnjkvnwbrihfuvbhjbdjfre"
           })
           .expect(200) //Asserting Response Code
