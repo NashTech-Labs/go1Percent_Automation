@@ -114,7 +114,6 @@ module.exports = {
         'filter' : 'requested', 
         'pageSize' : '10',
         'search' : '',
-
     },
     techhubUrls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
