@@ -327,6 +327,9 @@ module.exports = {
             formCreatedMessage : 'Form created successfully',
             searchQuery : 'Search Me',
             formDeletedMessage : 'Form Deleted Successfully',
+            sessionFormName: 'knol',
+            no_sessionFormName: 'temp',
+            setTitle:'Temporary Form',
 
         },
 

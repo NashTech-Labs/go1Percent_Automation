@@ -1,5 +1,5 @@
 const { forEach } = require('lodash');
-const globals = require('../../globals')
+const globals = require('../../../globals')
 // ----------------------------------------------------------------------
 //   >> using command "npx nightwatch ./test/Feedback-form-automation/ --env api_testing"
 // -------------------------------------------------------------------------
