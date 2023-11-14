@@ -1,4 +1,4 @@
-const header = require('../../../../helpers/Leaderboard_summary/go!PercentLeaderboardSummary')
+const header = require('../../../helpers/Leaderboard_summary/go!PercentLeaderboardSummary')
 
 /**
  * Asserts the response time of an HTTP request.
