@@ -1,4 +1,4 @@
-const globals = require('../../../globals')
+const globals = require('../../../../globals')
 
 describe('Leaderboard : Reedemed Rewards API Testing', function () {
   const header = globals.admin.headers;

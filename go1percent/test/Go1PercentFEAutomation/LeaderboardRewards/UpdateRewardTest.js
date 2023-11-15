@@ -1,13 +1,10 @@
+const login = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1Percentloging');
 describe('Leaderboard: Update Rewards Tab Test', () => {
 
   before((client) => {
-    client
-      .url('https://nashtechglobal.qa.go1percent.com')
-      .window.maximize();
-    rewardsPage = browser.page.Leaderboard_rewards_part2.rewards();
-    rewardsPage
-      .signIn()
-      .goToRewards();
+    login.beforeEach(browser);
+    login['landing on dashboard page'](browser);
+    browser.page.LeaderboardRewards.rewards().goToRewards();
   });
 
   after((client, done) => {
@@ -17,7 +14,7 @@ describe('Leaderboard: Update Rewards Tab Test', () => {
   });
 
   beforeEach((client) => {
-    updateRewardsTab = browser.page.Leaderboard_rewards_part2.update_reward();
+    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
   });
 
   // TC: 1164

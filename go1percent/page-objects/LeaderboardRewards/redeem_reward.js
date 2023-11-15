@@ -6,7 +6,7 @@ var redeemRewardCommands = {
         .assert.urlContains('rewards/reward-reports');  
     },
 
-    assertRewardReport : function () {
+    assertIndividualReport : function () {
         return this
         .assert.elementPresent('@employeeName') 
         .assert.elementPresent('@competencyName')
@@ -78,7 +78,7 @@ var redeemRewardCommands = {
         .click('@competencyButton');
     },
 
-    matchRewardReport : function(){
+    assertCompetenecyReport : function(){
         return this
         .waitForElementPresent('@rewardReport', 5000) 
         .assert.textContains('@rewardReport', 'No Redeemed Reward Available');
@@ -147,6 +147,49 @@ var redeemRewardCommands = {
         return this
         .waitForElementPresent('@searchFeild', 5000) 
         .setValue('@searchFeild', name);
+    },
+
+    /**
+     * APPROACH : 
+    * 1. set filter to processing, 
+    * 2. check if there is any reward available to process
+    * 3. if yes,  go to process window and store its details and process
+    *   set filter to processed, assert the stored details
+    * 4. if no, prompt error
+    */
+    checkAndProcessTheRequest: function(browser){
+        browser.elements('css selector', 'button.btn.text-white.status-btn.mb-0.processingStatus', results => {
+            if (results.value.length > 0) { 
+              //open process window
+              redeemedRewardsTab.openRedeemRequestWindowAndGetDetails(function (rewardDetails) {
+                // process the request
+                redeemedRewardsTab
+                .processReward()
+                //BUG : the window is not closing on its own
+                .closeRedeemRequestWindow()
+                .setStatusFilterToProcessed();
+                //BUG : the page needs to be refreshed
+                browser.refresh();
+                //assert the stored details
+                redeemedRewardsTab.assertProcessedReward(rewardDetails);
+              });
+            }
+            else { 
+              console.log('No Redeemed Reward Available'); 
+            }
+        });
+    },
+
+    assertFilteredResult: function(browser){
+      //check if there is any reward available to process
+      browser.elements('css selector', 'button.btn.text-white.status-btn.mb-0.processingStatus', results => {
+        if (results.value.length > 0) { 
+          browser.assert.textContains('button.btn.text-white.status-btn.mb-0.processingStatus', 'PROCESSING');
+        }
+        else { 
+          console.log('No Redeemed Reward Available'); 
+        }
+      });
     }
     
 }

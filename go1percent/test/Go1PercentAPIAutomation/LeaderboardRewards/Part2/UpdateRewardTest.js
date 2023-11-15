@@ -1,4 +1,4 @@
-const globals = require('../../../globals')
+const globals = require('../../../../globals')
 
 describe('Leaderboard : Rewards API Testing', function () {
   const header = globals.admin.headers;
@@ -61,8 +61,6 @@ describe('Leaderboard : Rewards API Testing', function () {
 
     });
 
-
-      
     //GET a particular reward with id
     it('Should display update rewards page for a particular reward', async function ({ supertest }) {
       const startTime = Date.now();
@@ -89,8 +87,4 @@ describe('Leaderboard : Rewards API Testing', function () {
 
           });
       });
-
-
-
-   
 });

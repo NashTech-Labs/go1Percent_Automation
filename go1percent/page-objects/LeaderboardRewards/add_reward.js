@@ -50,7 +50,7 @@ var addRewardCommands = {
         .expect.element('@addRewardTitle').not.to.be.present; // h5.modal-title.pull-left.ms-2
     },
 
-    addARewardDetails : function(rewardName, description, pointsNeededToRedeem, quantity, expiryDate){
+    addARewardDetails : function(rewardName, expiryDate){  
         return this
 
         //Reward name
@@ -59,15 +59,15 @@ var addRewardCommands = {
 
         //Description
         .waitForElementPresent('@descriptionField', 5000)
-        .setValue('@descriptionField', description)
+        .setValue('@descriptionField', 'Testing Purpose')
 
         //Points needed to redeem
         .waitForElementPresent('@pointsNeededToRedeemField', 5000)
-        .setValue('@pointsNeededToRedeemField', pointsNeededToRedeem)
+        .setValue('@pointsNeededToRedeemField', '1000')
 
         //Stock Quantity
         .waitForElementPresent('@quantityField', 5000)
-        .setValue('@quantityField', quantity)
+        .setValue('@quantityField', '100')
 
         //Expiry on
         .waitForElementPresent('@expiryDateField', 5000)
@@ -75,23 +75,45 @@ var addRewardCommands = {
         
     },
 
-    setAvaiableForIndividual : function(){
+    setAvailableForIndividual : function(){
         return this
+        .execute(function() {
+            document.querySelector('button.yes-button.font-weight-light.bg-transparent').scrollIntoView();
+        })
         .waitForElementVisible('@individualButton', 5000)
         .click('@individualButton');
 
     },
-
-    setAvaiableForCompetency : function(){
+  
+    setAvailableForCompetency : function(){
         return this
+         .execute(function() {
+            document.querySelector('button.no-button.font-weight-light.bg-transparent').scrollIntoView();
+            })
         .waitForElementVisible('@competencyButton', 5000)
         .click('@competencyButton');
     },
 
+  
     enableReward : function(){
         return this
         .waitForElementPresent('@enableButton', 5000)
         .click('@enableButton');
+    },
+
+    addImage : function (browser) {
+        const path = require('path')
+        // return this
+        browser
+        .isEnabled('div.ImageMinWidthClass > input', function(result) {
+            if (result.value) {
+                // Element is interactable, proceed with file upload
+                browser.uploadFile('div.ImageMinWidthClass > input', path
+                .resolve(__dirname ,'..','..','helpers/Go1PercentFEAutomation/LeaderboardRewards/files/Reward.jpeg'));
+            } else {
+                console.error('Element is not interactable');
+            }
+        });         
     }
     
 }
@@ -153,7 +175,7 @@ module.exports = {
         }
         // enableButton: {
         //     selector: 'div:nth-child(5)  button.yes-button.font-weight-light.bg-transparent'
-        // }
+        // } 
     }
 }
 
