@@ -6,7 +6,7 @@ module.exports ={
             .navigate()
             .enterCredentials('testemployee','testemployee')
             .signIn()
-            ticket =browser.page.ticket_raised.tickets()
+            ticket =browser.page.HELPDESK.ticket_raised.tickets()
             ticket.navigateToHelpDesk()
             
     }, 
@@ -62,7 +62,7 @@ module.exports ={
      * @description Verifies that a ticket created by the user is closed by the admin.
      */
     'verify user created ticket should be closed by admin': function () {
-        var admin = browser.page.ticket_raised.admin();
+        var admin = browser.page.HELPDESK.ticket_raised.admin();
         ticket.fillAllFields().submitAndVerifySuccess();
         admin.switchToAdminHelpDesk();
         var ticketId = admin.updateTicket('@setStatusClose');
@@ -74,7 +74,7 @@ module.exports ={
      * @description Verifies that the admin can reopen closed tickets.
      */
     'verify admin should be able to reopen closed tickets': function () {
-        var admin = browser.page.ticket_raised.admin();
+        var admin = browser.page.HELPDESK.ticket_raised.admin();
         admin
             .switchToAdminHelpDesk()
             .selectClosedTickets();
@@ -88,6 +88,7 @@ module.exports ={
      */
     'user views reopened ticket details': function () {
         ticket
+            .hasTicketId(reopenedTicketId)
             .verifyUpdatedTicketStatus(reopenedTicketId, '@openedTickets')
             .assert.textContains('@selectFirstTicket', reopenedTicketId)
             .verifyStatusOfReopenedTicket();
@@ -107,13 +108,13 @@ module.exports ={
      */
     'user attaches a file to reopened ticket': function () {
         ticket
+            .hasTicketId(reopenedTicketId)
             .assert.textContains('@selectFirstTicket', reopenedTicketId)
             .click('@selectFirstTicket')
             .waitForElementVisible('@commentBox')
             .waitForElementVisible('@messageSection')
             .enterMessage('sending test message')
             .attachFile()
-            .pause()
             .sendMessage().pause(5000)
             .assertFileSentSuccessfully();
         }
