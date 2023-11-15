@@ -1,7 +1,7 @@
-const Login = require('./go1Percentloging');
-const dashboard = browser.page.Add_Contribution.Dashboard();
-const profile = browser.page.Add_Contribution.Profile();
-const contribution = browser.page.Add_Contribution.Contribution(); 
+const Login = require('../../../../helpers/Go1PercentFEAutomation/CONTRIBUTION/ADD_CONTRIBUTION/go1Percentloging');
+const dashboard = browser.page.CONTRIBUTION.ADD_CONTRIBUTION.Dashboard();
+const profile = browser.page.CONTRIBUTION.ADD_CONTRIBUTION.Profile();
+const contribution = browser.page.CONTRIBUTION.ADD_CONTRIBUTION.Contribution(); 
 
 module.exports = 
 {

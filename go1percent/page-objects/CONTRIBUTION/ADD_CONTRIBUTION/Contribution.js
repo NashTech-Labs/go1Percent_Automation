@@ -1,3 +1,4 @@
+
 module.exports={
     elements:{
       body: 'body',
@@ -54,6 +55,7 @@ module.exports={
         return this
         .assert.containsText("@body", 'Contribution date is not valid');     
       }
+    
 
       
      
