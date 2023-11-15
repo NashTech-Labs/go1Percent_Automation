@@ -17,8 +17,26 @@ module.exports = {
   src_folders: ['test'],
 
 
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['page-objects'],
+  
+  skip_testcases_on_fail: false,
+ 
+ 
+  // See https://nightwatchjs.org/guide/concepts/page-object-model.html
+  // page_objects_path: ['page-objects'],
+ 
+  // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
+ 
+  src_folders: ['./test'],
+
+
+  // See https://nightwatchjs.org/guide/concepts/page-object-model.html
+
+
+
+
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
@@ -69,10 +87,7 @@ module.exports = {
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
-      globals: {
-        waitForConditionTimeout : 20000,
-        abortOnAssertionFailure: false,
-      },
+ 
       screenshots: {
         enabled: true,
         path: 'screens',
