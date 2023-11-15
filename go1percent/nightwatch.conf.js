@@ -20,7 +20,7 @@ module.exports = {
  
  
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects'],
+  // page_objects_path: ['page-objects'],
  
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
  
@@ -28,7 +28,10 @@ module.exports = {
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
+
   //page_objects_path: ['page-objects', 'page-objects/Techhub_AdminUser_FE'],
+
+  page_objects_path: ['page-objects', 'page-objects/TicketAssignedToMe'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
@@ -49,8 +52,11 @@ module.exports = {
 
     globals: {
       "userName": "testemployee", // this is placeholder username, make sure to update.
-      "password": "testemployee" // this is placeholderPassword, Make sure to update.
+      "password": "testemployee", // this is placeholderPassword, Make sure to update.
+      "adminUserName": "testadmin", // this is placeholder username, make sure to update.
+      "adminPassword": "testadmin" // this is placeholderPassword, Make sure to update.
     },
+  
 
   vite_dev_server: {
     start_vite: true,

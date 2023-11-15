@@ -1,5 +1,3 @@
-const techhub = require("../../page-objects/Techhub_AdminUser_FE/techhub");
-
 module.exports = {
 
 

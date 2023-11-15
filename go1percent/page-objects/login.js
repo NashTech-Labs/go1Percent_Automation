@@ -1,15 +1,16 @@
-const { test_settings } = require("../nightwatch.conf");
- 
+
 module.exports = {
- 
-    url: test_settings.default.launch_url,
- 
- 
+
+    url: "https://nashtechglobal.qa.go1percent.com/",
+
+
+
+
     elements: {
         emailInput: '#username',
         passwordInput: '#password',
         signIn: "#kc-login"
- 
+
     },
     commands: [{
         enterCredentials(email, password) {
