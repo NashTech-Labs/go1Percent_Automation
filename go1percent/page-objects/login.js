@@ -5,7 +5,6 @@ module.exports = {
 
 
 
-
     elements: {
         emailInput: '#username',
         passwordInput: '#password',
