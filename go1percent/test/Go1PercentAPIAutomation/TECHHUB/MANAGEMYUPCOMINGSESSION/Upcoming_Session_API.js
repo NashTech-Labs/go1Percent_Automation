@@ -2,9 +2,9 @@ const globals = require('../../../../globals')
 
 //Store All the Required Data In Globals And Calling The Data As Per The Requirement
 describe('api testing', function () {
-    const headers = globals.admin.headers;
-  const tokenHeaders = globals.admin.tokenHeaders;
-  const tokenBody = globals.admin.tokenBody;
+    const headers = globals.MyUpcomingSession.headers;
+  const tokenHeaders = globals.MyUpcomingSession.tokenHeaders;
+  const tokenBody = globals.MyUpcomingSession.tokenBody;
   const urls = globals.urls;
    const UpdatedData= globals.UpdateData;
    
@@ -44,9 +44,10 @@ describe('api testing', function () {
 
         expect(responseTime).to.be.lessThan(2000);
      //Attribute Response
-        expect(response.body.sessions[0].id).to.be.equal("653a20da8555d37c0a4f8f13"),
-     expect(response.body.sessions[0].topic).to.be.equal("testing Title") // Use response.body to access the response body
-     expect(response.body.sessions[0].category).to.be.equal("FRONTEND COMPETENCY");   
+        expect(response.body.sessions[0].id).to.be.equal("6541bbc78555d37c0a4f8f70"),
+     expect(response.body.sessions[0].topic).to.be.equal("KnoldusNashtech") // Use response.body to access the response body
+     expect(response.body.sessions[0].category).to.be.equal("TEST AUTOMATION COMPETENCY"),
+     expect(response.body.sessions[0].sessionType).to.be.equal("Knolx")   
         
         }) 
     });
@@ -55,7 +56,7 @@ describe('api testing', function () {
     it('put api test', async function({supertest}) {
         await supertest
           .request('https://knolx-backend.qa.go1percent.com/v02/')
-          .put("user/session/65275cdb58f83108585a4005")
+          .put("user/session/6541bbc78555d37c0a4f8f70")
           .set(headers) 
           .send({"topic": "KnoldusNashtech",
           "sessionDescription": "In addition to the assert namespace, the Nightwatch API supports out of the box a BDD-style expect assertion library which greatly improves the flexibility as well as readability of the assertions.The expect assertions use a subset of the Expect api from the Chai framework and at this point a available for elements, cookies, page title, and urlHere a basic example that uses various expect.element([...]) assertions:",
@@ -66,7 +67,7 @@ describe('api testing', function () {
           .expect(200)
           .expect('Content-Type', /json/)
           .then(function(response){
-              expect(response._body.status).to.be.equal("65275cdb58f83108585a4005");
+              expect(response._body.status).to.be.equal("6541bbc78555d37c0a4f8f70");
               
               const startTime = performance.now();
   

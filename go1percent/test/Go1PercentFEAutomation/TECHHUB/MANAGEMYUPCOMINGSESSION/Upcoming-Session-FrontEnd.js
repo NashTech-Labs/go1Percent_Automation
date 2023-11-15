@@ -1,7 +1,7 @@
 //const Login=browser.page.login() 
 const DataSet = require('../../../../globals')
-const Session = browser.page.MySessionPage()
-const Upcoming = browser.page.My_Upcoming_Session()
+const Session = browser.page.ManageMyUpcomingSession.MySessionPage()
+const Upcoming = browser.page.ManageMyUpcomingSession.My_Upcoming_Session()
 
 
 
@@ -152,9 +152,9 @@ describe("Manage My Upcoming Session", () => {
 
             Upcoming
                 .ClickOnApprovedSession()
-                .assert.textContains('@ApprovedPageTitle', DataSet.ExpectedTitle)
-                .assert.textContains('@ApprovedDescription', DataSet.Description)
-                .assert.textContains('@ApprovedSlideURL', DataSet.SlideURL)
+                .assert.textContains('@ApprovedPageTitle', DataSet.SessionData.ExpectedTitle)
+                .assert.textContains('@ApprovedDescription', DataSet.SessionData.Description)
+                .assert.textContains('@ApprovedSlideURL', DataSet.SessionData.SlideURL)
         }),
 
         it('verify that session should be visible with the session type, date, time, title and status (TC-189)', function () {
@@ -162,11 +162,11 @@ describe("Manage My Upcoming Session", () => {
             Upcoming
                 .SessionWithMultipleData()
                 .pause(4000)
-                .assert.textContains('@SessionType', DataSet.Session)
-                .assert.textContains('@SessionDate', DataSet.Date)
-                .assert.textContains('@SessionTime', DataSet.Time)
-                .assert.textContains('@SessionTitle', DataSet.SessionTitle)
-                .assert.textContains('@SessionStatus', DataSet.SessionStatus)
+                .assert.textContains('@SessionType', DataSet.SessionData.Session)
+                .assert.textContains('@SessionDate', DataSet.SessionData.Date)
+                .assert.textContains('@SessionTime', DataSet.SessionData.Time)
+                .assert.textContains('@SessionTitle', DataSet.SessionData.SessionTitle)
+                .assert.textContains('@SessionStatus', DataSet.SessionData.SessionStatus)
 
         }),
 
