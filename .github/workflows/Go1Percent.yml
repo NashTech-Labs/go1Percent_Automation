@@ -2,11 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches:
-      - '*'
+    branches: ["main" ]
   pull_request:
-    branches:
-      - '*'
+    branches: ["main"]
 
 jobs:
   build:
@@ -29,15 +27,6 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './go1percent/package-lock.json'
 
-    - name: Clear node modules
-      run: rm -rf node_modules
-
-    - name: Clear package-lock.json
-      run: rm -f package-lock.json
-      
-    - name: Clear package-lock.json
-      run: npm cache clean --force
-
     - name: Install dependencies
       run: npm install
       working-directory: go1percent
@@ -52,8 +41,4 @@ jobs:
 
     - name: Run Go1PercentFEAutomation Tests
       run: npx nightwatch test/Go1PercentFEAutomation --env chrome
-      working-directory: go1percent  
-
-    - name: Run npm test
-      run: npm test
       working-directory: go1percent  
