@@ -19,7 +19,7 @@ module.exports = {
  
  
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects'],
+  // page_objects_path: ['page-objects'],
  
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
  
@@ -27,8 +27,11 @@ module.exports = {
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  
-  page_objects_path: ['page-objects'],
+
+
+
+  page_objects_path: ['page-objects', './page-objects/TicketAssignedToMe'],
+
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 

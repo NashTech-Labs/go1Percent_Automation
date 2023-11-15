@@ -1,5 +1,5 @@
 const { base } = require('mocha/lib/reporters');
-const globals = require('../globals')
+const globals = require('../../../../globals')
 
 describe('Ticket assigned to me API testing', function () {
   const baseUrl = "https://ticket-backend.qa.go1percent.com";
