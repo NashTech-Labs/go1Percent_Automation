@@ -64,7 +64,7 @@ module.exports = {
     },
  
     admin: {
-      
+    
            
        requestData : {
         'client_id': 'leaderboard-ui',
@@ -281,27 +281,27 @@ module.exports = {
     },
 
     
-            access_token :"",  
-            // Upcoming Sessions Page Frontend Automation
-            nasher : "employee",
-            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
-            badge:"KNOLX",
-            date:"Nov 7, 2023",
-            datePastSessions: "Oct 14, 2023",
-            // allure report
-            reporter: (results,done)=>{
-                const reporter = new allureReporter.NightwatchAllureReporter({});
-                reporter.write(results,done);
-              },
-              //My Past Session
-                  
-               queryMyPastSession: {
-               'pageNumber': '1',
-               'pageSize': '1000',
-               'filter': 'past',
-               'knolderOnly': 'true',
-               'sessionId' : '6529144d45bc9a797dfbcb19',
-            },
+    access_token :"",  
+    // Upcoming Sessions Page Frontend Automation
+    nasher : "employee",
+    testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+    badge:"KNOLX",
+    date:"Nov 7, 2023",
+    datePastSessions: "Oct 14, 2023",
+    // allure report
+    reporter: (results,done)=>{
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results,done);
+        },
+        //My Past Session
+            
+        queryMyPastSession: {
+        'pageNumber': '1',
+        'pageSize': '1000',
+        'filter': 'past',
+        'knolderOnly': 'true',
+        'sessionId' : '6529144d45bc9a797dfbcb19',
+    },
   
     Session: 'Knolx',
     Date: '07 Nov 2023',
