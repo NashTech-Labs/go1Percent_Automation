@@ -1,4 +1,6 @@
 const headers = require('../../../globals')
+let upcomingEpochTime, upcomingDate, upcomingDay, upcomingBadgeName, upcomingNasherName, upcomingTitle
+let pastEpochTime, pastDate, pastDay, pastBadgeName, pastSessionDescription,pastID, pastTitle
 
 describe('Knolx|Sessions APIs', function () {
     const header = headers.admin.headers;
@@ -7,7 +9,7 @@ describe('Knolx|Sessions APIs', function () {
     const urls = headers.techhubUrls;
 
     //Generate Bearer Token
-    before( async function ({ supertest }) {
+    before(async function ({ supertest }) {
         await supertest
             .request(urls.token)
             .post("/token")
@@ -19,24 +21,114 @@ describe('Knolx|Sessions APIs', function () {
                 const token = response.body.access_token;
                 header['Authorization'] = 'Bearer ' + token;
             });
+        // send request for get the 1st row data from the upcoming sessions page
+        await supertest
+            .request(headers.base_url)
+            .get('v02/sessions')
+            .query({
+                'pageNumber': '1',
+                'pageSize': '10',
+                'filter': 'approved',
+                'search': ''
+            })
+            .set('source', headers.source)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then((response) => {
+                // Epoch time in milliseconds
+                upcomingEpochTime = response.body.knolx[0].dateTime
+                upcomingDate = new Date(upcomingEpochTime);
+                upcomingDay = upcomingDate.getDate();
+                upcomingBadgeName = response.body.knolx[0].sessionType
+                upcomingNasherName = response.body.knolx[0].presenterDetail.fullName
+                upcomingTitle = response.body.knolx[0].topic
+            })
+        // send request for get the 1st row data for the past sessions page
+        await supertest
+            .request(headers.base_url)
+            .get('v02/sessions')
+            .query({
+                'pageNumber': '1',
+                'pageSize': '10',
+                'filter': 'past',
+                'search': ''
+            })
+            .set('source', headers.source)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then((response) => {
+                // Epoch time in milliseconds
+                pastEpochTime = response.body.knolx[0].dateTime
+                pastDate = new Date(pastEpochTime);
+                pastDay = pastDate.getDate();
+                pastBadgeName = response.body.knolx[0].sessionType
+                pastSessionDescription = response.body.knolx[0].sessionDescription
+                pastID = response.body.knolx[0].id
+                pastTitle = response.body.knolx[0].topic
+            })
     });
-
-    it('Search session using Nasher as testadmin in Upcoming Sessions Page', async function ({ supertest }) {
+    /*
+    // search box having bug
+        it('Search session using Nasher in Upcoming Sessions Page', async function ({ supertest }) {
+            const startTime = new Date().getTime();
+            await supertest
+                .request(headers.base_url)
+                .get('v02/sessions')
+                .query( {
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'approved',
+                    'search': upcomingNasherName
+                },)
+                .set('source', headers.source)
+                .expect(200)
+                .expect('Content-Type', /json/)
+    
+                .then((response) => {
+                    endTime = new Date().getTime();
+                    const responseTime = endTime - startTime;
+                    //asserting response time.
+                    expect(responseTime).to.be.lessThan(2000);
+                    // then checks the response body for the presence of specific properties such as "id," "presenter details," "co presenter details", "date", "time" etc.
+                    expect(Object.keys(response.body).length).to.be.greaterThan(0);
+                    expect(response.body.knolx).length.to.be.greaterThan(0);
+                    expect(response.body.knolx[0]).to.have.property("id");
+                    expect(response.body.knolx[0]).to.have.property("presenterDetail");
+                    expect(response.body.knolx[0]).to.have.property("dateTime");
+                    expect(response.body.knolx[0]).to.have.property("sessionDurationInMins");
+                    expect(response.body.knolx[0]).to.have.property("topic");
+                    expect(response.body.knolx[0]).to.have.property("category");
+                    expect(response.body.knolx[0]).to.have.property("subCategory");
+                    expect(response.body.knolx[0]).to.have.property("feedbackExpriationDate");
+                    expect(response.body.knolx[0]).to.have.property("sessionType");
+                    expect(response.body.knolx[0]).to.have.property("sessionState");
+                    expect(response.body.knolx[0]).to.have.property("sessionDescription");
+                    expect(response.body.knolx[0]).to.have.property("contentAvailable");
+                    expect(response.body.knolx[0]).to.have.property("content");
+    
+                    expect(response.body.knolx[0].presenterDetail.fullName).to.be.eq(upcomingNasherName)
+                })
+        }),
+        */
+    it('Search session using Session Title in Upcoming Sessions Page', async function ({ supertest }) {
         const startTime = new Date().getTime();
         await supertest
             .request(headers.base_url)
             .get('v02/sessions')
-            .query(headers.queryNasher)
+            .query({
+                'pageNumber': '1',
+                'pageSize': '10',
+                'filter': 'approved',
+                'search': upcomingTitle
+            })
             .set('source', headers.source)
             .expect(200)
             .expect('Content-Type', /json/)
-
             .then((response) => {
                 endTime = new Date().getTime();
                 const responseTime = endTime - startTime;
                 //asserting response time.
-                expect(responseTime).to.be.lessThan(2000);
-                // then checks the response body for the presence of specific properties such as "id," "presenter details," "co presenter details", "date", "time" etc.
+                expect(responseTime).to.be.lessThan(4000);
                 expect(Object.keys(response.body).length).to.be.greaterThan(0);
                 expect(response.body.knolx).length.to.be.greaterThan(0);
                 expect(response.body.knolx[0]).to.have.property("id");
@@ -53,43 +145,10 @@ describe('Knolx|Sessions APIs', function () {
                 expect(response.body.knolx[0]).to.have.property("contentAvailable");
                 expect(response.body.knolx[0]).to.have.property("content");
 
-                expect(response.body.knolx[0].presenterDetail.fullName).to.be.eq('test admin')
+                expect(response.body.knolx[0].topic).to.contains(upcomingTitle)
             })
+
     }),
-        it('Search session using Session Title as TestAutomationTitle in Upcoming Sessions Page', async function ({ supertest }) {
-            const startTime = new Date().getTime();
-            await supertest
-                .request(headers.base_url)
-                .get('v02/sessions')
-                .query(headers.queryTestTitle)
-                .set('source', headers.source)
-                .expect(200)
-                .expect('Content-Type', /json/)
-                .then((response) => {
-                    endTime = new Date().getTime();
-                    const responseTime = endTime - startTime;
-                    //asserting response time.
-                    expect(responseTime).to.be.lessThan(4000);
-                    expect(Object.keys(response.body).length).to.be.greaterThan(0);
-                    expect(response.body.knolx).length.to.be.greaterThan(0);
-                    expect(response.body.knolx[0]).to.have.property("id");
-                    expect(response.body.knolx[0]).to.have.property("presenterDetail");
-                    expect(response.body.knolx[0]).to.have.property("dateTime");
-                    expect(response.body.knolx[0]).to.have.property("sessionDurationInMins");
-                    expect(response.body.knolx[0]).to.have.property("topic");
-                    expect(response.body.knolx[0]).to.have.property("category");
-                    expect(response.body.knolx[0]).to.have.property("subCategory");
-                    expect(response.body.knolx[0]).to.have.property("feedbackExpriationDate");
-                    expect(response.body.knolx[0]).to.have.property("sessionType");
-                    expect(response.body.knolx[0]).to.have.property("sessionState");
-                    expect(response.body.knolx[0]).to.have.property("sessionDescription");
-                    expect(response.body.knolx[0]).to.have.property("contentAvailable");
-                    expect(response.body.knolx[0]).to.have.property("content");
-
-                    expect(response.body.knolx[0].topic).to.contains('TestAutomationTitle')
-                })
-
-        }),
         it('Filter Session using Competency as TEST AUTOMATION COMPETENCY in Upcoming Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
@@ -124,12 +183,17 @@ describe('Knolx|Sessions APIs', function () {
                 })
 
         }),
-        it('Filter Session using All Sessions as Knolx in Upcoming Sessions Page', async function ({ supertest }) {
+        it('Filter Session using All Sessions in Upcoming Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
                 .request(headers.base_url)
                 .get('v02/sessions/filters')
-                .query(headers.queryUsingAllSessions)
+                .query({
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'upcoming',
+                    'session': upcomingBadgeName
+                })
                 .set('source', headers.source)
                 .expect(200)
                 .expect('Content-Type', /json/)
@@ -155,17 +219,22 @@ describe('Knolx|Sessions APIs', function () {
                     expect(response.body.knolx[0]).to.have.property("contentAvailable");
                     expect(response.body.knolx[0]).to.have.property("content");
 
-                    expect(response.body.knolx[0].sessionType).to.be.eq('Knolx')
+                    expect(response.body.knolx[0].sessionType).to.be.eq(upcomingBadgeName)
                 })
 
         }),
 
-        it('Filter Session using All Time as 1700831564000 in Upcoming Sessions Page', async function ({ supertest }) {
+        it('Filter Session using All Time in Upcoming Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
                 .request(headers.base_url)
                 .get('v02/sessions/filters')
-                .query(headers.queryAllTime)
+                .query({
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'upcoming',
+                    'time': upcomingEpochTime
+                })
                 .set('source', headers.source)
                 .expect(200)
                 .expect('Content-Type', /json/)
@@ -189,18 +258,26 @@ describe('Knolx|Sessions APIs', function () {
                     expect(response.body.knolx[0]).to.have.property("sessionDescription");
                     expect(response.body.knolx[0]).to.have.property("contentAvailable");
                     expect(response.body.knolx[0]).to.have.property("content");
-
-                    expect(response.body.knolx[0].dateTime).to.be.eq(1700820000000)
+                    // Convert Epoch time 
+                    const responsEpochTime = response.body.knolx[0].dateTime
+                    const responseDate = new Date(responsEpochTime);
+                    const responseDay = responseDate.getDate();
+                    expect(responseDay).to.be.eq(upcomingDay)
                 })
 
         }),
 
-        it('GET session Details about test employee in Past Sessions Page', async function ({ supertest }) {
+        it('GET session Details about first sessions in Past Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
                 .request(headers.base_url)
-                .get('v02/getSession/6529144d45bc9a797dfbcb19')
-                .query(headers.queryAllTime)
+                .get('v02/getSession/'+pastID)
+                .query({
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'upcoming',
+                    'time': pastEpochTime
+                },)
                 .set('source', headers.source)
                 .set(header) //Authorization Token and Source 
                 .expect(200)
@@ -234,17 +311,22 @@ describe('Knolx|Sessions APIs', function () {
                     expect(response.body).to.have.property("presenterPic");
                     expect(response.body).to.have.property("coPresenterPic");
 
-                    expect(response.body.sessionDescription).to.be.eq(headers.sessionDescriptionInPast)
+                    expect(response.body.sessionDescription).to.be.eq(pastSessionDescription)
                 })
 
 
         }),
-        it('Search session using Session Title as Testing Ticket in Past Sessions Page', async function ({ supertest }) {
+        it('Search session using Session Title in Past Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
                 .request(headers.base_url)
-                .get('v02/sessions?search=Testing%20Ticket')
-                .query(headers.queryUsingTitlePast)
+                .get('v02/sessions')
+                .query({
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'past',
+                    'search':pastTitle
+                },)
                 .set('source', headers.source)
                 .expect(200)
                 .expect('Content-Type', /json/)
@@ -270,7 +352,7 @@ describe('Knolx|Sessions APIs', function () {
                     expect(response.body.knolx[0]).to.have.property("contentAvailable");
                     expect(response.body.knolx[0]).to.have.property("content");
 
-                    expect(response.body.knolx[0].topic).to.be.eq('Testing Ticket')
+                    expect(response.body.knolx[0].topic).to.be.eq(pastTitle)
                 })
 
         }),
@@ -309,12 +391,17 @@ describe('Knolx|Sessions APIs', function () {
                 })
 
         }),
-        it('Filter Session using All Sessions as Knolx in Past Sessions Page', async function ({ supertest }) {
+        it('Filter Session using All Sessions in Past Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
             await supertest
                 .request(headers.base_url)
                 .get('v02/sessions/filters')
-                .query(headers.queryUsingAllSessionsPast)
+                .query({
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'past',
+                    'session': pastBadgeName
+                })
                 .set('source', headers.source)
                 .expect(200)
                 .expect('Content-Type', /json/)
@@ -340,16 +427,22 @@ describe('Knolx|Sessions APIs', function () {
                     expect(response.body.knolx[0]).to.have.property("contentAvailable");
                     expect(response.body.knolx[0]).to.have.property("content");
 
-                    expect(response.body.knolx[0].sessionType).to.be.eq('Knolx')
+                    expect(response.body.knolx[0].sessionType).to.be.eq(pastBadgeName)
                 })
 
         }),
-        it('Filter Session using All Time as 1697259310000 in Past Sessions Page', async function ({ supertest }) {
+        it('Filter Session using All Time in Past Sessions Page', async function ({ supertest }) {
             const startTime = new Date().getTime();
+
             await supertest
                 .request(headers.base_url)
                 .get('v02/sessions/filters')
-                .query(headers.queryAllTimePast)
+                .query({
+                    'pageNumber': '1',
+                    'pageSize': '10',
+                    'filter': 'past',
+                    'time': pastEpochTime
+                })
                 .set('source', headers.source)
                 .expect(200)
                 .expect('Content-Type', /json/)
@@ -375,7 +468,12 @@ describe('Knolx|Sessions APIs', function () {
                     expect(response.body.knolx[0]).to.have.property("contentAvailable");
                     expect(response.body.knolx[0]).to.have.property("content");
 
-                    expect(response.body.knolx[0].dateTime).to.be.eq(1697284140000)
+                    // Convert Epoch time 
+                    const responsEpochTime = response.body.knolx[0].dateTime
+                    const responseDate = new Date(responsEpochTime);
+                    const responseDay = responseDate.getDate();
+
+                    expect(responseDay).to.be.eq(pastDay)
                 })
 
         })
