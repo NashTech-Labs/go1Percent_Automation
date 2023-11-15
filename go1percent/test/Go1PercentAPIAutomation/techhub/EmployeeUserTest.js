@@ -1,5 +1,5 @@
 const header = require('../../../globals')
-const payload= require('../../../helpers/Go1PercentFEAutomation/TECHHUB/EmployeeUser/payload')
+const payload= require('../../../helpers/Go1PercentFEAutomation/techhub/EmployeeUser/payload')
 
 describe('TechHub Api Testing', function () {
 
