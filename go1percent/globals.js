@@ -6,7 +6,7 @@ const requestData = {
     'username': 'testemployee',
     'password': 'testemployee',
     'grant_type': 'password'
-  }
+}
 
 const chromedriver = require('chromedriver');
 const allureReporter = require('nightwatch-allure');
@@ -34,27 +34,28 @@ module.exports = {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
-        },
-    Add_Contribution:{
-            BaseUrl:"https://backend.qa.go1percent.com",
-            PostEndPoints:"/contribution/addContribution",
-            GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
-            Contribution_url:"www.cou.org"  } ,
-    reporter: (results,done)=>{
+    },
+    Add_Contribution: {
+        BaseUrl: "https://backend.qa.go1percent.com",
+        PostEndPoints: "/contribution/addContribution",
+        GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000",
+        Contribution_url: "www.cou.org"
+    },
+    reporter: (results, done) => {
         const reporter = new allureReporter.NightwatchAllureReporter({});
-        reporter.write(results,done);
-      },
+        reporter.write(results, done);
+    },
     requestData,
 
     before: function (done) {
         chromedriver.start();
         done();
     },
-    
-    reporter: (results,done)=>{
+
+    reporter: (results, done) => {
         const reporter = new allureReporter.NightwatchAllureReporter({});
-        reporter.write(results,done);
-      },
+        reporter.write(results, done);
+    },
 
 
 
@@ -63,16 +64,17 @@ module.exports = {
         done();
     },
     ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+
     admin: {
-      
-           
-       requestData : {
-        'client_id': 'leaderboard-ui',
-        'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
-        'username': 'testemployee',
-        'password': 'testemployee',
-        'grant_type': 'password'
-      },
+
+
+        requestData: {
+            'client_id': 'leaderboard-ui',
+            'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
+            'username': 'testemployee',
+            'password': 'testemployee',
+            'grant_type': 'password'
+        },
         headers: {
             'Authorization': '',
             'Source': 'https://nashtechglobal.qa.go1percent.com'
@@ -89,8 +91,8 @@ module.exports = {
             grant_type: 'password',
         },
     },
-  
-    rewardSectionMessages:{
+
+    rewardSectionMessages: {
         colorCode: "rgba(236, 64, 122, 1)",
         successMessage: "Reward was successfully updated!",
         imageFormatFailureMessage: "The acceptable file formats are jpeg, jpg and png.",
@@ -99,7 +101,7 @@ module.exports = {
         redeemMessage: "Hi, you have redeemed the reward",
         imageUploadMessage: "Click here to upload image"
     },
-    
+
     employee: {
         headers: {
             "accept": "application/json, text/plain, */*",
@@ -109,11 +111,11 @@ module.exports = {
         }
     },
 
-    queryRequested:{
-        'pageNumber' : '1',
-        'filter' : 'requested', 
-        'pageSize' : '10',
-        'search' : '',
+    queryRequested: {
+        'pageNumber': '1',
+        'filter': 'requested',
+        'pageSize': '10',
+        'search': '',
     },
     techhubUrls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
@@ -136,11 +138,11 @@ module.exports = {
     },
 
 
-     manageSlotBase_url:"https://knolx-backend.qa.go1percent.com",
-     source : "https://nashtechglobal.qa.go1percent.com",
-     access_token : '',
-    
-    Add_Contribution:{
+    manageSlotBase_url: "https://knolx-backend.qa.go1percent.com",
+    source: "https://nashtechglobal.qa.go1percent.com",
+    access_token: '',
+
+    Add_Contribution: {
         headers: {
             'Authorization': '',
             'Source': 'https://nashtechglobal.qa.go1percent.com'
@@ -157,11 +159,11 @@ module.exports = {
             grant_type: 'password',
         },
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        BaseUrl:"https://backend.qa.go1percent.com",
-        PostEndPoints:"/contribution/addContribution",
-        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000" ,
-        Contribution_url:"www.codsfcdu.org"  
-    } ,
+        BaseUrl: "https://backend.qa.go1percent.com",
+        PostEndPoints: "/contribution/addContribution",
+        GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000",
+        Contribution_url: "www.codsfcdu.org"
+    },
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
@@ -169,17 +171,17 @@ module.exports = {
 
 
 
-    Reward:{
-        PostEndPoints:"/rewards",
-        PutEndPoints:"/rewards",
-        GetEndPoints:["/rewards/getAllRewards" , "/rewards/getReward"]
+    Reward: {
+        PostEndPoints: "/rewards",
+        PutEndPoints: "/rewards",
+        GetEndPoints: ["/rewards/getAllRewards", "/rewards/getReward"]
 
     },
 
-    Redeemed_Reward:{
-        PostEndPoints:"/rewards",
-        PutEndPoints:"/updateRedeemReward",
-        GetEndPoints:"/get/redeemRewards"     
+    Redeemed_Reward: {
+        PostEndPoints: "/rewards",
+        PutEndPoints: "/updateRedeemReward",
+        GetEndPoints: "/get/redeemRewards"
     },
 
 
@@ -283,33 +285,33 @@ module.exports = {
         saveOption: true
     },
 
-    
-            access_token :"",  
-            // Upcoming Sessions Page Frontend Automation
-            nasher : "employee",
-            testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
-            badge:"KNOLX",
-            date:"Nov 7, 2023",
-            datePastSessions: "Oct 14, 2023",
-            // allure report
-            reporter: (results,done)=>{
-                const reporter = new allureReporter.NightwatchAllureReporter({});
-                reporter.write(results,done);
-              },
+
+    access_token: "",
+    // Upcoming Sessions Page Frontend Automation
+    nasher: "employee",
+    testAutomationCompetencyName: "TEST AUTOMATION COMPETENCY",
+    badge: "KNOLX",
+    date: "Nov 7, 2023",
+    datePastSessions: "Oct 14, 2023",
+    // allure report
+    reporter: (results, done) => {
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results, done);
+    },
 
 
-        
-      
-              //My Past Session
-                  
-               queryMyPastSession: {
-               'pageNumber': '1',
-               'pageSize': '1000',
-               'filter': 'past',
-               'knolderOnly': 'true',
-               'sessionId' : '6529144d45bc9a797dfbcb19',
-            },
-  
+
+
+    //My Past Session
+
+    queryMyPastSession: {
+        'pageNumber': '1',
+        'pageSize': '1000',
+        'filter': 'past',
+        'knolderOnly': 'true',
+        'sessionId': '6529144d45bc9a797dfbcb19',
+    },
+
     Session: 'Knolx',
     Date: '07 Nov 2023',
     Time: '8:40 - 9:25 AM IST',
@@ -321,19 +323,19 @@ module.exports = {
 
     feedbackForm: {
         uiData: {
-            sessionInUseMessage : 'The Form is currently being used in following session(s)',
-            formUpdateMessage : 'Form Updated Successfully',
-            deleteDialogBoxMessage : 'Are you sure want to delete this form ?',
-            addNPSMessage : 'Please add a NPS question',
-            addFormTitleMessage : 'Please enter a Form Title',
-            addQuestionMessage : 'Question cannot be empty',
-            formCreatedMessage : 'Form created successfully',
-            searchQuery : 'Search Me',
-            formDeletedMessage : 'Form Deleted Successfully',
+            sessionInUseMessage: 'The Form is currently being used in following session(s)',
+            formUpdateMessage: 'Form Updated Successfully',
+            deleteDialogBoxMessage: 'Are you sure want to delete this form ?',
+            addNPSMessage: 'Please add a NPS question',
+            addFormTitleMessage: 'Please enter a Form Title',
+            addQuestionMessage: 'Question cannot be empty',
+            formCreatedMessage: 'Form created successfully',
+            searchQuery: 'Search Me',
+            formDeletedMessage: 'Form Deleted Successfully',
 
         },
 
     },
 
-        
-        };
+
+};
