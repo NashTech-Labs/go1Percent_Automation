@@ -33,19 +33,19 @@ module.exports={
              return ticketid;
         },
         verifyUpdatedTicketStatus(ticketNumber){
-            browser.page.ticket_raised.logout().signOut()
+            browser.page.HELPDESK.ticket_raised.logout().signOut()
             browser.page.login().enterCredentials('testemployee','testemployee').signIn()
-            browser.page.ticket_raised.tickets().navigateToHelpDesk()
+            browser.page.HELPDESK.ticket_raised.tickets().navigateToHelpDesk()
             .click('@closedTickets')
             .assert.textContains('@selectFirstTicket',ticketNumber)
         },
         switchToAdminHelpDesk(){
-            browser.page.ticket_raised.logout().signOut()
+            browser.page.HELPDESK.ticket_raised.logout().signOut()
             browser.page.login().enterCredentials('testadmin','testadmin').signIn()
             return this.navigateToAdminHelpDesk()
         },
         selectClosedTickets(){
-           return this .click('@closedTicketSection')
+           return this.click('@closedTicketSection')
         },
         verifyTicketIdInOpenTickets(ticketId){
             return this.click('@backbtn')

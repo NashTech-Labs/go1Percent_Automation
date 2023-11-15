@@ -1,4 +1,4 @@
-const globals = require('../../../globals')
+const globals = require('../../../../globals')
 
 describe('Ticket Raised By Me Api testing', function () {
 
@@ -205,7 +205,7 @@ describe('Ticket Raised By Me Api testing', function () {
     it('should update the details of Ticket', async function ({ supertest }) {
 
         const requestedData={
-            "ticketID":1578,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
+            "ticketID":1589,"status":"Open","assignedTo":"jony@knoldus.com","category":"Tech hub","priority":"Low"
         }
         const startTimestamp = Date.now();
         await supertest

@@ -48,7 +48,7 @@ const customcommands = {
                     }
                 })
                     .uploadFile('@attachfile',path
-                    .resolve(__dirname ,'..','..','helpers/Go1PercentFEAutomation/TicketRaised/files','Nightwatch.jpg')).pause(5000)
+                    .resolve(__dirname ,'..','..','..','helpers/Go1PercentFEAutomation/TicketRaised/files','Nightwatch.jpg')).pause(5000)
     },
     submitAndVerifySuccess() {
         return this.click('@submitbtn')
@@ -60,7 +60,7 @@ const customcommands = {
             .assert.containsText('@closedTickets', 'Close Ticket')
     },
     verifyUpdatedTicketStatus(ticketNumber, ticketStatus) {
-        browser.page.ticket_raised.logout().signOut()
+        browser.page.HELPDESK.ticket_raised.logout().signOut()
         browser.page.login().enterCredentials('testemployee', 'testemployee').signIn()
         return this.navigateToHelpDesk()
             .click(ticketStatus)
