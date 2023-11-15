@@ -158,11 +158,11 @@ module.exports = {
             grant_type: 'password',
         },
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        BaseUrl: "https://backend.qa.go1percent.com",
-        PostEndPoints: "/contribution/addContribution",
-        GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000",
-        Contribution_url: "www.codsfcdu.org"
-    },
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/contribution/addContribution",
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"  
+    } ,
+
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
