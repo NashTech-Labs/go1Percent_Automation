@@ -3,8 +3,6 @@ module.exports = {
     url: "https://nashtechglobal.qa.go1percent.com/",
 
 
-
-
     elements: {
         emailInput: '#username',
         passwordInput: '#password',
