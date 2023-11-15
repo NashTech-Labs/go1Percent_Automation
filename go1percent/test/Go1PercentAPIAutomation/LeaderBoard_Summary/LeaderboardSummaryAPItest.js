@@ -456,7 +456,8 @@ describe('Leaderboard API Testing', function () {
 
 
     // Assert specific values within the response body.
-    expect(responseBody.knolderName).to.includes('Test Employe');
+
+    expect(responseBody.knolderName).to.includes('Test Employee');
     expect(responseBody.knolderEmail).to.equal('testemployee@nashtechglobal.com');
     expect(responseBody.monthlyRank).to.equal(1);
     expect(responseBody.studioName).to.be.a('string');
