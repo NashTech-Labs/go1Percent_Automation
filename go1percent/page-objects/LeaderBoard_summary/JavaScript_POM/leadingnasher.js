@@ -126,7 +126,7 @@ module.exports = {
                         console.log(text)
                     })
             },
-            leadingNasherALlCOntribution() {
+            leadingNasherAllContribution() {
                 let regexPattern1="^.*\d+.*$"
                 let contributionText='';
                 return this
@@ -150,7 +150,7 @@ module.exports = {
                 });
 
             },
-            rewordSection() {
+            verifyRewordSectionContainsPointAndDate() {
                 dateRegex='[A-Za-z]+ [0-9]+, [0-9]+'
                 return this
                     .assert.textContains('@rewordSectionPoints', 'pts', 'asserting points ont reworing section')
@@ -169,19 +169,19 @@ module.exports = {
                     .assert.containsText('@rewords', 'pts', 'asserting points ont reworing section')
                     .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
             },
-            badgeSection() {
+            contaisBadgeSectionWithPopUpDetails() {
                 let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/; // Use a regex without quotes
                 return this
                     .click('@badge')
                     .waitForElementVisible('@badgPopup')
                     .assert.textMatches('@badgePopUpDetails', regexPattern);
             },
-            nobadgeSection() {
+            contaisNoBadgeSection() {
                 return this
                     .click('@noRewordNasher')
                     .assert.containsText('@noBadgeFound', 'No Badges Earned')
             },
-            pointsSection() {
+            pointsSectionWithScore() {
                 regexPattern = '^[A-Z][a-z]+ Score$';
                 return this
                     .click('@pointsButton')
@@ -225,7 +225,7 @@ module.exports = {
                     })
                     .assert.containsText('@contributionsTyes', 'test', 'contains test as prifix or suffix of contibution')
             },
-            nasherWithSkill() {
+            nasherWithSkillAndWithoutSkill() {
                 //conatais skill with lebels 
                 return this
                     .click('@nasherWithSkill')

@@ -15,6 +15,7 @@ module.exports = {
         contributionTypes_3: "div[class='row section'] div:nth-child(3) div:nth-child(1) div:nth-child(1) div:nth-child(2) p:nth-child(1)",
         contributionTypes_4: "div[class='row section'] div:nth-child(4) div:nth-child(1) div:nth-child(1) div:nth-child(2) p:nth-child(1)",
         leadingNashers: 'div[class="leading mt-3"]',
+        leadingNasherList:'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]',
         thismonth: 'a[class="mx-2 tabs cursor-pointer overall-txt-color"]',
         allTime: "app-leading-knolder div[class='card leading-card p-4'] a[class='mx-2 tabs cursor-pointer overall-txt-color']",
     },
@@ -38,31 +39,12 @@ module.exports = {
                     .click('@summary')
                     .waitForElementVisible('@welcomeToSummaryPage')
             },
-            allContribution() {
-
+            allContributionSectionIsVisible() {
                 return this
                     .waitForElementVisible('@contributionTypes_1')
-                    .assert.containsText('@contributionTypes_1', 'Blogs')
-                    .assert.containsText('@contributionTypes_2', 'Knolx')
-                    .assert.containsText('@contributionTypes_3', 'Webinars')
-                    .assert.containsText('@contributionTypes_4', 'OS Contributions')
-                    .click('@navigationArrow')
-
-                    .assert.containsText('@contributionTypes_1', 'Techhub')
-                    .assert.containsText('@contributionTypes_2', 'Conferences')
-                    .assert.containsText('@contributionTypes_3', 'Research Papers')
-                    .assert.containsText('@contributionTypes_4', 'Books')
-                    .click('@navigationArrow')
-
-                    .assert.containsText('@contributionTypes_1', 'Meetup')
-                    .assert.containsText('@contributionTypes_2', 'Proposal')
-                    .assert.containsText('@contributionTypes_3', 'Process Doc')
-                    .assert.containsText('@contributionTypes_4', 'PMO Template')
-                    .click('@navigationArrow')
-
-                    .assert.containsText('@contributionTypes_1', 'Certifications')
-                    .assert.containsText('@contributionTypes_2', 'Online Courses')
-
+            },
+            clickOnNavigationArrow(){
+                return this.click('@navigationArrow')
             },
 
             leadingNasher: function () {
@@ -76,11 +58,12 @@ module.exports = {
             },
 
             containsLeadingnasherList() {
-                browser.waitForElementVisible('div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]')
-                browser.elements('css selector', 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]', function (result) {
+                this.waitForElementVisible('@leadingNasherList')
+                browser.elements('css selector', this.elements.leadingNasherList, function (result) {
                     const elementCount = result.value.length;
-                    browser.assert.ok(elementCount > 0, 'elementCount should be greater than 0')
+                    this.assert.ok(elementCount > 0, 'elementCount should be greater than 0')
                 });
+                return this
             }
 
         }

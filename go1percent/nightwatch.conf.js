@@ -140,7 +140,7 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            '--headless',             //for headless mode and Jenkins
+            // '--headless',             //for headless mode and Jenkins
             "window-size=1920,1080", //for headless mode and Jenkins
             '--no-sandbox',          //for headless mode and Jenkins
             "disable-gpu",           //for headless mode and Jenkins
