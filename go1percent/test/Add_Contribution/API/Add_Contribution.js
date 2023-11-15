@@ -1,15 +1,12 @@
 const globals = require('../../../globals')
 
-const myToken = process.argv.indexOf('--token'); //npx nightwatch test/Add_Config.js --env api_testing --token youracesstoken
-
 describe('api testing', function () {
 
-const token = process.argv[myToken + 1];
+  const headers = globals.Add_Contribution.headers;
+  const tokenHeaders = globals.Add_Contribution.tokenHeaders;
+  const tokenBody = globals.Add_Contribution.tokenBody;
+  const token = globals.Add_Contribution.token;
 
-const headers = {
-  'Source':'https://nashtechglobal.qa.go1percent.com',
-  'Authorization': 'Bearer '+ token // Token from terminal
-}
     const ResponseTime = (startTime)=>{ // Function to check Response Time
     const endTime = new Date().getTime();
     const responseTime = endTime - startTime;
@@ -17,20 +14,34 @@ const headers = {
     expect(responseTime).to.be.lessThan(2000); 
     
   }
+
+  it('get api token', async function ({ supertest }) {
+    await supertest
+      .request(token)
+      .post("/token")
+      .send(tokenBody)
+      .set(tokenHeaders)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(function (response) {
+        const token = response._body.access_token;
+        headers['Authorization'] = 'Bearer ' + token;
+      });
+  });
     
     
     it('POST api test', async function({supertest}) { //POST Call
       const startTime = new Date().getTime();
         await supertest
         
-          .request(globals.access_token.BaseUrl)
-          .post(globals.Add_Configuration.PostEndPoints)
+          .request(globals.Add_Contribution.BaseUrl)
+          .post(globals.Add_Contribution.PostEndPoints)
           .set(headers)
           .send({
             "title":"Test employee contribution",
             "contributionType":"Research paper",
             "contributionDate":"2023-10-19 00:00:00",
-            "urlDetails":"www.codfnkjnjbjkbsd.org",
+            "urlDetails":globals.Add_Contribution.Contribution_url,
             "technologyDetails":"ddcscdcmjjicjdjc hdfiwic jocdjoicwd fcdiocd chojvwofeefhevdvhvhnvjvjdwehuihefkjcnjkvnwbrihfuvbhjbdjfre"
           })
           .expect(200) //Asserting Response Code
@@ -47,8 +58,8 @@ const headers = {
         const startTime = new Date().getTime();
         await supertest
         
-          .request(globals.Add_Configuration.BaseUrl)
-          .get(globals.Add_Configuration.GetEndPoints)
+          .request(globals.Add_Contribution.BaseUrl)
+          .get(globals.Add_Contribution.GetEndPoints)
           .set(headers)
           .expect(200) //Asserting Response Code
          .then(function(response){
