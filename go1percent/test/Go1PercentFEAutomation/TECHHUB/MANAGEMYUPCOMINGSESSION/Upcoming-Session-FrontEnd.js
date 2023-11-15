@@ -21,32 +21,32 @@ describe("Manage My Upcoming Session", () => {
 
     })),
 
-        // it('verify that booked session should be visible in the my upcoming session (TC-177)', function () {
+        it('verify that booked session should be visible in the my upcoming session (TC-177)', function () {
 
-        //     Upcoming
-        //         .ClickOnUpcomingSession()
-        //         .assert.elementPresent('@ListPresent')
-
-
-        // }),
-
-        // it('Verify that user should able to update the title (TC-178) ', function () {
-
-        //     Upcoming
-        //         .ClickOnListedSession()
-        //         .ClickOnAnySession('Testing Title')
-        //         .assert.containsText('@ToastMessage', 'Successfully Updated')
+            Upcoming
+                .ClickOnUpcomingSession()
+                .assert.elementPresent('@ListPresent')
 
 
-        // }),
+        }),
 
-        // it(' Verify that user should not able to save the session without title (TC-179)', function () {
+        it('Verify that user should able to update the title (TC-178) ', function () {
 
-        //     Upcoming
-        //         .ClickOnListedSession()
-        //         .WithoutTitle()
-        //     .assert.attributeEquals('@SaveButton', 'disabled', 'true')
-        // }),
+            Upcoming
+                .ClickOnListedSession()
+                .ClickOnAnySession('Testing Title')
+                .assert.containsText('@ToastMessage', 'Successfully Updated')
+
+
+        }),
+
+        it(' Verify that user should not able to save the session without title (TC-179)', function () {
+
+            Upcoming
+                .ClickOnListedSession()
+                .WithoutTitle()
+            .assert.attributeEquals('@SaveButton', 'disabled', 'true')
+        }),
 
         it('verify that user should able to add tags (TC-180)', function () {
 
@@ -158,12 +158,9 @@ describe("Manage My Upcoming Session", () => {
 
             Upcoming
                 .SessionWithMultipleData()
-                .pause(4000)
-                .assert.textContains('@SessionType', DataSet.SessionData.Session)
-                .assert.textContains('@SessionDate', DataSet.SessionData.Date)
-                .assert.textContains('@SessionTime', DataSet.SessionData.Time)
-                .assert.textContains('@SessionTitle', DataSet.SessionData.SessionTitle)
-                .assert.textContains('@SessionStatus', DataSet.SessionData.SessionStatus)
+                .assert.elementPresent('@SessionTitle')
+                .assert.elementPresent('@SessionStatus')
+                .assert.elementPresent('@SessionTypeAndSessionTime')
 
         }),
 

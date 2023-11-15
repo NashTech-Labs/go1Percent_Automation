@@ -8,7 +8,7 @@ module.exports = {
             selector: '.tabs.newTabs.active',
 
         },
-        
+
         ListPresent: {
             selector: '.pending-badge'
             
@@ -36,33 +36,20 @@ module.exports = {
             selector: '.pb-3.mt-2.slideContent'
         },
 
-        SessionType: {
-            selector: '(//div[text()=" Knolx "])[1]',
-            locateStrategy: 'xpath'
+       
+        SessionTypeAndSessionTime: {
 
-        },
-
-        SessionDate: {
-            selector: '//span[text()=" 01 Dec 2023"]',
-            locateStrategy: 'xpath'
-
-        },
-        SessionTime: {
-
-            selector: '//span[text()=" 4:15 - 5:00 PM IST"]',
-            locateStrategy: 'xpath'
+            selector: '.text-end',
+           
         },
 
         SessionTitle: {
-            selector: '//div[text()=" Testing Title "]',
-            locateStrategy: 'xpath'
-
+            selector: 'div.topic',
+        
         },
 
         SessionStatus: {
-            selector: '(//span[text()=" Pending for Approval "])[1]',
-            locateStrategy: 'xpath'
-
+            selector: 'span.badge'
         },
         EditButton: {
 
@@ -216,7 +203,7 @@ module.exports = {
                 .waitForElementVisible('@UpcomingSession', 10000)
                 .click('@UpcomingSession')
                 .waitForElementVisible('@ListPresent', 10000)
-            
+               
         },
 
         ClickOnAnySession(NewTitle) {

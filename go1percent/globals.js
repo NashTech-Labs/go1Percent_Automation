@@ -312,11 +312,6 @@ module.exports = {
 
 
     SessionData: {
-        Session: 'Knolx',
-        Date: '01 Dec 2023',
-        Time: '4:15 - 5:00 PM IST',
-        SessionTitle: 'Testing Title',
-        SessionStatus: 'Pending for Approval',
         ExpectedTitle: 'Sample Text Title Update',
         Description: 'Description',
         SlideURL: 'Slide URL',
