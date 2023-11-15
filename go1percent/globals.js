@@ -58,11 +58,12 @@ module.exports = {
     },
 
 
-
     after: function (done) {
         chromedriver.stop();
         done();
     },
+  
+    baseurl: 'https://backend.qa.go1percent.com',
 
     admin: {
 
@@ -248,8 +249,6 @@ module.exports = {
 
     access_token: "",
     backend_url: 'https://backend-radar.qa.go1percent.com/',
-
-    baseurl: 'https://backend.qa.go1percent.com',
 
     admin: {
         headers: {
