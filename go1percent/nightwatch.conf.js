@@ -34,6 +34,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
 
+  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions','page-objects/TECHHUB/AdminUser', './page-objects/TicketAssignedToMe'],
 
 
 

@@ -77,8 +77,16 @@ module.exports = {
             selector: 'div.filter-right-section > div > div:nth-child(3) > select > option:nth-child(9)'
         },
 
+        onlineCourse: {
+            selector: '#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small'
+        },
+
         frontendCompetency: {
             selector: 'app-contribution select option:nth-child(9)'
+        },
+
+        contributionOnlineCourseType: {
+            selector: 'div.filter-right-section > div > div:nth-child(3) > select > option:nth-child(12)'
         },
 
         timeSelector: {
@@ -87,7 +95,11 @@ module.exports = {
 
         filteredListSelector: {
             selector: '#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small'
-        }
+        }, 
+
+        contributionDetails: {
+            selector: 'small[class="font-weight-bold"]'
+        },
 
     },
 
@@ -181,23 +193,21 @@ module.exports = {
             return this
                 .assert.visible('@frontendCompetency')
                 .click('@frontendCompetency')
-                .getText('small[class="font-weight-bold"]', function (result) {
+                .getText('@contributionDetails', function (result) {
                     let resultFinal = result.value;
                     if (resultFinal !== null && resultFinal.includes('Frontend Competency')) {
-                        console.log('contains "Frontend Competency"');
+                        this.assert.equal(result.value, 'Frontend Competency');
                     } else {
-                        console.log('does not contain Frontend Competency');
+                        this.assert.notEqual(result.value, 'Frontend Competency');
                     }
-                    console.log(result.value)
-                    this.assert.equal(result.value, 'Frontend Competency');
                 });
         },
 
         contributionTypeFilter: function () {
             return this
                 .pause(3000)
-                .click('@contributionCertificationType')
-                .getText('#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small', function (result) {
+                .click('@contributionOnlineCourseType')
+                .getText('@onlineCourse', function (result) {
                     let filteredResult = result.value;
                     if (filteredResult !== null && filteredResult.includes('Online Course')) {
                         this.assert.equal(result.value, 'Online Course');
@@ -205,7 +215,7 @@ module.exports = {
                         this.assert.notEqual(result.value, 'Online Course');
                     }
                 });
-        },
+        }
 
     }
 

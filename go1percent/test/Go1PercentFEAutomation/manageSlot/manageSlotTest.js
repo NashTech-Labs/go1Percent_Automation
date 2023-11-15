@@ -1,5 +1,9 @@
-const globalsData = require('../../globals');
-const ManageSlotPages= browser.page.ManageSlotPages();
+const globalsData = require('../../../globals');
+const ManageSlotPages= browser.page.MANAGESLOT.ManageSlotPages();
+
+//const ManageSlotPages=require('../page-objects/MANAGESLOT/ManageSlotPages.js');
+//const login = browser.page.login();
+//const ManageSlotPages= browser.page.ManageSlotPages()
 
 describe("KNolx|Manage Slot Frontend Automation", () => {
 before(async function (done) {
@@ -7,11 +11,12 @@ await browser
 .window.maximize()
 .page.login()
 .navigate()
-.enterCredentials(browser.globals.userName, browser.globals.password)
+.enterCredentials(browser.globals.adminUserName, browser.globals.adminPassword)
 .signIn()
 ManageSlotPages.waitForPageLoad()
+//.page.ManageSlotPages().waitForPageLoad()
 .assert.urlContains("my-dashboard")
-ManageSlotPages.waitForPageLoad()
+await ManageSlotPages.waitForPageLoad()
 try {
 await ManageSlotPages.clickAdminButton();
 await ManageSlotPages.clickKnolxButton();
