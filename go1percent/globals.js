@@ -317,6 +317,9 @@ module.exports = {
     SlideURL: 'Slide URL',
 
     feedbackForm: {
+        apiUrls: {
+            requestUrl: 'https://knolx-backend.qa.go1percent.com/v02/feedback-form',
+        },
         uiData: {
             sessionInUseMessage : 'The Form is currently being used in following session(s)',
             formUpdateMessage : 'Form Updated Successfully',
