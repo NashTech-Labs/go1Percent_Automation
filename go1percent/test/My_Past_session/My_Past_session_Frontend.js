@@ -1,4 +1,4 @@
-const { assert } = require("chai");
+//const { assert } = require("chai");
 const mypastSession = browser.page.mypastSession();
 const globals = require('../../globals');
 
