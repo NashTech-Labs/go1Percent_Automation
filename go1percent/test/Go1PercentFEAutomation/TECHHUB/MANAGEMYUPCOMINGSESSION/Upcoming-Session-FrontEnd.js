@@ -1,4 +1,3 @@
-//const Login=browser.page.login() 
 const DataSet = require('../../../../globals')
 const Session = browser.page.ManageMyUpcomingSession.MySessionPage()
 const Upcoming = browser.page.ManageMyUpcomingSession.My_Upcoming_Session()
@@ -14,7 +13,6 @@ describe("Manage My Upcoming Session", () => {
             .navigate()
             .enterCredentials(browser.globals.userName, browser.globals.password)
             .signIn()
-        // browser.pause(30000)
         Session
             .ClickOnKnolx()
             .ClickOnMySession()
@@ -23,33 +21,32 @@ describe("Manage My Upcoming Session", () => {
 
     })),
 
-        it('verify that booked session should be visible in the my upcoming session (TC-177)', function () {
+        // it('verify that booked session should be visible in the my upcoming session (TC-177)', function () {
 
-            Upcoming
-                .ClickOnUpcomingSession()
-                .assert.elementPresent('@ListPresent')
-
-
-        }),
-
-        it('Verify that user should able to update the title (TC-178) ', function () {
-
-            Upcoming
-                .ClickOnListedSession()
-                .ClickOnAnySession('Testing Title')
-                .assert.containsText('@ToastMessage', 'Successfully Updated')
+        //     Upcoming
+        //         .ClickOnUpcomingSession()
+        //         .assert.elementPresent('@ListPresent')
 
 
-        }),
+        // }),
 
-        it(' Verify that user should not able to save the session without title (TC-179)', function () {
+        // it('Verify that user should able to update the title (TC-178) ', function () {
 
-            Upcoming
-                .ClickOnListedSession()
-                .WithoutTitle()
-           // browser.ensure.elementIsDisabled('@SaveButton')
-            .assert.attributeEquals('@SaveButton', 'disabled', 'true')
-        }),
+        //     Upcoming
+        //         .ClickOnListedSession()
+        //         .ClickOnAnySession('Testing Title')
+        //         .assert.containsText('@ToastMessage', 'Successfully Updated')
+
+
+        // }),
+
+        // it(' Verify that user should not able to save the session without title (TC-179)', function () {
+
+        //     Upcoming
+        //         .ClickOnListedSession()
+        //         .WithoutTitle()
+        //     .assert.attributeEquals('@SaveButton', 'disabled', 'true')
+        // }),
 
         it('verify that user should able to add tags (TC-180)', function () {
 

@@ -5,34 +5,13 @@ module.exports = {
 
         UpcomingSession: {
 
-            //locateStrategy: 'xpath',
             selector: '.tabs.newTabs.active',
 
         },
-
-        StartingBox: {
-            locateStrategy: 'xpath',
-            selector: '//div[normalize-space()="testing"]',
-        },
-
-        MiddleBox: {
-            locateStrategy: 'xpath',
-            selector: '//div[normalize-space()="Test Title 4892"]',
-
-        },
-
-        LastBox: {
-            locateStrategy: 'xpath',
-            selector: '//div[normalize-space()="TestAutomationTitleNashtech"]',
-
-
-        },
-
+        
         ListPresent: {
-            //locateStrategy: 'xpath',
             selector: '.pending-badge'
-            //span[contains(text(),"Pending for Approval")]',
-
+            
 
         },
 
@@ -87,14 +66,12 @@ module.exports = {
         },
         EditButton: {
 
-            // locateStrategy: 'Xpath',
             selector: '.btn.btn-primary.title',
 
         },
 
         TextBox: {
 
-            //locateStrategy:'Xpath',
             selector: 'textarea[type="text"]',
 
 
@@ -102,14 +79,12 @@ module.exports = {
 
         SaveButton: {
 
-            //locateStrategy:'Xpath',
             selector: '.btn.btn-primary.saveBtn.mt-3',
 
         },
 
         ToastMessage: {
 
-            //locateStrategy:'Xpath',
             selector: 'div[aria-label="Successfully Updated"]'
         },
 
@@ -195,11 +170,7 @@ module.exports = {
             selector: '.btn.backBtn.overall-txt-color.card.addIcon'
         },
 
-        AllDataFromList: {
-            selector: '(//div[@class="p-3"])[2]',
-            locateStrategy: 'Xpath'
-        }
-
+        
     },
 
     commands: [{
@@ -234,8 +205,7 @@ module.exports = {
                 .click('@ApprovedTemplate')
                 .getText('@ApprovedPageTitle', function (result) {
                     let Title = result.value;
-                    //  console.log(Title);
-
+                   
                 })
 
         },
@@ -246,11 +216,7 @@ module.exports = {
                 .waitForElementVisible('@UpcomingSession', 10000)
                 .click('@UpcomingSession')
                 .waitForElementVisible('@ListPresent', 10000)
-            // .getText('@ListPresent', function (result) {
-            //     const AllData = result.value;
-            //      console.log(AllData);
-            // });
-
+            
         },
 
         ClickOnAnySession(NewTitle) {
@@ -315,8 +281,6 @@ module.exports = {
                 .waitForElementVisible('@DescriptionTextBox', 10000)
                 .getAttribute('@DescriptionTextBox', 'value', function (result) {
                     var attributeValue = result.value;
-                    // console.log(attributeValue);
-
                     this.setValue('textarea[type="text"]', attributeValue + 'NashTech')
                 })
                 .waitForElementPresent('@DescriptionSaveButton', 10000)
@@ -385,13 +349,10 @@ module.exports = {
                 .click('@AfterClickingURLBox')
                 .sendKeys('@AfterClickingURLBox', [browser.Keys.CONTROL, 'a'])
                 .sendKeys('@AfterClickingURLBox', browser.Keys.BACK_SPACE)
-                .pause(6000)
+                .pause(4000)
 
 
-            // .clearValue('@AfterClickingURLBox')
-            // .waitForElementVisible('@URLSaveButton', 10000)
-            // .click('@URLSaveButton')
-
+           
         },
 
         InvalideSlideURL(entervalue) {
