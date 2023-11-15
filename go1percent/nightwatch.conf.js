@@ -28,7 +28,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
 
-  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions','page-objects/Techhub_AdminUser_FE'],
+  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions','page-objects/TECHHUB/AdminUser'],
 
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html

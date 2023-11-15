@@ -16,7 +16,7 @@ module.exports = {
             .navigate()
             .enterCredentials('testadmin', 'testadmin')
             .signIn()
-        pageObject = browser.page.review_contribution.approvals()
+        pageObject = browser.page.CONTRIBUTION.review_contribution.approvals()
         pageObject.approvalsPage()
         pageObject.openApprovalsContributionPage();
     },
