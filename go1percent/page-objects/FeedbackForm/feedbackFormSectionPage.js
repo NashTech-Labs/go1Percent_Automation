@@ -3,9 +3,9 @@ const cmd = {
     clickOnFormDeleteButton() {
         this
             .waitForElementVisible('@heading')
-            .waitForElementVisible('@noSession_feedbackFormCardTitle')
-            .waitForElementVisible('@noSession_feedbackFormCardDeleteButton')
-            .click('@noSession_feedbackFormCardDeleteButton')
+            .waitForElementVisible('@firstSearchResultCardTitle')
+            .waitForElementVisible('@firstSearchResultCardDeleteBtn')
+            .click('@firstSearchResultCardDeleteBtn')
         return this;
     },
 
@@ -17,39 +17,24 @@ const cmd = {
         return this;
     },
 
-    clickOnFormDeleteButtonSession() {
-        this
-            .waitForElementVisible('@heading')
-            .waitForElementVisible('@feedbackFormCardTitle')
-            .waitForElementVisible('@feedbackFormCardDeleteButton')
-            .click('@feedbackFormCardDeleteButton')
-        return this;
-    },
-
     inputInSearchField(message) {
+
+        const regex = new RegExp(message, "i");
+
         this
             .waitForElementVisible('@heading')
             .waitForElementVisible('@feedbackFormCardTitle')
             .waitForElementVisible('@searchField')
-            .sendKeys('@searchField', message);
-
-        return this;
-    },
-
-    clickOnFormEditButton_withNoSession() {
-        this
-            .waitForElementVisible('@heading')
-            .waitForElementVisible('@noSession_feedbackFormCardTitle')
-            .click('@noSession_feedbackFormCardEditButton');
-
+            .sendKeys('@searchField', message)
+            .expect.element('@firstSearchResultCard').text.to.match(regex);
         return this;
     },
 
     clickOnFormEditButton() {
         this
             .waitForElementVisible('@heading')
-            .waitForElementVisible('@feedbackFormCardTitle')
-            .click('@feedbackFormCardEditButton');
+            .waitForElementVisible('@firstSearchResultCardTitle')
+            .click('@firstSearchResultCardEditBtn');
 
         return this;
     },
@@ -90,6 +75,22 @@ module.exports = {
             selector: 'app-feedback-forms button'
         },
 
+        firstSearchResultCard: {
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) > div:nth-of-type(1)'
+        },
+
+        firstSearchResultCardEditBtn: {
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) > div:nth-of-type(1) span[title="Edit"]'
+        },
+
+        firstSearchResultCardDeleteBtn: {
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) > div:nth-of-type(1)  span[title="Delete"]'
+        },
+
+        firstSearchResultCardTitle: {
+            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) > div:nth-of-type(1) p'
+        },
+
         feedbackFormsRow: {
             selector: 'app-feedback-forms div[class="row"]:nth-of-type(4)'
         },
@@ -115,44 +116,6 @@ module.exports = {
 
         feedbackFormCardTitle: {
             selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(1) div div[class="cardHeader"] p'
-        },
-
-        feedbackFormCardEditButton: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(1) div div[class="card-body"]  span[title="Edit"]'
-        },
-
-        feedbackFormCardDeleteButton: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(1) div div[class="card-body"]  span[title="Delete"]'
-        },
-
-        noSession_feedbackFormCardContainer: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7)'
-        },
-
-        noSession_feedbackFormCard: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div'
-        },
-
-
-        noSession_feedbackFormCardBody: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="card-body"]'
-        },
-
-
-        noSession_feedbackFormCardHeader: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="cardHeader"]'
-        },
-
-        noSession_feedbackFormCardTitle: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="cardHeader"] p'
-        },
-
-        noSession_feedbackFormCardEditButton: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="card-body"]  span[title="Edit"]'
-        },
-
-        noSession_feedbackFormCardDeleteButton: {
-            selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(7) div div[class="card-body"]  span[title="Delete"]'
         },
 
         deleteDialogBox: {
