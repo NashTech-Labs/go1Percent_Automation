@@ -1,4 +1,4 @@
-const globals = require('../../globals')
+const globals = require('../../../../globals')
 
 //Store All the Required Data In Globals And Calling The Data As Per The Requirement
 describe('api testing', function () {
@@ -20,7 +20,7 @@ describe('api testing', function () {
 
             .then(function (response) {
 
-                const token = response._body.access_token;
+                const token = response.body.access_token;
                 headers['Authorization'] = 'Bearer ' + token;
             });
     });
@@ -44,9 +44,9 @@ describe('api testing', function () {
 
         expect(responseTime).to.be.lessThan(2000);
      //Attribute Response
-        expect(response.body.sessions[0].id).to.be.equal("6526385058f83108585a4002"),
-     expect(response.body.sessions[0].topic).to.be.equal("Testing1") // Use response.body to access the response body
-     expect(response.body.sessions[0].category).to.be.equal("TEST AUTOMATION COMPETENCY");   
+        expect(response.body.sessions[0].id).to.be.equal("653a20da8555d37c0a4f8f13"),
+     expect(response.body.sessions[0].topic).to.be.equal("testing Title") // Use response.body to access the response body
+     expect(response.body.sessions[0].category).to.be.equal("FRONTEND COMPETENCY");   
         
         }) 
     });
