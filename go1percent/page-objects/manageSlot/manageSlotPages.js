@@ -13,7 +13,7 @@ module.exports = {
       locateStrategy:'xpath'
     },
     manageSlots: 'a.nav-link.text-white[href="/knolx/manage-slots"]',
-    calendarDate: 'a[aria-label="November 11, 2023"]',
+    calendarDate: 'a[aria-label="November 30, 2023"]',
     knolx: {
       selector: "//label[contains(text(),'Knolx')]",
       locateStrategy: 'xpath',
@@ -74,7 +74,7 @@ module.exports = {
   updateFreeSlotTitle: 'input[formcontrolname="newSlotTitle"]',
   successfullyUpdateFreeSlot: 'div[aria-label="Session Updated Successfully"]',
   knolxSession: {
-    selector: '//div[contains(text(), "Testing1")]',
+    selector: '//div[contains(text(), "Sample Text Title Update")]',
     locateStrategy: 'xpath',
   },
   approve: {
