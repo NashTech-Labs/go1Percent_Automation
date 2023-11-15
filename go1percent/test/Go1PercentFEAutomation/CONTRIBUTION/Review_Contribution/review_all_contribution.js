@@ -6,7 +6,7 @@ module.exports = {
             .navigate()
             .enterCredentials('testadmin', 'testadmin')
             .signIn()
-        pageObject = browser.page.review_contribution.allContribution();
+        pageObject = browser.page.CONTRIBUTION.review_contribution.allContribution();
         pageObject.approvalsPage();
         pageObject.navigateToAllContributions();
     },
@@ -38,7 +38,6 @@ module.exports = {
     'Filter by comptency type': function (browser) {
         pageObject.contributionTypeFilter();
     },
-
 
     after: function (browser) {
         browser.end();

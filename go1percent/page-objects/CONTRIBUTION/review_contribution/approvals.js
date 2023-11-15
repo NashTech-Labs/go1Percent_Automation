@@ -73,6 +73,26 @@ module.exports = {
             selector: 'div.filter-right-section > div > div:nth-child(2) > select > option:nth-child(12)'
         },
 
+        onlineCourse: {
+            selector: '#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small'
+        },
+
+        contributionDetails: {
+            selector: 'small[class="font-weight-bold"]'
+        },
+
+        approveRejectTag: {
+            selector: 'h5.modal-title.pull-left'
+        },
+
+        rejectSucess: {
+            selector: 'div[aria-label="Successfully Rejected"]'
+        },
+
+        approveSuccess: {
+            selector: 'div[aria-label="Successfully Approved"]'
+        }
+
     },
 
     commands: {
@@ -115,12 +135,12 @@ module.exports = {
                 .waitForElementVisible('@approve')
                 .click('@approve')
                 .pause(4000)
-                .assert.containsText('h5.modal-title.pull-left', 'Approve/Reject Contribution')
+                .assert.containsText('@approveRejectTag', 'Approve/Reject Contribution')
                 .waitForElementVisible('@writeComment')
                 .click('@writeComment')
                 .setValue('@writeComment', 'Testing purpose')
                 .click('@approveButton')
-                .waitForElementVisible('div[aria-label="Successfully Approved"]')
+                .waitForElementVisible('@approveSuccess')
         },
 
 
@@ -129,12 +149,12 @@ module.exports = {
                 .waitForElementVisible('@reject')
                 .click('@reject')
                 .pause(4000)
-                .assert.containsText('h5.modal-title.pull-left', 'Approve/Reject Contribution')
+                .assert.containsText('@approveRejectTag', 'Approve/Reject Contribution')
                 .waitForElementVisible('@writeComment')
                 .click('@writeComment')
                 .setValue('@writeComment', 'Testing purpose')
                 .click('@rejectButton')
-                .waitForElementVisible('div[aria-label="Successfully Rejected"]')
+                .waitForElementVisible('@rejectSucess')
         },
 
         searchNasher: function () {
@@ -143,30 +163,27 @@ module.exports = {
                 .click('@search')
                 .setValue('@search', 'test employee')
                 .waitForElementVisible('@searchedNasher')
-
         },
 
         competencyFilter: function () {
             return this
                 .assert.visible('@frontendCompetency')
                 .click('@frontendCompetency')
-                .getText('small[class="font-weight-bold"]', function (result) {
+                .getText('@contributionDetails', function (result) {
                     let resultFinal = result.value;
                     if (resultFinal !== null && resultFinal.includes('Frontend Competency')) {
-                        console.log('contains "Frontend Competency"');
+                        this.assert.equal(result.value, 'Frontend Competency');
                     } else {
-                        console.log('does not contain');
+                        this.assert.notEqual(result.value, 'Frontend Competency');
                     }
-                    console.log(result.value)
-                    this.assert.equal(result.value, 'Frontend Competency');
                 });
         },
-        
+
         contributionTypeFilter: function () {
             return this
                 .pause(3000)
                 .click('@contributionOnlineCourseType')
-                .getText('#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small', function (result) {
+                .getText('@onlineCourse', function (result) {
                     let filteredResult = result.value;
                     if (filteredResult !== null && filteredResult.includes('Online Course')) {
                         this.assert.equal(result.value, 'Online Course');
