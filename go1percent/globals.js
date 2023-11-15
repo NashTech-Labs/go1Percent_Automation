@@ -68,6 +68,9 @@ module.exports = {
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
     },
  
+  
+    baseurl: 'https://backend.qa.go1percent.com',
+
     admin: {
 
 
