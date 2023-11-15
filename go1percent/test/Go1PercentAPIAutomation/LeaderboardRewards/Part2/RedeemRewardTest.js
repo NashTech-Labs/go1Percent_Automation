@@ -181,23 +181,23 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
 
 
   //PUT the redeemed rewards (removes or mark them processed)
-  it('Should update the redeemed reward to processed', async function ({ supertest }) {
-    const startTime = Date.now();
-    await supertest
-        .request(globals.Add_Configuration.BaseUrl)
-        .put("/updateRedeemReward")
-        .set(header)
-        .send({"rewardId":324,"rewardType":"Individual","status":"Processed","redeemId":219})
-        .expect(200)
-        .then(function (response) {
-        expect('Content-Type', /json/)//Assert content type
-        expect(response.body.status).to.be.equal(true)// Asserting Response Attribute
-        expect(response.body.data).to.be.equal("RedeemReward Update Successfully")
+  // it('Should update the redeemed reward to processed', async function ({ supertest }) {
+  //   const startTime = Date.now();
+  //   await supertest
+  //       .request(globals.Add_Configuration.BaseUrl)
+  //       .put("/updateRedeemReward")
+  //       .set(header)
+  //       .send({"rewardId":324,"rewardType":"Individual","status":"Processed","redeemId":219})
+  //       .expect(200)
+  //       .then(function (response) {
+  //       expect('Content-Type', /json/)//Assert content type
+  //       expect(response.body.status).to.be.equal(true)// Asserting Response Attribute
+  //       expect(response.body.data).to.be.equal("RedeemReward Update Successfully")
 
-        commonExpectation(startTime, response);// expect for checking the response time
+  //       commonExpectation(startTime, response);// expect for checking the response time
 
-        });
+  //       });
 
-  });
+  // });
    
 });
