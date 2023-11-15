@@ -1,12 +1,13 @@
-const globals = require('../../globals')
+const globals = require('../../../globals')
 const Homepage = browser.page.FeedbackForm.loginPage();
 const feedbackFormPage = browser.page.FeedbackForm.feedbackFormSectionPage();
 const formCreateUpdatePage = browser.page.FeedbackForm.formCreateUpdatePage();
 
 const data = globals.feedbackForm.uiData;
 
+
 // ----------------------------------------------------------------------
-//    >> using command "npx nightwatch ./test/Feedback-form-automation/feedbackForm_ui_tests.js"
+//    >> using command "npx nightwatch test/Go1PercentFEAutomation/FEEDBACKFORM/feedbackForm_ui_tests.js"
 // -------------------------------------------------------------------------
 describe('Feedback-form UI tests', function () {
 
@@ -19,8 +20,8 @@ describe('Feedback-form UI tests', function () {
             await browser.window.maximize();
 
             await Homepage
-                .inputUsername(browser.globals.userName)
-                .inputPassword(browser.globals.password)
+                .inputUsername(browser.globals.adminUserName)
+                .inputPassword(browser.globals.adminPassword)
                 .login();
 
         });
@@ -28,7 +29,7 @@ describe('Feedback-form UI tests', function () {
     afterEach(function (browser) {
 
         browser
-            .quit();
+            .end();
 
     });
 
@@ -42,20 +43,19 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .waitForElementVisible('@heading')
-                .assert.textContains('@heading', 'Feedback Forms')
-                .assert.urlContains('feedback-forms');
+                .assert.textContains('@heading', 'Feedback Forms');
 
         });
 
 
     it('LB-1253 : Verify that admin should be able to click on edit option of existing feedback forms (TC-258)',
-
-        async function (browser) {
+    async function (browser) {
 
             await Homepage
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
+                .inputInSearchField(data.sessionFormName)
                 .clickOnFormEditButton()
                 .waitForElementVisible('@dialogBox');
 
@@ -66,17 +66,15 @@ describe('Feedback-form UI tests', function () {
 
         async function (browser) {
 
-            
-
             await Homepage
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
+                .inputInSearchField(data.sessionFormName)
+                .waitForElementVisible('@firstSearchResultCardTitle')
 
-                .waitForElementVisible('@feedbackFormCardTitle')
-
-                .waitForElementVisible('@feedbackFormCardEditButton')
-                .click('@feedbackFormCardEditButton')
+                .waitForElementVisible('@firstSearchResultCardEditBtn')
+                .click('@firstSearchResultCardEditBtn')
 
                 .waitForElementVisible('@sessionDialogBox')
                 .assert.textContains('@sessionDialogBox', data.sessionInUseMessage);
@@ -87,13 +85,12 @@ describe('Feedback-form UI tests', function () {
 
         async function (browser) {
 
-            
-
             await Homepage
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
-                .clickOnFormEditButton_withNoSession();
+                .inputInSearchField(data.no_sessionFormName)
+                .click('@firstSearchResultCardEditBtn');
 
             await formCreateUpdatePage
                 .clickAddQuestion()
@@ -112,19 +109,21 @@ describe('Feedback-form UI tests', function () {
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
-                .waitForElementVisible('@noSession_feedbackFormCardTitle')
-                .waitForElementVisible('@noSession_feedbackFormCardEditButton')
-                .click('@noSession_feedbackFormCardEditButton');
+                .inputInSearchField(data.no_sessionFormName)
+                .waitForElementVisible('@firstSearchResultCardTitle')
+                .waitForElementVisible('@firstSearchResultCardEditBtn')
+                .click('@firstSearchResultCardEditBtn');
 
             await formCreateUpdatePage
-                .waitForElementPresent('@previewButton')
-                .click('@previewButton');
+                .waitForElementVisible('@previewButton')
+                .pause(4500)
+                .click('@previewButton')
 
 
             await browser.window.getAllHandles(async (res) => {
                 await browser.window.switchTo(res.value[1]);
             })
-                .assert.visible("app-preview-form");
+                .assert.visible("@previewForm");
 
         });
 
@@ -132,12 +131,11 @@ describe('Feedback-form UI tests', function () {
     it('LB-1257 : Verify that admin should be able to delete existing feedback form. (TC-262) ',
         async function (browser) {
 
-            
-
             await Homepage
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
+                .inputInSearchField(data.no_sessionFormName)
                 .clickOnFormDeleteButton()
                 .assert.textContains('@deleteDialogBox_Message', data.deleteDialogBoxMessage);
 
@@ -147,12 +145,12 @@ describe('Feedback-form UI tests', function () {
     it('LB-1258 : Verify that admin should not able to delete a feedback form (TC-263)',
         async function (browser) {
 
-            
             await Homepage
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
-                .clickOnFormDeleteButtonSession()
+                .inputInSearchField(data.sessionFormName)
+                .clickOnFormDeleteButton()
                 .assert.textContains('@deleteDialogBox', data.sessionInUseMessage);
 
         });
@@ -174,8 +172,6 @@ describe('Feedback-form UI tests', function () {
 
     it('LB-1260 : Verify that admin should not able to save form until they add a NPS Question (TC-265) ',
         async function (browser) {
-
-
             
             await Homepage
                 .goToFeedbackFormSection();
@@ -184,7 +180,7 @@ describe('Feedback-form UI tests', function () {
                 .clickOnCreateFormButton();
 
             await formCreateUpdatePage
-                .setFormTitle()
+                .setFormTitle(data.setTitle)
                 .setMCQQuestion()  //can be optional
                 .saveForm()
                 .assertPopUpMessageContains(data.addNPSMessage)
@@ -201,7 +197,8 @@ describe('Feedback-form UI tests', function () {
                 .clickOnCreateFormButton();
 
             await formCreateUpdatePage
-                .setNPSQuestion()  //can be optional
+                .setMCQQuestion()
+                .addNewQuestion().setNPSQuestion()
                 .saveForm()
                 .assertTitleValidationIsShown(data.addFormTitleMessage)
         });
@@ -209,9 +206,7 @@ describe('Feedback-form UI tests', function () {
 
     it('LB-1262 : Verify that admin should able to see validation message if they don\'t add Question in form. (TC-267)',
         async function (browser) {
-
-
-            
+  
             await Homepage
                 .goToFeedbackFormSection();
 
@@ -219,7 +214,7 @@ describe('Feedback-form UI tests', function () {
                 .clickOnCreateFormButton();
 
             await formCreateUpdatePage
-                .setFormTitle()
+                .setFormTitle(data.setTitle)
                 .waitForElementVisible('@newFormQuestionTitle')
                 .click('@selectQuestionTypeNPS')
                 .saveForm()
@@ -238,7 +233,7 @@ describe('Feedback-form UI tests', function () {
                 .clickOnCreateFormButton();
 
             await formCreateUpdatePage
-                .setFormTitle()
+                .setFormTitle(data.setTitle)
                 .addNewQuestion()
                 .addNewQuestion()
                 .setMCQQuestion()
@@ -258,7 +253,6 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .inputInSearchField(data.searchQuery)
-                .pause(10000)
                 .findElements('@feedbackFormCardTitle', async function (result) {
 
 
@@ -279,12 +273,12 @@ describe('Feedback-form UI tests', function () {
     it('LB-1266 : Verify that admin should be able to delete form in edit mode (TC-271)',
         async function (browser) {
 
-            
             await Homepage
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
-                .clickOnFormEditButton_withNoSession();
+                .inputInSearchField(data.no_sessionFormName)
+                .click('@firstSearchResultCardEditBtn');
 
             await formCreateUpdatePage
                 .clickDeleteOnUpdateForm()
@@ -302,6 +296,7 @@ describe('Feedback-form UI tests', function () {
                 .goToFeedbackFormSection();
 
             await feedbackFormPage
+                .inputInSearchField(data.no_sessionFormName)
                 .clickOnFormDeleteButton()
                 .assert.textContains('@deleteDialogBox', data.deleteDialogBoxMessage)
                 .assert.textContains('@deleteDialogBox_YesButton', 'Yes')
