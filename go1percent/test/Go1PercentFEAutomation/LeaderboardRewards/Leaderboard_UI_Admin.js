@@ -1,6 +1,7 @@
 const globalsData = require('../../../globals')
 const sessionsPage = browser.page.RewardsPage()
 const imageContainer = ".ImageMinWidthClass > input"
+const path = require('path');
 
 describe("Rewards Page Frontend Automation", () => {
     before(function () {
@@ -9,7 +10,7 @@ describe("Rewards Page Frontend Automation", () => {
             .window.maximize()
             .page.login()
             .navigate()
-            .enterCredentials('testadmin','testadmin')
+            .enterCredentials(browser.globals.adminUserName,browser.globals.adminPassword)
             .signIn()
             .assert.urlContains("my-dashboard")
             sessionsPage.assert.textContains('@userType',user);
@@ -148,19 +149,21 @@ describe("Rewards Page Frontend Automation", () => {
 
     // Verify that admin should be able to upload new image to existing reward (TC-288)
     it("Should be able to upload new image to existing reward image", () => {
+        const absolutePath = path.resolve(__dirname, '../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/eardopes.jpg');
         sessionsPage
             .waitForElementPresent('@imageUploadMessage');
             browser
                 .isEnabled(imageContainer, function () {
-                        browser.uploadFile(imageContainer, '/home/knoldus/Downloads/eardopes.jpg');
+                        browser.uploadFile(imageContainer, absolutePath);
                     });
         sessionsPage  
             .clickOnUpdateButton()
             .assert.textContains('@updateMessage', globalsData.rewardSectionMessages.successMessage)
     }),
 
-    //  Verify that admin should not be able to add any other extension files (TC-287)
+   //  Verify that admin should not be able to add any other extension files (TC-287)
     it("Should be able to see popup message on uploading invalid format image", () => {
+        const absolutePath = path.resolve(__dirname, '../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/giphy1.gif');
         sessionsPage
             .waitForElementPresent('@editButton',6000)
             .clickOnEditButton()
@@ -168,7 +171,7 @@ describe("Rewards Page Frontend Automation", () => {
             .waitForElementPresent('@imageUploadMessage')
             browser
             .isEnabled(imageContainer, function () {
-                    browser.uploadFile(imageContainer, '/home/knoldus/Downloads/giphy1.gif');
+                    browser.uploadFile(imageContainer, absolutePath);
                 });
         sessionsPage    
             .assert.textContains('@imageFormatMessage', globalsData.rewardSectionMessages.imageFormatFailureMessage)
@@ -176,11 +179,12 @@ describe("Rewards Page Frontend Automation", () => {
 
     //  Verify that admin should not be able to add any image files of invalid size            
      it("Should be able to see popup message on uploading image of invalid size", () => {
+        const absolutePath = path.resolve(__dirname, '../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/nature.jpg');
         sessionsPage
             .waitForElementPresent('@imageUploadMessage')
             browser
             .isEnabled(imageContainer, function () {
-                    browser.uploadFile(imageContainer, '/home/knoldus/Downloads/nature.jpg');
+                    browser.uploadFile(imageContainer, absolutePath);
                 });
         sessionsPage    
             .assert.textContains('@imageInvalidSize', globalsData.rewardSectionMessages.imageInvalidSizeMessage)
