@@ -58,11 +58,25 @@ module.exports = {
     },
 
 
-
     after: function (done) {
         chromedriver.stop();
         done();
     },
+
+
+    techhubUrls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://techhub-backend.qa.go1percent.com",
+    },
+ 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+  
+
+    baseurl: 'https://backend.qa.go1percent.com',
+ 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+ 
+
 
     admin: {
 
@@ -242,6 +256,7 @@ module.exports = {
         'filter': 'past',
         'time': '1697259310000'
     },
+   
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
     sessionDescriptionInPast: "Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
@@ -249,7 +264,6 @@ module.exports = {
     access_token: "",
     backend_url: 'https://backend-radar.qa.go1percent.com/',
 
-    baseurl: 'https://backend.qa.go1percent.com',
 
     admin: {
         headers: {
