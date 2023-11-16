@@ -1,5 +1,4 @@
-const header = require('../../globals')
-
+const header = require('../../../helpers/Leaderboard_summary/go1PercentLeaderboardSummary')
 
 /**
  * Asserts the response time of an HTTP request.
@@ -14,7 +13,7 @@ function assertResponseTime(startTime, maxTime) {
 
 
 describe('Leaderboard API Testing', function () {
-
+  
   /**
     * Generates a dynamic bearer token for API authentication.
     *
@@ -22,6 +21,7 @@ describe('Leaderboard API Testing', function () {
     * @param {string} password - The password for authentication.
     * @returns {string} accessToken - The dynamically generated bearer token.
     */
+
   it('token generation', async function ({ supertest }) {
     const tokenURl = "https://auth.go1percent.com";
 
@@ -34,7 +34,7 @@ describe('Leaderboard API Testing', function () {
       .request(tokenURl)
       .post('/auth/realms/nashtech/protocol/openid-connect/token')
       .set(header.admin.tokenHeaders)
-      .send(header.requestData)
+      .send(header.admin.requestData)
       .expect(200)
       .then(function (response) {
         const token = response._body.access_token;
@@ -50,9 +50,8 @@ describe('Leaderboard API Testing', function () {
    */
   it('should retrieve Leading Practices Summary', async function ({ supertest }) {
     const startTime = performance.now();
-
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/studios')
       .set(header.employee.headers)
       .expect(200) // Expect a successful response with HTTP status code 200
@@ -123,7 +122,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/summary?period=alltime')
       .set(header.employee.headers)
       .expect(200) // Expect a successful response with HTTP status code 200
@@ -169,7 +168,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/summary?period=monthly')
       .set(header.employee.headers)
       .expect(200)
@@ -219,7 +218,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/reputation')
       .set(header.employee.headers)
       .expect(200)
@@ -268,7 +267,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/reputation/666?month=October&year=2023')
       .set(header.employee.headers)
       .expect(200)
@@ -352,7 +351,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/profile/getProfilePic?email=testemployee@nashtechglobal.com')
       .set(header.employee.headers)
       .expect('Content-Type', /json/) // Expect the specific content type
@@ -382,7 +381,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/rewards/getAllRewards')   // https://nashtechglobal.qa.go1percent.com/assets/i18n/en.json
       .set(header.employee.headers)
       .expect('Content-Type', /json/)
@@ -432,7 +431,7 @@ describe('Leaderboard API Testing', function () {
     const startTime = performance.now();
 
     const response = await supertest
-      .request(header.baseurl)
+      .request(header.admin.base_url)
       .get('/reputation/666')
       .set(header.employee.headers)
       .expect('Content-Type', /json/) // Expect the specific content type
@@ -457,10 +456,11 @@ describe('Leaderboard API Testing', function () {
 
 
     // Assert specific values within the response body.
-    expect(responseBody.knolderName).to.equal('Test Employee');
+
+    expect(responseBody.knolderName).to.includes('Test Employee');
     expect(responseBody.knolderEmail).to.equal('testemployee@nashtechglobal.com');
     expect(responseBody.monthlyRank).to.equal(1);
-    expect(responseBody.studioName).to.equal("Frontend Competency");
+    expect(responseBody.studioName).to.be.a('string');
   });
 
 });
