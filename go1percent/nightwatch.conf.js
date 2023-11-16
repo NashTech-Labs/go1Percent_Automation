@@ -28,7 +28,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
 
-  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions','page-objects/TECHHUB/AdminUser', './page-objects/TicketAssignedToMe'],
+  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions', './page-objects/TicketAssignedToMe'],
 
 
 
@@ -53,7 +53,9 @@ module.exports = {
       "userName": "testemployee", // this is placeholder username, make sure to update.
       "password": "testemployee", // this is placeholderPassword, Make sure to update.
       "adminUserName": "testadmin", // this is placeholder username, make sure to update.
-      "adminPassword": "testadmin" // this is placeholderPassword, Make sure to update.
+      "adminPassword": "testadmin", // this is placeholderPassword, Make sure to update.
+      "employeeUserName": "testemployee1",
+      "employeePassword": "testemployee1"
     },
   
 
