@@ -1,4 +1,4 @@
-const globals = require('../../../../globals')
+const globals = require('../../../globals')
 
 //Store All the Required Data In Globals And Calling The Data As Per The Requirement
 describe('api testing', function () {
@@ -25,33 +25,7 @@ describe('api testing', function () {
             });
     });
 
-    //Fetch List Of All My Upcomin Session
-    it('get api test', async function ({ supertest }) {
-
-        await supertest
-            .request(urls.go1percentBase)
-            .get("sessions/my?pageNumber=1&pageSize=1000&filter=upcoming")
-            .set(headers) // Set your custom headers here
-            .expect(200)
-            .expect('Content-Type', /json/)
-          .then(function (response) 
-          {
-            const startTime = performance.now();
-            
-            const endTime = performance.now();
-
-        const responseTime = endTime - startTime;
-
-        expect(responseTime).to.be.lessThan(2000);
-     //Attribute Response
-        expect(response.body.sessions[0].id).to.be.equal("6541bbc78555d37c0a4f8f70"),
-     expect(response.body.sessions[0].topic).to.be.equal("KnoldusNashtech") // Use response.body to access the response body
-     expect(response.body.sessions[0].category).to.be.equal("TEST AUTOMATION COMPETENCY"),
-     expect(response.body.sessions[0].sessionType).to.be.equal("Knolx")   
-        
-        }) 
-    });
-
+    
     //Update The (Title,Tag,Description)Based On The Requirement
     it('put api test', async function({supertest}) {
         await supertest
@@ -79,6 +53,32 @@ describe('api testing', function () {
           })
       });
 
+//Fetch List Of All My Upcomin Session
+it('get api test', async function ({ supertest }) {
+
+    await supertest
+        .request(urls.go1percentBase)
+        .get("sessions/my?pageNumber=1&pageSize=1000&filter=upcoming")
+        .set(headers) // Set your custom headers here
+        .expect(200)
+        .expect('Content-Type', /json/)
+      .then(function (response) 
+      {
+        const startTime = performance.now();
+        
+        const endTime = performance.now();
+
+    const responseTime = endTime - startTime;
+
+    expect(responseTime).to.be.lessThan(2000);
+ //Attribute Response
+    expect(response.body.sessions[0].id).to.be.equal("6541bbc78555d37c0a4f8f70"),
+ expect(response.body.sessions[0].topic).to.be.equal("KnoldusNashtech") // Use response.body to access the response body
+ expect(response.body.sessions[0].category).to.be.equal("TEST AUTOMATION COMPETENCY"),
+ expect(response.body.sessions[0].sessionType).to.be.equal("Knolx")   
+    
+    }) 
+});
 
 
 
