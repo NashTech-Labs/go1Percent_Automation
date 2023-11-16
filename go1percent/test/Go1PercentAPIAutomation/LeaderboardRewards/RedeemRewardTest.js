@@ -53,23 +53,23 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
           //  checks the response body for the presence of specific properties such as "name,"
           //  "pointsNeededToRedeem," "description," "rewardType," "quantity," "expiryDate and" "active ."
 
-          for(let i = 0; i < response.body.data.length; i++){
+          for(let index = 0; index  < response.body.data.length; index++){
 
-            expect(response.body.data[i]).to.have.property("redeemId");
-            expect(response.body.data[i]).to.have.property("knolderName");
-            expect(response.body.data[i]).to.have.property("userProfilePic");
-            expect(response.body.data[i]).to.have.property("studio");
-            expect(response.body.data[i]).to.have.property("rewardName");
-            expect(response.body.data[i]).to.have.property("pointsNeededToRedeem");
-            expect(response.body.data[i]).to.have.property("rewardImage");
-            expect(response.body.data[i]).to.have.property("rewardType");
-            expect(response.body.data[i]).to.have.property("redeemDate");
-            expect(response.body.data[i]).to.have.property("processingStatus");
-            expect(response.body.data[i]).to.have.property("knolderId");
-            expect(response.body.data[i]).to.have.property("rewardId");
+            expect(response.body.data[index]).to.have.property("redeemId");
+            expect(response.body.data[index]).to.have.property("knolderName");
+            expect(response.body.data[index]).to.have.property("userProfilePic");
+            expect(response.body.data[index]).to.have.property("studio");
+            expect(response.body.data[index]).to.have.property("rewardName");
+            expect(response.body.data[index]).to.have.property("pointsNeededToRedeem");
+            expect(response.body.data[index]).to.have.property("rewardImage");
+            expect(response.body.data[index]).to.have.property("rewardType");
+            expect(response.body.data[index]).to.have.property("redeemDate");
+            expect(response.body.data[index]).to.have.property("processingStatus");
+            expect(response.body.data[index]).to.have.property("knolderId");
+            expect(response.body.data[index]).to.have.property("rewardId");
 
             //check if the reward type is individual
-            expect(response.body.data[i].rewardType).to.be.equal(IndividualRewardType);
+            expect(response.body.data[index].rewardType).to.be.equal(IndividualRewardType);
           }
 
           commonExpectation(startTime, response);// expect for checking the response time
@@ -101,23 +101,23 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
            *  "pointsNeededToRedeem," "description," "rewardType," "quantity," "expiryDate and" "active ."
            */
 
-          for(let i = 0; i < response.body.data.length; i++){
+          for(let index  = 0; index  < response.body.data.length; index++){
 
-            expect(response.body.data[i]).to.have.property("redeemId");
-            expect(response.body.data[i]).to.have.property("knolderName");
-            expect(response.body.data[i]).to.have.property("userProfilePic");
-            expect(response.body.data[i]).to.have.property("studio");
-            expect(response.body.data[i]).to.have.property("rewardName");
-            expect(response.body.data[i]).to.have.property("pointsNeededToRedeem");
-            expect(response.body.data[i]).to.have.property("rewardImage");
-            expect(response.body.data[i]).to.have.property("rewardType");
-            expect(response.body.data[i]).to.have.property("redeemDate");
-            expect(response.body.data[i]).to.have.property("processingStatus");
-            expect(response.body.data[i]).to.have.property("knolderId");
-            expect(response.body.data[i]).to.have.property("rewardId");
+            expect(response.body.data[index]).to.have.property("redeemId");
+            expect(response.body.data[index]).to.have.property("knolderName");
+            expect(response.body.data[index]).to.have.property("userProfilePic");
+            expect(response.body.data[index]).to.have.property("studio");
+            expect(response.body.data[index]).to.have.property("rewardName");
+            expect(response.body.data[index]).to.have.property("pointsNeededToRedeem");
+            expect(response.body.data[index]).to.have.property("rewardImage");
+            expect(response.body.data[index]).to.have.property("rewardType");
+            expect(response.body.data[index]).to.have.property("redeemDate");
+            expect(response.body.data[index]).to.have.property("processingStatus");
+            expect(response.body.data[index]).to.have.property("knolderId");
+            expect(response.body.data[index]).to.have.property("rewardId");
 
             //check if the reward type is individual
-            expect(response.body.data[i].rewardType).to.be.equal(StudioRewardType);
+            expect(response.body.data[index].rewardType).to.be.equal(StudioRewardType);
           }
 
           commonExpectation(startTime, response);// expect for checking the response time
@@ -150,23 +150,23 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
            *  "pointsNeededToRedeem," "description," "rewardType," "quantity," "expiryDate and" "active ."
            */
 
-          for(let i = 0; i < response.body.data.length; i++){
+          for(let index  = 0; index  < response.body.data.length; index++){
 
-            expect(response.body.data[i]).to.have.property("redeemId");
-            expect(response.body.data[i]).to.have.property("knolderName");
-            expect(response.body.data[i]).to.have.property("userProfilePic");
-            expect(response.body.data[i]).to.have.property("studio");
-            expect(response.body.data[i]).to.have.property("rewardName");
-            expect(response.body.data[i]).to.have.property("pointsNeededToRedeem");
-            expect(response.body.data[i]).to.have.property("rewardImage");
-            expect(response.body.data[i]).to.have.property("rewardType");
-            expect(response.body.data[i]).to.have.property("redeemDate");
-            expect(response.body.data[i]).to.have.property("processingStatus");
-            expect(response.body.data[i]).to.have.property("knolderId");
-            expect(response.body.data[i]).to.have.property("rewardId");
+            expect(response.body.data[index]).to.have.property("redeemId");
+            expect(response.body.data[index]).to.have.property("knolderName");
+            expect(response.body.data[index]).to.have.property("userProfilePic");
+            expect(response.body.data[index]).to.have.property("studio");
+            expect(response.body.data[index]).to.have.property("rewardName");
+            expect(response.body.data[index]).to.have.property("pointsNeededToRedeem");
+            expect(response.body.data[index]).to.have.property("rewardImage");
+            expect(response.body.data[index]).to.have.property("rewardType");
+            expect(response.body.data[index]).to.have.property("redeemDate");
+            expect(response.body.data[index]).to.have.property("processingStatus");
+            expect(response.body.data[index]).to.have.property("knolderId");
+            expect(response.body.data[index]).to.have.property("rewardId");
 
             // Check if redeemDate of first item in the list  lies in the range
-            const redeemDate = new Date(response.body.data[i].redeemDate);
+            const redeemDate = new Date(response.body.data[index ].redeemDate);
             const startRange = new Date(startDate);
             const endRange = new Date(endDate);
 
@@ -178,26 +178,5 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
         });
 
   });
-
-
-  //PUT the redeemed rewards (removes or mark them processed)
-  // it('Should update the redeemed reward to processed', async function ({ supertest }) {
-  //   const startTime = Date.now();
-  //   await supertest
-  //       .request(globals.Add_Contribution.BaseUrl)
-  //       .put("/updateRedeemReward")
-  //       .set(header)
-  //       .send({"rewardId":324,"rewardType":"Individual","status":"Processed","redeemId":219})
-  //       .expect(200)
-  //       .then(function (response) {
-  //       expect('Content-Type', /json/)//Assert content type
-  //       expect(response.body.status).to.be.equal(true)// Asserting Response Attribute
-  //       expect(response.body.data).to.be.equal("RedeemReward Update Successfully")
-
-  //       commonExpectation(startTime, response);// expect for checking the response time
-
-  //       });
-
-  // });
    
 });

@@ -8,7 +8,7 @@ module.exports = {
     randomString += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length)).toUpperCase();
   
     // Generate the rest of the string
-    for (let i = 1; i < 6; i++) {
+    for (let charIndex = 1; charIndex < 6; charIndex++) {
       randomString += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
     }
     return randomString;     

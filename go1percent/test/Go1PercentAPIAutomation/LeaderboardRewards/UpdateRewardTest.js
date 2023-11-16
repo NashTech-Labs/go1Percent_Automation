@@ -44,15 +44,15 @@ describe('Leaderboard : Rewards API Testing', function () {
            *  checks the response body for the presence of specific properties such as "name,"
            *  "pointsNeededToRedeem," "description," "rewardType," "quantity," "expiryDate and" "active ."
            */
-          for(let i = 0; i < response.body.data.length; i++){
-            expect(response.body.data[i]).to.have.property("id");
-            expect(response.body.data[i]).to.have.property('name');
-            expect(response.body.data[i]).to.have.property('pointsNeededToRedeem');
-            expect(response.body.data[i]).to.have.property('description');
-            expect(response.body.data[i]).to.have.property('rewardType');
-            expect(response.body.data[i]).to.have.property('quantity');
-            expect(response.body.data[i]).to.have.property('expiryDate');
-            expect(response.body.data[i]).to.have.property('active');
+          for(let index  = 0; index  < response.body.data.length; index++){
+            expect(response.body.data[index]).to.have.property("id");
+            expect(response.body.data[index]).to.have.property('name');
+            expect(response.body.data[index]).to.have.property('pointsNeededToRedeem');
+            expect(response.body.data[index]).to.have.property('description');
+            expect(response.body.data[index]).to.have.property('rewardType');
+            expect(response.body.data[index]).to.have.property('quantity');
+            expect(response.body.data[index]).to.have.property('expiryDate');
+            expect(response.body.data[index]).to.have.property('active');
           }
           
           commonExpectation(startTime, response);// expect for checking the response time
