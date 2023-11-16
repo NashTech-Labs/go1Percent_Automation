@@ -28,7 +28,7 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
 
-  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions', './page-objects/TicketAssignedToMe'],
+  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions', './page-objects/TicketAssignedToMe', 'page-objects/knolxSessions'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
 
