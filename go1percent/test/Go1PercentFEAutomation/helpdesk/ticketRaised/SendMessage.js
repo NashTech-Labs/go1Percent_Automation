@@ -9,7 +9,7 @@ module.exports={
             .navigate()
             .enterCredentials('testemployee','testemployee')
             .signIn()
-            ticket =browser.page.helpdesk.ticket_raised.tickets()  
+            ticket =browser.page.helpdesk.ticketRaised.tickets()  
             ticket
             .navigateToHelpDesk()
             .waitForElementVisible('@selectFirstTicket',10000)
