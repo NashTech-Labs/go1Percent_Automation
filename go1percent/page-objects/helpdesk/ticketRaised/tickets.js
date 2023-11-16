@@ -60,7 +60,7 @@ const customcommands = {
             .assert.containsText('@closedTickets', 'Close Ticket')
     },
     verifyUpdatedTicketStatus(ticketNumber, ticketStatus) {
-        browser.page.HELPDESK.ticket_raised.logout().signOut()
+        browser.page.helpdesk.ticketRaised.logout().signOut()
         browser.page.login().enterCredentials('testemployee', 'testemployee').signIn()
         return this.navigateToHelpDesk()
             .click(ticketStatus)
