@@ -1,12 +1,12 @@
 const globalsData = require('../../../globals')
-const sessionsPage = browser.page.RewardsPage()
+const sessionsPage = browser.page.Leaderboard_Rewards.RewardSectionPage()
 describe("Rewards Page Frontend Automation", () => {
     before(function () {
         browser
             .window.maximize()
             .page.login()
             .navigate()
-            .enterCredentials(browser.globals.userName,browser.globals.password)
+            .enterCredentials(browser.globals.employeeUserName,browser.globals.employeePassword)
             .signIn()
             .assert.urlContains("my-dashboard")
     });

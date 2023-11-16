@@ -1,5 +1,8 @@
 const globalsData = require('../../../globals')
-const sessionsPage = browser.page.RewardsPage()
+const sessionsPage = browser.page.Leaderboard_Rewards.RewardSectionPage()
+const imageContainer = ".ImageMinWidthClass > input"
+const path = require('path');
+
 describe("Rewards Page Frontend Automation", () => {
     before(function () {
         const user = "Test Admin"
@@ -7,7 +10,7 @@ describe("Rewards Page Frontend Automation", () => {
             .window.maximize()
             .page.login()
             .navigate()
-            .enterCredentials('testadmin','testadmin')
+            .enterCredentials(browser.globals.adminUserName,browser.globals.adminPassword)
             .signIn()
             .assert.urlContains("my-dashboard")
             sessionsPage.assert.textContains('@userType',user);
@@ -39,7 +42,7 @@ describe("Rewards Page Frontend Automation", () => {
             window.scrollTo(0, 0);
         })
         sessionsPage
-        .waitForElementPresent('@lastReward')
+        .waitForElementPresent('@lastReward',8000)
         .assert.elementPresent('@lastReward')
      }),
    
@@ -97,7 +100,7 @@ describe("Rewards Page Frontend Automation", () => {
     //  Verify that admin should be able to increase or decrease Required points (TC-291)
     it("Should be able to increase or decrease required points", () => {
         sessionsPage
-           .waitForElementPresent('@editButton')
+           .waitForElementPresent('@editButton',6000)
            .clickOnEditButton()
            .waitForElementPresent('@requiredPoints',3000)
            .clickOnRequiredPoint()
@@ -114,7 +117,7 @@ describe("Rewards Page Frontend Automation", () => {
     it("Should be able to increase or decrease stock quantity for admin", () => {
         let updatedValue;
         sessionsPage
-       .waitForElementPresent('@editButton')
+       .waitForElementPresent('@editButton',6000)
        .clickOnEditButton()
        .waitForElementPresent('@stockQuantity',3000)
        .clickOnStockQuantity()
@@ -136,7 +139,7 @@ describe("Rewards Page Frontend Automation", () => {
     // Verify that admin should be able to delete existing pic in update rewards page (TC-286)   
     it("Should be able to see message on clicking cross button on image", () => {
         sessionsPage
-           .waitForElementPresent('@editButton',4000)
+           .waitForElementPresent('@editButton',6000)
            .clickOnEditButton()
            .waitForElementPresent('@crossButton',3000)
            .clickOnCrossButton()
@@ -145,32 +148,45 @@ describe("Rewards Page Frontend Automation", () => {
     }),
 
     // Verify that admin should be able to upload new image to existing reward (TC-288)
-    it("Should be able to to upload new image to existing reward image", () => {
+    it("Should be able to upload new image to existing reward image", () => {
+        const absolutePath = path.resolve(__dirname, '../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/eardopes.jpg');
         sessionsPage
-            .waitForElementPresent('@imageUploadMessage')
-            .clickOnImageUploadMessageButton()
-            .pause(7000)
+            .waitForElementPresent('@imageUploadMessage');
+            browser
+                .isEnabled(imageContainer, function () {
+                        browser.uploadFile(imageContainer, absolutePath);
+                    });
+        sessionsPage  
             .clickOnUpdateButton()
             .assert.textContains('@updateMessage', globalsData.rewardSectionMessages.successMessage)
     }),
 
-    //  Verify that admin should not be able to add any other extension files (TC-287)
+   //  Verify that admin should not be able to add any other extension files (TC-287)
     it("Should be able to see popup message on uploading invalid format image", () => {
-         sessionsPage
-            .waitForElementPresent('@editButton')
+        const absolutePath = path.resolve(__dirname, '../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/giphy1.gif');
+        sessionsPage
+            .waitForElementPresent('@editButton',6000)
             .clickOnEditButton()
             .clickOnCrossButton()
-            .clickOnImageUploadMessageButton()
-            .pause(4000)
+            .waitForElementPresent('@imageUploadMessage')
+            browser
+            .isEnabled(imageContainer, function () {
+                    browser.uploadFile(imageContainer, absolutePath);
+                });
+        sessionsPage    
             .assert.textContains('@imageFormatMessage', globalsData.rewardSectionMessages.imageFormatFailureMessage)
     }),
 
-                
+    //  Verify that admin should not be able to add any image files of invalid size            
      it("Should be able to see popup message on uploading image of invalid size", () => {
-          sessionsPage
+        const absolutePath = path.resolve(__dirname, '../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/nature.jpg');
+        sessionsPage
             .waitForElementPresent('@imageUploadMessage')
-            .clickOnImageUploadMessageButton()
-            .pause(4000)
+            browser
+            .isEnabled(imageContainer, function () {
+                    browser.uploadFile(imageContainer, absolutePath);
+                });
+        sessionsPage    
             .assert.textContains('@imageInvalidSize', globalsData.rewardSectionMessages.imageInvalidSizeMessage)
     }),
 

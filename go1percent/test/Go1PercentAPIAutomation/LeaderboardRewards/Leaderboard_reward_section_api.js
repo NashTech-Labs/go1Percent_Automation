@@ -31,7 +31,7 @@ describe('Leaderboard-Rewards API Testing', function () {
     const startTime = Date.now();
      await supertest
  
-        .request(globals.Add_Configuration.BaseUrl)
+        .request(globals.baseurl)
         .get("/rewards/getAllRewards")
         .set(header)
         .expect(200)
@@ -64,7 +64,7 @@ describe('Leaderboard-Rewards API Testing', function () {
        const startTime = Date.now();
        await supertest
    
-          .request(globals.Add_Configuration.BaseUrl)
+          .request(globals.baseurl)
           .post("/rewards/redeemRewards")
           .send({
               "rewardId":287,"quantity":1
@@ -86,7 +86,7 @@ describe('Leaderboard-Rewards API Testing', function () {
          const startTime = Date.now();
          await supertest
      
-            .request(globals.Add_Configuration.BaseUrl)
+            .request(globals.baseurl)
             .get("/rewards/getReward?rewardId=287")
             .set(header)
             .expect(200)
