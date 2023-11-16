@@ -5,7 +5,7 @@ describe('UI automation for leaderboard summary page option', () => {
 
   beforeEach((client) => {
     // Create a page object and perform login actions
-    const page = client.page.LeaderBoard_summary.JavaScript_POM.login();
+    const page = client.page.LeaderBoard_summary.login();
     page
       .maximizeWindow()
       .navigate()
@@ -13,8 +13,8 @@ describe('UI automation for leaderboard summary page option', () => {
       .signIn();
 
     //Initialize summaryPage and leadingpage page objects
-    summaryPage = client.page.LeaderBoard_summary.JavaScript_POM.summary();
-    leadingpage = client.page.LeaderBoard_summary.JavaScript_POM.leadingnasher();
+    summaryPage = client.page.LeaderBoard_summary.summary();
+    leadingpage = client.page.LeaderBoard_summary.leadingnasher();
   });
 
   // Define common actions in the beforeEach hook

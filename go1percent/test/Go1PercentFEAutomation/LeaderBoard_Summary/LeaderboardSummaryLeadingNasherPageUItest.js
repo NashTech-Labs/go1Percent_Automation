@@ -4,7 +4,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
 
     beforeEach((client) => {
         // Create a page object and perform login actions
-        const page = client.page.LeaderBoard_summary.JavaScript_POM.login();
+        const page = client.page.LeaderBoard_summary.login();
         page
             .maximizeWindow()
             .navigate()
@@ -12,8 +12,8 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
             .signIn();
 
         //Initialize summaryPage and leadingpage page objects
-        summaryPage = client.page.LeaderBoard_summary.JavaScript_POM.summary();
-        leadingpage = client.page.LeaderBoard_summary.JavaScript_POM.leadingnasher();
+        summaryPage = client.page.LeaderBoard_summary.summary();
+        leadingpage = client.page.LeaderBoard_summary.leadingnasher();
     });
 
     // Define common actions in the beforeEach hook
@@ -30,48 +30,48 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
             .leadingNasherProfilePage()
     };
 
-//     /**
-//      * Test case to validate opening a Nasher's profile when clicking on their name.
-//      */
-//     it('When I click on any Nasher Name Then it should open their profile', () => {
-//         leadingNasherCommonActions();
-//         leadingpage
-//             //verify leader nasher profle page 
-//             .verifyLeadingNasherProfilepage();
-//     });
+    /**
+     * Test case to validate opening a Nasher's profile when clicking on their name.
+     */
+    it('When I click on any Nasher Name Then it should open their profile', () => {
+        leadingNasherCommonActions();
+        leadingpage
+            //verify leader nasher profle page 
+            .verifyLeadingNasherProfilepage();
+    });
 
-//     /*
-//      * Test case to verify the visibility of Nasher contributions when scrolling the page.
-//      */
-//     it('When i scroll the page Then i should able to see all their contribution', (client) => {
-//         leadingNasherCommonActions();
-//         leadingpage
-//             //asserting all contribution of leading nasher 
-//             .leadingNasherAllContribution()
-//             .allContibutionList();
-//     });
+    /*
+     * Test case to verify the visibility of Nasher contributions when scrolling the page.
+     */
+    it('When i scroll the page Then i should able to see all their contribution', (client) => {
+        leadingNasherCommonActions();
+        leadingpage
+            //asserting all contribution of leading nasher 
+            .leadingNasherAllContribution()
+            .allContibutionList();
+    });
 
-//     /**
-//    * Test case to confirm the visibility of redeemed rewards with points and dates.
-//    */
-//     it('When i go on Redeemed Reward section Then i should able to see the reward redeemed with their points and the date when that reward redeemed', (client) => {
-//         leadingNasherCommonActions();
-//         leadingpage
-//             //verifying reword section with points and date 
-//             .verifyRewordSectionContainsPointAndDate();
-//     });
+    /**
+   * Test case to confirm the visibility of redeemed rewards with points and dates.
+   */
+    it('When i go on Redeemed Reward section Then i should able to see the reward redeemed with their points and the date when that reward redeemed', (client) => {
+        leadingNasherCommonActions();
+        leadingpage
+            //verifying reword section with points and date 
+            .verifyRewordSectionContainsPointAndDate();
+    });
 
 
-//     /**
-//      * Test case to check if "No Rewards Redeemed" message is displayed in the Redeemed Reward section.
-//      */
-//     it('When i go on Redeemed Reward section Then it should show You have not redeemed any rewards yet', (client) => {
-//         commonActions();
-//         leadingpage
-//             //verifying that reword section contains no reoword
-//             .noRewordSection()
-//             .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet');
-//     });
+    /**
+     * Test case to check if "No Rewards Redeemed" message is displayed in the Redeemed Reward section.
+     */
+    it('When i go on Redeemed Reward section Then it should show You have not redeemed any rewards yet', (client) => {
+        commonActions();
+        leadingpage
+            //verifying that reword section contains no reoword
+            .noRewordSection()
+            .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet');
+    });
 
     /**
      * Test case to validate redirection to the Rewards page when clicking the "View Rewards" button.
