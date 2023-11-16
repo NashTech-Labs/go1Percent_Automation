@@ -310,9 +310,6 @@ module.exports = {
         reporter.write(results, done);
     },
 
-
-
-
     //My Past Session
 
     queryMyPastSession: {
@@ -329,6 +326,7 @@ module.exports = {
         Description: 'Description',
         SlideURL: 'Slide URL',
     },
+
     feedbackForm: {
         apiUrls: {
             requestUrl: 'https://knolx-backend.qa.go1percent.com/v02/feedback-form',
@@ -347,6 +345,8 @@ module.exports = {
             no_sessionFormName: 'temp',
             setTitle:'Temporary Form',
     },
+},
+
     MyUpcomingSession: {
         headers: {
             'Authorization': '',
@@ -364,7 +364,7 @@ module.exports = {
             grant_type: 'password',
 
         },
-    }
+    },
 
-}
+
 };

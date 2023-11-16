@@ -2,7 +2,7 @@ const globals = require('../../../globals')
 
 //Store All the Required Data In Globals And Calling The Data As Per The Requirement
 describe('api testing', function () {
-    const headers = globals.MyUpcomingSession.headers;
+    const headers = globals.MyUpcomingSession.headers
   const tokenHeaders = globals.MyUpcomingSession.tokenHeaders;
   const tokenBody = globals.MyUpcomingSession.tokenBody;
   const urls = globals.urls;
