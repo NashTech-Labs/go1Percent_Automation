@@ -60,11 +60,25 @@ module.exports = {
     },
 
 
-
     after: function (done) {
         chromedriver.stop();
         done();
     },
+
+
+    techhubUrls: {
+        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+        go1percentBase: "https://techhub-backend.qa.go1percent.com",
+    },
+ 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+  
+
+    baseurl: 'https://backend.qa.go1percent.com',
+ 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+ 
+
 
     admin: {
 
@@ -160,11 +174,11 @@ module.exports = {
             grant_type: 'password',
         },
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        BaseUrl: "https://backend.qa.go1percent.com",
-        PostEndPoints: "/contribution/addContribution",
-        GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000",
-        Contribution_url: "www.codsfcdu.org"
-    },
+        BaseUrl:"https://backend.qa.go1percent.com",
+        PostEndPoints:"/contribution/addContribution",
+        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"  
+    } ,
+
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
@@ -244,6 +258,7 @@ module.exports = {
         'filter': 'past',
         'time': '1697259310000'
     },
+   
     base_url: "https://knolx-backend.qa.go1percent.com/",
     source: "https://nashtechglobal.qa.go1percent.com",
     sessionDescriptionInPast: "Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket",
@@ -251,7 +266,6 @@ module.exports = {
     access_token: "",
     backend_url: 'https://backend-radar.qa.go1percent.com/',
 
-    baseurl: 'https://backend.qa.go1percent.com',
 
     admin: {
         headers: {
@@ -282,7 +296,6 @@ module.exports = {
         topic: "Updated Title",
         saveOption: true
     },
-
 
     access_token: "",
     // Upcoming Sessions Page Frontend Automation
@@ -317,19 +330,22 @@ module.exports = {
         SlideURL: 'Slide URL',
     },
     feedbackForm: {
-        uiData: {
-            sessionInUseMessage: 'The Form is currently being used in following session(s)',
-            formUpdateMessage: 'Form Updated Successfully',
-            deleteDialogBoxMessage: 'Are you sure want to delete this form ?',
-            addNPSMessage: 'Please add a NPS question',
-            addFormTitleMessage: 'Please enter a Form Title',
-            addQuestionMessage: 'Question cannot be empty',
-            formCreatedMessage: 'Form created successfully',
-            searchQuery: 'Search Me',
-            formDeletedMessage: 'Form Deleted Successfully',
-
+        apiUrls: {
+            requestUrl: 'https://knolx-backend.qa.go1percent.com/v02/feedback-form',
         },
-
+        uiData: {
+            sessionInUseMessage : 'The Form is currently being used in following session(s)',
+            formUpdateMessage : 'Form Updated Successfully',
+            deleteDialogBoxMessage : 'Are you sure want to delete this form ?',
+            addNPSMessage : 'Please add a NPS question',
+            addFormTitleMessage : 'Please enter a Form Title',
+            addQuestionMessage : 'Question cannot be empty',
+            formCreatedMessage : 'Form created successfully',
+            searchQuery : 'Search Me',
+            formDeletedMessage : 'Form Deleted Successfully',
+            sessionFormName: 'knol',
+            no_sessionFormName: 'temp',
+            setTitle:'Temporary Form',
     },
     MyUpcomingSession: {
         headers: {
@@ -348,6 +364,7 @@ module.exports = {
             grant_type: 'password',
 
         },
-    },
+    }
 
+}
 };
