@@ -1,4 +1,4 @@
-const url = require('../../../globals')
+const url = require('../../../../globals')
 describe('api testing', function () {
 
     const assertResponseTime = (startTime) => {
