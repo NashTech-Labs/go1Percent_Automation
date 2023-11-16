@@ -64,9 +64,15 @@ module.exports = {
     },
 
 
+
     ticketraise_url:'https://ticket-backend.qa.go1percent.com',
   
+
     baseurl: 'https://backend.qa.go1percent.com',
+ 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+ 
+
 
     admin: {
 
