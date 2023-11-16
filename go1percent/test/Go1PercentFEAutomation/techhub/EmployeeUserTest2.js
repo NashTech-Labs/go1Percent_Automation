@@ -1,25 +1,24 @@
 describe('Go1percent techHub FE Testing', () => {
 
-    before((client) => {
-        client
+    // Setup: Before each test, open the specified URL, maximize the window, and perform initial page setup.
+    beforeEach((browser) => {
+        browser
         .url("https://nashtechglobal.qa.go1percent.com")
         .window.maximize()
-        pageObject = browser.page.techHub_employeeUser.techhub()
-    });
+        pageObject = browser.page.techhub.EmployeeUser.techhub2();
 
-    // Log in as an Employee User
-    it('Login as Employee User', () => {
+        // Initialize the page object and perform login, sign-in, and navigation actions.
         pageObject
         .loginGo1('testemployee', 'testemployee')
-        .signIn();
-    });
-
-    // Navigate to the TechHub page
-    it('Naviagte to settings, profile, and Techhub Page', () => {
-        pageObject
+        .signIn()
         .navigateToSettings()
         .navigateToProfile()
         .navigateToTechhub()
+    });
+
+    // Teardown: After each test, end the browser session.
+    afterEach((browser) => {
+        browser.end();
     });
 
     // Search for requests and verify results on the Pending request page
@@ -33,6 +32,7 @@ describe('Go1percent techHub FE Testing', () => {
     // Verify that draft and In review techhubs are present in the Pending page
     it('Verify user should be able to see all fields in Pending page in TechHub', () => {
         pageObject
+        .navigateToPendingTechHub()
         .allFieldsPendingPage()
         .isVisible('@draftTab')
         .isVisible('@inReviewTab')
@@ -68,6 +68,7 @@ describe('Go1percent techHub FE Testing', () => {
     it('Verify user should be able to navigate to mentioned URL on Request', (browser) => {
         // Navigate to a URL mentioned in a request
         pageObject
+        .navigateToAllTechhub()
         .navigateToGithubUrl()
 
         // Switch to the new tab
