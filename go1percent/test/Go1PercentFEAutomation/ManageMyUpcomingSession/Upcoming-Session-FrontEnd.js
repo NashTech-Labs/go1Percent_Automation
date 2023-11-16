@@ -1,6 +1,6 @@
 const DataSet = require('../../../globals')
-const Session = browser.page.managemyupcomingsession.MySessionPage()
-const Upcoming = browser.page.managemyupcomingsession.My_Upcoming_Session()
+const Session = browser.page.ManageMyUpcomingSession.MySessionPage()
+const Upcoming = browser.page.ManageMyUpcomingSession.My_Upcoming_Session()
 
 
 
