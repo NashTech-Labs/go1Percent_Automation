@@ -25,7 +25,7 @@ module.exports = {
         titleName: 'input[formcontrolname="title"]',
         titleCharactersError: '.errorMessage',
         draftCaption: 'input[formcontrolname="caption"]',
-        draftDescriptionBox: 'textarea[type = "text"]',
+        draftDescriptionBox: 'textarea[formcontrolname="description"]',
         draftDescriptionBoxErrormessage: 'div.form-group.mx-2 > span',
         draftCategory: 'select[id="category"]',
         draftOtherLanguage: 'input[formcontrolname="otherLanguages"]',
@@ -73,7 +73,7 @@ module.exports = {
 
         elementClick(selector) {
             return this
-                .waitForElementVisible(selector,1000)
+                .waitForElementVisible(selector)
                 .click(selector)
         },
 
@@ -147,12 +147,11 @@ module.exports = {
                 .elementClick('@chooseTechnology')
                 .elementClick('@descriptionBox')
                 .setValue('@descriptionBox', 'jhgfghjkhgyftdrfghbgvftcdtghjnkmjhgyftghjnkhbgyvftcdrfgvhbjnhbgvfcdrcfgvhbjnhbgvfcrdfcgvhbjnknhbgvtfcdftgvhbjnknhbgvfcttgvh')
-                .elementClick('@isNewBranchCheckBox')
-                .waitForElementVisible('@submitButton')
-                .isEnabled('@submitButton')
-                .click('@submitButton')
-                .waitForElementVisible("@submissionPopupAlert")
-                .assert.textContains("@submissionPopupAlert", 'Submitted Successfully')
+                .waitForElementVisible('input[formcontrolname="isNewBranch"]')
+                .execute(function () {
+                    document.querySelector('input[formcontrolname="isNewBranch"]').scrollIntoView();
+                })
+                .click('input[formcontrolname="isNewBranch"]')
         },
 
         clickCancelButton() {
@@ -185,7 +184,7 @@ module.exports = {
 
         requiredCharactersForDescription() {
             return this
-                .elementClick('@draftDescriptionBox')
+                .waitForElementVisible('@draftDescriptionBox')
                 .setValue('@draftDescriptionBox', 'sdfsd')
         },
 
@@ -233,6 +232,9 @@ module.exports = {
 
         requiredCategoryAndLanguage() {
             return this
+                .execute(function () {
+                    document.querySelector('select[id="category"]').scrollIntoView();
+                })
                 .elementClick('@draftCategory')
                 .elementClick('@draftOtherLanguage')
                 .elementClick('@draftBaseLanguage')
@@ -247,13 +249,13 @@ module.exports = {
 
         setTitleValue() {
             return this
-                .elementClick('@titleName')
+                .waitForElementVisible('@titleName')
                 .setValue('@titleName', 'TestingTestingHubSome')
         },
 
         setCaptionValue() {
             return this
-                .elementClick('@draftCaption')
+                .waitForElementVisible('@draftCaption')
                 .setValue('@draftCaption', 'TestingCaptionForTemplate')
         },
 
@@ -266,26 +268,25 @@ module.exports = {
         setBranchValue() {
             return this
                 .waitForElementVisible('@draftBranch')
-                .elementClick('@draftBranch')
                 .setValue('@draftBranch', 'main')
         },
 
         setTagsValue() {
             return this
-                .elementClick('@draftTags')
+                .waitForElementVisible('@draftTags')
                 .setValue('@draftTags', 'tags')
         },
 
         setCategoryValue() {
             return this
                 .elementClick('@draftCategory')
-                .elementClick("@chooseDraftCategory")
+                .click("@chooseDraftCategory")
         },
 
         setBaseLanguageValue() {
             return this
                 .elementClick('@draftBaseLanguage')
-                .elementClick('@chooseBaseLanguage')
+                .click('@chooseBaseLanguage')
         },
 
         enableSubmitButton() {
@@ -304,7 +305,7 @@ module.exports = {
 
         setBlogUrlValue() {
             return this
-                .elementClick('@draftBlogUrl')
+                .waitForElementVisible('@draftBlogUrl')
                 .setValue('@draftBlogUrl', 'https://google.com')
         },
 

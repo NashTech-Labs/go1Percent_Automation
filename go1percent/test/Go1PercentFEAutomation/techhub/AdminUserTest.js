@@ -1,6 +1,6 @@
-const login = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1Percentloging');
-const dashboard = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1PercentDashboard');
-const techhub = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1PercentTechhub');
+const login = require('../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1Percentloging');
+const dashboard = require('../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1PercentDashboard');
+const techhub = require('../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1PercentTechhub');
 
 module.exports = {
     beforeEach: function (browser) {
