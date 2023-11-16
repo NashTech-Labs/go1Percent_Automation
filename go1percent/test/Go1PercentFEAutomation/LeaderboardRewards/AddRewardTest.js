@@ -6,7 +6,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     before((client) => {
       login.beforeEach(browser);
       login['landing on dashboard page'](browser);
-      browser.page.LeaderboardRewards.rewards().goToRewards();
+      browser.page.Leaderboard_Rewards.rewards().goToRewards();
   });
   
 
@@ -18,7 +18,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
 
 
   beforeEach((client) => {
-    addRewardTab = browser.page.LeaderboardRewards.add_reward();
+    addRewardTab = browser.page.Leaderboard_Rewards.add_reward();
     addRewardTab
       .openAddRewardTab()
       .addImage(browser);
@@ -54,7 +54,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .assertAlert();
 
     //assert reward is added in the individual section
-    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
+    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
     updateRewardsTab
     .openUpdateTab()
     .assert.valueContains('@rewardName', rewardName)
@@ -72,7 +72,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     browser.refresh();
 
     //check reward is added in the competency section
-    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
+    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
     updateRewardsTab
     .switchToCompetency()
     .openUpdateTab()

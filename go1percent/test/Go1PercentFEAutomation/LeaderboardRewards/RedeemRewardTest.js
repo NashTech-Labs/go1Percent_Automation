@@ -6,7 +6,7 @@ describe('Leaderboard : Redeemed Rewards Tab Test', () => {
   before((client) => {
     login.beforeEach(browser);
     login['landing on dashboard page'](browser);
-    browser.page.LeaderboardRewards.rewards().goToRewards();
+    browser.page.Leaderboard_Rewards.rewards().goToRewards();
   });
   
   after((client, done) => {
@@ -16,7 +16,7 @@ describe('Leaderboard : Redeemed Rewards Tab Test', () => {
   });
 
   beforeEach((client) => {
-    redeemedRewardsTab = browser.page.LeaderboardRewards.redeem_reward();
+    redeemedRewardsTab = browser.page.Leaderboard_Rewards.redeem_reward();
     redeemedRewardsTab
       .openRewardReport();
   });

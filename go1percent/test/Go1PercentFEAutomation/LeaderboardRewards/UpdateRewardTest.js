@@ -4,7 +4,7 @@ describe('Leaderboard: Update Rewards Tab Test', () => {
   before((client) => {
     login.beforeEach(browser);
     login['landing on dashboard page'](browser);
-    browser.page.LeaderboardRewards.rewards().goToRewards();
+    browser.page.Leaderboard_Rewards.rewards().goToRewards();
   });
 
   after((client, done) => {
@@ -14,7 +14,7 @@ describe('Leaderboard: Update Rewards Tab Test', () => {
   });
 
   beforeEach((client) => {
-    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
+    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
   });
 
   // TC: 1164

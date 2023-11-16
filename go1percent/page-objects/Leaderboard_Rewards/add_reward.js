@@ -109,7 +109,7 @@ var addRewardCommands = {
             if (result.value) {
                 // Element is interactable, proceed with file upload
                 browser.uploadFile('div.ImageMinWidthClass > input', path
-                .resolve(__dirname ,'..','..','helpers/Go1PercentFEAutomation/LeaderboardRewards/files/Reward.jpeg'));
+                .resolve(__dirname ,'..','..','helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/Reward.jpeg'));
             } else {
                 console.error('Element is not interactable');
             }
