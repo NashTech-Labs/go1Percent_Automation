@@ -1,8 +1,8 @@
 const cmds = {
-    setFormTitle() {
+    setFormTitle(formTitle) {
         this
             .waitForElementVisible('@newForm')
-            .sendKeys('@newFormTitleInput', 'Temporary Form')
+            .sendKeys('@newFormTitleInput', formTitle)
 
         return this;
     },
@@ -271,11 +271,10 @@ module.exports = {
 
         formUpdate_saveFormButton: 'app-update-feedback-form [class="card p-5"]  div[class="feedback row"] div:nth-of-type(1) button:nth-of-type(1)',
 
-        alertOfFormUpdated: 'div[role="alert"]'
+        alertOfFormUpdated: 'div[role="alert"]',
 
-
-
-        // ==============
+        // ==============PREVIEW FORM=============
+        previewForm: 'app-preview-form'
 
     }
 
