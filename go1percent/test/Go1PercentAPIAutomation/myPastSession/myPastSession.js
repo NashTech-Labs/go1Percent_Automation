@@ -1,6 +1,6 @@
 const { base } = require('mocha/lib/reporters');
 const globals = require('../../globals');
-const helperurl = require('../../helpers/Go1PercentFEAutomation/mypastsession/mypastsession.js')
+const helperurl = require('../../helpers/Go1PercentFEAutomation/myPastSession/myPastSession.js')
 
 describe('My past session API testing', function () {
     const baseUrl = "https://ticket-backend.qa.go1percent.com";
