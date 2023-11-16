@@ -1,5 +1,5 @@
 const globalsData = require('../../../globals')
-const sessionsPage = browser.page.RewardsPage()
+const sessionsPage = browser.page.Leaderboard_Rewards.RewardSectionPage()
 describe("Rewards Page Frontend Automation", () => {
     before(function () {
         browser
