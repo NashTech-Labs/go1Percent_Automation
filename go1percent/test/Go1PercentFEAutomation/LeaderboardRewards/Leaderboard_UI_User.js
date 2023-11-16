@@ -6,7 +6,7 @@ describe("Rewards Page Frontend Automation", () => {
             .window.maximize()
             .page.login()
             .navigate()
-            .enterCredentials(browser.globals.userName,browser.globals.password)
+            .enterCredentials(browser.globals.employeeUserName,browser.globals.employeePassword)
             .signIn()
             .assert.urlContains("my-dashboard")
     });
