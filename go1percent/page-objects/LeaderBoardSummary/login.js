@@ -1,10 +1,6 @@
 
 module.exports = {
-
     url: "https://nashtechglobal.qa.go1percent.com/",
-
-
-
 
     elements: {
         emailInput: '#username',
@@ -20,11 +16,10 @@ module.exports = {
                 .setValue('@passwordInput', password)
                 .pause(1000)
         },
+        
         signIn() {
             return this
                 .click("@signIn")
         },
     }]
-
 };
-
