@@ -2,7 +2,7 @@ module.exports = {
     beforeEach: function(browser) {
         browser
             .maximizeWindow()
-            .page.TECHHUB.AdminUser.login()
+            .page.techhub.AdminUser.login()
             .navigate()
             .enterCredentials(browser.globals.adminUserName, browser.globals.adminPassword)
             .signIn()
