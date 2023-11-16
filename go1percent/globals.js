@@ -63,6 +63,7 @@ module.exports = {
         done();
     },
 
+
     techhubUrls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://techhub-backend.qa.go1percent.com",
@@ -70,7 +71,11 @@ module.exports = {
  
     ticketraise_url:'https://ticket-backend.qa.go1percent.com',
   
+
     baseurl: 'https://backend.qa.go1percent.com',
+ 
+    ticketraise_url:'https://ticket-backend.qa.go1percent.com',
+ 
 
 
     admin: {
@@ -258,6 +263,7 @@ module.exports = {
 
     access_token: "",
     backend_url: 'https://backend-radar.qa.go1percent.com/',
+
 
     admin: {
         headers: {

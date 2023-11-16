@@ -1,19 +1,45 @@
-const url = require('../../../globals')
-const accessToken = process.argv.indexOf('--token'); //npx nightwatch test/Add_Config.js --env api_testing --token youracesstoken
+const url = require('../../../../globals')
 describe('api testing', function () {
 
-    const token = process.argv[accessToken + 1];
-    
-    const header ={
-      'Source': 'https://nashtechglobal.qa.go1percent.com',
-      'Authorization': 'Bearer ' + token
-    }
-    // Asserts the response time in a Nightwatch program.
     const assertResponseTime = (startTime) => {
       const endTime = Date.now();
       const responseTime = endTime - startTime;
       expect(responseTime).to.be.below(10000);
     }
+
+    /**
+    * Generates a dynamic bearer token for API authentication.
+    *
+    * @param {string} username - The username for authentication.
+    * @param {string} password - The password for authentication.
+    * @returns {string} accessToken - The dynamically generated bearer token.
+    */
+  it('token generation', async function ({ supertest }) {
+    const tokenURl = "https://auth.go1percent.com";
+    const requestData = {
+      'client_id': 'leaderboard-ui',
+      'client_secret': '8090ed15-4cd1-483c-9fee-2a8b35941852',
+      'username': 'testemployee',
+      'password': 'testemployee',
+      'grant_type': 'password'
+    }
+    const headers = {
+      'accept': '*/*',
+      'source': 'https://nashtechglobal.qa.go1percent.com',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    const response = await supertest
+      .request(tokenURl)
+      .post('/auth/realms/nashtech/protocol/openid-connect/token')
+      .set(url.admin.tokenHeaders)
+      .send(requestData)
+      .expect(200)
+      .then(function (response) {
+        const token = response._body.access_token;
+        url.employee.headers['Authorization'] = 'Bearer ' + token;
+      });
+
+  })
 
 
     // This test sends a GET request to retrieve details of a specific contribution using the contribution ID.
@@ -21,8 +47,8 @@ describe('api testing', function () {
       const startTime = new Date().getTime();
       await supertest
         .request(url.baseurl)
-        .get("/contribution?contributionId=2729")
-        .set(header)
+        .get("/contribution?contributionId=3003")
+        .set(url.employee.headers)
         
         .expect(200)
         .expect('Content-Type', /json/)
@@ -47,7 +73,7 @@ describe('api testing', function () {
 
           .request(url.baseurl)
           .get("/contribution/getKnolderContribution?pageNumber=1&limit=10000")
-          .set(header)
+          .set(url.employee.headers)
           
           .expect(200)
           .expect('Content-Type', /json/)
@@ -75,7 +101,7 @@ describe('api testing', function () {
         await supertest
           .request(url.baseurl)
           .put('/contribution/editContribution')
-          .set(header)
+          .set(url.employee.headers)
           .send({"title":"Test employee contribution","contributionType":"Research paper","contributionDate":"2023-10-19 00:00:00","urlDetails":"www.courser.org","technologyDetails":"ddcscdcmjjicjdjc hdfiwic jocdjoicwd fcdiocd chojvwofeefhevdvhvhnvjvjdwehuihefkjcnjkvnwbrihfuvbhjbdjfre","contributionId":2727})
           
           .expect(200)
