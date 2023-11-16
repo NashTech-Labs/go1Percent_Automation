@@ -6,7 +6,7 @@ module.exports = {
             .navigate()
             .enterCredentials('testadmin', 'testadmin')
             .signIn()
-        pageObject = browser.page.CONTRIBUTION.review_contribution.allContribution();
+        pageObject = browser.page.contribution.reviewContribution.allContribution();
         pageObject.approvalsPage();
         pageObject.navigateToAllContributions();
     },
