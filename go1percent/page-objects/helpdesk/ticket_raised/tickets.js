@@ -40,7 +40,15 @@ const customcommands = {
             .setValue('@description', 'testing purpose')
     },
     attachFile() {
-        return this.click('@attachfile')
+        const path = require('path')
+        return  this.execute(function() {
+                    var element = document.querySelector('@attachfile');
+                    if (element) {
+                        element.scrollIntoView();
+                    }
+                })
+                    .uploadFile('@attachfile',path
+                    .resolve(__dirname ,'..','..','..','helpers/Go1PercentFEAutomation/TicketRaised/files','Nightwatch.jpg')).pause(5000)
     },
     submitAndVerifySuccess() {
         return this.click('@submitbtn')
@@ -52,14 +60,14 @@ const customcommands = {
             .assert.containsText('@closedTickets', 'Close Ticket')
     },
     verifyUpdatedTicketStatus(ticketNumber, ticketStatus) {
-        browser.page.ticket_raised.logout().signOut()
+        browser.page.HELPDESK.ticket_raised.logout().signOut()
         browser.page.login().enterCredentials('testemployee', 'testemployee').signIn()
         return this.navigateToHelpDesk()
             .click(ticketStatus)
             .assert.textContains('@selectFirstTicket', ticketNumber)
     },
     verifyStatusOfReoepenedTicket() {
-        this.assert.textContains('app-my-tickets .datatable-body-cell:nth-child(7) span', 'OPEN')
+        return this.assert.textContains('app-my-tickets .datatable-body-cell:nth-child(7) span', 'OPEN')
     },
     assertNoUpdateElementPresent() {
         return this.expect.element('@updateBtn').to.not.be.present;
@@ -93,6 +101,11 @@ const customcommands = {
                 browser.assert.ok(resultFinalValue.includes('attach_file'), 'Expected text "attached_file" is present in the element.');
             })
         })
+    },
+    hasTicketId(reopenedTicketId){
+        if(!reopenedTicketId){
+            this.assert.fail('unable to find reopened ticket id')
+        }
     }
 
 }
@@ -129,9 +142,9 @@ module.exports = {
         modalTitle: 'h5[class="modal-title pull-left ms-2"]',
         selectcategory: '#category > option:nth-child(2)',
         selectpriority: '#priority > option:nth-child(2)',
-        inputTitle: 'input[class="form-control border border-secondary overall-txt-color p-2 input-title ng-untouched ng-pristine ng-invalid"]',
-        description: 'textarea[class="form-control border border-secondary overall-txt-color p-2 description-area ng-untouched ng-pristine ng-invalid"]',
-        attachfile: 'label[for="uploadfile"]',
+        inputTitle: 'input[placeholder="Enter the Title"]',
+        description: 'textarea[placeholder="Enter the Description"]',
+        attachfile: '#uploadfile',
         submitbtn: 'button[class="btn btn-primary text-white mx-2"]',
         cancelbtn: 'button[class="btn bg-cancel text-black mx-2"]',
         successMessage: {

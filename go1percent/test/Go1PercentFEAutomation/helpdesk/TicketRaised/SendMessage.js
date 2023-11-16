@@ -9,7 +9,7 @@ module.exports={
             .navigate()
             .enterCredentials('testemployee','testemployee')
             .signIn()
-            ticket =browser.page.ticket_raised.tickets()  
+            ticket =browser.page.HELPDESK.ticket_raised.tickets()  
             ticket
             .navigateToHelpDesk()
             .waitForElementVisible('@selectFirstTicket',10000)
@@ -33,17 +33,14 @@ module.exports={
      * @description This test case verifies the ability to send a file on the OpenTicketPage.
      * showing error
      */
-   'should be able to send file on OpenTicketPage': function(){
-        
+   'should be able to send file on OpenTicketPage': function(browser){
+        const path = require('path');
         ticket
         .waitForElementVisible('@commentBox')
         .waitForElementVisible('@messageSection')
         .enterMessage('sending with file')
-        .waitForElementVisible('input#uploadfile', 1000)
-        .pause(2000)
-        .setValue('input#uploadfile', require('path').resolve(__dirname + 'files/test.png'))
-        ticket
-        .sendMessage().pause(5000)
+        .attachFile()
+        .sendMessage().pause(2000)
         .assertFileSentSuccessfully()
     } ,
     /**
