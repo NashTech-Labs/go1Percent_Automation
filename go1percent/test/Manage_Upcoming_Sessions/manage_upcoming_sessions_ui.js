@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { url, elements, commands } = require('../page-objects/Manage_upcoming_sessions/manage_upcoming_sessions_page.js');
+const { url, elements, commands } = require('../../page-objects/Manage_upcoming_sessions/manage_upcoming_sessions_page.js');
 const loginPage = browser.page.manage_upcoming_sessiona_page();
 const allure = require('nightwatch-allure');
 
