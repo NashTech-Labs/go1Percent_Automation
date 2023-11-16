@@ -1,4 +1,4 @@
-const globals = require('../../../../globals')
+const globals = require('../../../globals')
 
 describe('Leaderboard : Reedemed Rewards API Testing', function () {
   const header = globals.admin.headers;
@@ -38,7 +38,7 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
     // const rewardType = "Individual";
      await supertest
  
-        .request(globals.Add_Configuration.BaseUrl)
+        .request(globals.Add_Contribution.BaseUrl)
         .get(`${globals.Redeemed_Reward.GetEndPoints}?rewardType=${IndividualRewardType}&pageNumber=${pageNumber}&limit=${limit}`)
         .set(header)
         .expect(200)
@@ -84,7 +84,7 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
     
     await supertest
 
-        .request(globals.Add_Configuration.BaseUrl)
+        .request(globals.Add_Contribution.BaseUrl) 
         .get(`${globals.Redeemed_Reward.GetEndPoints}?rewardType=${StudioRewardType}&pageNumber=${pageNumber}&limit=${limit}`)
         .set(header) 
         .expect(200)
@@ -133,7 +133,7 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
     const rewardType = "Individual";
     await supertest
 
-        .request(globals.Add_Configuration.BaseUrl)
+        .request(globals.Add_Contribution.BaseUrl)
         .get(`${globals.Redeemed_Reward.GetEndPoints}?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNumber}&limit=${limit}&rewardType=${rewardType}`)
         .set(header) 
         .expect(200)
@@ -184,7 +184,7 @@ describe('Leaderboard : Reedemed Rewards API Testing', function () {
   // it('Should update the redeemed reward to processed', async function ({ supertest }) {
   //   const startTime = Date.now();
   //   await supertest
-  //       .request(globals.Add_Configuration.BaseUrl)
+  //       .request(globals.Add_Contribution.BaseUrl)
   //       .put("/updateRedeemReward")
   //       .set(header)
   //       .send({"rewardId":324,"rewardType":"Individual","status":"Processed","redeemId":219})

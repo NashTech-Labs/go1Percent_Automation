@@ -1,4 +1,4 @@
-const globals = require('../../../../globals')
+const globals = require('../../../globals')
 
 describe('Leaderboard : Rewards API Testing', function () {
   const header = globals.admin.headers;
@@ -32,7 +32,7 @@ describe('Leaderboard : Rewards API Testing', function () {
     const startTime = Date.now();
      await supertest
  
-        .request(globals.Add_Configuration.BaseUrl)
+        .request(globals.Add_Contribution.BaseUrl)
         .get(globals.Reward.GetEndPoints[0])
         .set(header)
         .expect(200)
@@ -66,7 +66,7 @@ describe('Leaderboard : Rewards API Testing', function () {
       const startTime = Date.now();
       await supertest
   
-          .request(globals.Add_Configuration.BaseUrl)
+          .request(globals.Add_Contribution.BaseUrl)
           .get(`${globals.Reward.GetEndPoints[1]}?rewardId=${rewardId}`)
           .set(header)
           .expect(200)
