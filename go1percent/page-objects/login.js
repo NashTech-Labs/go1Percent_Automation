@@ -1,3 +1,4 @@
+
 module.exports = {
 
     url: "https://nashtechglobal.qa.go1percent.com/",
@@ -24,4 +25,6 @@ module.exports = {
                 .click("@signIn")
         },
     }]
+
 };
+
