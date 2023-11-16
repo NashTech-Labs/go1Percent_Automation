@@ -24,6 +24,8 @@ const getAuthToken = async () => {
 };
 // Declare global variables
 let getTicketID, getStatus, getAssignedTo, getCategory, getPriority;
+let startTimestamp = Date.now();
+
 
 const getRandomNumber = () => {
   // Generate a random number between 1 and 50
@@ -57,6 +59,7 @@ const assertResponseTime = (startTime) => {
   expect(responseTime).to.be.below(10000);
 }
 
+
 describe('api testing', function () {
   it(' Verify the total open Tickets', async function ({ supertest }) {
     await supertest
@@ -70,6 +73,7 @@ describe('api testing', function () {
         expect(response.body.data).to.have.property('open');
         expect(response.body.data.open).to.be.a("number");
         expect(response.body.data.open).to.not.be.null;
+        assertResponseTime(startTimestamp, response);
       });
   });
   it(' Verify that the total unassigned Tickets', async function ({ supertest }) {
@@ -84,6 +88,7 @@ describe('api testing', function () {
         expect(response.body.data).to.have.property('unassigned');
         expect(response.body.data.unassigned).to.be.a("number");
         expect(response.body.data.unassigned).to.not.be.null;
+        assertResponseTime(startTimestamp, response);
       });
   });
   it(' Verify that the total closed Tickets', async function ({ supertest }) {
@@ -98,6 +103,7 @@ describe('api testing', function () {
         expect(response.body.data).to.have.property('closed');
         expect(response.body.data.closed).to.be.a("number");
         expect(response.body.data.closed).to.not.be.null;
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the total overdue Tickets', async function ({ supertest }) {
@@ -112,6 +118,7 @@ describe('api testing', function () {
         expect(response.body.data).to.have.property('overdue');
         expect(response.body.data.overdue).to.be.a("number");
         expect(response.body.data.overdue).to.not.be.null;
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=20 - Open Ticket', async function ({ supertest }) {
@@ -130,6 +137,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 20, `Expected data count: 20, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=15 - Open Ticket', async function ({ supertest }) {
@@ -148,6 +156,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 15, `Expected data count: 15, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=10 - Open Ticket', async function ({ supertest }) {
@@ -164,8 +173,10 @@ describe('api testing', function () {
         expect(response.body.data).to.not.be.null;
 
         const dataCount = response.body.data.length;
-        // Assert the total count of the 'data' array
+        // Assert the total count of the 'data' array       
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
+
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=20 - Closed Ticket', async function ({ supertest }) {
@@ -184,6 +195,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 20, `Expected data count: 20, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=15 - Closed Ticket', async function ({ supertest }) {
@@ -202,6 +214,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 15, `Expected data count: 15, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=10 - Closed Ticket', async function ({ supertest }) {
@@ -220,6 +233,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=20 - Overdue Ticket', async function ({ supertest }) {
@@ -238,6 +252,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 20, `Expected data count: 20, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=15 - Overdue Ticket', async function ({ supertest }) {
@@ -256,6 +271,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 15, `Expected data count: 15, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=10 - Overdue Ticket', async function ({ supertest }) {
@@ -274,6 +290,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=20 - Unassigned Ticket', async function ({ supertest }) {
@@ -292,6 +309,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 20, `Expected data count: 20, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=15 - Unassigned Ticket', async function ({ supertest }) {
@@ -310,6 +328,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 15, `Expected data count: 15, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=10 - Unassigned Ticket', async function ({ supertest }) {
@@ -328,6 +347,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify the functionality of next and previous buttons on pagination - Open Ticket', async function ({ supertest }) {
@@ -349,6 +369,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify the functionality of next and previous buttons on pagination - - Unassigned Ticket', async function ({ supertest }) {
@@ -371,6 +392,7 @@ describe('api testing', function () {
 
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify the functionality of next and previous buttons on pagination -  Overdue Ticket', async function ({ supertest }) {
@@ -393,6 +415,7 @@ describe('api testing', function () {
 
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Verify the functionality of next and previous buttons on pagination - Closed Ticket', async function ({ supertest }) {
@@ -414,6 +437,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 10, `Expected data count: 10, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp, response);
       });
   });
   it('Admin updates details of reopened ticket', async function ({ supertest }) {
@@ -455,7 +479,7 @@ describe('api testing', function () {
         expect(response.body.resource).to.equal("updateTicketDetails");
         expect(response.body.status).to.equal(true);
         expect(response.body.data).to.equal("Ticket Updated Successfully!");
-
+        assertResponseTime(startTimestamp, response);
       })
     return getTicketID;
   })
@@ -482,6 +506,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.have.property('comment');
         expect(response.body.data.comment.note).to.equal(requestedData.note);
+        assertResponseTime(startTimestamp, response);
       })
   });
 });
