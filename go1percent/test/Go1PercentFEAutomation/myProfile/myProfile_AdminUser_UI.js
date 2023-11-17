@@ -1,4 +1,4 @@
-const DataSet = require('../../globals');
+const DataSet = require('../../../globals');
 //const MyProfilePage = require('../../page-objects/myProfilePage');
 //const Login=browser.page.login();
 var userName = browser.globals.userName;
