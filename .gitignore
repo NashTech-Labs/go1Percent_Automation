@@ -42,3 +42,18 @@ go1percent/allure-results/
 
 go1percent/log/
 go1percent/screens/
+
+//go1percentTS
+
+go1percentTS/package-lock.json
+go1percentTS/package.json
+go1percentTS/nightwatch
+
+go1percentTS/allure-report/
+go1percentTS/allure-results/
+
+go1percentTS/log/
+go1percentTS/screens/
+go1percentTS/node_modules
+
+
