@@ -1,7 +1,5 @@
 module.exports = {
 
-
-
     "Navigate to All Techhubs page": function (browser) {
         browser
         .page.techhub.AdminUser.techhub()
