@@ -1,30 +1,34 @@
-var redeemRewardCommands = {
+import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
+import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
 
-    openRewardReport : function () {
+
+const redeemRewardCommands = {
+
+    openRewardReport : function (this: RedeemRewardPage) {
         return this
         .click('@rewardReportButton')
         .waitForElementPresent('@employeeName');
     },
 
-    openRedeemRequestWindow : function () {
+    openRedeemRequestWindow : function (this: RedeemRewardPage) {
         return this
         .click('@employeeName')
         .waitForElementPresent('@RedeemRequestWindowTitle', 5000);
     }, 
 
-    closeRedeemRequestWindow : function () {
+    closeRedeemRequestWindow : function (this: RedeemRewardPage) {
         return this
         .waitForElementPresent('@closeButton', 5000)
         .click('@closeButton');
     },  
 
-    processReward : function(){
+    processReward : function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@processButton', 5000)
         .click('@processButton');
     },
 
-    switchToCompetency : function(){
+    switchToCompetency : function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@iconGrid')
         .waitForElementPresent('@competencyButton', 5000) 
@@ -32,13 +36,13 @@ var redeemRewardCommands = {
         .waitForElementPresent('@rewardReport', 5000);
     },
 
-    switchToIndividual: function(){
+    switchToIndividual: function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@individualButton', 5000) 
         .click('@individualButton');
     },
 
-    setTimeFilterToToday: function(){
+    setTimeFilterToToday: function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@timeFilter', 5000) 
         .click('@timeFilter') 
@@ -49,7 +53,7 @@ var redeemRewardCommands = {
     },
 
 
-    resetTimeFilter: function(){
+    resetTimeFilter: function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@timeFilter', 5000) 
         .click('@timeFilter') 
@@ -58,7 +62,7 @@ var redeemRewardCommands = {
         .click('@timeFilter');
     },
 
-    setStatusFilterToProcessing: function(){
+    setStatusFilterToProcessing: function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@statusFilter', 5000) 
         .click('@statusFilter') 
@@ -67,7 +71,7 @@ var redeemRewardCommands = {
         .click('@statusFilter');
     },
 
-    setStatusFilterToProcessed: function(){
+    setStatusFilterToProcessed: function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@statusFilter', 5000) 
         .click('@statusFilter') 
@@ -76,7 +80,7 @@ var redeemRewardCommands = {
         .click('@statusFilter');
     },
 
-    resetStatusFilter: function(){
+    resetStatusFilter: function(this: RedeemRewardPage){
         return this
         .waitForElementPresent('@statusFilter', 5000) 
         .click('@statusFilter') 
@@ -86,40 +90,47 @@ var redeemRewardCommands = {
         .waitForElementPresent('@employeeName');
     },
 
-    searchNasher: function(name){
+    searchNasher: function(this: RedeemRewardPage, name : string){
         return this
         .waitForElementPresent('@searchFeild', 5000) 
-        .setValue('@searchFeild', name)
-        .waitForElementPresent('@rewardReport', 5000);
+        .setValue('@searchFeild', name);
     },
 
 
-    getDetailsOfRedeemReward: function (callback) {
-        var rewardDetails = {};
-        return this
-        .getText('@rewardOwner', function (result) {
-            rewardDetails.owner = result.value;
-        })
-        // Add more getText calls for other details as needed
-        .getText('@redeemedReward', function (result) {
-            rewardDetails.reward = result.value;
-        })
-        .getText('@rewardOwnerCompetency', function (result) {
-            rewardDetails.competency = result.value;
-        })
-        .getText('@redeemedOnDate', function (result) {
-            rewardDetails.redeemedDate = result.value;
-        })
-        // Add more getText calls for other details as needed
-        .perform(function () {
-            // Pass the employee details back to the callback
-            callback(rewardDetails);
-        });
-    }
+    getCurrentFormattedDate: function () : string{
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const currentDate = new Date();
+        const month = months[currentDate.getMonth()];
+        const day = currentDate.getDate();
+        const year = currentDate.getFullYear(); 
+        // Return the formatted date
+        return `${month} ${day}, ${year}`;
+    },
+
+    getDetailsOfRedeemReward(callback: (rewardDetails: Record<string, string>) => void) {
+        const rewardDetails: Record<string, string> = {};
     
+        browser
+            .getText('.card-body h5', function (result) {
+                rewardDetails.owner = String(result.value);
+            })
+            .getText('.modal-body h5', function (result) {
+                rewardDetails.reward = String(result.value);
+            })
+            .getText('small.font-weight-bold.ms-0', function (result) {
+                rewardDetails.competency = String(result.value);
+            })
+            .getText('.card-body strong', function (result) {
+                rewardDetails.redeemedDate = String(result.value);
+            })
+            .perform(function () {
+                // Pass the employee details back to the callback
+                callback(rewardDetails);
+            });
+    }
 }
 
-module.exports = {
+const redeemRewardPage : PageObjectModel= {
     url: 'https://nashtechglobal.qa.go1percent.com',
     commands: [redeemRewardCommands],
     elements: {
@@ -207,3 +218,9 @@ module.exports = {
     }
 }
 
+
+export default redeemRewardPage;
+ 
+export interface RedeemRewardPage
+  extends EnhancedPageObject<typeof redeemRewardCommands,
+  typeof redeemRewardPage.elements> { }
