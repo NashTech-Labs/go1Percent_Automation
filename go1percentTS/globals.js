@@ -30,8 +30,6 @@ function startTime() {
 
 
 module.exports = {
-
-
     urls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
@@ -52,6 +50,11 @@ module.exports = {
     before: function (done) {
         chromedriver.start();
         done();
+    },
+
+    reporter: (results, done) => {
+        const reporter = new allureReporter.NightwatchAllureReporter({});
+        reporter.write(results, done);
     },
 
     reporter: (results, done) => {
@@ -174,10 +177,11 @@ module.exports = {
             grant_type: 'password',
         },
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        BaseUrl:"https://backend.qa.go1percent.com",
-        PostEndPoints:"/contribution/addContribution",
-        GetEndPoints:"/contribution/getKnolderContribution?pageNumber=1&limit=10000"  
-    } ,
+        BaseUrl: "https://backend.qa.go1percent.com",
+        PostEndPoints: "/contribution/addContribution",
+        GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000",
+        Contribution_url: "www.codsfcdu.org"
+    },
 
 
     base_url: "https://knolx-backend.qa.go1percent.com/",
@@ -230,7 +234,7 @@ module.exports = {
         'pageNumber': '1',
         'pageSize': '10',
         'filter': 'upcoming',
-        'time': '1700831564000'
+        'time': '1698949800000'
     },
     // Past Sessions
     queryUsingTitlePast: {
@@ -297,6 +301,7 @@ module.exports = {
         saveOption: true
     },
 
+
     access_token: "",
     // Upcoming Sessions Page Frontend Automation
     nasher: "employee",
@@ -310,6 +315,9 @@ module.exports = {
         reporter.write(results, done);
     },
 
+
+
+
     //My Past Session
 
     queryMyPastSession: {
@@ -320,12 +328,14 @@ module.exports = {
         'sessionId': '6529144d45bc9a797dfbcb19',
     },
 
-
-    SessionData: {
-        ExpectedTitle: 'Sample Text Title Update',
-        Description: 'Description',
-        SlideURL: 'Slide URL',
-    },
+    Session: 'Knolx',
+    Date: '07 Nov 2023',
+    Time: '8:40 - 9:25 AM IST',
+    SessionTitle: 'Testing Title',
+    SessionStatus: 'Pending for Approval',
+    ExpectedTitle: 'new newnewn ewn',
+    Description: 'Description',
+    SlideURL: 'Slide URL',
 
     feedbackForm: {
         apiUrls: {
@@ -344,26 +354,9 @@ module.exports = {
             sessionFormName: 'knol',
             no_sessionFormName: 'temp',
             setTitle:'Temporary Form',
-    },
-},
-
-    MyUpcomingSession: {
-        headers: {
-            'Authorization': '',
-            'Source': 'https://nashtechglobal.qa.go1percent.com'
-        },
-        tokenHeaders: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'source': 'https://nashtechglobal.qa.go1percent.com'
-        },
-        tokenBody: {
-            client_id: 'leaderboard-ui',
-            client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            username: 'testemployee',
-            password: 'testemployee',
-            grant_type: 'password',
 
         },
+
     },
 
 

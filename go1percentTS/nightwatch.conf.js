@@ -1,4 +1,3 @@
-require('dotenv').config();
 //
 // Refer to the online docs for more details:
 // https://nightwatchjs.org/guide/configuration/nightwatch-configuration-file.html
@@ -16,33 +15,32 @@ require('dotenv').config();
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['test'],
-  skip_testcases_on_fail: false,
+  src_folders: ['./dist/src/test'],
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions', './page-objects/TicketAssignedToMe','page-objects/My_Profile', 'page-objects/knolxSessions'],
-
+  page_objects_path: ['./dist/src/page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
+  custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  //custom_assertions_path: '',
+  custom_assertions_path: '',
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
+  // plugins: ["vite-plugin-nightwatch","@nightwatch/react"],
   plugins: ['@nightwatch/apitesting'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
-  globals_path: './globals.js',
+  globals_path : './globals.js',
 
-    globals: {
-      "userName": "testemployee", // this is placeholder username, make sure to update.
-      "password": "testemployee", // this is placeholderPassword, Make sure to update.
-      "adminUserName": "testadmin", // this is placeholder username, make sure to update.
-      "adminPassword": "testadmin", // this is placeholderPassword, Make sure to update.
-      "employeeUserName": "testemployee1",
-      "employeePassword": "testemployee1"
-    },
+  globals: {
+    "userName": "testemployee", // this is placeholder username, make sure to update.
+    "password": "testemployee", // this is placeholderPassword, Make sure to update.
+    "adminUserName": "testadmin", // this is placeholder username, make sure to update.
+    "adminPassword": "testadmin", // this is placeholderPassword, Make sure to update.
+    "employeeUserName": "testemployee1",
+    "employeePassword": "testemployee1"
+  },
 
   webdriver: {},
   
@@ -61,22 +59,15 @@ module.exports = {
         path: 'screens',
         on_failure: true
       },
- 
-      desiredCapabilities: {
-        browserName: 'chrome'
-        // 'goog:chromeOptions': {
-        //   ...
-        //   // specify the locateStrategy as xpath
-        //   locateStrategy: 'xpath',
 
-        // },
+      desiredCapabilities: {
+        browserName : 'chrome'
       },
 
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
-
-      },
+      }
     },
 
     
@@ -102,45 +93,26 @@ module.exports = {
       }
     },
 
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
-      }
-    },
-
     chrome: {
-
-      desiredCapabilities: {
-        browserName: 'chrome',
-        "javascriptEnabled": true,
-        "acceptSslCerts": true,
-        'goog:chromeOptions': {
+      desiredCapabilities : {
+        browserName : 'chrome',
+        'goog:chromeOptions' : {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            '--headless',            //for headless mode and Jenkins
-            "window-size=1920,1080", //for headless mode and Jenkins
-            '--no-sandbox',          //for headless mode and Jenkins
-            "disable-gpu",           //for headless mode and Jenkins
-            "--disable-dev-shm-usage"  //for headless mode and Jenkins
-           //'--ignore-certificate-errors',
-           //'--allow-insecure-localhost',
-         ],
-         "binary": "/usr/bin/google-chrome"
+            //'--no-sandbox',
+            //'--ignore-certificate-errors',
+            //'--allow-insecure-localhost',
+            //'--headless'
+          ]
         }
       },
- 
+
       webdriver: {
         start_process: true,
-        server_path: 'node_modules/.bin/chromedriver',
-        port: 9515,
-        host: 'localhost',
-        ssl: false,
-        default_path_prefix: '',
-        proxy: undefined,
+        server_path: '',
         cli_args: [
           // --verbose
         ]
@@ -167,6 +139,13 @@ module.exports = {
         cli_args: [
           // --verbose
         ]
+      }
+    },
+
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
       }
     },
 
@@ -214,8 +193,8 @@ module.exports = {
       // https://www.browserstack.com/automate/capabilities?tag=selenium-4
       desiredCapabilities: {
         'bstack:options' : {
-          userName: process.env.BROWSERSTACK_USERNAME,
-          accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+          userName: '${BROWSERSTACK_USERNAME}',
+          accessKey: '${BROWSERSTACK_ACCESS_KEY}',
         }
       },
 
@@ -381,7 +360,7 @@ module.exports = {
         }
       }
     },
-    
+
     "@nightwatch/apitesting": {
       "log_responses": true
     }

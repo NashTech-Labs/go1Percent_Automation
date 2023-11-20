@@ -1,5 +1,5 @@
-const { assert } = require("chai");
-const mypastSession = browser.page.mypastSession();
+//const { assert } = require("chai");
+const mypastSession = browser.page.myPastSession.myPastSessionpages();
 const globals = require('../../globals');
 
 describe("My Past Session Frontend Automation", () => {

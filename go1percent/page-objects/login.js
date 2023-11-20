@@ -2,6 +2,7 @@
 module.exports = {
     url: "",
 
+
     elements: {
         emailInput: '#username',
         passwordInput: '#password',
@@ -21,4 +22,6 @@ module.exports = {
                 .click("@signIn")
         },
     }]
+
 };
+
