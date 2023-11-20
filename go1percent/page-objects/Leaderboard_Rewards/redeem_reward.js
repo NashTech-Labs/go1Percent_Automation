@@ -3,61 +3,14 @@ var redeemRewardCommands = {
     openRewardReport : function () {
         return this
         .click('@rewardReportButton')
-        .assert.urlContains('rewards/reward-reports');  
-    },
-
-    assertIndividualReport : function () {
-        return this
-        .assert.elementPresent('@employeeName') 
-        .assert.elementPresent('@competencyName')
-        .assert.elementPresent('@rewardName') 
-        .assert.elementPresent('@redeemPoints') 
-        .assert.elementPresent('@redeemedDate');
+        .waitForElementPresent('@employeeName');
     },
 
     openRedeemRequestWindow : function () {
         return this
         .click('@employeeName')
-        .waitForElementPresent('@RedeemRequestWindowTitle', 5000)
-        .assert.textContains('@RedeemRequestWindowTitle', 'Process a Redeem Request');
+        .waitForElementPresent('@RedeemRequestWindowTitle', 5000);
     }, 
-
-
-    openRedeemRequestWindowAndGetDetails: function (callback) {
-        var rewardDetails = {};
-        return this
-            .click('@employeeName')
-            .waitForElementPresent('@RedeemRequestWindowTitle', 5000)
-            .assert.textContains('@RedeemRequestWindowTitle', 'Process a Redeem Request')
-            .getText('@rewardOwner', function (result) {
-                rewardDetails.owner = result.value;
-            })
-            // Add more getText calls for other details as needed
-            .getText('@redeemedReward', function (result) {
-                rewardDetails.reward = result.value;
-            })
-            .getText('@rewardOwnerCompetency', function (result) {
-                rewardDetails.competency = result.value;
-            })
-            .getText('@redeemedOnDate', function (result) {
-                rewardDetails.redeemedDate = result.value;
-            })
-            // Add more getText calls for other details as needed
-            .perform(function () {
-                // Pass the employee details back to the callback
-                callback(rewardDetails);
-            });
-    },
-
-    assertProcessedReward: function (rewardDetails) {
-        return this
-        .waitForElementPresent('@employeeName', 5000)
-        .assert.textContains('@employeeName',rewardDetails.owner) 
-        .assert.elementPresent('@competencyName', rewardDetails.competency)
-        .assert.elementPresent('@rewardName', rewardDetails.reward) 
-        .assert.elementPresent('@redeemPoints', rewardDetails.redeemedDate) 
-        .assert.elementPresent('@statusButton', 'PROCESSED');
-    },
 
     closeRedeemRequestWindow : function () {
         return this
@@ -75,15 +28,9 @@ var redeemRewardCommands = {
         return this
         .waitForElementPresent('@iconGrid')
         .waitForElementPresent('@competencyButton', 5000) 
-        .click('@competencyButton');
+        .click('@competencyButton')
+        .waitForElementPresent('@rewardReport', 5000);
     },
-
-    assertCompetenecyReport : function(){
-        return this
-        .waitForElementPresent('@rewardReport', 5000) 
-        .assert.textContains('@rewardReport', 'No Redeemed Reward Available');
-    },
-
 
     switchToIndividual: function(){
         return this
@@ -97,14 +44,10 @@ var redeemRewardCommands = {
         .click('@timeFilter') 
         .waitForElementPresent('@todayOption', 5000)
         .click('@todayOption')
-        .click('@timeFilter');
+        .click('@timeFilter')
+        .waitForElementPresent('@redeemedDate', 5000);
     },
 
-    matchDate: function(date){
-        return this
-        .waitForElementPresent('@redeemedDate', 5000)
-        .assert.textContains('@redeemedDate', date);
-    }, 
 
     resetTimeFilter: function(){
         return this
@@ -146,51 +89,33 @@ var redeemRewardCommands = {
     searchNasher: function(name){
         return this
         .waitForElementPresent('@searchFeild', 5000) 
-        .setValue('@searchFeild', name);
+        .setValue('@searchFeild', name)
+        .waitForElementPresent('@rewardReport', 5000);
     },
 
-    /**
-     * APPROACH : 
-    * 1. set filter to processing, 
-    * 2. check if there is any reward available to process
-    * 3. if yes,  go to process window and store its details and process
-    *   set filter to processed, assert the stored details
-    * 4. if no, prompt error
-    */
-    checkAndProcessTheRequest: function(browser){
-        browser.elements('css selector', 'button.btn.text-white.status-btn.mb-0.processingStatus', results => {
-            if (results.value.length > 0) { 
-              //open process window
-              redeemedRewardsTab.openRedeemRequestWindowAndGetDetails(function (rewardDetails) {
-                // process the request
-                redeemedRewardsTab
-                .processReward()
-                //BUG : the window is not closing on its own
-                .closeRedeemRequestWindow()
-                .setStatusFilterToProcessed();
-                //BUG : the page needs to be refreshed
-                browser.refresh();
-                //assert the stored details
-                redeemedRewardsTab.assertProcessedReward(rewardDetails);
-              });
-            }
-            else { 
-              console.log('No Redeemed Reward Available'); 
-            }
+
+    getDetailsOfRedeemReward: function (callback) {
+        var rewardDetails = {};
+        return this
+        .getText('@rewardOwner', function (result) {
+            rewardDetails.owner = result.value;
+        })
+        // Add more getText calls for other details as needed
+        .getText('@redeemedReward', function (result) {
+            rewardDetails.reward = result.value;
+        })
+        .getText('@rewardOwnerCompetency', function (result) {
+            rewardDetails.competency = result.value;
+        })
+        .getText('@redeemedOnDate', function (result) {
+            rewardDetails.redeemedDate = result.value;
+        })
+        // Add more getText calls for other details as needed
+        .perform(function () {
+            // Pass the employee details back to the callback
+            callback(rewardDetails);
         });
     },
-
-    assertFilteredResult: function(browser){
-      //check if there is any reward available to process
-      browser.elements('css selector', 'button.btn.text-white.status-btn.mb-0.processingStatus', results => {
-        if (results.value.length > 0) { 
-          browser.assert.textContains('button.btn.text-white.status-btn.mb-0.processingStatus', 'PROCESSING');
-        }
-        else { 
-          console.log('No Redeemed Reward Available'); 
-        }
-      });
-    }
     
 }
 
@@ -199,61 +124,70 @@ module.exports = {
     commands: [redeemRewardCommands],
     elements: {
         rewardReportButton : {
-            selector: 'button.btn.reportRewardBtn.px-2.me-2'
+            selector: 'button.reportRewardBtn'
         },
         iconGrid: {
             selector: '#icon-grid'
         }, 
-        employeeName: {
-            selector: '#icon-grid div:nth-child(1)  h6'
-        }, 
         competencyName: {
-            selector: 'small.font-weight-bold'  
+            selector: '#icon-grid div:nth-child(1) small'  
         },
         rewardName: {
             selector: 'h6.mb-n1.me-1'
         },
-        redeemPoints: {
-            selector: 'div.col-xxl-4.d-flex small'
-        }, 
-        redeemedDate: {
-            selector: 'div.ms-md-0.ms-sm-6 > small'  
-        }, 
         RedeemRequestWindowTitle: {
-            selector: 'h5.modal-title.pull-left.ms-2'
+            selector: 'h5.modal-title'
         }, 
         closeButton: {
-            selector: 'span.material-icons-outlined.cancel-modal'
+            selector: 'span.cancel-modal'
         }, 
         processButton: {
             selector: '#submitButton'
         },  
         competencyButton: {
-            selector: 'app-reward-reports li:nth-child(2) > a'
+            selector: 'li:nth-child(2) > a.cursor-pointer'
         },
         individualButton: {
-            selector: 'app-reward-reports li:nth-child(1) > a'
+            selector: 'li:nth-child(1) > a.cursor-pointer'
         },
-        rewardReport: {
-            selector: 'div.card.text-center.m-3.py-10 > h5'
-        }, 
         showMoreCard: {
-            selector: 'div.report-card-footer > div'
+            selector: 'div.show-more'
         }, 
         timeFilter: {
             selector: '#rewardType'
+        },  
+        allTimeOption: {
+            selector: 'option.pb-3'
+        }, 
+        statusFilter: {
+            selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2'
+        },    
+        searchFeild: {
+            selector: 'input[type="text"]'
+        }, 
+        rewardOwner: {
+            selector: '.card-body h5'
+        }, 
+        redeemedReward: {
+            selector: '.modal-body h5'
+        }, 
+        rewardOwnerCompetency: {
+            selector: 'small.font-weight-bold.ms-0'
+        }, 
+        redeemedOnDate: {
+            selector: '.card-body strong'
+        },
+        redeemedDate: {
+            selector: '#icon-grid div:nth-child(3)  small'  
+        }, 
+        rewardReport: {
+            selector: 'div.card > h5'
         }, 
         todayOption: {
             selector: '#rewardType > option:nth-child(2)'
         }, 
-        allTimeOption: {
-            selector: 'option.pb-3'
-        }, 
         allStatusOption: {
             selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2 > option.pb-3'
-        }, 
-        statusFilter: {
-            selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2'
         }, 
         processingOption: {
             selector: 'select.form-control.cursor-pointer.py-3.px-2.mb-2 > option:nth-child(2)'
@@ -264,21 +198,12 @@ module.exports = {
         statusButton: {
             selector: '#icon-grid button'
         }, 
-        searchFeild: {
-            selector: 'div:nth-child(2) > input'
+        employeeName: {
+            selector: '#icon-grid div:nth-child(1)  h6'
         }, 
-        rewardOwner: {
-            selector: 'h5.mb-n1'
+        redeemPoints: {
+            selector: 'div.col-xxl-4.d-flex small'
         }, 
-        redeemedReward: {
-            selector: 'h5.mt-3.mb-0'
-        }, 
-        rewardOwnerCompetency: {
-            selector: 'small.font-weight-bold.ms-0'
-        }, 
-        redeemedOnDate: {
-            selector: 'div.my-4.ms-4 > strong'
-        }
     }
 }
 
