@@ -1,5 +1,5 @@
 const { assert } = require('nightwatch');
-const DataSet = require('../../globals');
+const DataSet = require('../../../globals');
 var userName = browser.globals.userName;
 var password = browser.globals.password;
 // userName = 'testemployee';
