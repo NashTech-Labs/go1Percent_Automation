@@ -1,5 +1,4 @@
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
-import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
 
 
 const redeemRewardCommands = {

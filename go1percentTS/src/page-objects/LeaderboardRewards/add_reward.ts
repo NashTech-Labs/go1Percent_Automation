@@ -1,5 +1,5 @@
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
-import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
+import { NightwatchBrowser } from 'nightwatch';
 
 var addRewardCommands = {
 

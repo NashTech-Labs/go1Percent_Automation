@@ -2,12 +2,13 @@
 import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
 import { RewardPage } from '../../../page-objects/LeaderboardRewards/rewards';
 import { RedeemRewardPage } from '../../../page-objects/LeaderboardRewards/redeem_reward';
-const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
 
 
-const redeemRewardTest: NightwatchTests = {
+describe('Leaderboard : Redeem Reward Test', () => {
+
+    const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
     
-    before: (browser: NightwatchBrowser) => {
+    before((browser: NightwatchBrowser) => {
         const rewardPage= browser.page.LeaderboardRewards.rewards() as RewardPage;
         rewardPage
         .navigate()
@@ -15,50 +16,50 @@ const redeemRewardTest: NightwatchTests = {
         .signIn()
         .goToRewards()
         .assert.urlContains('rewards/list', 'Reward tab is opened');
-    },
+    });
 
-    beforeEach : (browser: NightwatchBrowser) => {
+    beforeEach((browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .openRewardReport();
-    },
+    });
 
-    after: (browser: NightwatchBrowser) => {
+    after((browser: NightwatchBrowser) => {
         browser.end();
-    },
+    });
 
     //TC : 1169 
-    'admin should be able to click on reward report button': (browser: NightwatchBrowser) => {
+    it('admin should be able to click on reward report button', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .assert.urlContains('rewards/reward-reports', 'Reward Report is opened.'); 
-    },
+    });
 
     //TC : 1170
-    'admin should be able to see list of names': (browser: NightwatchBrowser) => {
+    it('admin should be able to see list of names', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .assert.elementPresent('@employeeName', 'Employee name is present') 
         .assert.elementPresent('@competencyName', 'Competency name is present')
         .assert.elementPresent('@rewardName', 'Reward name is present') 
         .assert.elementPresent('@redeemPoints', 'Redeem Points is present') 
         .assert.elementPresent('@redeemedDate', 'Redeemed Date is present');
-    },
+    });
 
     //TC : 1171
-    'admin should be able to click on any contributors tab': (browser: NightwatchBrowser) => {
+    it('admin should be able to click on any contributors tab', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .openRedeemRequestWindow()
         .assert.textContains('@RedeemRequestWindowTitle', 'Process a Redeem Request', 'Redeem Request window is opened.')
         .closeRedeemRequestWindow(); 
-    },
+    });
 
 
-  //TC : 1172
-  /**
-   * BUG : 
-   * 1. On resetting the filter, the list does not appear
-   * 2. On clicking process, the window is not closing
-   * 3. After processing, the status of the reward changes only on refreshing
-   * */
-    'admin should able to change status of reward from processing to process': (browser: NightwatchBrowser) => {
+    //TC : 1172
+    /**
+     * BUG : 
+     * 1. On resetting the filter, the list does not appear
+     * 2. On clicking process, the window is not closing
+     * 3. After processing, the status of the reward changes only on refreshing
+     * */
+    it('admin should able to change status of reward from processing to process', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .setStatusFilterToProcessing()
         .pause(3000);
@@ -90,29 +91,29 @@ const redeemRewardTest: NightwatchTests = {
             }
         })
         .refresh();
-    },
+    });
     
     //TC : 1173
-    'admin should able to switch to competency from Individual': (browser: NightwatchBrowser) => {
+    it('admin should able to switch to competency from Individual', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .switchToCompetency()
         .assert.textContains('@rewardReport', 'No Redeemed Reward Available', 'Switched to competency from Individual.')
         .switchToIndividual()
         .waitForElementPresent('@employeeName');
-    },
+    });
 
     //TC : 1174
-    'admin should be able to apply filter in all time dropdown': (browser: NightwatchBrowser) => {
+    it('admin should be able to apply filter in all time dropdown', (browser: NightwatchBrowser) => {
         const currentFormattedDate = redeemedRewardsTab.getCurrentFormattedDate();
         redeemedRewardsTab
         .setTimeFilterToToday()
         .assert.textContains('@redeemedDate', currentFormattedDate, 'The Redeem date of rewards is set to today.')
         .resetTimeFilter();
-    },
+    });
 
     // TC : 1175
     // BUG : On resetting the filter, the list does not appear
-    'admin should able to filter out the status of reward': (browser: NightwatchBrowser) => {
+    it('admin should able to filter out the status of reward', (browser: NightwatchBrowser) => {
         const currentFormattedDate = redeemedRewardsTab.getCurrentFormattedDate();
         redeemedRewardsTab
         .setStatusFilterToProcessing()
@@ -127,11 +128,11 @@ const redeemRewardTest: NightwatchTests = {
             }
         })
         .refresh();
-    },
+    });
 
     // TC : 1176
     //BUG : show more is dispalyed, instead of redeemed rewards msg
-    'admin should able to see blank screen with message': (browser: NightwatchBrowser) => {
+    it('admin should able to see blank screen with message', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
         .searchNasher('Tester')
         .waitForElementPresent('@rewardReport', 5000)
@@ -139,8 +140,6 @@ const redeemRewardTest: NightwatchTests = {
         // actual 
         // .waitForElementPresent('@showMoreCard') 
         // .assert.textContains('@showMoreCard', 'SHOW MORE');
-    }
+    });
 
-};
- 
-export default redeemRewardTest;
+});
