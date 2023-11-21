@@ -1,6 +1,7 @@
 import { NightwatchBrowser, NightwatchTests } from 'nightwatch';
+import { knolxRequestPage } from '../../../page-objects/RequestedSession/knolxRequestPage';
 
-const requestPage = browser.page.knolxRequestPage();
+let requestPage = browser.page.RequestedSession.knolxRequestPage() as knolxRequestPage; 
 
 const RequestedSessionsTest: NightwatchTests = {
 
@@ -25,7 +26,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .waitForElementVisible('@manageSessions')
       .clickRequested()
       .waitForElementVisible('@requested')
-      .pause(500)
       .assert.visible('@totalrecords')
       .assert.urlContains("requested-sessions");
   },
@@ -45,7 +45,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .clickSaveButton()
       .waitForElementVisible('@titleEdit')
       .assert.containsText('@titleMessage', 'Successfully Updated')
-      .pause(500)
   },
 
   'Should be able to add tags': (browser: NightwatchBrowser) => {
@@ -55,7 +54,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .waitForElementVisible('@tagInput')
 
       .saveTag()
-      .pause(500)
       .assert.visible('@addTag')
   },
 
@@ -63,7 +61,6 @@ const RequestedSessionsTest: NightwatchTests = {
 
     requestPage
       .RemovingTag()
-      .pause(200)
       .assert.visible('@addTag')
 
   },
@@ -79,7 +76,6 @@ const RequestedSessionsTest: NightwatchTests = {
 
       .SavingDescription()
       .waitForElementVisible('@titleEdit')
-      .pause(500)
       .assert.visible('@describeEdit')
   },
 
@@ -90,7 +86,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .waitForElementVisible('@feedbackUpdate')
 
       .UpdatingFeedback()
-      .pause(300)
       .assert.containsText('@dropdown', 'Knolx - Share Your Experience')
   },
 
@@ -102,7 +97,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .waitForElementVisible('@approveButton')
 
       .ApprovingSession()
-      .pause(300)
 
   },
 
@@ -113,7 +107,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .waitForElementVisible('@rejectButton')
 
       .RejectingingSession()
-      .pause(300)
   },
 
   'Add or update SlideURL': (browser: NightwatchBrowser) => {
@@ -126,7 +119,6 @@ const RequestedSessionsTest: NightwatchTests = {
       .waitForElementVisible('@slideSave')
 
       .savingSlide()
-      .pause(500)
   },
 
   after: (browser: NightwatchBrowser) => {

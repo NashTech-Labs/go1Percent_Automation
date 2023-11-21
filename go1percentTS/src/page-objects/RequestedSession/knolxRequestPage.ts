@@ -2,114 +2,114 @@ import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 
 const Go1Commands = {
 
-    enterCredentials(this: EnhancedPageObject, email: string, password: string) {
+    enterCredentials(this: knolxRequestPage, email: string, password: string) {
         return this
             .setValue('@emailInput', email)
             .pause(1000)
             .setValue('@passwordInput', password)
             .pause(1000)
     },
-    signIn(this: EnhancedPageObject) {
+    signIn(this: knolxRequestPage) {
         return this
             .click("@signIn")
     },
-    clickAdmin(this: EnhancedPageObject) {
+    clickAdmin(this: knolxRequestPage) {
         return this
             .click('@adminLink')
     },
-    clickKnolx(this: EnhancedPageObject) {
+    clickKnolx(this: knolxRequestPage) {
         return this
             .click('@knolx')
     },
-    clickmanageSession(this: EnhancedPageObject) {
+    clickmanageSession(this: knolxRequestPage) {
         return this
             .click('@manageSessions')
     },
-    clickRequested(this: EnhancedPageObject) {
+    clickRequested(this: knolxRequestPage) {
         return this
             .click('@requested')
     },
-    clickSession(this: EnhancedPageObject) {
+    clickSession(this: knolxRequestPage) {
         return this
             .click('@session')
     },
-    clickEditButton(this: EnhancedPageObject) {
+    clickEditButton(this: knolxRequestPage) {
         return this
             .click('@titleEdit')
     },
-    editTitle(this: EnhancedPageObject, text: string) {
+    editTitle(this: knolxRequestPage, text: string) {
         return this
             .clearValue('@inputTitle')
             .setValue('@inputTitle', text)
             .click('@inputTitle')
     },
-    clickSaveButton(this: EnhancedPageObject) {
+    clickSaveButton(this: knolxRequestPage) {
         return this
             .click('@saveButton');
     },
-    addingTag(this: EnhancedPageObject, tag: string) {
+    addingTag(this: knolxRequestPage, tag: string) {
         return this
             .click('@addTag')
             .setValue('@tagInput', tag)
     },
-    saveTag(this: EnhancedPageObject) {
+    saveTag(this: knolxRequestPage) {
         return this
             .click('@saveTag')
     },
-    RemovingTag(this: EnhancedPageObject) {
+    RemovingTag(this: knolxRequestPage) {
         return this
             .click('@removeTag')
     },
-    clickEditDesc(this: EnhancedPageObject) {
+    clickEditDesc(this: knolxRequestPage) {
         return this
             .click('@describeEdit')
     },
-    DescriptionEdit(this: EnhancedPageObject, desctext: string) {
+    DescriptionEdit(this: knolxRequestPage, desctext: string) {
         return this
             .clearValue('@descriptionInput')
             .setValue('@descriptionInput', desctext)
     },
-    SavingDescription(this: EnhancedPageObject) {
+    SavingDescription(this: knolxRequestPage) {
         return this
             .click('@descriptionSave')
     },
-    clickSlideEdit(this: EnhancedPageObject) {
+    clickSlideEdit(this: knolxRequestPage) {
         return this
             .click('@slideEdit')
     },
-    SlideEdit(this: EnhancedPageObject, slideText: string) {
+    SlideEdit(this: knolxRequestPage, slideText: string) {
         return this
             .clearValue('@slideInput')
             .setValue('@slideInput', slideText)
     },
-    savingSlide(this: EnhancedPageObject) {
+    savingSlide(this: knolxRequestPage) {
         return this
             .click('@slideSave')
 
     },
-    clickDropdown(this: EnhancedPageObject, optionValue: string) {
+    clickDropdown(this: knolxRequestPage, optionValue: string) {
         return this
             .click('@dropdown')
             .setValue('@dropdown', optionValue)
     },
-    UpdatingFeedback(this: EnhancedPageObject) {
+    UpdatingFeedback(this: knolxRequestPage) {
         return this
             .click('@feedbackUpdate')
 
     },
 
-    ClickRemarks(this: EnhancedPageObject, retext: string) {
+    ClickRemarks(this: knolxRequestPage, retext: string) {
         return this
             .clearValue('@remarks')
             .setValue('@remarks', retext)
             .click('@remarks')
 
     },
-    ApprovingSession(this: EnhancedPageObject) {
+    ApprovingSession(this: knolxRequestPage) {
         return this
             .click('@approveButton')
     },
-    RejectingingSession(this: EnhancedPageObject) {
+    RejectingingSession(this: knolxRequestPage) {
         return this
             .click('@rejectButton')
     },
