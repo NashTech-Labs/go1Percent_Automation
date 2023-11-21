@@ -14,7 +14,8 @@
     "@types/nightwatch": "^2.3.28",
     "chromedriver": "^119.0.1",
     "geckodriver": "^4.2.1",
-    "nightwatch": "^3.3.1",
+    "nightwatch": "^3.3.2",
+    "nightwatch-allure": "^1.2.0",
     "typescript": "^5.2.2"
   }
 }

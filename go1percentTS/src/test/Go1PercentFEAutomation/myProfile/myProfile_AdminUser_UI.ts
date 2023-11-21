@@ -1,5 +1,7 @@
-import { NightwatchBrowser, NightwatchTests } from 'nightwatch';
-const DataSet = require('../../../globals');
+import { NightwatchTests, NightwatchBrowser } from "nightwatch";
+//const DataSet = require('../../../globals');
+import globals from "../../../../globals";
+
 //const MyProfilePage = require('../../page-objects/myProfilePage');
 //const Login=browser.page.login();
 var userName = browser.globals.userName;
@@ -8,28 +10,9 @@ userName = 'testadmin';
 password = 'testadmin';
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
-const myProfile = browser.page.myProfilePage();
-
-const RequestedSessionsTest: NightwatchTests = {
-
-  'Login': (browser: NightwatchBrowser) => {
-
-    requestPage
-      .maximizeWindow()
-      .navigate()
-
-
-
-
-
-
-
-
-
-
 describe("My Profile Page Frontend Automation", () => {
     //this.timeout(25000)
-    var myProfile = browser.page.myProfilePage();
+    var myProfile = browser.page.myProfile.myProfilePage();
 
 
     beforeEach(function (browser) {
@@ -58,7 +41,7 @@ describe("My Profile Page Frontend Automation", () => {
 
     it('View rewards button is present on the profile page when no reward is redeemed till now', async function (browser) {
 
-            await myProfile.element.find('@ViewRewardBtn').waitUntil('visible', {timeout: 3000, abortOnFailure: false},{message: 'View Reward button found.'});
+            await myProfile.element.find('@ViewRewardBtn').waitUntil('visible', {timeout: 3000, abortOnFailure: false});
           
     });
 
