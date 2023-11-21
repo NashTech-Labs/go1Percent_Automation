@@ -54,7 +54,7 @@ var addRewardCommands = {
         .click('@individualButton');
     },
   
-    setAvailableForCompetency : function(this: AddRewardPage, browser : NightwatchBrowser){
+    setAvailableForCompetency : function(this: AddRewardPage){
         return this
         .waitForElementVisible('@competencyButton', 5000)
         .click('@competencyButton');
@@ -103,8 +103,21 @@ var addRewardCommands = {
           randomString += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
         }
         return randomString;
-    }
-    
+    },
+
+    scrollToIndividual: function(this: AddRewardPage, browser : NightwatchBrowser){
+        browser
+        .execute(function() {
+            document.querySelector('button.no-button')?.scrollIntoView();
+        });
+    }, 
+
+    scrollToCompetency: function(this: AddRewardPage, browser : NightwatchBrowser){
+        browser
+        .execute(function() {
+            document.querySelector('button.yes-button')?.scrollIntoView();
+        });
+    } 
 }
 
 const addRewardPage : PageObjectModel= {
