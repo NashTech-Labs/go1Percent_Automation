@@ -230,7 +230,7 @@ module.exports = {
         'pageNumber': '1',
         'pageSize': '10',
         'filter': 'upcoming',
-        'time': '1698949800000'
+        'time': '1700831564000'
     },
     // Past Sessions
     queryUsingTitlePast: {
