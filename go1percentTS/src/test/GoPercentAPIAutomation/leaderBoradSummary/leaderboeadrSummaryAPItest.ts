@@ -1,4 +1,4 @@
-import { config } from '../../../helpers/Go1PercentFEAutomation/leaderboardSummary/leaderBoardSummary';
+import { config } from '../../../helpers/Go1PercentAPIAutomation/leaderboardSummary/leaderBoardSummary';
 import request from 'supertest';
 import { expect } from 'chai';/**
  * Asserts the response time of an HTTP request.

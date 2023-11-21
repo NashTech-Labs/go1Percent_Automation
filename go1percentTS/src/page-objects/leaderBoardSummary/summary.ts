@@ -54,7 +54,7 @@ const summaryPage: PageObjectModel = {
             selector: '//h6[text()=" LEADERBOARD "]',
             locateStrategy: 'xpath'
         },
-        dashboard: { selector: 'div h6[class="ms-3 mb-n1 text-uppercase text-sm text-white font-weight-bold"]' },
+        dashboard: { selector: 'div h6[class*="text-sm text-white"]' },
         summary: { selector: 'a[class="nav-link text-white"]' },
         welcomeToSummaryPage: { selector: 'div[class="ml-1 mt-4 text-div"]' },
         navigationArrow: { selector: "div:nth-child(2) button.btn.sy" },
@@ -63,7 +63,10 @@ const summaryPage: PageObjectModel = {
         contributionTypes_3: { selector: "div[class='row section'] div:nth-child(3) div:nth-child(1) div:nth-child(1) div:nth-child(2) p:nth-child(1)" },
         contributionTypes_4: { selector: "div[class='row section'] div:nth-child(4) div:nth-child(1) div:nth-child(1) div:nth-child(2) p:nth-child(1)" },
         leadingNashers: { selector: 'div[class="leading mt-3"]' },
-        leadingNasherList: { selector: 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]' },
+        leadingNasherList: {
+            // selector: 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]' 
+            selector: 'div[class*="d-flex justify-content-between align-items-center summary"]'
+        },
         thismonth: { selector: 'a[class="mx-2 tabs cursor-pointer overall-txt-color"]' },
         allTime: { selector: "app-leading-knolder div[class='card leading-card p-4'] a[class='mx-2 tabs cursor-pointer overall-txt-color']" },
     }
