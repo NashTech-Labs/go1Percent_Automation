@@ -69,7 +69,7 @@ const techhubCommands = {
             const record = parseInt(matches[0], 10);
             const pages = Math.ceil(record / 10);
             this.pause(5000);
-            for (let i = 0; i < pages; i++) {
+            for (let count = 0; count < pages; count++) {
                 this.pause(2000);
                 const el = this.element.find('@Request_Container');
                 this.getLocationInView(el.getLastElementChild());
@@ -80,7 +80,6 @@ const techhubCommands = {
 };
 
 const techhubPage: PageObjectModel = {
-    url: "",
     elements: techhubElements,
     commands: [techhubCommands]
 };

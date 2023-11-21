@@ -37,7 +37,6 @@ import { PageObjectModel, EnhancedPageObject } from "nightwatch";
     };
 
         const techhubDetailPage: PageObjectModel = {
-            url: "",
             elements: techhubDetailElements,
             commands:[techhubDetailCommands]
     }

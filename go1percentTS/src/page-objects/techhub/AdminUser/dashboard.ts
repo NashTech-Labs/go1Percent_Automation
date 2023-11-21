@@ -16,7 +16,6 @@ const dashboardCommands = {
 };
 
 const dashboardPage: PageObjectModel = {
-    url: "",
     elements: dashboardElements,
     commands: [dashboardCommands]
 };
