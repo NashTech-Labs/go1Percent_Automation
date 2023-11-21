@@ -129,6 +129,7 @@ describe('api testing', function () {
         expect(response.body.data).to.have.property('overdue');
         expect(response.body.data.overdue).to.be.a("number");
         expect(response.body.data.overdue).to.not.be.null;
+        assertResponseTime(startTimestamp);
       });
   });
 
@@ -148,6 +149,7 @@ describe('api testing', function () {
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
         browser.assert.equal(dataCount, 20, `Expected data count: 20, Actual data count: ${dataCount}`);
+        assertResponseTime(startTimestamp);
       });
   });
   it('Verify that the number of items per page dropdown is working for limit=15 - Open Ticket', async (): Promise<void> => {
@@ -162,6 +164,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -180,6 +183,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -198,6 +202,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -216,6 +221,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -234,6 +240,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -252,6 +259,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -270,6 +278,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -288,6 +297,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -306,6 +316,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -324,6 +335,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -342,6 +354,7 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.be.a("Array");
         expect(response.body.data).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -363,6 +376,7 @@ describe('api testing', function () {
         expect(response.body.data).to.not.be.null;
         expect(response.body.count).to.be.a("number");
         expect(response.body.count).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -384,6 +398,7 @@ describe('api testing', function () {
         expect(response.body.data).to.not.be.null;
         expect(response.body.count).to.be.a("number");
         expect(response.body.count).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
 
@@ -406,6 +421,7 @@ describe('api testing', function () {
         expect(response.body.data).to.not.be.null;
         expect(response.body.count).to.be.a("number");
         expect(response.body.count).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
 
@@ -428,6 +444,7 @@ describe('api testing', function () {
         expect(response.body.data).to.not.be.null;
         expect(response.body.count).to.be.a("number");
         expect(response.body.count).to.not.be.null;
+        assertResponseTime(startTimestamp);
 
         const dataCount = response.body.data.length;
         // Assert the total count of the 'data' array
@@ -473,6 +490,7 @@ describe('api testing', function () {
         expect(response.body.resource).to.equal("updateTicketDetails");
         expect(response.body.status).to.equal(true);
         expect(response.body.data).to.equal("Ticket Updated Successfully!");
+        assertResponseTime(startTimestamp);
 
       })
     return getTicketID;
@@ -501,6 +519,8 @@ describe('api testing', function () {
         expect(response.body).to.have.property('data');
         expect(response.body.data).to.have.property('comment');
         expect(response.body.data.comment.note).to.equal(requestedData.note);
+        assertResponseTime(startTimestamp);
+
       })
   });
 });
