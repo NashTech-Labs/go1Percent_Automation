@@ -272,7 +272,6 @@ const techhubCommands = {
   };
   
   const techhubTest: PageObjectModel = {
-    url: 'https://nashtechglobal.qa.go1percent.com',
 
     commands: [techhubCommands],
 
