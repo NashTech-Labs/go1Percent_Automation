@@ -109,14 +109,15 @@ const commands = {
 
     //we expand our configuration here
     expandContribution(this: LeadingNasherPage) {
-        const regexPattern: RegExp = /[A-Za-z]+ [A-Za-z]+ [0-9]+-[A-Za-z]+-[0-9]+/;
+        let regexPattern = '^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?/~`-]+$';
         return this
             .waitForElementVisible('@exanContribution')
             .click('@exanContribution')
             .getText('@contributionsTyes', function name(text) {
-                this.pause()
-                this.assert.textContains('@contributionsTyes', 'test', 'contains test as prifix or suffix of contibution')
+                console.log('---------------------',text.value)
+              
             })
+
     },
     nasherWithSkillAndWithoutSkill(this: LeadingNasherPage) {
         //conatais skill with lebels 

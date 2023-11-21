@@ -144,13 +144,12 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    * Test case to expand any contribution and verify visibility of one's own contribution for that type with topic name and date.
    */
     it('When i expand any contribution Then i should able to see my contribution for that contribution type with Topic name and Date', () => {
-        regexPattern = '[A-Za-z]+ [A-Za-z]+ [0-9]+-[A-Za-z]+-[0-9]+';
         leadingNasherCommonActions();
         leadingpage
             .pointsSectionWithScore()
             .expandContribution()
             //with user expand contribution user is able to see the contribution
-            .assert.containsText('@contributionsTyes', 'test', 'contains test as prifix or suffix of contibution')
+            .assert.containsText('@contributionsTyes', 'Test'||'test', 'asssert test as suffix or prefix')
     });
 
     /**

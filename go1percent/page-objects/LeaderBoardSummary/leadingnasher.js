@@ -217,13 +217,11 @@ module.exports = {
             
             //we expand our configuration here
             expandContribution() {
-                regexPattern = '[A-Za-z]+ [A-Za-z]+ [0-9]+-[A-Za-z]+-[0-9]+';
                 return this
                     .waitForElementVisible('@exanContribution')
                     .click('@exanContribution')
                     .getText('@contributionsTyes', function name(text) {
-                    })
-                    .assert.containsText('@contributionsTyes', 'test', 'contains test as prifix or suffix of contibution')
+                    })  
             },
             nasherWithSkillAndWithoutSkill() {
                 //conatais skill with lebels 
