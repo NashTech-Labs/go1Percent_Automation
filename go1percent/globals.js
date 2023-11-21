@@ -30,6 +30,8 @@ function startTime() {
 
 
 module.exports = {
+    baseurl: 'https://backend.qa.go1percent.com',
+
     reporter: (results,done)=>{
         const reporter = new allureReporter.NightwatchAllureReporter({});
         reporter.write(results,done);
