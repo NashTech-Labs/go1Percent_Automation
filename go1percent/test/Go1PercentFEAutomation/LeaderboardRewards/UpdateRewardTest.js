@@ -1,12 +1,12 @@
 const login = require('../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1Percentloging');
 describe('Leaderboard: Update Rewards Tab Test', () => {
-  const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
+  const updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
 
   before((client) => {
     login.beforeEach(browser);
     login['landing on dashboard page'](browser);
     browser
-    .page.Leaderboard_Rewards.rewards().goToRewards()
+    .page.LeaderboardRewards.rewards().goToRewards()
     .assert.urlContains('rewards/list', 'Reward tab is opened');
   });
 

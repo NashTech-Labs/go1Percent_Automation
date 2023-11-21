@@ -1,13 +1,13 @@
 
 import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
-import { RewardPage } from '../../../page-objects/Leaderboard_Rewards/rewards';
-import { RedeemRewardPage } from '../../../page-objects/Leaderboard_Rewards/redeem_reward';
+import { RewardPage } from '../../../page-objects/LeaderboardRewards/rewards';
+import { RedeemRewardPage } from '../../../page-objects/LeaderboardRewards/redeem_reward';
 
 
 const redeemRewardTest: NightwatchTests = {
     
     before: (browser: NightwatchBrowser) => {
-    const rewardPage= browser.page.Leaderboard_Rewards.rewards() as RewardPage;
+    const rewardPage= browser.page.LeaderboardRewards.rewards() as RewardPage;
     rewardPage
     .navigate()
     .maximizeWindow()
@@ -17,7 +17,7 @@ const redeemRewardTest: NightwatchTests = {
     },
 
     beforeEach : (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .openRewardReport();
     },
@@ -28,14 +28,14 @@ const redeemRewardTest: NightwatchTests = {
 
     //TC : 1169 
     'admin should be able to click on reward report button': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .assert.urlContains('rewards/reward-reports', 'Reward Report is opened.'); 
     },
 
     //TC : 1170
     'admin should be able to see list of names': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .assert.elementPresent('@employeeName', 'Employee name is present') 
         .assert.elementPresent('@competencyName', 'Competency name is present')
@@ -46,7 +46,7 @@ const redeemRewardTest: NightwatchTests = {
 
     //TC : 1171
     'admin should be able to click on any contributors tab': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .openRedeemRequestWindow()
         .assert.textContains('@RedeemRequestWindowTitle', 'Process a Redeem Request', 'Redeem Request window is opened.')
@@ -62,7 +62,7 @@ const redeemRewardTest: NightwatchTests = {
    * 3. After processing, the status of the reward changes only on refreshing
    * */
     'admin should able to change status of reward from processing to process': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .setStatusFilterToProcessing()
         .pause(3000);
@@ -98,7 +98,7 @@ const redeemRewardTest: NightwatchTests = {
     
     //TC : 1173
     'admin should able to switch to competency from Individual': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .switchToCompetency()
         .assert.textContains('@rewardReport', 'No Redeemed Reward Available', 'Switched to competency from Individual.')
@@ -108,7 +108,7 @@ const redeemRewardTest: NightwatchTests = {
 
     //TC : 1174
     'admin should be able to apply filter in all time dropdown': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         const currentFormattedDate = redeemedRewardsTab.getCurrentFormattedDate();
         redeemedRewardsTab
         .setTimeFilterToToday()
@@ -119,7 +119,7 @@ const redeemRewardTest: NightwatchTests = {
     // TC : 1175
     // BUG : On resetting the filter, the list does not appear
     'admin should able to filter out the status of reward': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         const currentFormattedDate = redeemedRewardsTab.getCurrentFormattedDate();
         redeemedRewardsTab
         .setStatusFilterToProcessing()
@@ -139,7 +139,7 @@ const redeemRewardTest: NightwatchTests = {
     // TC : 1176
     //BUG : show more is dispalyed, instead of redeemed rewards msg
     'admin should able to see blank screen with message': (browser: NightwatchBrowser) => {
-        const redeemedRewardsTab= browser.page.Leaderboard_Rewards.redeem_reward() as RedeemRewardPage;
+        const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
         redeemedRewardsTab
         .searchNasher('Tester')
         .waitForElementPresent('@rewardReport', 5000)

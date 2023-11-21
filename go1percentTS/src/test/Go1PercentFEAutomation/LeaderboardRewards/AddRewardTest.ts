@@ -1,12 +1,12 @@
 import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
-import { RewardPage } from '../../../page-objects/Leaderboard_Rewards/rewards';
-import { AddRewardPage } from '../../../page-objects/Leaderboard_Rewards/add_reward';
-import { UpdateRewardPage } from '../../../page-objects/Leaderboard_Rewards/update_reward';
+import { RewardPage } from '../../../page-objects/LeaderboardRewards/rewards';
+import { AddRewardPage } from '../../../page-objects/LeaderboardRewards/add_reward';
+import { UpdateRewardPage } from '../../../page-objects/LeaderboardRewards/update_reward';
 
 const addRewardTest: NightwatchTests = {
 
     before: (browser: NightwatchBrowser) => {
-    const rewardPage= browser.page.Leaderboard_Rewards.rewards() as RewardPage;
+    const rewardPage= browser.page.LeaderboardRewards.rewards() as RewardPage;
     rewardPage
     .navigate()
     .maximizeWindow()
@@ -16,7 +16,7 @@ const addRewardTest: NightwatchTests = {
     },
 
     beforeEach : (browser: NightwatchBrowser) => {
-    const addRewardTab= browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
+    const addRewardTab= browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
     addRewardTab
       .openAddRewardTab()
       .addImage(browser);
@@ -29,7 +29,7 @@ const addRewardTest: NightwatchTests = {
 
     //TC : 1177 
     'admin should be able to add new reward by clicking on add reward button': (browser: NightwatchBrowser) => {
-        const addRewardTab= browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
+        const addRewardTab= browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
         addRewardTab
         .assert.textContains('@addRewardTitle', 'Add a new reward', 'Add reward tab is opened.')
         .closeAddRewardTab();
@@ -37,7 +37,7 @@ const addRewardTest: NightwatchTests = {
 
     //TC : 1178
     'admin should able to add image in add new reward page': (browser: NightwatchBrowser) => {
-    const addRewardTab= browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
+    const addRewardTab= browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
     addRewardTab
     .assert.elementPresent('@imageCrossButton', 'Able to add image in add new reward page.')
     .closeAddRewardTab();
@@ -45,7 +45,7 @@ const addRewardTest: NightwatchTests = {
 
     //TC : 1179
     'admin should not be able to click on save button without adding details': (browser: NightwatchBrowser) => {
-        const addRewardTab= browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
+        const addRewardTab= browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
         addRewardTab
           .clickSaveButton()
           .assert.textContains('@errorMessage', 'Name is Required', 'Cannot save reward without adding name.')
@@ -55,8 +55,8 @@ const addRewardTest: NightwatchTests = {
     //TC : 1180
     'admin should be be able to save reward after adding all the details': (browser: NightwatchBrowser) => {
         
-        const addRewardTab = browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
-        const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
+        const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
         const rewardName = addRewardTab.generateRandomString();
 
         addRewardTab
@@ -79,8 +79,8 @@ const addRewardTest: NightwatchTests = {
 
       // TC : 1181
     'admin should able to see competency reward in competency section': (browser: NightwatchBrowser) => {
-        const addRewardTab = browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
-        const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
+        const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
         const rewardName = addRewardTab.generateRandomString();
     
         addRewardTab
@@ -106,8 +106,8 @@ const addRewardTest: NightwatchTests = {
 
     // TC : 1183
     'admin should not able to add current date in exp date it should a popup message': (browser: NightwatchBrowser) => {
-        const addRewardTab = browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
-        const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
+        const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
         const rewardName = addRewardTab.generateRandomString();
         const today = addRewardTab.getCurrentDate();
     
@@ -127,7 +127,7 @@ const addRewardTest: NightwatchTests = {
 
     // TC : 1184 : new test case 
     'admin should not able to add reward with same name': (browser: NightwatchBrowser) => {
-        const addRewardTab = browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
+        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
         addRewardTab
         .addARewardDetails('First Test Reward', '07-11-2027');
         browser
@@ -146,7 +146,7 @@ const addRewardTest: NightwatchTests = {
 
      //TC : 1185 : new test case 
      'admin should not able to add reward with name that contain special symbols and number': (browser: NightwatchBrowser) => {
-        const addRewardTab = browser.page.Leaderboard_Rewards.add_reward() as AddRewardPage;
+        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
         addRewardTab
         .addARewardDetails('Test_Reward', '07-11-2027');
         browser

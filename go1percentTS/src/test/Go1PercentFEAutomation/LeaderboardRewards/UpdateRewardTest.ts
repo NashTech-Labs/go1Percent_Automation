@@ -1,12 +1,12 @@
 import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
-import { RewardPage } from '../../../page-objects/Leaderboard_Rewards/rewards';
-import { UpdateRewardPage } from '../../../page-objects/Leaderboard_Rewards/update_reward';
+import { RewardPage } from '../../../page-objects/LeaderboardRewards/rewards';
+import { UpdateRewardPage } from '../../../page-objects/LeaderboardRewards/update_reward';
 
 
 const UpdateRewardTest: NightwatchTests = {
 
     before: (browser: NightwatchBrowser) => {
-    const rewardPage= browser.page.Leaderboard_Rewards.rewards() as RewardPage;
+    const rewardPage= browser.page.LeaderboardRewards.rewards() as RewardPage;
     browser
     .url('https://nashtechglobal.qa.go1percent.com')
     .window.maximize();
@@ -22,7 +22,7 @@ const UpdateRewardTest: NightwatchTests = {
 
   // TC: 1164
   'admin should not be able to edit Available For option': (browser: NightwatchBrowser) => {
-    const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+    const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
       updateRewardsTab
       .openUpdateTab()
       .assert.textContains('@updateRewardTitle', 'Update Reward', 'Update Reward tab is opened.')
@@ -35,7 +35,7 @@ const UpdateRewardTest: NightwatchTests = {
 
   // TC: 1165
   'admin should be able to change expiry date of existing rewards': (browser: NightwatchBrowser) => {
-    const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+    const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
     updateRewardsTab
     .openUpdateTab()
     .changeExpiryDate()
@@ -45,7 +45,7 @@ const UpdateRewardTest: NightwatchTests = {
 
   // TC: 1166
   'admin should be able to click on cancel button': (browser: NightwatchBrowser) => {
-    const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+    const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
     updateRewardsTab
     .openUpdateTab()
     .closeUpdateTab()
@@ -54,7 +54,7 @@ const UpdateRewardTest: NightwatchTests = {
 
    // TC: 1167
    'admin should be able to delete existing reward by clicking on delete button': (browser: NightwatchBrowser) => {
-    const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+    const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
     updateRewardsTab
     .openUpdateTab()
     .deleteReward()
@@ -64,7 +64,7 @@ const UpdateRewardTest: NightwatchTests = {
 
   // TC: 1168
   'admin should be able to switch on for competency option': (browser: NightwatchBrowser) => {
-    const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+    const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
       updateRewardsTab
       .switchToCompetency()
       .assert.cssProperty('@competencyOption', 'background-color', 'rgba(236, 64, 122, 1)', 'Switched to Competency.');
@@ -72,7 +72,7 @@ const UpdateRewardTest: NightwatchTests = {
 
     // TC: 1182
    'admin should be able to delete reward from competency section': (browser: NightwatchBrowser) => {
-    const updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward() as UpdateRewardPage;
+    const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
     updateRewardsTab
     .switchToCompetency()
     .assert.cssProperty('@competencyOption', 'background-color', 'rgba(236, 64, 122, 1)', 'Switched to Competency.')

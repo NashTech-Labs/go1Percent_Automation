@@ -7,7 +7,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
       login.beforeEach(browser);
       login['landing on dashboard page'](browser);
       browser
-      .page.Leaderboard_Rewards.rewards().goToRewards()
+      .page.LeaderboardRewards.rewards().goToRewards()
       .assert.urlContains('rewards/list', 'Reward tab is opened');
   });
   
@@ -20,7 +20,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
 
 
   beforeEach((client) => {
-    addRewardTab = browser.page.Leaderboard_Rewards.add_reward();
+    addRewardTab = browser.page.LeaderboardRewards.add_reward();
     addRewardTab
       .openAddRewardTab()
       .addImage(browser);
@@ -58,7 +58,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .assert.textContains('@alert', 'Successfully added reward!', 'Reward is successfully added in individual section.');
 
     //assert reward is added in the individual section
-    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
+    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
     updateRewardsTab
     .openUpdateTab()
     .assert.valueContains('@rewardName', rewardName, 'Reward added is present in individual section.')
@@ -77,7 +77,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     browser.refresh();
 
     //check reward is added in the competency section
-    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
+    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
     updateRewardsTab
     .switchToCompetency()
     .openUpdateTab()
