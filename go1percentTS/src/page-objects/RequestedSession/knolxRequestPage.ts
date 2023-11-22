@@ -157,13 +157,9 @@ const knolxRequestPage: PageObjectModel = {
         removeTag: 'i.fa:nth-child(1)',
         describeEdit: '.btn.edit',
         descriptionSave: '.btn.btn-primary.saveBtn.mx-2.mt-2',
-        // descriptionInput not working with other selectors as it keeps changing
-        descriptionInput: 'body > app-root > div > app-main > section > main > div > div > div > app-knolx > div > app-manage-session-detail > div.card.page-wrapper > div.row.manage-session-detail > div.col-xl-8.col-lg-8.col-md-7 > form > div.mb-2.mt-4.px-4 > div:nth-child(2) > textarea',
-        slideInput: '.bg-transparent.spanText.text-sm.px-1.mr-2.session-input.div-item.ng-untouched.ng-pristine.ng-valid',
-        slideEdit: {
-            selector: "(//button[@class='btn btn-primary edit-session-button floatRight'][normalize-space()='Edit'])[2]",
-            locateStrategy: 'xpath'
-        },
+        descriptionInput: 'div.mb-2.mt-4.px-4 > div:nth-child(2) textarea',
+        slideInput: 'div.w-100 textarea.session-input[formcontrolname="slideURL"]',
+        slideEdit: '.slide-url-button-div > button.btn.btn-primary.edit-session-button.floatRight',
         slideSave: '.btn.btn-primary.save-session-button.mx-2',
         dropdown: '.quarter-dropdown',
         feedbackUpdate: '.btn.btn-primary.save-session-button.save-session',
