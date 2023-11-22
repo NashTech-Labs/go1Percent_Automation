@@ -14,7 +14,7 @@ const Go1commands = {
         .click('@signIn')
     },    
     clickOnKnolxButton(this: LoginPage){
-        return this 
+        return this
         .click('@knolxButton')
     },
     clickOnMysession(this: LoginPage){
@@ -25,7 +25,7 @@ const Go1commands = {
         return this
         .click('@Mypastsession')
     },
-
+ 
     clickOnSelectiveSession(this: LoginPage){
         return this
                 .waitForElementVisible(By.xpath("//span[normalize-space()='3']"))
@@ -81,7 +81,7 @@ const LoginPage: PageObjectModel = {
                 locateStrategy: 'xpath'
             },
             BackButton: {
-                selector: '.addTxt', 
+                selector: '.addTxt',
             },
             FeedbackButton: {
                 selector: '.ms-2.fw-bold.text-sm.my-auto.text-white',  

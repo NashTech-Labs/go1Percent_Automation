@@ -1,6 +1,6 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 const pastSession = browser.page.myPastSession.myPastSession();
-
+ 
   describe("MyPastSession Frontend Automation", () => {
     before((browser: NightwatchBrowser) => {
     pastSession
@@ -11,7 +11,7 @@ const pastSession = browser.page.myPastSession.myPastSession();
       .assert.urlContains("my-dashboard");
       
   }),
-
+ 
    it("knolx page ", () => {
     pastSession
     .clickOnKnolxButton()
@@ -21,13 +21,13 @@ const pastSession = browser.page.myPastSession.myPastSession();
     .assert.urlContains("/knolx/my-sessions/my-upcoming-sessions");
    
   }),
-
+ 
    it("mypastSession page", () => {
     pastSession
     .clickOnMyPastSession()
     .waitForElementVisible('@Mypastsession')
     .assert.urlContains("/knolx/my-sessions/my-past-sessions");
-
+ 
   }),
   
   it("selective page", () => {
@@ -35,12 +35,12 @@ const pastSession = browser.page.myPastSession.myPastSession();
     .clickOnSelectiveSession()
     .assert.urlContains("knolx/my-sessions/my-past-sessions/65364ed48555d37c0a4f8dc7");
   }),
-
+ 
   it("back Button ", () => {
     pastSession
        .clickOnBackButton()
        .assert.urlContains("/knolx/my-sessions/my-past-sessions");
-
+ 
   }),
   
    it("Feedback Button ", () => {
@@ -50,7 +50,7 @@ const pastSession = browser.page.myPastSession.myPastSession();
        .assert.urlContains("knolx/feedback-report?id=65364ed48555d37c0a4f8dc7")
        .clickOnViewFeedbackButton()
   }),
-
+ 
    it("View Attendance Button ", () => {
     pastSession
        
@@ -60,8 +60,9 @@ const pastSession = browser.page.myPastSession.myPastSession();
        .clickOnCompletedSessionButton()
        .assert.urlContains("/knolx/my-sessions/my-past-sessions?id=65364ed48555d37c0a4f8dc7")
   })
-
-
+ 
+ 
 });
   
+ 
  
