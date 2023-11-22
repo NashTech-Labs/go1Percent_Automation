@@ -30,22 +30,12 @@ function startTime() {
 
 
 module.exports = {
-<<<<<<< HEAD
 
 
     urls: {
         token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
         go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
 
-=======
-   
-
-
-    urls: {
-        token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
-        go1percentBase: "https://knolx-backend.qa.go1percent.com/v02/",
-
->>>>>>> 22e0250410c03771114dee63feddbbd8d9efa619
     },
     Add_Contribution: {
         BaseUrl: "https://backend.qa.go1percent.com",
