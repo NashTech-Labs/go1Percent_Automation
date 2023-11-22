@@ -3,128 +3,131 @@ import { knolxRequestPage } from '../../../page-objects/RequestedSession/knolxRe
 
 let requestPage = browser.page.RequestedSession.knolxRequestPage() as knolxRequestPage; 
 
-const RequestedSessionsTest: NightwatchTests = {
+describe('Test Automation', () => {
 
-  'Login': (browser: NightwatchBrowser) => {
-
+  it('should enter credentials', () => {
     requestPage
       .maximizeWindow()
       .navigate()
       .enterCredentials('testadmin', 'testadmin')
       .signIn()
       .assert.urlContains("my-dashboard");
-  },
+  }),
 
-  'Should be able to see the available requested sessions': (browser: NightwatchBrowser) => {
+    it('Should be able to see the available requested sessions', () => {
 
-    requestPage
-      .clickAdmin()
-      .waitForElementVisible('@adminLink')
-      .clickKnolx()
-      .waitForElementVisible('@knolx')
-      .clickmanageSession()
-      .waitForElementVisible('@manageSessions')
-      .clickRequested()
-      .waitForElementVisible('@requested')
-      .assert.visible('@totalrecords')
-      .assert.urlContains("requested-sessions");
-  },
+      requestPage
+        .clickAdmin()
+        .waitForElementVisible('@adminLink')
+        .clickKnolx()
+        .waitForElementVisible('@knolx')
+        .clickmanageSession()
+        .waitForElementVisible('@manageSessions')
+        .clickRequested()
+        .waitForElementVisible('@requested')
+        .pause(500)
+        .assert.visible('@totalrecords')
+        .assert.urlContains("requested-sessions");
+    }),
 
-  'Should be able to update the title': (browser: NightwatchBrowser) => {
+    it('Should be able to update the title', () => {
 
-    requestPage
-      .clickSession()
-      .waitForElementVisible('@titleEdit')
+      requestPage
+        .clickSession()
+        .waitForElementVisible('@titleEdit')
 
-      .clickEditButton()
-      .waitForElementVisible('@inputTitle')
+        .clickEditButton()
+        .waitForElementVisible('@inputTitle')
 
-      .editTitle('Sample Text Title Update')
-      .waitForElementVisible('@saveButton')
+        .editTitle('Sample Text Title Update')
+        .waitForElementVisible('@saveButton')
 
-      .clickSaveButton()
-      .waitForElementVisible('@titleEdit')
-      .assert.containsText('@titleMessage', 'Successfully Updated')
-  },
+        .clickSaveButton()
+        .waitForElementVisible('@titleEdit')
+        .assert.containsText('@titleMessage', 'Successfully Updated')
+        .pause(500)
+    }),
 
-  'Should be able to add tags': (browser: NightwatchBrowser) => {
+    it('Should be able to add tags', () => {
 
-    requestPage
-      .addingTag('new tag')
-      .waitForElementVisible('@tagInput')
+      requestPage
+        .addingTag('new tag')
+        .waitForElementVisible('@tagInput')
 
-      .saveTag()
-      .assert.visible('@addTag')
-  },
+        .saveTag()
+        .pause(500)
+        .assert.visible('@addTag')
+    }),
 
-  'Should be able to remove tags': (browser: NightwatchBrowser) => {
+    it('Should be able to remove tags', () => {
 
-    requestPage
-      .RemovingTag()
-      .assert.visible('@addTag')
+      requestPage
+        .RemovingTag()
+        .pause(200)
+        .assert.visible('@addTag')
 
-  },
+    }),
 
-  'Should be able to update description': (browser: NightwatchBrowser) => {
+    it('Should be able to update description', () => {
 
-    requestPage
-      .clickEditDesc()
-      .waitForElementVisible('@descriptionInput')
+      requestPage
+        .clickEditDesc()
+        .waitForElementVisible('@descriptionInput')
 
-      .DescriptionEdit("Description update")
-      .waitForElementVisible('@descriptionSave')
+        .DescriptionEdit("Description update")
+        .waitForElementVisible('@descriptionSave')
 
-      .SavingDescription()
-      .waitForElementVisible('@titleEdit')
-      .assert.visible('@describeEdit')
-  },
+        .SavingDescription()
+        .waitForElementVisible('@titleEdit')
+        .pause(500)
+        .assert.visible('@describeEdit')
+    }),
 
-  'Should be able to update Feedback form': (browser: NightwatchBrowser) => {
+    it('Should be able to update Feedback form', () => {
 
-    requestPage
-      .clickDropdown('Knolx - Share Your Experience')
-      .waitForElementVisible('@feedbackUpdate')
+      requestPage
+        .clickDropdown('Knolx - Share Your Experience')
+        .waitForElementVisible('@feedbackUpdate')
 
-      .UpdatingFeedback()
-      .assert.containsText('@dropdown', 'Knolx - Share Your Experience')
-  },
+        .UpdatingFeedback()
+        .pause(300)
+        .assert.containsText('@dropdown', 'Knolx - Share Your Experience')
+    }),
 
+    it('Should be able to approve session', () => {
 
-  'Should be able to approve session': (browser: NightwatchBrowser) => {
+      requestPage
+        .ClickRemarks('Approving the session remarks')
+        .waitForElementVisible('@approveButton')
 
-    requestPage
-      .ClickRemarks('Approving the session remarks')
-      .waitForElementVisible('@approveButton')
+        .ApprovingSession()
+        .pause(300)
 
-      .ApprovingSession()
+    }),
 
-  },
+    it('Should be able to reject session', () => {
 
-  'Should be able to reject session': (browser: NightwatchBrowser) => {
+      requestPage
+        .ClickRemarks('Rejecting the session remarks')
+        .waitForElementVisible('@rejectButton')
 
-    requestPage
-      .ClickRemarks('Rejecting the session remarks')
-      .waitForElementVisible('@rejectButton')
+        .RejectingingSession()
+        .pause(300)
+    }),
 
-      .RejectingingSession()
-  },
+    it('Add or update SlideURL', () => {
 
-  'Add or update SlideURL': (browser: NightwatchBrowser) => {
+      requestPage
+        .clickSlideEdit()
+        .waitForElementVisible('@slideInput')
 
-    requestPage
-      .clickSlideEdit()
-      .waitForElementVisible('@slideInput')
+        .SlideEdit('www.google.com')
+        .waitForElementVisible('@slideSave')
 
-      .SlideEdit('www.google.com')
-      .waitForElementVisible('@slideSave')
+        .savingSlide()
+        .pause(500)
+    })
 
-      .savingSlide()
-  },
+});
 
-  after: (browser: NightwatchBrowser) => {
-    browser.end();
-  },
-};
-
-export default RequestedSessionsTest;
 
