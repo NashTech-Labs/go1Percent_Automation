@@ -117,6 +117,9 @@ const commands = {
             return this
                 .waitForElementVisible('@exanContribution')
                 .click('@exanContribution')
+                .getText('@contributionsTyesTwo', function name(text) {
+                console.log('-----------------------------------',text.value) 
+                })
                 .assert.textMatches('@contributionsTyesOne', new RegExp(wordRegex))
                 .assert.textMatches('@contributionsTyesTwo', new RegExp(dateRegex))
         },

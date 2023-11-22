@@ -1,7 +1,7 @@
 import {NightwatchBrowser } from 'nightwatch';
-import{LoginPage} from '../../../../page-objects/leaderBoardSummary/login';
-import{SummaryPage} from '../../../../page-objects/leaderBoardSummary/summary';
-import {LeadingNasherPage} from '../../../../page-objects/leaderBoardSummary/leadingNasherPage';
+import{LoginPage} from '../../../page-objects/leaderBoardSummary/login';
+import{SummaryPage} from '../../../page-objects/leaderBoardSummary/summary';
+import {LeadingNasherPage} from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
 
 
 describe('UI automation for leaderboard summary page option', () => {
