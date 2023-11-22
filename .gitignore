@@ -56,5 +56,8 @@ go1percentTS/log/
 go1percentTS/screens/
 go1percentTS/node_modules
 go1percentTS/dist
+go1percentTS/nightwatch
+go1percentTS/tsconfig.json
+go1percentTS/nightwatch.conf.js
 
 
