@@ -1,38 +1,40 @@
-var updateRewardsCommands = {
+import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 
-    openUpdateTab : function () {
+const updateRewardCommands = {
+
+    openUpdateTab : function (this: UpdateRewardPage) {
         return this
         .waitForElementPresent('@editButton', 5000)
         .click('@editButton')
         .waitForElementPresent('@updateRewardTitle', 5000);
     },
 
-    editAvailableFor : function () {
+    editAvailableFor : function (this: UpdateRewardPage) {
         return this
         .waitForElementPresent('@availableForButton', 5000);
     },
 
-    closeUpdateTab : function () {
+    closeUpdateTab : function (this: UpdateRewardPage) {
         return this
         .waitForElementPresent('@cancelButton', 5000)
         .click('@cancelButton')
         .waitForElementNotPresent('@updateRewardTitle', 5000);
     },
 
-    changeExpiryDate : function () {
+    changeExpiryDate : function (this: UpdateRewardPage) {
         return this
         .waitForElementPresent('@expiryDate', 5000)
-        .setValue('@expiryDate', new Date('2027-10-08'))
+        .setValue('@expiryDate', '10-08-2027')
         .click('@updateButton');
     },
 
-    deleteReward : function () {
+    deleteReward : function (this: UpdateRewardPage) {
         return this
         .moveToElement('@deleteButton', 0, 0)
         .click('@deleteButton');
     },
 
-    switchToCompetency : function () {
+    switchToCompetency : function (this: UpdateRewardPage) {
         return this
         .waitForElementPresent('@editButton', 5000)
         .waitForElementPresent('@competencyOption', 5000)
@@ -41,9 +43,9 @@ var updateRewardsCommands = {
     
 }
 
-module.exports = {
+const updateRewardPage : PageObjectModel = {
     url: 'https://nashtechglobal.qa.go1percent.com',
-    commands: [updateRewardsCommands],
+    commands: [updateRewardCommands],
     elements: {
         currentButton: {
             selector: 'a.newTabs'
@@ -84,3 +86,9 @@ module.exports = {
     }
 }
 
+export default updateRewardPage;
+export interface UpdateRewardPage
+  extends EnhancedPageObject<typeof updateRewardCommands,
+  typeof updateRewardPage.elements> { }
+
+  

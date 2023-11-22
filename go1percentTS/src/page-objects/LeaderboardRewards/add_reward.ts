@@ -1,26 +1,29 @@
+import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
+import { NightwatchBrowser } from 'nightwatch';
+
 var addRewardCommands = {
 
-    openAddRewardTab : function () {
+    openAddRewardTab : function (this: AddRewardPage) {
         return this
         .waitForElementPresent('@addRewardButton', 5000)
         .click('@addRewardButton')
         .waitForElementPresent('@addRewardTitle', 5000); 
     },
 
-    clickSaveButton : function () {
+    clickSaveButton : function (this: AddRewardPage) {
         return this
         .waitForElementPresent('@submitButton', 5000)
         .click('@submitButton');
     },
 
-    closeAddRewardTab : function () {
+    closeAddRewardTab : function (this: AddRewardPage) {
         return this
         .waitForElementPresent('@cancelButton', 5000)
         .click('@cancelButton')
         .waitForElementNotPresent('@addRewardTitle', 5000);
     },
 
-    addARewardDetails : function(rewardName, expiryDate){  
+    addARewardDetails : function(this: AddRewardPage, rewardName : string, expiryDate: string){  
         return this
 
         //Reward name
@@ -45,32 +48,26 @@ var addRewardCommands = {
         
     },
 
-    setAvailableForIndividual : function(){
+    setAvailableForIndividual : function(this: AddRewardPage){
         return this
-        .execute(function() {
-            document.querySelector('button.yes-button').scrollIntoView();
-        })
         .waitForElementVisible('@individualButton', 5000)
         .click('@individualButton');
     },
   
-    setAvailableForCompetency : function(){
+    setAvailableForCompetency : function(this: AddRewardPage){
         return this
-         .execute(function() {
-            document.querySelector('button.no-button').scrollIntoView();
-            })
         .waitForElementVisible('@competencyButton', 5000)
         .click('@competencyButton');
     },
 
   
-    enableReward : function(){
+    enableReward : function(this: AddRewardPage){
         return this
         .waitForElementPresent('@enableButton', 5000)
         .click('@enableButton');
     },
 
-    addImage : function (browser) {
+    addImage : function (this: AddRewardPage, browser : NightwatchBrowser) {
         const path = require('path')
         // return this
         browser
@@ -78,16 +75,52 @@ var addRewardCommands = {
             if (result.value) {
                 // Element is interactable, proceed with file upload
                 browser.uploadFile('input[type="file"]', path
-                .resolve(__dirname ,'..','..','helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/Reward.jpeg'));
+                .resolve(__dirname,'..', '..', '..', '..', '..', 'go1percent/helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/Reward.jpeg'));
             } else {
                 console.error('Element is not interactable');
             }
         });         
-    }
+    },
+     
+    getCurrentDate: (): string => {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = today.getFullYear();
+        return `${day}-${month}-${year}`;   
+    },
+
+
+    generateRandomString: (): string => {
+        const allowedChars = 'abcdefghijklmnopqrstuvwxyz';
+        let randomString = '';
     
+        // Generate the first character separately to ensure it's capitalized
+        randomString += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length)).toUpperCase();
+    
+        // Generate the rest of the string
+        for (let charIndex = 1; charIndex < 6; charIndex++) {
+          randomString += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
+        }
+        return randomString;
+    },
+
+    scrollToIndividual: function(this: AddRewardPage, browser : NightwatchBrowser){
+        browser
+        .execute(function() {
+            document.querySelector('button.no-button')?.scrollIntoView();
+        });
+    }, 
+
+    scrollToCompetency: function(this: AddRewardPage, browser : NightwatchBrowser){
+        browser
+        .execute(function() {
+            document.querySelector('button.yes-button')?.scrollIntoView();
+        });
+    } 
 }
 
-module.exports = {
+const addRewardPage : PageObjectModel= {
     url: 'https://nashtechglobal.qa.go1percent.com',
     commands: [addRewardCommands],
     elements: {
@@ -114,9 +147,6 @@ module.exports = {
         },  
         errorMessage: {
             selector: 'span.errorMessage'
-        }, 
-        submitButton: {
-            selector: '#submitButton'
         }, 
         nameField: {
             selector: 'input[formcontrolname="name"]'
@@ -145,3 +175,9 @@ module.exports = {
     }
 }
 
+
+export default addRewardPage;
+ 
+export interface AddRewardPage
+  extends EnhancedPageObject<typeof addRewardCommands,
+  typeof addRewardPage.elements> { }
