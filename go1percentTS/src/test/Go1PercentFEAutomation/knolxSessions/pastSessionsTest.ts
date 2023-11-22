@@ -1,5 +1,5 @@
 import { NightwatchBrowser } from 'nightwatch';
-import { LoginPage } from '../../../page-objects/loginPage';
+import { LoginPage } from '../../../page-objects/login';
 import { KnolxSessionsPage } from '../../../page-objects/knolxSessions/knolxSessionsPage'
 const sessionDescription = "Testing TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting TicketTesting Ticket";
 
