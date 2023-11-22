@@ -17,6 +17,10 @@ describe('Go1Percent search contribution frontend testing', ()=> {
             .signIn()   
      });
 
+     afterEach((client: NightwatchBrowser) =>{
+        client.end();
+     });
+
      // This test case verifies that search bar is clickable.
     it("Verify that user is able to click on the search bar", () => {
         
