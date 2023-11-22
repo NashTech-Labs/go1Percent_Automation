@@ -502,7 +502,7 @@ describe('api testing', function () {
       note: 'test2222'
     };
     const requested = {
-      fileData: '../go1percent/test/test_Image/test.png', // Use an empty string for an empty field
+      fileData: '../go1percentTS/src/helpers/Go1PercentAPIAutomation/AdminHelpdesk/test_Image/test.png', // Use an empty string for an empty field
     };
     const agent = supertest.agent(backendUrl); // Use supertest.agent to make requests
     const response = await agent
