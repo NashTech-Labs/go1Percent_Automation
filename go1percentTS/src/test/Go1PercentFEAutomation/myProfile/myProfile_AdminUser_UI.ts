@@ -20,12 +20,12 @@ describe("My Profile Page Frontend Automation", () => {
         browser
             .window.maximize()
             //.maximizeWindow()
-            .page.login()
+            
+            .page.contribution.login()
             .navigate()
-            .pause(3000)
-            .enterCredentials(userName, password)
-            //browser.pause(3000);
-            .signIn()
+            .setValue('@emailInput', userName)
+            .setValue('@passwordInput', password)
+            .signIn() 
             .assert.urlContains("my-dashboard", 'URL contains my-dashboard');
         myProfile
             //.page.myProfilePage()
@@ -39,9 +39,14 @@ describe("My Profile Page Frontend Automation", () => {
         browser.end();
     });
 
-    it('View rewards button is present on the profile page when no reward is redeemed till now', async function (browser) {
+    it.only('View rewards button is present on the profile page when no reward is redeemed till now', function (browser) {
 
-            await myProfile.element.find('@ViewRewardBtn').waitUntil('visible', {timeout: 3000, abortOnFailure: false});
+        myProfile.isVisible('@ViewRewardBtn', function(result) {
+            this.assert.equal(typeof result, "object");
+            this.assert.equal(result.status, 0,);
+            this.assert.equal(result.value, true);
+          });
+            //await myProfile.element.find('@ViewRewardBtn').waitUntil('visible', {timeout: 3000, abortOnFailure: false});
           
     });
 

@@ -230,7 +230,7 @@ module.exports = {
         'pageNumber': '1',
         'pageSize': '10',
         'filter': 'upcoming',
-        'time': '1698949800000'
+        'time': '1700831564000'
     },
     // Past Sessions
     queryUsingTitlePast: {
@@ -266,25 +266,6 @@ module.exports = {
     access_token: "",
     backend_url: 'https://backend-radar.qa.go1percent.com/',
 
-
-    admin: {
-        headers: {
-            'Authorization': '',
-            'Source': 'https://nashtechglobal.qa.go1percent.com'
-        },
-        tokenHeaders: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'source': 'https://nashtechglobal.qa.go1percent.com'
-        },
-        tokenBody: {
-            client_id: 'leaderboard-ui',
-            client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
-            username: 'testadmin',
-            password: 'testadmin',
-            grant_type: 'password',
-
-        },
-    },
 
     dataToUpdate: {
         sessionDescription: "The error message indicates that the property 'topic' is not present in the response body, which is why the assertion is failing. This could be due to the structure of the response body or the way the API is handling the request. Please ensure that the API response structure matches the expected response format.",
