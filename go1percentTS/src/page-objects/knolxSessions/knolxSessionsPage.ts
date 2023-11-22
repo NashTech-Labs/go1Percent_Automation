@@ -14,7 +14,8 @@ function generateRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 let randomCompetency: string;
-import { EnhancedPageObject, NightwatchAPI, NightwatchBrowser } from 'nightwatch';
+
+import { PageObjectModel, EnhancedPageObject, NightwatchAPI } from 'nightwatch';
 
 const knolxSessionsCommands = {
     waitForPageLoad(this: KnolxSessionsPage) {
@@ -270,103 +271,105 @@ const knolxSessionsCommands = {
     },
     slotIspresent(this: KnolxSessionsPage) {
         return this
-            .isPresent('@sessionSlot', function(result) {
-                
-               console.log("value="+ result.value);
-              });
+            .isPresent('@sessionSlot', function (result) {
+
+                console.log("value=" + result.value);
+            });
     },
 
 };
 
-const knolxSessionsElements = {
-    knolxButton: "[src='../../../assets/Icons/knolx.svg']",
 
-    sessionsButton: ".nav.subMenu li a[href='/knolx/upcoming-sessions']",
 
-    // Upcoming Sessions Page 
-    allCompetency: {
-        selector: "//select[option[contains(text(),'All Competency')]]",
-        locateStrategy: 'xpath'
-    },
-    allSessions: {
-        selector: "//select[option[contains(text(),'All Session')]]",
-        locateStrategy: 'xpath'
-    },
-    allTime: {
-        selector: "//select[option[contains(text(),'All Time')]]",
-        locateStrategy: 'xpath'
-    },
-    allLocation: {
-        selector: "//select[option[contains(text(),'All Location')]]",
-        locateStrategy: 'xpath'
-    },
-    addToCalaender: "button.add-btn",
-    closePopUp: ".material-icons.close-icon",
-    bookmarkButton: ".book:first-of-type",
-    nasher: ".text-bold",
-
-    //Filter by All competency 
-    testAutomationCompetency: {
-        selector: "//option[contains(text(),' Test Automation Competency')]",
-        locateStrategy: 'xpath'
-    },
-    testAutomationCompetencyDashboard: ".topic-text.mb-n1 + .font-weight-bold",
-    // Filter by All Sessions
-    knolxSessions:
-    {
-        selector: "//option[contains(text(),'Knolx')]",
-        locateStrategy: 'xpath'
-    },
-    knolxSessionsDashboard: ".knolxBadge",
-    // Filter by Calender
-    calender: "input[name='date']",
-    nextCalenderButton: "button.next",
-    previousCalenderButton: "button.previous",
-    calenderDate: ".ms-md-0.ms-sm-6 > h6",
-    competencyName: ".topic-text.mb-n1 + .font-weight-bold",
-    allCompetencyDropdown: {
-        selector: "(//select[@class='form-control cursor-pointer py-3 ps-1 mb-2'])[1]/option",
-        locateStrategy: 'xpath'
-    },
-    firstDate: {
-        selector: "(//*[@class='mb-n1'])[1]",
-        locateStrategy: 'xpath'
-    },
-    noSessionDisplay: ".card > h6",
-    fourteenOctInPast: {
-        selector: "(//span[text()='14'])",
-        locateStrategy: 'xpath'
-    },
-    dateDashboard: ".ms-md-0 > .mb-n1",
-    sessionSlot: {
-        selector: "(//div[@class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4'])[1]",
-        locateStrategy: 'xpath'
-    },
-    //Past Sessions Page
-    pastSessionTab: {
-        selector: "//a[text()='Past Sessions']",
-        locateStrategy: 'xpath'
-    },
-    upcomingSessionTab: {
-        selector: "//a[text()='Upcoming']",
-        locateStrategy: 'xpath'
-    },
-    testingTicket: {
-        selector: "//h6[normalize-space()='Testing Ticket']",
-        locateStrategy: 'xpath'
-    },
-    sessionDescription: ".description > .overall-txt-color",
-    //Social Media Links in Past Sessions Page
-    facebook: "img[alt='facebook']",
-    twitter: "img[alt='twitter']",
-    linkedin: "img[alt='linkedin']",
-
-};
-
-export default {
+const knolxPage: PageObjectModel = {
     url: '',
-    elements: knolxSessionsElements,
+    elements: {
+        knolxButton: "[src='../../../assets/Icons/knolx.svg']",
+
+        sessionsButton: ".nav.subMenu li a[href='/knolx/upcoming-sessions']",
+
+        // Upcoming Sessions Page 
+        allCompetency: {
+            selector: "//select[option[contains(text(),'All Competency')]]",
+            locateStrategy: 'xpath'
+        },
+        allSessions: {
+            selector: "//select[option[contains(text(),'All Session')]]",
+            locateStrategy: 'xpath'
+        },
+        allTime: {
+            selector: "//select[option[contains(text(),'All Time')]]",
+            locateStrategy: 'xpath'
+        },
+        allLocation: {
+            selector: "//select[option[contains(text(),'All Location')]]",
+            locateStrategy: 'xpath'
+        },
+        addToCalaender: "button.add-btn",
+        closePopUp: ".material-icons.close-icon",
+        bookmarkButton: ".book:first-of-type",
+        nasher: ".text-bold",
+
+        //Filter by All competency 
+        testAutomationCompetency: {
+            selector: "//option[contains(text(),' Test Automation Competency')]",
+            locateStrategy: 'xpath'
+        },
+        testAutomationCompetencyDashboard: ".topic-text.mb-n1 + .font-weight-bold",
+        // Filter by All Sessions
+        knolxSessions:
+        {
+            selector: "//option[contains(text(),'Knolx')]",
+            locateStrategy: 'xpath'
+        },
+        knolxSessionsDashboard: ".knolxBadge",
+        // Filter by Calender
+        calender: "input[name='date']",
+        nextCalenderButton: "button.next",
+        previousCalenderButton: "button.previous",
+        calenderDate: ".ms-md-0.ms-sm-6 > h6",
+        competencyName: ".topic-text.mb-n1 + .font-weight-bold",
+        allCompetencyDropdown: {
+            selector: "(//select[@class='form-control cursor-pointer py-3 ps-1 mb-2'])[1]/option",
+            locateStrategy: 'xpath'
+        },
+        firstDate: {
+            selector: "(//*[@class='mb-n1'])[1]",
+            locateStrategy: 'xpath'
+        },
+        noSessionDisplay: ".card > h6",
+        fourteenOctInPast: {
+            selector: "(//span[text()='14'])",
+            locateStrategy: 'xpath'
+        },
+        dateDashboard: ".ms-md-0 > .mb-n1",
+        sessionSlot: {
+            selector: "(//div[@class='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4'])[1]",
+            locateStrategy: 'xpath'
+        },
+        //Past Sessions Page
+        pastSessionTab: {
+            selector: "//a[text()='Past Sessions']",
+            locateStrategy: 'xpath'
+        },
+        upcomingSessionTab: {
+            selector: "//a[text()='Upcoming']",
+            locateStrategy: 'xpath'
+        },
+        testingTicket: {
+            selector: "//h6[normalize-space()='Testing Ticket']",
+            locateStrategy: 'xpath'
+        },
+        sessionDescription: ".description > .overall-txt-color",
+        //Social Media Links in Past Sessions Page
+        facebook: "img[alt='facebook']",
+        twitter: "img[alt='twitter']",
+        linkedin: "img[alt='linkedin']",
+
+    },
     commands: [knolxSessionsCommands],
 };
-export interface KnolxSessionsPage extends EnhancedPageObject<typeof knolxSessionsCommands, typeof knolxSessionsElements> { }
+export default knolxPage;
+export interface KnolxSessionsPage
+    extends EnhancedPageObject<typeof knolxSessionsCommands, typeof knolxPage.elements> { }
 

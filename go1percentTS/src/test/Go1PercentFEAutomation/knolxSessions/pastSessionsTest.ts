@@ -8,7 +8,7 @@ let login: LoginPage, sessionsPage: KnolxSessionsPage;
 describe("Past Sessions Page Frontend Automation", () => {
     before(function () {
         login = browser.page.loginPage() as LoginPage
-        sessionsPage = browser.page.knolxSessionsPage() as KnolxSessionsPage
+        sessionsPage = browser.page.knolxSessions.knolxSessionsPage() as KnolxSessionsPage
         browser.window.maximize()
         login.navigate()
             .enterCredentials(browser.globals.userName, browser.globals.password)
