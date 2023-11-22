@@ -75,8 +75,11 @@ module.exports = {
         exanContribution: {
             selector: 'div[class="accordion mb-3 br spanText"]'
         },
-        contributionsTyes: {
-            selector: 'div[class="detail-row row pt-3 ml-0 ml-xl-1 p-0"]'
+        contributionsTyesOne: {
+            selector: "div[class*='pb-3 mt-4'] div div:nth-child(1) div:nth-child(1)"
+        },
+        contributionsTyesTwo:{
+            selector:'div[class="col-4 col-md-4 text-right text-xl-center"]'
         },
         skillButton: {
             selector: 'li[class="nav-item my-1 cursor-pointer text-bold p-2"]'
@@ -217,11 +220,16 @@ module.exports = {
             
             //we expand our configuration here
             expandContribution() {
-                return this
-                    .waitForElementVisible('@exanContribution')
-                    .click('@exanContribution')
-                    .getText('@contributionsTyes', function name(text) {
-                    })  
+                
+            let wordRegex = '[A-Za-z]+ [A-Za-z]+';
+            let dateRegex='[0-9]+-[A-Za-z]+-[0-9]+';
+
+            return this
+                .waitForElementVisible('@exanContribution')
+                .click('@exanContribution')
+                .assert.textMatches('@contributionsTyesOne', new RegExp(wordRegex))
+                .assert.textMatches('@contributionsTyesTwo', new RegExp(dateRegex))
+
             },
             nasherWithSkillAndWithoutSkill() {
                 //conatais skill with lebels 

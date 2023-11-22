@@ -1,3 +1,4 @@
+import { Assertion } from 'chai';
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 const { assert } = require("nightwatch");
 const randomNumber = Math.floor(Math.random() * 5) + 1;
@@ -107,18 +108,19 @@ const commands = {
             .assert.textMatches('@graphData2', new RegExp(graphDetail2sRegex))
     },
 
-    //we expand our configuration here
-    expandContribution(this: LeadingNasherPage) {
-        let regexPattern = '^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?/~`-]+$';
-        return this
-            .waitForElementVisible('@exanContribution')
-            .click('@exanContribution')
-            .getText('@contributionsTyes', function name(text) {
-                console.log('---------------------',text.value)
-              
-            })
+    // we expand our configuration here
+        expandContribution(this: LeadingNasherPage) {
+            
+            let wordRegex = '[A-Za-z]+ [A-Za-z]+';
+            let dateRegex='[0-9]+-[A-Za-z]+-[0-9]+';
 
-    },
+            return this
+                .waitForElementVisible('@exanContribution')
+                .click('@exanContribution')
+                .assert.textMatches('@contributionsTyesOne', new RegExp(wordRegex))
+                .assert.textMatches('@contributionsTyesTwo', new RegExp(dateRegex))
+        },
+   
     nasherWithSkillAndWithoutSkill(this: LeadingNasherPage) {
         //conatais skill with lebels 
         return this
@@ -236,9 +238,13 @@ const leadingNasher: PageObjectModel = {
         exanContribution: {
             selector: 'div[class="accordion mb-3 br spanText"]'
         },
-        contributionsTyes: {
-            selector: 'div[class="detail-row row pt-3 ml-0 ml-xl-1 p-0"]'
+        contributionsTyesOne: {
+            selector: "div[class*='pb-3 mt-4'] div div:nth-child(1) div:nth-child(1)"
         },
+        contributionsTyesTwo:{
+            selector:'div[class="col-4 col-md-4 text-right text-xl-center"]'
+        },
+        
         skillButton: {
             selector: 'li[class="nav-item my-1 cursor-pointer text-bold p-2"]'
         },
