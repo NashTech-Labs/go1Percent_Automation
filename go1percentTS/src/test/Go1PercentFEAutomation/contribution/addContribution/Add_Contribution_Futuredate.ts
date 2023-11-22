@@ -3,6 +3,7 @@ const dashboard = browser.page.contribution.addContribution.Dashboard();
 const profile = browser.page.contribution.addContribution.Profile();
 const contribution = browser.page.contribution.addContribution.Contribution(); 
 import { NightwatchBrowser } from 'nightwatch';
+
 module.exports = 
 {
 
@@ -20,11 +21,11 @@ module.exports =
       'click to setting and profile' : function (browser:NightwatchBrowser) 
       { 
           
-          
-          dashboard
-          .waitForElementVisible('@body', 1000)
-          .click('@setting')
-          .click("@profile")
+        dashboard
+        .waitForElementVisible('@body',1000)
+        .click('@setting')
+        .click("@profile")
+    
       
       },
   
@@ -41,11 +42,11 @@ module.exports =
       'Verify that user should not be able to add the form by filling future date':function (browser:NightwatchBrowser) 
     { 
         contribution
-            .sendKeys("@title", ['Nightwatchjs test script'])
+            .setValue("@title", ['Nightwatchjs test script'])
             .setValue('@contributiontype', 'Book')
             .Futuredate()
-            .sendKeys("@description", ['Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to'])
-            .sendKeys("@bookurl", ['www.cklmnlfdsa.org'])
+            .setValue("@description", ['Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to'])
+            .setValue("@bookurl", ['www.cklmnlfdsa.org'])
             .click("@submit")
             .Alerttext()
             .Submitdisabled('disabled')
