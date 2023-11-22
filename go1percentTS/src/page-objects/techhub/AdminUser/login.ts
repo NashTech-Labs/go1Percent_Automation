@@ -10,14 +10,14 @@ const loginElements =
 
 const loginCommands = 
 {
-    enterCredentials(this: EnhancedPageObject, email: string, password: string) {
+    enterCredentials(this: LoginPage, email: string, password: string) {
         return this
             .setValue('@emailInput', email)
             .pause(1000)
             .setValue('@passwordInput', password)
             .pause(1000)
     },
-    signIn(this: EnhancedPageObject) {
+    signIn(this: LoginPage) {
         return this
             .click("@signIn")
     },

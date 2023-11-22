@@ -1,7 +1,7 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 import { DashboardPage } from '../../../../page-objects/techhub/AdminUser/dashboard';
 
-describe('Go1percent techHub FE Testing', () => {
+describe('Go1percent ', () => {
 
     it("navigate to Techhub page", (browser:NightwatchBrowser)=> {
         browser
