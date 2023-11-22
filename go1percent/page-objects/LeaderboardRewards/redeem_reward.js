@@ -86,7 +86,7 @@ var redeemRewardCommands = {
         .waitForElementPresent('@employeeName');
     },
 
-    searchNasher: function(name){
+    searchNasher: function(name){5
         return this
         .waitForElementPresent('@searchFeild', 5000) 
         .setValue('@searchFeild', name)

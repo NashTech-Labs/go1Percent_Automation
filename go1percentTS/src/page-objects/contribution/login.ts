@@ -8,6 +8,7 @@ const commands = [{
             .setValue('@passwordInput', password)
             .pause(1000)
     },
+
     signIn(this: Login) {
         return this
             .click("@signIn")
@@ -18,7 +19,6 @@ const login: PageObjectModel = {
     commands: commands,
 
     url: "https://nashtechglobal.qa.go1percent.com/",
-
 
 
     elements: {
