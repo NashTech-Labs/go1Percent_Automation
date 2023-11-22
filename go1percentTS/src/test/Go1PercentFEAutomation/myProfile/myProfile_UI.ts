@@ -1,7 +1,7 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 //const DataSet = require('../../../globals');
 import globals from "../../../../globals";
-const { assert } = require('nightwatch');
+import { Nightwatch } from "nightwatch";
 // const DataSet = require('../../../globals');
 var userName = browser.globals.userName;
 var password = browser.globals.password;
