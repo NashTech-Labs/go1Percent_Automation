@@ -21,17 +21,17 @@ module.exports = {
   page_objects_path: ['./dist/src/page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
+  //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: '',
+  //custom_assertions_path: '',
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   // plugins: ["vite-plugin-nightwatch","@nightwatch/react"],
   plugins: ['@nightwatch/apitesting'],
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
-  globals_path : './globals.js',
+  //globals_path : './globals.ts',
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
@@ -70,7 +70,12 @@ module.exports = {
       }
     },
 
-    
+    api_testing: {
+      start_session: false,
+      webdriver: {
+        start_process: false,
+      }
+    },
 
     firefox: {
       desiredCapabilities : {
@@ -119,6 +124,8 @@ module.exports = {
       }
     },
 
+    
+
     edge: {
       desiredCapabilities : {
         browserName : 'MicrosoftEdge',
@@ -142,12 +149,7 @@ module.exports = {
       }
     },
 
-    api_testing: {
-      start_session: false,
-      webdriver: {
-        start_process: false,
-      }
-    },
+    
 
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for when using cucumber-js (https://cucumber.io)                |
