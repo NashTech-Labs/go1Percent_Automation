@@ -1,7 +1,8 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 import { LoginPage } from '../../../../page-objects/techhub/AdminUser/login';
-module.exports = {
-    beforeEach: function(browser: NightwatchBrowser) {
+describe('Go1percent loging', () => {
+
+    beforeEach((browser: NightwatchBrowser)=> {
         browser
             .maximizeWindow()
             .page.techhub.AdminUser.login()
@@ -9,11 +10,12 @@ module.exports = {
             .enterCredentials(browser.globals.adminUserName, browser.globals.adminPassword)
             .signIn()
         //browser.pause(30000)
-    },
-    after: function(browser: NightwatchBrowser) {
+    }),
+    after((browser: NightwatchBrowser)=> {
         browser.end();
-    },
-    "landing on dashboard page": function(browser: NightwatchBrowser) {
+    }),
+
+    it("landing on dashboard page",(browser: NightwatchBrowser)=> {
         browser.assert.urlContains("my-dashboard");
-    }
-};
+    })
+});
