@@ -31,7 +31,6 @@ const Go1commands = {
                 .waitForElementVisible(By.xpath("//span[normalize-space()='3']"))
                 .click(By.xpath("//span[normalize-space()='3']"))
                 .waitForElementVisible('@SelectiveSession')
-               // .click('@devopsPage')
                 .click('@SelectiveSession')
                 .pause(2000)
     },
@@ -88,17 +87,16 @@ const LoginPage: PageObjectModel = {
                 selector: '.ms-2.fw-bold.text-sm.my-auto.text-white',  
             },
             ViewAttandenceButton: {
-                selector: "(//span[@class='ms-2 fw-bold text-sm my-auto'])[1]",
-                locateStrategy: 'xpath'
+                selector: "span[class='ms-2 fw-bold text-sm my-auto']",
+               
             },
             ViewFeedbackButton: {
                 selector: "div[class='page-wrapper justify-content-center mb-3 cursor-pointer overall-txt-color mx-2'] strong",
             },
             completedSession: {
-                selector: "//span[@class='material-icons back-icon navigate-back-icon']",
-                locateStrategy: 'xpath'
+                selector: ".material-icons.back-icon.navigate-back-icon",
+                
             },
-             devopsPage:"(//div[@class='p-3'])[5]"
     },
  
 };
