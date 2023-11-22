@@ -16,6 +16,9 @@ module.exports = {
         githubsave:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.d-flex.flex-column.flex-md-row.my-4 > div:nth-child(1) > div.left-div-button-div.mt-2 > button:nth-child(1)",
         errormsggit:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.d-flex.flex-column.flex-md-row.my-4 > div:nth-child(1) > div:nth-child(3) > span",
         gitcancel:"div[class='card-gap'] button:nth-child(2)",
+        wordpresssave:"div[class='btndiv'] button:nth-child(1)S",
+        textboxwordpress:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(3) > div:nth-child(2) > input']",
+        updatewordpress:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(3) > div.left-div-button-div.mt-2 > button",
     },
  
     commands: [{
@@ -151,7 +154,29 @@ module.exports = {
             .waitForPageLoad() 
             .pause(5000)
 },
-
+verifywordpress(newwordpress) {
+    return this
+        .clickOnElement('@updatewordpress')
+        .clickOnElement('@textboxwordpress')
+         //.setValue('@textboxwordpress', newwordpress)
+         //.pause(3000)
+        //  .clickOnElement('@wordpresssave') 
+        //  .pause(5000)
+        //  .perform((done) => {
+        //     this.api.getAlertText((result) => {
+        //         const alertText = result.value;
+        //         if (alertText === 'Profile updated successfully!') {
+        //             console.log('Profile updated successfully!');
+        //         } else {
+        //             console.log('Profile update failed. Alert text:', alertText);
+        //         }
+        //         done();
+        //     });
+            
+        // })
+        .waitForPageLoad() 
+        .pause(5000)
+},
 
 }]
 };

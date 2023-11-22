@@ -4,7 +4,8 @@ const token_headers = globals.admin.tokenHeaders;
 const urls = globals.urls;
 const token_body = globals.admin.tokenBody;
 describe('api testing', function () {
-  const backendUrl = globals.queryRequested.baseurl;
+  
+  const backendUrl = globals.baseurl;
   it('get api token', async function ({ supertest }) {
     await supertest
         .request("https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect")
