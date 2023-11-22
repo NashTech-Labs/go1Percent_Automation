@@ -47,6 +47,20 @@ describe('Go1percent techHub FE Testing', () => {
         techhub['Approve techhub request and verify'](browser);
     }),
 
+     //DCTGO1-1251 : Verify Admin user should be able to Open and Reject any TechHub which is on review (TC-403) 
+     it("Open and Reject any TechHub which is on review", (browser)=>{
+        techhub['Navigate to All Techhubs page'](browser);
+        techhub['Apply Review status filter'](browser);
+        techhub['Navigate to request detail page'](browser);
+        techhub['Reject techhub request and verify'](browser);
+     }),
+
+    //DCTGO1-1285 : Verify that total records is showing correct data on Approval Page.
+    it("Total records", (browser)=> {        
+       //browser.pause(10000);
+        techhub['Total_records'](browser);
+    }),
+
     //DCTGO1-1313 : verify admin should not be able to approve the techhub for same person twice a day
     it("Cannot approve the techhub for same person twice a day", (browser)=> {       
         techhub['Search a Nasher'](browser);
@@ -74,5 +88,7 @@ describe('Go1percent techHub FE Testing', () => {
         browser.pause(3000);
         techhub['Navigate to Github URL and verify'](browser);
     })
+
+    
 });
 

@@ -3,93 +3,93 @@ import { TechhubPage } from '../../../../page-objects/techhub/AdminUser/techhub'
 import { TechhubDetailPage } from '../../../../page-objects/techhub/AdminUser/techhubDetail';
 
 
-describe('Go1percent Techhub', () => {
 
-    it("Navigate to All Techhubs page",(browser: NightwatchBrowser)=> {
+
+    export function NavigateToAllTechhubsPage(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .All_Techhubs_page(browser)
-    }),
+    }
 
-    it("Apply Approved status filter", (browser: NightwatchBrowser)=> {
+    export function ApplyApprovedStatusFilter(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .Filter_AllStatus_Approved(browser)
             .assert.elementPresent("@Filter_AllStatus_Approved")
             .pause(2000)
-    }),
+    }
 
-    it("Apply Review status filter", (browser: NightwatchBrowser)=> {
+    export function ApplyReviewStatusFilter(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .Filter_AllStatus_Review(browser)
             .assert.elementPresent("@Filter_AllStatus_Review")
             .pause(2000)
-    }),
+    }
 
-    it("All competency filter", (browser: NightwatchBrowser)=> {
+    export function AllCompetencyFilter(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .Filter_All_Competency(browser)
             .pause(2000)
-    }),
+    }
 
-    it("Apply any Competency filter and verify", (browser: NightwatchBrowser)=> {
+    export function ApplyAnyCompetencyFilterAndVerify(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .Filter_FrontendCompetency(browser)
             .pause(2000)
             .assert.textEquals('@FilterName_AllCompetency_onRequest', 'Frontend Competency');
-    }),
+    }
 
-    it("Navigate to request detail page", (browser: NightwatchBrowser)=> {
+    export function NavigateToRequestDetailPage(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .Navigate_to_detailsPage(browser)
-    }),
+    }
 
-    it("Verify detail page", (browser: NightwatchBrowser)=> {
+    export function VerifyDetailPage(browser: NightwatchBrowser):void {
         browser
             .page.techhub.AdminUser.techhub()
             .assert.textEquals('@Detail_Page', 'View TechHub');
-    }),
+    }
 
-    it("Approve techhub request and verify",(browser: NightwatchBrowser)=>{
+    export function ApproveTechhubRequestAndVerify(browser: NightwatchBrowser):void{
         browser
             .page.techhub.AdminUser.techhubDetail()
             .Approve_Request(browser)
             .assert.elementPresent('@Approve_Toast')
-    }),
+    }
 
-    it("Reject techhub request and verify",(browser: NightwatchBrowser)=>{
+    export function RejectTechhubRequestAndVerify(browser: NightwatchBrowser):void{
         browser
             .page.techhub.AdminUser.techhubDetail()
             .Reject_Request(browser)
             .assert.elementPresent('@Approve_Toast')
-    }),
+    }
 
-    it("Reject Techhub request without Reviewer Comment and verify unsuccessful",(browser: NightwatchBrowser)=>{
+    export function RejectTechhubRequestWithoutReviewerCommentAndVerifyUnsuccessful(browser: NightwatchBrowser):void{
         browser
             .page.techhub.AdminUser.techhubDetail()
             .Reject_Request_Without_Reviewer_Comment(browser)
             .assert.textContains("@Reviewer_Comment_error_message", "If Rejected, above field is mandatory. *");
-    }),
+    }
 
-    it("Search a Nasher",(browser: NightwatchBrowser)=>{
+    export function SearchNasher(browser: NightwatchBrowser):void{
         browser
             .page.techhub.AdminUser.techhub()
             .Search_Nasher(browser)
             .pause(2000)
-    }),
+    }
 
-    it("Approve second request of same person on same day and check",(browser: NightwatchBrowser)=>{
+    export function ApproveSecondRequestOfSamePersonOnSameDayAndCheck(browser: NightwatchBrowser):void{
         browser
             .page.techhub.AdminUser.techhubDetail()
             .Approve_Request(browser)
             .assert.elementPresent('@Approve_Toast', 'Can approve two techhubs of a person on same day')
-    }),
+    }
 
-    it("Total_records", async (browser: NightwatchBrowser)=>{
+    export async function TotalRecords(browser: NightwatchBrowser):Promise<void>{
         const techhubPage = browser.page.techhub.AdminUser.techhub();
 
         await techhubPage.scrollToElement(browser);
@@ -98,9 +98,9 @@ describe('Go1percent Techhub', () => {
         const totalRecordsString = 'Total Records: ' + elements.length;
         techhubPage
             .assert.textEquals('@Total_Records', totalRecordsString);
-    }),
+    }
 
-    it("Navigate to Github URL and verify", async (browser: NightwatchBrowser)=>{
+    export async function NavigateToGithubURLAndVerify(browser: NightwatchBrowser):Promise<void>{
         const url = await browser
             .page.techhub.AdminUser.techhubDetail()
             .element('@GitHub_Url')
@@ -118,5 +118,4 @@ describe('Go1percent Techhub', () => {
             })
     
             .assert.urlContains(url);
-    })
-});
+    }
