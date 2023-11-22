@@ -1,4 +1,4 @@
-const globalsData = require('../../globals');
+const globalsData = require('../../../globals');
 const settingPage = browser.page.settingPage.settingPage();
 //const settingPage = require('../../page-objects/settingPage.js');
 describe("KNolx|Settingbutton", () => {

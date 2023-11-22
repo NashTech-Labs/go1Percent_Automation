@@ -1,4 +1,4 @@
-const globals = require('../../globals')
+const globals = require('../../../globals')
 const headers = globals.admin.headers;
 const token_headers = globals.admin.tokenHeaders;
 const urls = globals.urls;
