@@ -140,7 +140,7 @@ describe("Past Sessions Page Frontend Automation", () => {
             sessionsPage.assert.equal(firstSessionDateAfterFilter, firstSessionDateBeforeFilter, "Sessions time is equals after using filter by all time")
                 .clickOnPastSessionsTab()
         }),
-        it.only('Filter Session using All Competency in Past Sessions Page', async (browser: NightwatchBrowser) => {
+        it('Filter Session using All Competency in Past Sessions Page', async (browser: NightwatchBrowser) => {
             sessionsPage
                 .clickOnAllCompetencyDropdown()
                 .selectOneCompetencyNameFromDropdown()
