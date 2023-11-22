@@ -1,13 +1,18 @@
-import { NightwatchTests } from "nightwatch";
+import { NightwatchTests,NightwatchBrowser } from "nightwatch";
 
-const chat:NightwatchTests ={
-    'login Test':()=>{
-        browser.windowMaximize()
-        const login =browser.page.helpdesk.ticketRaised.login();
-        login.navigate().enterCredentials('testemployee','testemployee').signIn()
-        
-    },
-    'should be able to Chat on OpenTicketPage': function(){
+
+describe('Go 1 Percent TicketRaised BY Me Module', () => {
+    
+    before((browser:NightwatchBrowser)=>{
+        browser
+            .window.maximize()   
+            .page.helpdesk.ticketRaised.login()
+            .navigate()
+            .enterCredentials('testemployee','testemployee')
+            .signIn()
+            
+    }),
+    it('should be able to Chat on OpenTicketPage',function(){
         const ticket =browser.page.helpdesk.ticketRaised.ticket();
         ticket
         .navigateToHelpDesk().waitForElementVisible('@selectFirstTicket',10000)
@@ -17,7 +22,8 @@ const chat:NightwatchTests ={
         .sendMessage()
         .pause(6000)
         .assertMessage()
-    }, 'should be able to send file on OpenTicketPage': function(){
+    }), 
+    it('should be able to send file on OpenTicketPage',function(){
         const ticket =browser.page.helpdesk.ticketRaised.ticket();
         ticket
         .waitForElementVisible('@commentBox')
@@ -26,11 +32,10 @@ const chat:NightwatchTests ={
         .attachFile()
         .sendMessage().pause(5000)
         .assertFileSentSuccessfully()
-    },
-    'should be able to See on OpenTicketPage': function(){ 
+    }),
+    it('should be able to See on OpenTicketPage', function(){ 
         const ticket =browser.page.helpdesk.ticketRaised.ticket();
         ticket.assert.visible('@messageSection')
 
-    }  
-}
-export default chat;
+    })
+});
