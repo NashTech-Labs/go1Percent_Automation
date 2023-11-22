@@ -1,6 +1,4 @@
-import { NightwatchTests, NightwatchBrowser } from "nightwatch";
-import{LoginPage} from '../../../page-objects/ManageUpcomingSession/login';
-import{RewardsPage} from '../../../page-objects/ManageUpcomingSession/manage_upcoming_sessions_page';
+import { NightwatchBrowser } from "nightwatch";
 
 const sessionsPage = browser.page.ManageUpcomingSession.manage_upcoming_sessions_page();;
 describe('Test Automation', () => {
@@ -9,6 +7,7 @@ describe('Test Automation', () => {
     const email: string = 'testadmin';
     const password: string = 'testadmin';
     sessionsPage
+      .maximizeWindow()
       .navigate()
       .enterCredentials(email, password)
       .signIn()
@@ -114,7 +113,7 @@ describe('Test Automation', () => {
     browser.pause(2000);
     sessionsPage.clickUpdateform();
     browser.pause(2000);
-    sessionsPage.assert.element("@formcheck").value.to.equal("Knolx - Share Your Experience");
+    sessionsPage.expect.element("@formcheck").value.to.equal("Knolx - Share Your Experience");
   });
 
 
