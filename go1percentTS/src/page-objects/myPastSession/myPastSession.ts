@@ -68,7 +68,7 @@ const LoginPage: PageObjectModel = {
         signIn: "#kc-login",
         knolxButton: {          
             selector: "//h6[normalize-space()='Knolx']",
-               locateStrategy: 'xpath'
+            locateStrategy: 'xpath'
             },
             mysession: {
                 selector: "a[href='/knolx/my-sessions/my-upcoming-sessions']",
@@ -77,8 +77,7 @@ const LoginPage: PageObjectModel = {
                 selector: "a[class='tabs']",
             },
             SelectiveSession: {
-                selector: "//div[normalize-space()='devops']",
-                locateStrategy: 'xpath'
+                selector: "app-my-sessions .card.p-2.mt-3 app-my-past-sessions div:nth-child(5) .mt-4.topic",
             },
             BackButton: {
                 selector: '.addTxt',
