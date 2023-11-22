@@ -18,11 +18,13 @@ describe("My Profile Page Frontend Automation", () => {
 
         browser
             .window.maximize()
-            .page.login()
+            //.maximizeWindow()
+            
+            .page.contribution.login()
             .navigate()
-            .pause(3000)
-            .enterCredentials(userName, password)
-            .signIn()
+            .setValue('@emailInput', userName)
+            .setValue('@passwordInput', password)
+            .signIn() 
             .assert.urlContains("my-dashboard", 'URL contains my-dashboard');
 
         myProfile
