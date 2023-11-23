@@ -23,7 +23,7 @@ describe("KNolx|Manage Slot Frontend Automation", () => {
         manageslotpage.assert.urlContains("manage-slots");
 
     }),
-/*
+
         it('Verify that admin should be able to create a slot', function (browser: NightwatchBrowser) {
 
             manageslotpage
@@ -37,7 +37,7 @@ describe("KNolx|Manage Slot Frontend Automation", () => {
                 .assert.containsText('@successfullyCreatedSlotMessage', 'Slot Created Successfully');
         }),
 
-*/
+
         it("Verify admin cannot select a past time to create a slot", function (browser: NightwatchBrowser) {
             manageslotpage
                 .waitForPageLoad()
