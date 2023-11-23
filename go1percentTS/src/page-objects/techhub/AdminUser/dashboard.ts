@@ -1,7 +1,5 @@
 import { PageObjectModel, EnhancedPageObject } from "nightwatch";
 
-
-
 const dashboardElements = {
     Approvals: ".navbar-nav .nav-item:nth-child(4) h6",
     TechHub: 'a[href="/tech-hub/view"]',
