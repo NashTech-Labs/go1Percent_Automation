@@ -1,26 +1,26 @@
-const randomString = Math.random().toString(36).substring(7);
-const Login = require('../../../../helpers/Go1PercentFEAutomation/contribution/addContribution/go1Percentloging');
-const dashboard = browser.page.contribution.addContribution.Dashboard();
-const profile = browser.page.contribution.addContribution.Profile();
-const contribution = browser.page.contribution.addContribution.Contribution(); 
+
 import { NightwatchBrowser } from 'nightwatch';
 
-module.exports = 
-{
+describe('Add Contribution- Submit button is Disabled', () => {
+  const randomString = Math.random().toString(36).substring(7);
+  const Login = require('../../../../helpers/Go1PercentFEAutomation/contribution/addContribution/go1Percentloging');
+  const dashboard = browser.page.contribution.addContribution.Dashboard();
+  const profile = browser.page.contribution.addContribution.Profile();
+  const contribution = browser.page.contribution.addContribution.Contribution(); 
 
-    before: function (browser:NightwatchBrowser)
-     {
-        Login.beforeEach(browser);
-      },
-     
+  before(function (browser:NightwatchBrowser)
+  {
+     Login.beforeEach(browser);
+   }),
+  
 
-      after: function (browser:NightwatchBrowser) 
-      {
-        Login.after(browser);
-      },
-    
-      'click to setting and profile' : function (browser:NightwatchBrowser) 
-      { 
+   after(function (browser:NightwatchBrowser) 
+   {
+     Login.after(browser);
+   }),
+
+
+     it('click to setting and profile' ,()=> { 
           
           
           dashboard
@@ -28,19 +28,19 @@ module.exports =
           .click('@setting')
           .click("@profile")
       
-      },
+      }),
   
-      'Adding contribution and applying assertions' : function (browser:NightwatchBrowser) 
-      { 
-           
+      it('Adding contribution and applying assertions',()=>{
+
+       
               
             profile
               .click("@contribution")
               .click("@addcontribution")
   
-      },  
-    'Verify that user should be able to add details for adding contribution':function (browser:NightwatchBrowser) 
-    { 
+      }),  
+    it('Verify that user should be able to add details for adding contribution',()=>{
+    
 
         contribution
           .sendKeys("@title", ['Nightwatchjs test script'])
@@ -50,8 +50,8 @@ module.exports =
           .click("@submit")
        contribution
           .Textcontain('successfully');
-    }
-}
+    })
+})
 
 
  
