@@ -1,10 +1,11 @@
 const { assert } = require("chai");
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
-import { EditSearchContribution } from '../../../../page-objects/contribution/editSearchContribution/editSearchContribution';
 
-const editSearchContributionTest: NightwatchTests = {
+describe('Go1Percent edit contribution frontend testing', ()=> {
 
-    before: (client: NightwatchBrowser) => {
+    const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+
+    beforeEach((client: NightwatchBrowser) => {
         // Actions to be performed before running the test cases, such as maximizing the window and logging in.
         client
             .maximizeWindow()
@@ -14,11 +15,16 @@ const editSearchContributionTest: NightwatchTests = {
             .setValue('@passwordInput', 'testemployee')
             .signIn()
             
-     },
+     });
+
+
+     afterEach((client: NightwatchBrowser) =>{
+        client.end();
+     });
 
     // This test case verifies that save button is disabled if a title less than 15 words is entered. 
-    "Verify that the save button should be disable if user add a title less than 15 words" : (browser: NightwatchBrowser) => {
-        const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that the save button should be disable if user add a title less than 15 words", () => {
+        
         editContribution
             .navigate()
             .clickSettings()
@@ -30,11 +36,11 @@ const editSearchContributionTest: NightwatchTests = {
             .pause(2000)
             .expect.element('@saveButton').to.have.attribute('disabled');
 
-    },
+    });
 
     // This test case verifies that save button is disabled if a description less than 100 words is entered.
-    "Verify that the save button should be disable if user add a description less than 100 words" : (browser: NightwatchBrowser) => {
-        const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that the save button should be disable if user add a description less than 100 words", () => {
+        
         editContribution
             .navigate()
             .clickSettings()
@@ -46,11 +52,11 @@ const editSearchContributionTest: NightwatchTests = {
             .pause(2000)
             .expect.element('@saveButton').to.have.attribute('disabled');
 
-    },
+    });
 
     // This test case verifies that save button is disabled if invalid url is entered.
-    "Verify that the save button should not be enable if user add a invalid URL" : (browser: NightwatchBrowser) => {
-        const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that the save button should not be enable if user add a invalid URL", () => {
+        
         editContribution
             .navigate() 
             .clickSettings()
@@ -61,11 +67,11 @@ const editSearchContributionTest: NightwatchTests = {
             .editUrl('test contribution')
             .pause(2000)
             .expect.element('@saveButton').to.have.attribute('disabled');
-    },
+    });
 
     // This test case verifies that contribution type cannot be edited.
-    "Verify that user should not be able to edit the contribution type of the added contribution" : (browser: NightwatchBrowser) => {
-        const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that user should not be able to edit the contribution type of the added contribution", () => {
+        
         editContribution
             .navigate()  
             .clickSettings()
@@ -75,11 +81,11 @@ const editSearchContributionTest: NightwatchTests = {
             .clickEditButton()
             .expect.element('@contributionType').to.have.attribute('disabled');
 
-    },
+    });
 
     // This test case verifies that title can be edited.
-    "Verify that user should be able to edit the title of the added contribution" : (browser: NightwatchBrowser) => {
-        const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that user should be able to edit the title of the added contribution", () => {
+        
         editContribution
             .navigate() 
             .clickSettings()
@@ -89,11 +95,11 @@ const editSearchContributionTest: NightwatchTests = {
             .clickEditButton()
             .expect.element('@title').to.not.have.attribute('disabled');
 
-    },
+    });
 
     // This test case verifies that description can be edited.
-    "Verify that user should be able to edit the details of pending contribution" : (browser: NightwatchBrowser) => {
-        const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that user should be able to edit the details of pending contribution", () => {
+        
         editContribution
             .navigate() 
             .clickSettings()
@@ -103,10 +109,10 @@ const editSearchContributionTest: NightwatchTests = {
             .clickEditButton()
             .expect.element('@description').to.not.have.attribute('disabled');
 
-    },
+    });
 
     // This test case verifies that contribution date can be edited.
-    "Verify that user should be able to edit the contribution date of the added contribution except online course" : (browser: NightwatchBrowser) => {
+    it("Verify that user should be able to edit the contribution date of the added contribution except online course", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
         editContribution
             .navigate()
@@ -117,10 +123,10 @@ const editSearchContributionTest: NightwatchTests = {
             .clickEditButton()
             .expect.element('@contributionDate').to.not.have.attribute('disabled')
 
-    },
+    });
 
     // This test case verifies that save button is disabled if user leaves any field blank.
-    "Verify that save button should be disabled if user leaves any field blank" : (browser: NightwatchBrowser) => {
+    it("Verify that save button should be disabled if user leaves any field blank", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
         editContribution
             .navigate()
@@ -132,10 +138,10 @@ const editSearchContributionTest: NightwatchTests = {
             .clearValue('@url')
             .expect.element('@saveButton').to.have.attribute('disabled');
 
-    },
+    });
 
     // This test case verifies that contribution date of online course type contribution cannot be edited.
-    "Verify that date of the online course type contribution cannot be modified": (browser: NightwatchBrowser) => {
+    it("Verify that date of the online course type contribution cannot be modified", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
         editContribution
             .navigate()
@@ -147,10 +153,10 @@ const editSearchContributionTest: NightwatchTests = {
             .expect.element('@contributionDate').to.have.attribute('disabled')
             
 
-    },
+    });
     
     // This test case verifies that title/description/url of online course type contribution cannot be edited.
-    "Verify that the title/description/url of the online course contribution cannot be modified": (browser: NightwatchBrowser) => {
+    it("Verify that the title/description/url of the online course contribution cannot be modified", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
         editContribution
             .navigate()
@@ -160,10 +166,10 @@ const editSearchContributionTest: NightwatchTests = {
             .clickOnlineCourseContribution()
             .clickEditButton()
             .expect.element('@saveButton').to.have.attribute('disabled')
-    },
+    });
 
     // This test case verifies that it throws an error id we add an existing url.
-    "Verify that it throws an error id we add an existing url" : (browser: NightwatchBrowser) => {
+    it("Verify that it throws an error id we add an existing url", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
         editContribution
             .navigate() 
@@ -176,8 +182,7 @@ const editSearchContributionTest: NightwatchTests = {
             .click('@saveButton')
             .waitForElementVisible('@alert')
             .assert.textContains('@alert','Contribution with same url already exist')
-    }
+    });
   
-};
+});
 
-export default editSearchContributionTest;
