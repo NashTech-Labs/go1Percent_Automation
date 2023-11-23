@@ -1,7 +1,8 @@
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
+import { NightwatchBrowser } from 'nightwatch'
 
 const techHubCommands = {
-    enterCredentials(this: EnhancedPageObject) {
+    enterCredentials(this: TechHubPage) {
         return this
             .waitForElementVisible('@emailInput')
             .setValue('@emailInput', 'testemployee')
@@ -10,36 +11,36 @@ const techHubCommands = {
             .pause(1000)
     },
 
-    signIn(this: EnhancedPageObject) {
+    signIn(this: TechHubPage) {
         return this
             .click("@signIn")
     },
 
-    elementClick(this: EnhancedPageObject, selector: string) {
+    elementClick(this: TechHubPage, selector: string) {
         return this
             .waitForElementVisible(selector)
             .click(selector)
     },
 
-    displayAllTechHub(this: EnhancedPageObject) {
+    displayAllTechHub(this: TechHubPage) {
         return this
             .waitForElementVisible('@allTechHubs')
             .isVisible('@allTechHubs')
     },
 
-    displayPendingpage(this: EnhancedPageObject) {
+    displayPendingpage(this: TechHubPage) {
         return this
             .waitForElementVisible('@pending')
             .isVisible('@pending')
     },
 
-    displayTemplatePage(this: EnhancedPageObject) {
+    displayTemplatePage(this: TechHubPage) {
         return this
             .waitForElementVisible('@templates')
             .isVisible('@templates')
     },
 
-    disableSubmitButtonInRequestRepo(this: EnhancedPageObject) {
+    disableSubmitButtonInRequestRepo(this: TechHubPage) {
         return this
             .waitForElementVisible('@requestRepoBranch')
             .click('@requestRepoBranch')
@@ -47,7 +48,7 @@ const techHubCommands = {
             .setValue('@repoName', 'TestingTestingHub')
     },
 
-    requiredNameInRepo(this: EnhancedPageObject) {
+    requiredNameInRepo(this: TechHubPage) {
         return this
             .waitForElementVisible('@requestRepoBranch')
             .click('@requestRepoBranch')
@@ -57,13 +58,13 @@ const techHubCommands = {
             .click('@selectTechnology')
     },
 
-    requiredCharactersInRepo(this: EnhancedPageObject) {
+    requiredCharactersInRepo(this: TechHubPage) {
         return this
             .click('@repoName')
             .setValue('@repoName', 'testi')
     },
 
-    technologyRequiredError(this: EnhancedPageObject) {
+    technologyRequiredError(this: TechHubPage) {
         return this
             .waitForElementVisible('@requestRepoBranch')
             .click('@requestRepoBranch')
@@ -72,7 +73,7 @@ const techHubCommands = {
             .click("@descriptionBox")
     },
 
-    requestRepoBranchSubmission(this: EnhancedPageObject) {
+    requestRepoBranchSubmission(this: TechHubPage) {
         const uniqueName = `TestingNightwatchTestcase1-${Math.floor(Math.random() * 1000000)}`;
         return this
             .waitForElementVisible('@requestRepoBranch')
@@ -91,12 +92,12 @@ const techHubCommands = {
             .waitForElementVisible("@submissionPopupAlert")
     },
 
-    newBranchFromExistingRepo(this: EnhancedPageObject) {
+    newBranchFromExistingRepo(this: TechHubPage) {
         return this
             .waitForElementVisible('@requestRepoBranch')
             .click('@requestRepoBranch')
             .waitForElementVisible('@repoName')
-            .setValue('@repoName', 'TestingTestingHubSome')
+            .setValue('@repoName', 'TestingTestingHub')
             .waitForElementVisible("@selectTechnology")
             .click('@selectTechnology')
             .waitForElementVisible('@chooseTechnology')
@@ -106,7 +107,7 @@ const techHubCommands = {
             .waitForElementVisible('input[formcontrolname="isNewBranch"]')
     },
 
-    enableSubmitButton(this: EnhancedPageObject) {
+    enableSubmitButton(this: TechHubPage) {
         return this
             .waitForElementVisible('@submitButton')
             .isEnabled('@submitButton')
@@ -114,7 +115,7 @@ const techHubCommands = {
             .waitForElementVisible("@submissionPopupAlert", 5000)
     },
 
-    clickCancelButton(this: EnhancedPageObject) {
+    clickCancelButton(this: TechHubPage) {
         return this
             .waitForElementVisible('@requestRepoBranch')
             .click('@requestRepoBranch')
@@ -125,7 +126,7 @@ const techHubCommands = {
             .isVisible('@requestRepoBranch')
     },
 
-    draftAndPendingButton(this: EnhancedPageObject) {
+    draftAndPendingButton(this: TechHubPage) {
         return this
             .waitForElementVisible('@pendingButton')
             .click('@pendingButton')
@@ -133,142 +134,144 @@ const techHubCommands = {
             .click('@draftButton')
     },
 
-    draftSubmitButtonDisable(this: EnhancedPageObject) {
+    draftSubmitButtonDisable(this: TechHubPage) {
         return this
             .waitForElementVisible('@titleName')
             .setValue('@titleName', 'TestingTestingHub')
     },
 
-    requirementCharactersForTitle(this: EnhancedPageObject) {
+    requirementCharactersForTitle(this: TechHubPage) {
         return this
             .waitForElementVisible('@titleName')
             .setValue('@titleName', 'Testing')
     },
 
-    requiredCharactersForCaption(this: EnhancedPageObject) {
+    requiredCharactersForCaption(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftCaption')
             .setValue('@draftCaption', 'caption')
     },
 
-    requiredCharactersForDescription(this: EnhancedPageObject) {
+    requiredCharactersForDescription(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftDescriptionBox')
             .setValue('@draftDescriptionBox', 'sdfsd')
     },
 
-    requiredTitle(this: EnhancedPageObject) {
+    requiredTitle(this: TechHubPage) {
         return this
             .waitForElementVisible('@titleName')
             .click('@titleName')
             .click('@draftCaption')
     },
 
-    requiredCaption(this: EnhancedPageObject) {
+    requiredCaption(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftCaption')
             .click('@draftCaption')
             .click('@titleName')
     },
 
-    requiredDescription(this: EnhancedPageObject) {
+    requiredDescription(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftDescriptionBox')
             .click('@draftDescriptionBox')
             .click('@draftBranch')
     },
 
-    requiredBranchName(this: EnhancedPageObject) {
+    requiredBranchName(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftBranch')
             .click('@draftBranch')
             .click('@draftDescriptionBox')
     },
 
-    requiredTags(this: EnhancedPageObject) {
+    requiredTags(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftTags')
             .click('@draftTags')
             .click('@draftDescriptionBox')
     },
 
-    requiredCategory(this: EnhancedPageObject) {
+    requiredCategory(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftCategory')
             .click('@draftCategory')
             .click('@draftDescriptionBox')
     },
 
-    requiredBaseLanguage(this: EnhancedPageObject) {
+    requiredBaseLanguage(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftBaseLanguage')
             .click('@draftBaseLanguage')
             .click('@draftDescriptionBox')
     },
 
-    requiredCategoryAndLanguage(this: EnhancedPageObject) {
+    requiredCategoryAndLanguage(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftCategory')
+            .click('@draftCategory')
             .click('@draftCategory')
             .waitForElementVisible('@draftOtherLanguage')
             .click('@draftOtherLanguage')
             .waitForElementVisible('@draftBaseLanguage')
             .click('@draftBaseLanguage')
+            .click('@draftBaseLanguage')
             .waitForElementVisible('@draftOtherLanguage')
             .click('@draftOtherLanguage')
     },
 
-    setTitleValue(this: EnhancedPageObject) {
+    setTitleValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@titleName')
             .setValue('@titleName', 'TestAutomationPurpose')
     },
 
-    setCaptionValue(this: EnhancedPageObject) {
+    setCaptionValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftCaption')
             .setValue('@draftCaption', 'TestingCaptionForTemplate')
     },
 
-    setDescriptionValue(this: EnhancedPageObject) {
+    setDescriptionValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftDescriptionBox')
             .setValue('@draftDescriptionBox', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     },
 
-    setBranchValue(this: EnhancedPageObject) {
+    setBranchValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftBranch')
             .setValue('@draftBranch', 'main')
     },
 
-    setTagsValue(this: EnhancedPageObject) {
+    setTagsValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftTags')
             .setValue('@draftTags', 'tags')
     },
 
-    setCategoryValue(this: EnhancedPageObject) {
+    setCategoryValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftCategory')
             .click('@draftCategory')
             .click("@chooseDraftCategory")
     },
 
-    setBaseLanguageValue(this: EnhancedPageObject) {
+    setBaseLanguageValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftBaseLanguage')
             .click('@draftBaseLanguage')
             .click('@chooseBaseLanguage')
     },
 
-    setOtherLanguageValue(this: EnhancedPageObject) {
+    setOtherLanguageValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftOtherLanguage')
             .setValue('@draftOtherLanguage', 'Akka')
     },
 
-    setBlogUrlValue(this: EnhancedPageObject) {
+    setBlogUrlValue(this: TechHubPage) {
         return this
             .waitForElementVisible('@draftBlogUrl')
             .setValue('@draftBlogUrl', 'https://google.com')
@@ -315,6 +318,7 @@ const techHubPage: PageObjectModel = {
         chooseDraftCategory: "select[id='category'] option:nth-child(2)",
         chooseBaseLanguage: "select[id='baseLanguage'] option:nth-child(3)",
         draftBlogUrl: 'input[formcontrolname="infoUrl"]',
+        isNewBranch: 'input[formcontrolname="isNewBranch"]',
         captionRequiredErrorMessage: {
             selector: "//span[contains(text(),'Caption is Required')]",
             locateStrategy: 'xpath'
