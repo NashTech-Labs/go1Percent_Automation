@@ -62,10 +62,8 @@ module.exports = {
     },
     commands: [{
 
-        // ViewProfilePicSuccessMsg(this: EnhancedPageObject) {
-        //     return this ProfilePicSuccessMsg;
 
-        // },
+
         ClickOnBadge(this: EnhancedPageObject) {
             return this
                 .waitForElementVisible('@Badge', 30000)

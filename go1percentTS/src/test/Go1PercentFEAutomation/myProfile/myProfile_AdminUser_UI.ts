@@ -1,6 +1,6 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 //const DataSet = require('../../../globals');
-import globals from "../../../../globals";
+import { globals } from "../../../../nightwatch.conf";
 
 //const MyProfilePage = require('../../page-objects/myProfilePage');
 //const Login=browser.page.login();

@@ -1,16 +1,13 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
-//const DataSet = require('../../../globals');
-import globals from "../../../../globals";
+import { globals } from "../../../../nightwatch.conf";
 import { Nightwatch } from "nightwatch";
-// const DataSet = require('../../../globals');
+
 var userName = browser.globals.userName;
 var password = browser.globals.password;
-// userName = 'testemployee';
-// password = 'testemployee';
+
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
-    //this.timeout(25000)
     var myProfile = browser.page.myProfile.myProfilePage();
 
 
@@ -18,13 +15,12 @@ describe("My Profile Page Frontend Automation", () => {
 
         browser
             .window.maximize()
-            //.maximizeWindow()
-            
+
             .page.contribution.login()
             .navigate()
             .setValue('@emailInput', userName)
             .setValue('@passwordInput', password)
-            .signIn() 
+            .signIn()
             .assert.urlContains("my-dashboard", 'URL contains my-dashboard');
 
         myProfile
@@ -44,7 +40,7 @@ describe("My Profile Page Frontend Automation", () => {
             if (result.status === 0) {
                 let Pending = result.value;
                 let Total = Pending.length;
-                console.log('Total Badge numbers are : ', Total,' ; if Badge count is 0 then No badge present.');
+                console.log('Total Badge numbers are : ', Total, ' ; if Badge count is 0 then No badge present.');
             }
         })
 
@@ -58,7 +54,7 @@ describe("My Profile Page Frontend Automation", () => {
     it('Change their profile picture by clicking on update profile page', function (browser) {
         myProfile
 
-        .waitForElementVisible('@UpdateProfilepic', 7000)
+            .waitForElementVisible('@UpdateProfilepic', 7000)
             .ClickOnUpdateProfilePic()
             .waitForElementVisible('@ProfilePicSuccessMsg', 7000)
             .expect('@ProfilePicSuccessMsg').to.be.eq(profilePicUploadSuccessMsg)
@@ -86,7 +82,7 @@ describe("My Profile Page Frontend Automation", () => {
             .assert.elementPresent('@RewardExist', 'Reward redeemed for the user')
             .assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
 
-  
+
 
     });
     it('View all the rewards redeemed by him/her', function (browser) {
@@ -99,11 +95,11 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it.only('View the badges and the count in the badges section', function (browser) {
 
-        browser.elements("xpath","@BadgeCounts", function (result) {
+        browser.elements("xpath", "@BadgeCounts", function (result) {
             if (result.status === 0) {
                 let Pending = result.value;
                 let Total = Pending.length;
-                console.log('Total Badge numbers are : ', Total,' ; if Badge count is 0 then No badge present.');
+                console.log('Total Badge numbers are : ', Total, ' ; if Badge count is 0 then No badge present.');
 
 
             }
