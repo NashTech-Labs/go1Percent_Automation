@@ -22,7 +22,7 @@ const customCommands = {
 
     },
 
-    verifyAllFields(this : EnhancedPageObject) {
+    verifyAllFields(this: EnhancedPageObject) {
         return this
             .waitForElementVisible('@filterSection')
             .waitForElementPresent('@filterText')
@@ -33,7 +33,7 @@ const customCommands = {
 
     },
 
-    approvePendingContribution(this : EnhancedPageObject) {
+    approvePendingContribution(this: EnhancedPageObject) {
         return this
             .pause(3000)
             .waitForElementVisible('@approve')
@@ -60,6 +60,7 @@ const customCommands = {
             .click('@rejectButton')
             .waitForElementVisible('div[aria-label="Successfully Rejected"]')
     },
+
     searchNasher(this: EnhancedPageObject) {
         return this
             .waitForElementVisible('@search')
@@ -71,25 +72,23 @@ const customCommands = {
 
     competencyFilter(this: EnhancedPageObject) {
         return this
-            .assert.visible('@frontendCompetency')
-            .click('@frontendCompetency')
-            .getText('small[class="font-weight-bold"]', function (result) {
+            .assert.visible('@testAutomationCompetency')
+            .click('@testAutomationCompetency')
+            .getText('@contributionDetails', function (result) {
                 let resultFinal: string[] = [String(result.value)];
-                if (resultFinal !== null && resultFinal.includes('Frontend Competency')) {
-                    console.log('contains "Frontend Competency"');
+                if (resultFinal !== null && resultFinal.includes('Test Automation Competency')) {
+                    this.assert.equal(result.value, 'Test Automation Competency');
                 } else {
-                    console.log('does not contain');
+                    this.assert.notEqual(result.value, 'Test Automation Competency');
                 }
-                console.log(result.value)
-                this.assert.equal(result.value, 'Frontend Competency');
             });
     },
-    
+
     contributionTypeFilter(this: EnhancedPageObject) {
         return this
             .pause(3000)
             .click('@contributionOnlineCourseType')
-            .getText('#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small', function (result) {
+            .getText('@onlineCourse', function (result) {
                 let filteredResult: string[] = [String(result.value)];
                 if (filteredResult !== null && filteredResult.includes('Online Course')) {
                     this.assert.equal(result.value, 'Online Course');
@@ -98,7 +97,7 @@ const customCommands = {
                 }
             });
 
-}
+    }
 
 
 }
@@ -167,13 +166,33 @@ const approvalPage = {
             selector: 'div.search-names',
         },
 
-        frontendCompetency: {
-            selector: 'app-contribution select option:nth-child(9)'
+        testAutomationCompetency: {
+            selector: 'app-contribution select option:nth-child(18)'
         },
 
         contributionOnlineCourseType: {
             selector: 'div.filter-right-section > div > div:nth-child(2) > select > option:nth-child(12)'
         },
+
+        onlineCourse: {
+            selector: '#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small'
+        },
+
+        contributionDetails: {
+            selector: 'small[class="font-weight-bold"]'
+        },
+
+        approveRejectTag: {
+            selector: 'h5.modal-title.pull-left'
+        },
+
+        rejectSucess: {
+            selector: 'div[aria-label="Successfully Rejected"]'
+        },
+
+        approveSuccess: {
+            selector: 'div[aria-label="Successfully Approved"]'
+        }
     },
 
     commands: [customCommands]
