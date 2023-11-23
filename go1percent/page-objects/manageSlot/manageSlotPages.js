@@ -156,7 +156,7 @@ module.exports = {
     },
 
     getSlotStartTime() {
-      return this.getAttribute('@slotStartTimeInput', 5000)
+      return this.waitForElementVisible('@slotStartTimeInput', 5000)
       .getAttribute('@slotStartTimeInput','placeholder')
 
     },
