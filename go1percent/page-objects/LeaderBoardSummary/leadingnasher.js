@@ -4,7 +4,7 @@ const skillSectionCount = 3;
 module.exports = {
     elements: {
         leadingnahser: {
-            selector: 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]'
+            selector: '.leading.mt-3 >:nth-child(1)'
         },
         contibutionButton: {
             selector: "//a[text()='Contributions']",
@@ -15,43 +15,38 @@ module.exports = {
             locateStrategy: 'xpath'
         },
         allContributions: {
-            selector: 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]',
+            selector: '.studio-member-card.cursor-pointer',
         },
         rewrordSection: {
-            selector: "div[class='d-flex flex-column align-items-center mt-5'] div div:nth-child(1)",
+            selector:"div[class*='-center mt-5'] div div:nth-child(1)"
         },
-        rewordSectionDate:{
-            selector:'span[class="text-bold"]'
+        rewordSectionDate: {
+            selector: 'span[class="text-bold"]'
         },
-        rewordSectionPoints:{
-            selector:'p[class="text-center"]'
+        rewordSectionPoints: {
+            selector: 'p[class="text-center"]'
         },
         noRewordNasher: {
-            selector: "(//div[@class='d-flex justify-content-between align-items-center summary-tab cursor-pointer'])[3]",
-            locateStrategy: "xpath"
+            selector: '.leading.mt-3>:nth-child(3)'
         },
         norewordSection: {
             selector: 'span[class="mt-5 text-center"]'
         },
 
         viewRwordsButton: {
-            selector: 'button[class="btn add-button reedeem-btn mt-5"]'
+            selector: '.add-button.reedeem-btn'
         },
         rewords: {
-            selector: 'div[class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-3 card rewrdlist d-flex justify-content-center align-items-center"]'
+            selector:'.card.rewrdlist'
         },
         badge: {
-            selector: 'div[class="material-symbols-outlined hexagon cursor-pointer"]'
+            selector:'div[class*="material-symbols-outlined hexagon"]'
         },
         badgPopup: {
-            selector: 'div[class="d-flex justify-content-between align-items-center"]'
-        },
-        badgePopUpDetails: {
-            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
-            locateStrategy: 'xpath'
+            selector:'.modal-body :nth-child(1)'
         },
         noBadgeFound: {
-            selector: "div[class='d-flex flex-column align-items-center my-auto'] p"
+            selector: ".badge-card :nth-child(3) p"
         },
         pointSection: {
             selector: 'div[class="col-6 current-month"]'
@@ -63,8 +58,45 @@ module.exports = {
             selector: 'td:nth-child(1)'
         },
         graph: {
-            // selector: "canvas[data-zr-dom-id='zr_0']"
-            selector:'canvas'
+            selector: 'canvas'
+        },
+        exanContribution: {
+            selector: 'div[class="accordion mb-3 br spanText"]'
+        },
+        contributionsTyesOne: {
+            selector:'.detail-row:nth-child(1) :nth-child(1)'
+        },
+        contributionsTyesTwo:{
+            selector:'.detail-row:nth-child(1) :nth-child(2)'
+        },
+        
+        skillButton: {
+            selector:'.newTabs.nav-item + li'
+        },
+        noSkillSection: {
+            selector: 'div[class="skill-outline-div w-100 h-40"]'
+        },
+
+        nasherWithSkill: {
+            selector :'.leading.mt-3>:nth-child(2)'
+        },
+        skillabel1: {
+            selector: "(//div[@class='mb-4 mt-3'])[1]",
+            locateStrategy: 'xpath'
+        },
+        skillForLable1: {
+            selector:'.skill-outline-div.skill-outline-div'
+        },
+        skillabel2: {
+            selector: "(//div[@class='mb-4 mt-3'])[2]",
+            locateStrategy: 'xpath'
+        },
+        skillForLable2: {
+             selector:'.card.tab-card :nth-child(3)'
+        },
+        skillabel3: {
+            selector: "(//div[@class='mb-2 mt-3'])",
+            locateStrategy: 'xpath'
         },
         graphData1: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(2)"
@@ -72,45 +104,12 @@ module.exports = {
         graphData2: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(3)",
         },
-        exanContribution: {
-            selector: 'div[class="accordion mb-3 br spanText"]'
-        },
-        contributionsTyes: {
-            selector: 'div[class="detail-row row pt-3 ml-0 ml-xl-1 p-0"]'
-        },
-        skillButton: {
-            selector: 'li[class="nav-item my-1 cursor-pointer text-bold p-2"]'
-        },
-        noSkillSection: {
-            selector: 'div[class="skill-outline-div w-100 h-40"]'
-        },
-
-        nasherWithSkill: {
-            selector: "(//div[@class='d-flex justify-content-between align-items-center summary-tab cursor-pointer'])[2]",
-            locateStrategy: 'xpath'
-        },
-        skillabel1: {
-            selector: "(//div[@class='mb-4 mt-3'])[1]",
-            locateStrategy: 'xpath'
-        },
-        skillForLable1: {
-            selector: "(//div[@class='skill-outline-div w-100 h-40'])[2]",
-            locateStrategy: 'xpath'
-        },
-        skillabel2: {
-            selector: "(//div[@class='mb-4 mt-3'])[2]",
-            locateStrategy: 'xpath'
-        },
-        skillForLable2: {
-            selector: "(//div[@class='skill-outline-div w-100 h-40'])[3]",
-            locateStrategy: 'xpath'
-        },
-        skillabel3: {
-            selector: "(//div[@class='mb-2 mt-3'])",
-            locateStrategy: 'xpath'
-        },
         skillForLable3: {
             selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
+            locateStrategy: 'xpath'
+        },
+        badgePopUpDetails: {
+            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
             locateStrategy: 'xpath'
         },
     },
@@ -165,12 +164,12 @@ module.exports = {
             viewRewords() {
                 return this
                     .click('@viewRwordsButton')
-                    .waitForElementVisible('@rewords')
+                    .waitForElementVisible('@rewords',6000)
                     .assert.containsText('@rewords', 'pts', 'asserting points ont reworing section')
                     .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
             },
             contaisBadgeSectionWithPopUpDetails() {
-                let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/; // Use a regex without quotes
+                let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/; 
                 return this
                     .click('@badge')
                     .waitForElementVisible('@badgPopup')
@@ -203,7 +202,7 @@ module.exports = {
                 let graphDetail2sRegex = '[0-9]+';
                 
                 return this
-                    .waitForElementVisible('@graph',3000)
+                    .waitForElementVisible('@graph',6000)
                     .moveToElement('@graph', 10, 10)
                     .pause(5000)
                     .moveToElement('@graph', 60, 60)
@@ -217,13 +216,16 @@ module.exports = {
             
             //we expand our configuration here
             expandContribution() {
-                regexPattern = '[A-Za-z]+ [A-Za-z]+ [0-9]+-[A-Za-z]+-[0-9]+';
-                return this
-                    .waitForElementVisible('@exanContribution')
-                    .click('@exanContribution')
-                    .getText('@contributionsTyes', function name(text) {
-                    })
-                    .assert.containsText('@contributionsTyes', 'test', 'contains test as prifix or suffix of contibution')
+                
+            let wordRegex = '[A-Za-z]+';
+            let dateRegex='[0-9]+-[A-Za-z]+-[0-9]+';
+
+            return this
+                .waitForElementVisible('@exanContribution')
+                .click('@exanContribution')
+                .assert.textMatches('@contributionsTyesOne', new RegExp(wordRegex))
+                .assert.textMatches('@contributionsTyesTwo', new RegExp(dateRegex))
+
             },
             nasherWithSkillAndWithoutSkill() {
                 //conatais skill with lebels 

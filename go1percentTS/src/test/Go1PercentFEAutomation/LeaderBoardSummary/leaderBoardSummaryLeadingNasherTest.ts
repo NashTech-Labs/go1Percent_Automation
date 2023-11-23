@@ -1,19 +1,25 @@
-describe('UI automation for leaderboard summary leading nasher page option', () => {
-    let summaryPage;
-    let leadingpage;
+import {NightwatchBrowser } from 'nightwatch';
+import{LoginPage} from '../../../page-objects/leaderBoardSummary/login';
+import{SummaryPage} from '../../../page-objects/leaderBoardSummary/summary';
+import {LeadingNasherPage} from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
 
-    beforeEach((client) => {
+
+describe('UI automation for leaderboard summary leading nasher page option', () => {
+    let summaryPage: SummaryPage;
+    let leadingPage: LeadingNasherPage;
+
+    beforeEach((client:NightwatchBrowser) => {
         // Create a page object and perform login actions
-        const page = client.page.LeaderBoardSummary.login();
+        const page = client.page.leaderBoardSummary.login()as LoginPage;
         page
             .maximizeWindow()
             .navigate()
-            .enterCredentials('testemployee', 'testemployee')
+            .enterCredentials()
             .signIn();
 
         //Initialize summaryPage and leadingpage page objects
-        summaryPage = client.page.LeaderBoardSummary.summary();
-        leadingpage = client.page.LeaderBoardSummary.leadingnasher();
+        summaryPage = browser.page.leaderBoardSummary.summary() as SummaryPage;
+        leadingPage = browser.page.leaderBoardSummary.leadingNasherPage() as LeadingNasherPage;
     });
 
     // Define common actions in the beforeEach hook
@@ -26,16 +32,18 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
 
     const leadingNasherCommonActions = () => {
         commonActions();
-        leadingpage
+        leadingPage
             .leadingNasherProfilePage()
     };
 
-    /**
+
+
+     /**
      * Test case to validate opening a Nasher's profile when clicking on their name.
      */
-    it('When I click on any Nasher Name Then it should open their profile', () => {
+     it('When I click on any Nasher Name Then it should open their profile', () => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             //verify leader nasher profle page 
             .verifyLeadingNasherProfilepage();
     });
@@ -45,7 +53,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
      */
     it('When i scroll the page Then i should able to see all their contribution', (client) => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             //asserting all contribution of leading nasher 
             .leadingNasherAllContribution()
             .allContibutionList();
@@ -56,7 +64,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i go on Redeemed Reward section Then i should able to see the reward redeemed with their points and the date when that reward redeemed', (client) => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             //verifying reword section with points and date 
             .verifyRewordSectionContainsPointAndDate();
     });
@@ -67,10 +75,10 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
      */
     it('When i go on Redeemed Reward section Then it should show You have not redeemed any rewards yet', (client) => {
         commonActions();
-        leadingpage
+        leadingPage
             //verifying that reword section contains no reoword
             .noRewordSection()
-            .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet');
+            .assert.textContains('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet');
     });
 
     /**
@@ -78,13 +86,13 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
      */
     it('When i click on view rewards button Then it should redirect me to Rewards page', (client) => {
         commonActions();
-        leadingpage
+        leadingPage
             .noRewordSection()
-            .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
+            .assert.textContains('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
             .viewRewords()
             //verifying that the reword page contains reowrds
-            .assert.containsText('@rewords', 'pts', 'asserting points on reword section')
-            .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section');
+            .assert.textContains('@rewords', 'pts', 'asserting points on reword section')
+            .assert.textContains('@rewords', 'Expiry', 'asserting the date of Expiry the reword section');
     });
 
     /**
@@ -92,7 +100,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i click on Badge if any Then it show me a popup with their Rank and score and also it show the Date when they got that rank', (client) => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             //verifying that popup contains rank and date
             .contaisBadgeSectionWithPopUpDetails();
     });
@@ -102,7 +110,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i go on Badges section Then it should show No Badges Earned', () => {
         commonActions();
-        leadingpage
+        leadingPage
             //verifying that it Badge section contains no badge
             .contaisNoBadgeSection();
     });
@@ -112,7 +120,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i click on Mypoints Then i should able to see month and score of that month', () => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             //verify the points section with score 
             .pointsSectionWithScore();
     });
@@ -122,7 +130,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i click on current month Name Then a months calender should be shown and i am able to select month', (client) => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             .pointsSectionWithScore()
             //verifying that user is able to select the date 
             .selectDate();
@@ -132,7 +140,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
         let graphDetail1sRegex = '[A-Za-z]+';
         let graphDetail2sRegex = '[0-9]+';
         leadingNasherCommonActions()
-        leadingpage
+        leadingPage
             .pointsSectionWithScore()
             //verify that user is able to hover on the graph with details 
             .hoverOnGraph()
@@ -145,7 +153,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i expand any contribution Then i should able to see my contribution for that contribution type with Topic name and Date', () => {
         leadingNasherCommonActions();
-        leadingpage
+        leadingPage
             .pointsSectionWithScore()
             .expandContribution()
     });
@@ -155,7 +163,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i click on skills Then i should be able to see skills name with level', () => {
         commonActions()
-        leadingpage
+        leadingPage
             //verifying that the nasher is bale to see the skill and levels
             .nasherWithSkillAndWithoutSkill()
     });
@@ -165,7 +173,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    */
     it('When i click on skills Then i should be able to see No Skills in the level', () => {
         commonActions()
-        leadingpage
+        leadingPage
             //verifying that the nasher is not able  to see the skill and levels if not available 
             .nasherWithSkillAndWithoutSkill()
     });
@@ -175,3 +183,4 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
     });
 
 });
+
