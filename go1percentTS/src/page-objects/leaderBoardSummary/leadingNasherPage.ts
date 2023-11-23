@@ -1,4 +1,3 @@
-import { Assertion } from 'chai';
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 const { assert } = require("nightwatch");
 const randomNumber = Math.floor(Math.random() * 5) + 1;
