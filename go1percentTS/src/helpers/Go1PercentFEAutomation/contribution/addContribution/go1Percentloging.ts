@@ -2,7 +2,6 @@ import { NightwatchBrowser } from 'nightwatch';
 module.exports = {
     beforeEach: function (browser:NightwatchBrowser) {
         browser
-            .maximizeWindow()
             .page.contribution.addContribution.login()
             .navigate()
             .enterCredentials(browser.globals.userName, browser.globals.password)

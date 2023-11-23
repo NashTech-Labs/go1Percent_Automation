@@ -19,8 +19,8 @@ module.exports = {
         },
 
         SelectiveSession: {
-            selector: ' div:nth-child(6) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(3)',
-        
+            selector: "//div[normalize-space()='devops']",
+            locateStrategy: 'xpath'
         },
 
         BackButton: {
@@ -33,11 +33,17 @@ module.exports = {
             
         },
         ViewAttandenceButton: {
-            selector: "span[class='ms-2 fw-bold text-sm my-auto']",
+            selector: "(//span[@class='ms-2 fw-bold text-sm my-auto'])[1]",
+            locateStrategy: 'xpath'
+
             
         },
         ViewFeedbackButton: {
             selector: "div[class='page-wrapper justify-content-center mb-3 cursor-pointer overall-txt-color mx-2'] strong",
+        },
+        completedSession: {
+            selector: "//span[@class='material-icons back-icon navigate-back-icon']",
+            locateStrategy: 'xpath'
         }
        
      
@@ -61,6 +67,8 @@ module.exports = {
         },
         clickOnSelectiveSession() {
             return this
+                .waitForElementVisible(By.xpath("//span[normalize-space()='3']"))
+                .click(By.xpath("//span[normalize-space()='3']"))
                 .waitForElementVisible('@SelectiveSession',3000)
                 .click('@SelectiveSession')
         },
@@ -78,7 +86,8 @@ module.exports = {
         },
         clickOnViewAttandenceButton() {
             return this
-                .waitForElementVisible('@ViewAttandenceButton',3000)
+               .pause(2000)
+               //.waitForElementVisible('@ViewAttandenceButton',3000)
                 .click('@ViewAttandenceButton')
                 
         },
@@ -88,6 +97,11 @@ module.exports = {
                 .click('@ViewFeedbackButton')
                 
         },
+        clickOnCompletedSessionButton(){
+            return this
+               .waitForElementVisible('@completedSession')
+               .click('@completedSession')
+        }
         
         
     }]
