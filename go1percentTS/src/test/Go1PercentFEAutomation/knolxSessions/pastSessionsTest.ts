@@ -7,7 +7,7 @@ let login: LoginPage, sessionsPage: KnolxSessionsPage;
 
 describe("Past Sessions Page Frontend Automation", () => {
     before(function () {
-        login = browser.page.loginPage() as LoginPage
+        login = browser.page.login() as LoginPage
         sessionsPage = browser.page.knolxSessions.knolxSessionsPage() as KnolxSessionsPage
         browser.window.maximize()
         login.navigate()

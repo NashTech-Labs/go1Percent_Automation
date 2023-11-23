@@ -6,7 +6,7 @@ let login: LoginPage, sessionsPage: KnolxSessionsPage;
 
 describe("Upcoming Sessions Page Frontend Automation", () => {
     before(function () {
-        login = browser.page.loginPage() as LoginPage
+        login = browser.page.login() as LoginPage
         sessionsPage = browser.page.knolxSessions.knolxSessionsPage() as KnolxSessionsPage
         browser.window.maximize()
         login.navigate()
@@ -93,7 +93,7 @@ describe("Upcoming Sessions Page Frontend Automation", () => {
                 .selectSessionsFromDropdown(beforeFiterBySessionName)
             const afterFiterBySessionsName: string = await sessionsPage.getSessionNameFromFirstSession() as string
             sessionsPage
-                .assert.textEquals(afterFiterBySessionsName, beforeFiterBySessionName, "Before and After Session Name is equals after using Filter By All Sessions")
+                .assert.equal(afterFiterBySessionsName, beforeFiterBySessionName, "Before and After Session Name is equals after using Filter By All Sessions")
                 .clickOnUpcomingSessionsTab()
         }),
         it('Verify user should be able to filter session using All Time in Upcoming Session page', async (browser: NightwatchBrowser) => {
