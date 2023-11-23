@@ -24,7 +24,7 @@ const commands = {
             .waitForElementVisible('@contibutionButton') // Make sure '@contibutionButton' is a valid selector
             .click('@contibutionButton')
             .waitForElementPresent('@allContributions')
-            .waitForElementVisible('@allContributions')
+            .waitForElementVisible('@allContributions',6000)
             .getText('@allContributions', function name(result) {
                 contributionText = result.value; // Save the text for further use if needed
                 console.log(result.value);
@@ -51,14 +51,14 @@ const commands = {
         return this
             .click('@noRewordNasher')
             .waitForElementVisible('@norewordSection')
-            .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
+            .assert.textContains('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
     },
     viewRewords(this: LeadingNasherPage) {
         return this
             .click('@viewRwordsButton')
-            .waitForElementVisible('@rewords')
-            .assert.containsText('@rewords', 'pts', 'asserting points ont reworing section')
-            .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
+            .waitForElementVisible('@rewords',6000)
+            .assert.textContains('@rewords', 'pts', 'asserting points ont reworing section')
+            .assert.textContains('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
     },
     contaisBadgeSectionWithPopUpDetails(this: LeadingNasherPage) {
         let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/; // Use a regex without quotes
@@ -70,7 +70,7 @@ const commands = {
     contaisNoBadgeSection(this: LeadingNasherPage) {
         return this
             .click('@noRewordNasher')
-            .assert.containsText('@noBadgeFound', 'No Badges Earned')
+            .assert.textContains('@noBadgeFound', 'No Badges Earned')
     },
     pointsSectionWithScore(this: LeadingNasherPage) {
         const regexPattern = '^[A-Z][a-z]+ Score$';
@@ -94,7 +94,7 @@ const commands = {
         let graphDetail2sRegex = '[0-9]+';
 
         return this
-            .waitForElementVisible('@graph', 3000)
+            .waitForElementVisible('@graph', 6000)
             .moveToElement('@graph', 10, 10)
             .pause(5000)
             .moveToElement('@graph', 60, 60)

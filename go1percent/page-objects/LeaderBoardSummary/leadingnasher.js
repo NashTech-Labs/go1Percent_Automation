@@ -164,7 +164,7 @@ module.exports = {
             viewRewords() {
                 return this
                     .click('@viewRwordsButton')
-                    .waitForElementVisible('@rewords')
+                    .waitForElementVisible('@rewords',6000)
                     .assert.containsText('@rewords', 'pts', 'asserting points ont reworing section')
                     .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
             },
@@ -202,7 +202,7 @@ module.exports = {
                 let graphDetail2sRegex = '[0-9]+';
                 
                 return this
-                    .waitForElementVisible('@graph',3000)
+                    .waitForElementVisible('@graph',6000)
                     .moveToElement('@graph', 10, 10)
                     .pause(5000)
                     .moveToElement('@graph', 60, 60)

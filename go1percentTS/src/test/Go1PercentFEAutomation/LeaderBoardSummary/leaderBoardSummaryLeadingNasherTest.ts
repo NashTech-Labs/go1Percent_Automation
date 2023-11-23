@@ -88,7 +88,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
         commonActions();
         leadingPage
             .noRewordSection()
-            .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
+            .assert.textContains('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
             .viewRewords()
             //verifying that the reword page contains reowrds
             .assert.textContains('@rewords', 'pts', 'asserting points on reword section')
