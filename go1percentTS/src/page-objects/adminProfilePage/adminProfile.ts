@@ -14,7 +14,6 @@ const adminProfileCommands = {
 
 const admin_profile : PageObjectModel = {
 
-    url:"",
     elements : {
         studioName : 'span.studio',
         adminPoints : {

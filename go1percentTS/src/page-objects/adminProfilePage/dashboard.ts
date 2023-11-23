@@ -9,8 +9,6 @@ const dashboardCommands = {
 }
 
 const goOneDashboard: PageObjectModel = {
-    url: "",
-
     elements : {
         adminProfilePic : '.material-symbols-outlined.hex',
         badgeText : 'h6.badge-text'
