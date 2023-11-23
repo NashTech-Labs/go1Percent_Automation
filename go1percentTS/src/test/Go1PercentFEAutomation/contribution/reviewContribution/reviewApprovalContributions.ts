@@ -1,37 +1,47 @@
-import { NightwatchTests, NightwatchBrowser } from "nightwatch";
+import { NightwatchBrowser } from "nightwatch";
 
-const contribution = browser.page.contribution.reviewContribution.approvals();
-const approvalPage: NightwatchTests = {
-    before: (browser: NightwatchBrowser) => {
+describe('Go1Percent Review Contribution FE tests', () => {
+    const contribution = browser.page.contribution.reviewContribution.approvals();
+
+    before((browser: NightwatchBrowser) => {
         browser
-            .windowMaximize()
-            .url('https://nashtechglobal.qa.go1percent.com/')
-        const login = browser.page.contribution.login();
-        login.navigate().enterCredentials('testadmin', 'testadmin')
-        login.signIn()
-    },
+            .window.maximize()
+            .url('https://nashtechglobal.qa.go1percent.com/');
 
-    'Verify Filter fields on Approvals Dashboard ': () => {
+        const login = browser.page.contribution.login();
+        login.navigate().enterCredentials('testadmin', 'testadmin');
+        login.signIn();
+
         contribution.approvalsPage()
         contribution.openApprovalsContributionPage()
+    });
+
+    it('Verify Filter fields on Approvals Dashboard ', () => {
         contribution.verifyAllFields()
-    },
+    });
 
-    'Approve a Contribution': () => {
+    it('Approve a Contribution', () => {
         contribution.approvePendingContribution()
-    },
+    });
 
-    'Reject a Contribution': () => {
+    it('Reject a Contribution', () => {
         contribution.rejectPendingContribution()
-    },
+    });
 
-    'Filter contributions by all competency filter': () => {
+    it('Search a Nasher by name', () => {
+        contribution.searchNasher();
+    }),
+
+    it('Filter contributions by all competency filter', () => {
         contribution.competencyFilter();
-    },
+    });
 
-    'Filter by competency type': () => {
+    it('Filter by competency type', () => {
         contribution.contributionTypeFilter();
-    },
+    });
 
-}
-export default approvalPage;
+});
+
+
+
+
