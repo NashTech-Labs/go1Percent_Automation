@@ -1,4 +1,4 @@
-const login = require('../../../helpers/Go1PercentFEAutomation/TECHHUB/AdminUser/go1Percentloging');
+const login = require('../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1Percentloging');
 const helper = require('../../../helpers/Go1PercentFEAutomation/LeaderboardRewards/helperFunctions.js');
 
 describe('Leaderboard : Add Rewards Tab Test', () => {
@@ -6,7 +6,9 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     before((client) => {
       login.beforeEach(browser);
       login['landing on dashboard page'](browser);
-      browser.page.Leaderboard_Rewards.rewards().goToRewards();
+      browser
+      .page.LeaderboardRewards.rewards().goToRewards()
+      .assert.urlContains('rewards/list', 'Reward tab is opened');
   });
   
 
@@ -18,7 +20,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
 
 
   beforeEach((client) => {
-    addRewardTab = browser.page.Leaderboard_Rewards.add_reward();
+    addRewardTab = browser.page.LeaderboardRewards.add_reward();
     addRewardTab
       .openAddRewardTab()
       .addImage(browser);
@@ -27,12 +29,14 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
   //TC : 1177
   it('admin should be able to add new reward by clicking on add reward button ', (client) => {
     addRewardTab
+      .assert.textContains('@addRewardTitle', 'Add a new reward', 'Add reward tab is opened.')
       .closeAddRewardTab();
   });   
 
   //TC : 1178
   it('admin should able to add image in add new reward page ', (client) => {
     addRewardTab
+      .assert.elementPresent('@imageCrossButton', 'Able to add image in add new reward page.')
       .closeAddRewardTab();
   }); 
 
@@ -40,7 +44,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
   it('admin should not be able to click on save button without adding details', (client) => { 
     addRewardTab
       .clickSaveButton()
-      .assert.textContains('@errorMessage', 'Name is Required')
+      .assert.textContains('@errorMessage', 'Name is Required', 'Cannot save reward without adding name.')
       .closeAddRewardTab();
   });   
 
@@ -51,13 +55,13 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .addARewardDetails(rewardName, '07-11-2027')
     .setAvailableForIndividual()
     .clickSaveButton()
-    .assertAlert();
+    .assert.textContains('@alert', 'Successfully added reward!', 'Reward is successfully added in individual section.');
 
     //assert reward is added in the individual section
-    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
+    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
     updateRewardsTab
     .openUpdateTab()
-    .assert.valueContains('@rewardName', rewardName)
+    .assert.valueContains('@rewardName', rewardName, 'Reward added is present in individual section.')
     .closeUpdateTab();
   }); 
 
@@ -68,15 +72,16 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .addARewardDetails(rewardName, '07-11-2027')
     .setAvailableForCompetency()
     .clickSaveButton()
-    .assertAlert();
+    .assert.textContains('@alert', 'Successfully added reward!', 'Reward is successfully added in competency section.');
+    
     browser.refresh();
 
     //check reward is added in the competency section
-    updateRewardsTab = browser.page.Leaderboard_Rewards.update_reward();
+    updateRewardsTab = browser.page.LeaderboardRewards.update_reward();
     updateRewardsTab
     .switchToCompetency()
     .openUpdateTab()
-    .assert.valueContains('@rewardName', rewardName)
+    .assert.valueContains('@rewardName', rewardName, 'Reward added is present in competency section.')
     .closeUpdateTab();
   });  
 
@@ -88,7 +93,8 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .addARewardDetails(rewardName, today)
     .setAvailableForCompetency()
     .clickSaveButton()
-    .assertAlert();
+    .assert.textContains('@alert', 'Reward expiry date and time must be greater than current date and time')
+    .closeAddRewardTab();
   });  
 
   // TC : 1184 : new test case 
@@ -97,7 +103,8 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .addARewardDetails('First Test Reward', '07-11-2027')
     .setAvailableForCompetency()
     .clickSaveButton()
-    .assertAlert();
+    .assert.textContains('@alert', 'Reward with the same name and type already exist')
+    .closeAddRewardTab();
   });  
 
   //TC : 1185 : new test case 
@@ -106,6 +113,7 @@ describe('Leaderboard : Add Rewards Tab Test', () => {
     .addARewardDetails('Test_Reward', '07-11-2027')
     .setAvailableForCompetency()
     .clickSaveButton()
-    .assertAlert();
+    .assert.textContains('@alert', 'Reward name should not contain special symbols and number')
+    .closeAddRewardTab();
   });
 });

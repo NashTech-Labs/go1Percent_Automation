@@ -1,19 +1,22 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 import { LoginPage } from '../../../../page-objects/techhub/AdminUser/login';
-module.exports = {
-    beforeEach: function(browser: NightwatchBrowser) {
+
+
+
+   export function beforeEach(browser: NightwatchBrowser):void {
         browser
             .maximizeWindow()
             .page.techhub.AdminUser.login()
-            .navigate("https://nashtechglobal.qa.go1percent.com/")
+            .navigate()
             .enterCredentials(browser.globals.adminUserName, browser.globals.adminPassword)
             .signIn()
         //browser.pause(30000)
-    },
-    after: function(browser: NightwatchBrowser) {
+    }
+
+    export function after(browser: NightwatchBrowser):void {
         browser.end();
-    },
-    "landing on dashboard page": function(browser: NightwatchBrowser) {
+    }
+    export function landingOnDashboardPage(browser: NightwatchBrowser): void {
         browser.assert.urlContains("my-dashboard");
     }
-};
+    

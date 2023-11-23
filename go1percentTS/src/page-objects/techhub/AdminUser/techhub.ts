@@ -23,45 +23,45 @@ const techhubElements = {
 };
 
 const techhubCommands = {
-    All_Techhubs_page(this: EnhancedPageObject) {
+    All_Techhubs_page(this: TechhubPage) {
         return this
             .waitForElementPresent('@All_techhubs')
             .click("@All_techhubs")
     },
 
-    Filter_AllStatus_Approved(this: EnhancedPageObject) {
+    Filter_AllStatus_Approved(this: TechhubPage) {
         return this
             .click("@Filter_AllStatus")
             .click('@AllStatus_Approved')
     },
 
-    Filter_AllStatus_Review(this: EnhancedPageObject) {
+    Filter_AllStatus_Review(this: TechhubPage) {
         return this
             .click("@Filter_AllStatus")
             .click('@AllStatus_Review')
     },
 
-    Filter_All_Competency(this: EnhancedPageObject) {
+    Filter_All_Competency(this: TechhubPage) {
         return this
             .click("@Filter_AllCompetency")
     },
 
-    Filter_FrontendCompetency(this: EnhancedPageObject) {
+    Filter_FrontendCompetency(this: TechhubPage) {
         return this
             .click("@Filter_AllCompetency_Frontend")
     },
 
-    Navigate_to_detailsPage(this: EnhancedPageObject) {
+    Navigate_to_detailsPage(this: TechhubPage) {
         return this
             .click('@Approved_Request')
     },
 
-    Search_Nasher(this: EnhancedPageObject) {
+    Search_Nasher(this: TechhubPage) {
         return this
             .setValue('@Search', 'Test Employee')
     },
 
-    async scrollToElement(this: EnhancedPageObject) {
+    async scrollToElement(this: TechhubPage) {
         this.waitForElementPresent('@Total_Records', 10000)
         this.getText('@Total_Records', result => {
             const str = result.value as string;

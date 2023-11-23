@@ -84,32 +84,30 @@ const customCommands = {
 
     competencyFilter(this: EnhancedPageObject) {
         return this
-            .assert.visible('@frontendCompetency')
-            .click('@frontendCompetency')
-            .getText('small[class="font-weight-bold"]', function (result) {
+            .assert.visible('@testAutomationCompetency')
+            .click('@testAutomationCompetency')
+            .getText('@contributionDetails', function (result) {
                 let resultFinal: string[] = [String(result.value)];
-                if (resultFinal !== null && resultFinal.includes('Frontend Competency')) {
-                    console.log('contains "Frontend Competency"');
+                if (resultFinal !== null && resultFinal.includes('Test Automation Competency')) {
+                    this.assert.equal(result.value, 'Test Automation Competency');
                 } else {
-                    console.log('does not contain Frontend Competency');
+                    this.assert.notEqual(result.value, 'Test Automation Competency');
                 }
-                console.log(result.value)
-                this.assert.equal(result.value, 'Frontend Competency');
             });
     },
 
     contributionTypeFilter(this: EnhancedPageObject) {
         return this
-        .pause(3000)
-        .click('@contributionCertificationType')
-        .getText('#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small', function (result) {
-            let filteredResult: string[] = [String(result.value)];
-            if (filteredResult !== null && filteredResult.includes('Online Course')) {
-                this.assert.equal(result.value, 'Online Course');
-            } else {
-                this.assert.notEqual(result.value, 'Online Course');
-            }
-        });
+            .pause(3000)
+            .click('@contributionOnlineCourseType')
+            .getText('@onlineCourse', function (result) {
+                let filteredResult: string[] = [String(result.value)];
+                if (filteredResult !== null && filteredResult.includes('Online Course')) {
+                    this.assert.equal(result.value, 'Online Course');
+                } else {
+                    this.assert.notEqual(result.value, 'Online Course');
+                }
+            });
 
     }
 
@@ -195,8 +193,16 @@ const approvalPage = {
             selector: 'div.filter-right-section > div > div:nth-child(3) > select > option:nth-child(9)'
         },
 
-        frontendCompetency: {
-            selector: 'app-contribution select option:nth-child(9)'
+        onlineCourse: {
+            selector: '#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small'
+        },
+
+        testAutomationCompetency: {
+            selector: 'app-contribution select option:nth-child(18)'
+        },
+
+        contributionOnlineCourseType: {
+            selector: 'div.filter-right-section > div > div:nth-child(3) > select > option:nth-child(12)'
         },
 
         timeSelector: {
@@ -205,7 +211,11 @@ const approvalPage = {
 
         filteredListSelector: {
             selector: '#icon-grid > div > div.col-xxl-5.col-xl-5.col-lg-5.d-flex > div > small'
-        }
+        },
+
+        contributionDetails: {
+            selector: 'small[class="font-weight-bold"]'
+        },
     },
 
     commands: [customCommands]
