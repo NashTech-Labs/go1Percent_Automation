@@ -162,12 +162,12 @@ describe("TicketAssignedToMe Frontend Automation", () => {
                 .assert.elementPresent('@assignedCheck')
                 .assert.elementPresent('@updateButton')
                 .end()
-        })
+        }),
 
-    /**
-     * @function userShouldAbleToReopenClosedTicket
-     * @description Verify user should able to reopen  closed ticket.
-     */
+        /**
+         * @function userShouldAbleToReopenClosedTicket
+         * @description Verify user should able to reopen  closed ticket.
+         */
         //test case is not working due to bug on closed ticket page 
         it("Updating status of ticket close to open", () => {
             fetchElements
