@@ -17,8 +17,7 @@
     "chromedriver": "^119.0.1",
     "geckodriver": "^4.2.1",
     "nightwatch": "^3.3.1",
-    "nightwatch-allure": "^1.2.0",
-    "ts-node": "^10.9.1",
+    "nightwatch-allure": "^1.2.0"
     "typescript": "^5.2.2"
   },
   "dependencies": {

@@ -1,36 +1,40 @@
 const { assert } = require("chai");
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
-import { EditSearchContribution } from '../../../../page-objects/contribution/editSearchContribution/editSearchContribution';
 
-const editSearchContributionTest: NightwatchTests = {
+
+describe('Go1Percent search contribution frontend testing', ()=> {
     
-
-    before: (browser: NightwatchBrowser) => {
+    const search = browser.page.contribution.editSearchContribution.editSearchContribution();
+    beforeEach((client: NightwatchBrowser) =>  {
 
         // Perform actions before running test cases, such as maximizing the browser window and logging in.
-        browser
+        client
             .maximizeWindow()
             .page.contribution.login()
             .navigate()
             .setValue('@emailInput', 'testemployee')
             .setValue('@passwordInput', 'testemployee')
             .signIn()   
-     },
+     });
+
+     afterEach((client: NightwatchBrowser) =>{
+        client.end();
+     });
 
      // This test case verifies that search bar is clickable.
-    "Verify that user is able to click on the search bar": (browser: NightwatchBrowser) => {
-        const search = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that user is able to click on the search bar", () => {
+        
         search
             .navigate()
             .clickSettings()
             .clickProfile()  
             .clickContributions()
             .clickSearchBar()
-    },
+    });
 
     // This test case verifies that we are able to filter out contributions based on a keyword entered.
-    "Verify that user should be able to filter any certain contribution from the list": (browser: NightwatchBrowser) => {
-        const search = browser.page.contribution.editSearchContribution.editSearchContribution();
+    it("Verify that user should be able to filter any certain contribution from the list", () => {
+        
         search
             .navigate()
             .clickSettings()
@@ -46,10 +50,10 @@ const editSearchContributionTest: NightwatchTests = {
                 console.log('Number of results found:', numberOfResults);
                 expect(numberOfResults).to.be.greaterThan(0);
             })
-    },
+    });
 
     // This test case verifies that if a wrong keyword is entered it gives no results.
-    "Verify that user should see a blank screen when they enter invalid character that is not present": (browser: NightwatchBrowser) => {
+    it("Verify that user should see a blank screen when they enter invalid character that is not present", () => {
         const search = browser.page.contribution.editSearchContribution.editSearchContribution();
         search
             .navigate()
@@ -66,7 +70,6 @@ const editSearchContributionTest: NightwatchTests = {
                 console.log('Number of results found:', numberOfResults);
                 expect(numberOfResults).to.be.equal(0);
             })  
-    }
-}
+    });
+});
 
-export default editSearchContributionTest;
