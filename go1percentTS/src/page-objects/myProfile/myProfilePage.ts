@@ -50,9 +50,9 @@ module.exports = {
         MonthlyScore: "div[class='d-flex flex-column align-items-center points-section p-1'] h4[class='mt-2']",
         RewardExist: "img[alt='reward']",
 
-        Badge: "div[class='row badge-card p-3'] div[class='d-flex justify-content-start align-items-center no-scroll-badges'] div:nth-child(1) div:nth-child(1) div:nth-child(1)",
-        BadgeRank: ".font-weight-light.overall-txt-color.rankSize",
-        BadgeMonth: "div[class='modal-body m-2 p-4'] div:nth-child(1) div:nth-child(1) h6:nth-child(1)",
+        Badge: "app-my-profile > div > div:nth-of-type(2) > div:nth-of-type(1) > div > div:nth-of-type(3) > div",
+        BadgeRank: "modal-container div.modal-content > div > div:nth-of-type(1)",
+        BadgeMonth: "modal-container div.modal-content > div > div:nth-of-type(2) > div >div >h6",
         BadgeScore: "div[class='info-div d-flex flex-column justify-content-center'] span[class='score-size']",
         BadgeQuit: "span[role='button']",
         BadgeCounts: {
