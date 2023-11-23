@@ -1,6 +1,14 @@
-import { NightwatchBrowser} from "nightwatch";
-module.exports={
-    elements:{
+import { addDays, format } from 'date-fns';
+import { PageObjectModel, EnhancedPageObject,NightwatchBrowser, NightwatchCallbackResult} from 'nightwatch';
+
+function generatedate(): string{
+  var today= new Date();
+   const futureDate = addDays(today,7);
+ const futureDateString = format(futureDate,'dd/MM/yyyy');
+ return futureDateString; 
+}
+
+const addContributionElements={
       body: 'body',
       submit:"button[type='submit']",
       cancel:".btn.btn-primary.button.cancel-button.mx-2",
@@ -14,19 +22,19 @@ module.exports={
       calendar:"#contributionDate",
       contributiontext:".addRewardTxt",
       Invalidcancel:".btn.btn-primary.button.cancel-button.mx-2"
-    },
-    commands:[{
+    }
+    const addContributionCommands={
 
-      Submitdisabled (attributeName:string):NightwatchBrowser{
+      Submitdisabled(this:EnhancedPageObject,attributeName:string){
         return this
         .expect.element("@submit").to.have.attribute(attributeName);
         
       },
-      Textcontain (message: string) :NightwatchBrowser{
+      Textcontain (this:EnhancedPageObject,message: string){
         return this
-        .assert.containsText("@dialogmessage", message);     
+        .assert.textContains("@dialogmessage", message);     
       },
-     Buttontext() :NightwatchBrowser{
+     Buttontext(this: EnhancedPageObject){
         return this
         .getText('@contributiontext', function(result:any) {
           const buttonText = result.value;
@@ -35,30 +43,26 @@ module.exports={
           this.assert.equal(buttonText, 'ADD A CONTRIBUTION');
         })    
       },
-      Futuredate():NightwatchBrowser {
-        return this
-        .execute(function() {
-          var inputElement = document.querySelector('#contributionDate');
-          if (inputElement) {
-            var today= new Date();
-            today.setDate(today.getDate()+7);
-            const futureDate = today.toISOString().split('T')[0];
-            inputElement.value = futureDate; 
-            // Optionally, trigger the "input" event to mimic user input
-            var event = new Event('input', { bubbles: true });
-         inputElement.dispatchEvent(event);
-           } 
-         })
+     Futuredate(this:EnhancedPageObject) {
+      return this
+        .setValue('@calendar',generatedate())
+                
       },
+        Alerttext (this:EnhancedPageObject) {
+          return this
+          .assert.textContains("@body", 'Contribution date is not valid');     
+        }
 
-      Alerttext () :NightwatchBrowser{
-        return this
-        .assert.containsText("@body", 'Contribution date is not valid');     
-      }
-    
 
-      
-     
-
-    }]
+    }
+   
+const addContribution : PageObjectModel = {
+  elements: addContributionElements,
+  commands: [addContributionCommands]
 };
+export default addContribution;
+export interface TechhubPage
+    extends EnhancedPageObject<
+        typeof addContributionCommands,
+        typeof addContributionElements
+    > { }

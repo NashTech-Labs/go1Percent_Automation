@@ -1,45 +1,49 @@
-import { NightwatchTests, NightwatchBrowser } from "nightwatch";
+import { NightwatchBrowser } from "nightwatch";
 
-const contribution = browser.page.contribution.reviewContribution.allContribution();
-const allContributions: NightwatchTests = {
-    before: (browser: NightwatchBrowser) => {
+describe('Go1Percent Review Contribution FE tests', () => {
+    const contribution = browser.page.contribution.reviewContribution.allContribution();
+    before((browser: NightwatchBrowser) => {
         browser
-            .windowMaximize()
-            .url('https://nashtechglobal.qa.go1percent.com/')
+            .window.maximize()
+            .url('https://nashtechglobal.qa.go1percent.com/');
+
         const login = browser.page.contribution.login();
-        login.navigate().enterCredentials('testadmin', 'testadmin')
-        login.signIn()
-    },
+        login.navigate().enterCredentials('testadmin', 'testadmin');
+        login.signIn();
 
-    'Verify Filter fields on All Contributions Dashboard': () => {
-        contribution.approvalsPage()
-        contribution.navigateToAllContributions()
-        contribution.verifyAllFields()
-    },
+        contribution.approvalsPage();
+        contribution.navigateToAllContributions();
+    });
 
-    'Approve a Contribution': () => {
-        contribution.approveContribution()
-    },
+        it('Verify Filter fields on All Contributions Dashboard', () => {
+            contribution.verifyAllFields()
+        }),
 
-    'Reject a Contribution': () => {
-        contribution.rejectContribution()
-    },
+        it('Approve a Contribution', () => {
+            contribution.approveContribution()
+        }),
 
-    'Filter a contribution by status': () => {
-        contribution.allStatus();
-    },
+        it('Reject a Contribution', () => {
+            contribution.rejectContribution()
+        }),
 
-    'Search a Nasher by name': () => {
-        contribution.searchNasher();
-    },
+        it('Filter a contribution by status', () => {
+            contribution.allStatus();
+        }),
 
-    'Filter contributions by competency': () => {
-        contribution.competencyFilter();
-    },
+        it('Search a Nasher by name', () => {
+            contribution.searchNasher();
+        }),
 
-    'Filter contributions by comptency type': () => {
-        contribution.contributionTypeFilter();
-    },
+        it('Filter contributions by competency', () => {
+            contribution.competencyFilter();
+        }),
 
-}
-export default allContributions;
+        it('Filter contributions by competency type', () => {
+            contribution.contributionTypeFilter();
+        })
+
+});
+
+
+

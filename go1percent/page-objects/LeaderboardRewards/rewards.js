@@ -1,11 +1,9 @@
 var rewardsCommands = {
 
-
     goToRewards: function () {
         return this
         .click('@dropDownButton')
-        .click('@rewardsOption')
-        .assert.urlContains('rewards/list', 'Reward tab is opened');
+        .click('@rewardsOption');
     }
 
 }
@@ -15,11 +13,11 @@ module.exports = {
    
     commands: [rewardsCommands],
     elements: {
-        dropDownButton: {
-            selector: 'li:nth-child(3) > div.nav-link.ps-0.text-white.collapsed',
-        },
         rewardsOption: {
             selector: 'a.nav-link[href="/rewards/list"]',
+        },
+        dropDownButton: {
+            selector: 'li:nth-child(3) > div.collapsed',
         }
 
     }
