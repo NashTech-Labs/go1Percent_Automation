@@ -1,5 +1,5 @@
 describe('Admin Profile Test Cases', ()=>{
-    const dashboardPage = browser.page.admin_profile.goOneDashboard();
+    const dashboardPage = browser.page.admin_profile.dashboard();
     before ((browser) => {
         const loginPage = browser.page.loginGo1();
 
