@@ -1,5 +1,5 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
-import { globals } from "../../../../nightwatch.conf";
+import { globalElement } from "nightwatch";
 import { Nightwatch } from "nightwatch";
 
 var userName = browser.globals.userName;
@@ -33,10 +33,10 @@ describe("My Profile Page Frontend Automation", () => {
     afterEach(function (browser) {
         browser.end();
     });
-
+ 
     it("No Badges Earned' message when no badges were earned to their profile", function (browser) {
 
-        browser.elements('xpath', "//div[@class='w-20']", function (result) {
+        browser.elements('xpath', "@BadgeCounts", function (result) {
             if (result.status === 0) {
                 let Pending = result.value;
                 let Total = Pending.length;
@@ -69,7 +69,7 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it.only('View the points, overall rank and monthly score on the profile page', function (browser) {
         myProfile
-            .pause(3000)
+            .waitForElementVisible('@Points', 7000)
             .assert.elementPresent('@Points', 'User Points Visible')
             .assert.elementPresent('@OverallRank', 'User OverallRank Visible')
             .assert.elementPresent('@MonthlyScore', 'User Monthly Score Visible')
