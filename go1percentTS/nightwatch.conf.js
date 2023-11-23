@@ -11,14 +11,13 @@
 //             __/ |
 //            |___/
 //
-
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['./dist/src/test'],
+  src_folders: ['src/test'],
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['./dist/src/page-objects'],
+  page_objects_path: ['src/page-objects'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
   //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
@@ -29,9 +28,12 @@ module.exports = {
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   // plugins: ["vite-plugin-nightwatch","@nightwatch/react"],
   plugins: ['@nightwatch/apitesting'],
-  
+
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
-  //globals_path : './globals.ts',
+
+
+  //globals_path : './globals.js',
+
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
@@ -43,7 +45,7 @@ module.exports = {
   },
 
   webdriver: {},
-  
+
   test_workers: {
     enabled: true,
     workers: 'auto'
@@ -61,7 +63,7 @@ module.exports = {
       },
 
       desiredCapabilities: {
-        browserName : 'chrome'
+        browserName: 'chrome'
       },
 
       webdriver: {
@@ -78,8 +80,8 @@ module.exports = {
     },
 
     firefox: {
-      desiredCapabilities : {
-        browserName : 'firefox',
+      desiredCapabilities: {
+        browserName: 'firefox',
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
           args: [
@@ -99,9 +101,9 @@ module.exports = {
     },
 
     chrome: {
-      desiredCapabilities : {
-        browserName : 'chrome',
-        'goog:chromeOptions' : {
+      desiredCapabilities: {
+        browserName: 'chrome',
+        'goog:chromeOptions': {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -124,12 +126,12 @@ module.exports = {
       }
     },
 
-    
+
 
     edge: {
-      desiredCapabilities : {
-        browserName : 'MicrosoftEdge',
-        'ms:edgeOptions' : {
+      desiredCapabilities: {
+        browserName: 'MicrosoftEdge',
+        'ms:edgeOptions': {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
@@ -149,7 +151,7 @@ module.exports = {
       }
     },
 
-    
+
 
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for when using cucumber-js (https://cucumber.io)                |
@@ -194,7 +196,7 @@ module.exports = {
       // More info on configuring capabilities can be found on:
       // https://www.browserstack.com/automate/capabilities?tag=selenium-4
       desiredCapabilities: {
-        'bstack:options' : {
+        'bstack:options': {
           userName: '${BROWSERSTACK_USERNAME}',
           accessKey: '${BROWSERSTACK_ACCESS_KEY}',
         }
@@ -222,7 +224,7 @@ module.exports = {
       extends: 'browserstack',
       desiredCapabilities: {
         browserName: 'chrome',
-        chromeOptions : {
+        chromeOptions: {
           w3c: true
         }
       }
@@ -278,7 +280,7 @@ module.exports = {
       // More info on configuring capabilities can be found on:
       // https://docs.saucelabs.com/dev/test-configuration-options/
       desiredCapabilities: {
-        'sauce:options' : {
+        'sauce:options': {
           username: '${SAUCE_USERNAME}',
           accessKey: '${SAUCE_ACCESS_KEY}',
           screenResolution: '1280x1024'
@@ -302,7 +304,7 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true,
         timeZone: 'London',
-        chromeOptions : {
+        chromeOptions: {
           w3c: true
         }
       }
@@ -344,7 +346,7 @@ module.exports = {
       extends: 'selenium_server',
       desiredCapabilities: {
         browserName: 'chrome',
-        chromeOptions : {
+        chromeOptions: {
           w3c: true
         }
       }
