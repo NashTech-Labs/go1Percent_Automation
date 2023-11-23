@@ -12,7 +12,7 @@ const goOneDashboard: PageObjectModel = {
     url: "",
 
     elements : {
-        adminProfilePic : 'div.no-profile',
+        adminProfilePic : '.material-symbols-outlined.hex',
         badgeText : 'h6.badge-text'
     },
 

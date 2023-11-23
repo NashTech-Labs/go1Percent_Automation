@@ -1,5 +1,7 @@
 describe('Admin Profile Test Cases', ()=>{
     const dashboardPage = browser.page.admin_profile.dashboard();
+    const adminProfilePage = browser.page.admin_profile.adminProfile();
+
     before ((browser) => {
         const loginPage = browser.page.loginGo1();
 
@@ -18,8 +20,17 @@ describe('Admin Profile Test Cases', ()=>{
     it('Verify that user is able to open the admin profile from dasboard page' , (browser) => {
         
         dashboardPage.clickImage();
-        browser.assert.urlContains('my-profile');
+        browser.assert.urlContains('my-profile')
         dashboardPage.assert.visible('@badgeText');
+    })
+
+    it('Verify the test admin details from the profile page', async (browser) => {
+        const adminPointsText = await adminProfilePage.adminProfileGetText('@adminPoints');
+        browser.assert.equal(adminPointsText, "0");
+        const adminRankText = await adminProfilePage.adminProfileGetText('@adminRank');
+        browser.assert.equal(adminRankText, '1');
+        const adminMonthlyScoreText = await adminProfilePage.adminProfileGetText('@adminMonthlyScore');
+        browser.assert.equal(adminMonthlyScoreText, '3355');
     })
 
 }) 
