@@ -2,9 +2,9 @@ import { addDays, format } from 'date-fns';
 import { PageObjectModel, EnhancedPageObject,NightwatchBrowser, NightwatchCallbackResult} from 'nightwatch';
 
 function generatedate(): string{
-  var today = new Date();
-  const futureDate = addDays(today,7);
-  const futureDateString = format(futureDate,'dd/mm/yyyy');
+  var today= new Date();
+   const futureDate = addDays(today,7);
+ const futureDateString = format(futureDate,'dd/MM/yyyy');
  return futureDateString; 
 }
 
