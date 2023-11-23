@@ -148,8 +148,6 @@ const loginPage: PageObjectModel = {
         },
 
         particularTicket: {
-            // selector: "//datatable-row-wrapper[@class='datatable-row-wrapper'][1]",
-            // locateStrategy: 'xpath'
             selector: 'datatable-body datatable-selection datatable-row-wrapper:nth-child(1)'
         },
         attachfile: '#uploadfile',
