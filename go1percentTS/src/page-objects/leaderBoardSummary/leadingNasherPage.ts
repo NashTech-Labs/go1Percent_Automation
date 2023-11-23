@@ -261,20 +261,20 @@ const leadingNasher: PageObjectModel = {
             selector: "(//div[@class='mb-2 mt-3'])",
             locateStrategy: 'xpath'
         },
+        badgePopUpDetails: {
+            selector:`.months-score :nth-of-type(${randomNumber})`
+        },
+        skillForLable3: {
+            selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
+            locateStrategy: 'xpath'
+        },
         graphData1: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(2)"
         },
         graphData2: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(3)",
         },
-        skillForLable3: {
-            selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
-            locateStrategy: 'xpath'
-        },
-        badgePopUpDetails: {
-            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
-            locateStrategy: 'xpath'
-        },
+       
     }
 };
 

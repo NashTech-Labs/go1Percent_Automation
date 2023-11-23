@@ -109,8 +109,7 @@ module.exports = {
             locateStrategy: 'xpath'
         },
         badgePopUpDetails: {
-            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
-            locateStrategy: 'xpath'
+            selector: `.months-score :nth-of-type(${randomNumber})`,
         },
     },
     commands: [
