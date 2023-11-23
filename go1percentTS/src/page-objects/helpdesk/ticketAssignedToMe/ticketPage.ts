@@ -1,34 +1,34 @@
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 const message = 'this is for testing purpose';
- 
+
 const commands = {
-    enterCredentials(this:LoginPage) {
+    enterCredentials(this: LoginPage) {
         return this
             .setValue('@emailInput', 'testemployee')
             .pause(1000)
             .setValue('@passwordInput', 'testemployee')
             .pause(1000)
-            
+
     },
 
-    signInButton(this:LoginPage){
-        return this 
-        .click('@signIn')
+    signInButton(this: LoginPage) {
+        return this
+            .click('@signIn')
     },
 
-    helpDeskButton(this: LoginPage){
-        return this 
-        .click('@helpdesk')
+    helpDeskButton(this: LoginPage) {
+        return this
+            .click('@helpdesk')
     },
 
-    Ticketassignedtome(this: LoginPage){
-        return this 
-        .click('@Ticketassignedtome')
-    }, 
-    OpenTicket(this: LoginPage){
-        return this 
-        .click('@openTicket')
-    }, 
+    Ticketassignedtome(this: LoginPage) {
+        return this
+            .click('@Ticketassignedtome')
+    },
+    OpenTicket(this: LoginPage) {
+        return this
+            .click('@openTicket')
+    },
     clickOnHelpdesk(this: LoginPage) {
         return this
             .click('@helpdesk')
@@ -59,10 +59,6 @@ const commands = {
         return this
             .click('@sendButton')
     },
-    clickOnattachFile(this: LoginPage) {
-        return this
-            .click("@attachFile")
-    },
     clickOnstatus(this: LoginPage) {
         return this
             .click('@status')
@@ -79,22 +75,17 @@ const commands = {
         return this
             .click('@knolxCategory')
     },
-    clickOnpriority(this: LoginPage) {
+    clickOnPriority(this: LoginPage) {
         return this
             .click('@priority')
     },
     clickOnupdateButton(this: LoginPage) {
         return this
-            .waitForElementVisible('@updateButton', 5000)
             .click('@updateButton')
     },
     clickOncloseTicketButton(this: LoginPage) {
         return this
             .click('@closeTicketButton')
-    },
-    clickOnlatestClosedTicket(this: LoginPage) {
-        return this
-            .click('@latestClosedTicket')
     },
     chatPage(this: LoginPage) {
         return this
@@ -123,10 +114,21 @@ const commands = {
     clickStatusOpen(this: LoginPage) {
         return this
             .click('@statusOpen')
-    }
-
+    },
+    attachFile(this: EnhancedPageObject) {
+        const path = require('path')
+        browser.execute(function () {
+            var element = document.querySelector('#uploadfile');
+            if (element) {
+                element.scrollIntoView();
+            }
+        })
+            .uploadFile('#uploadfile', path
+                .resolve(__dirname, '..', '..', '..', '..', '..', 'src/helpers/Go1PercentFEAutomation/helpdesk/ticketassignedtome/smalldog.jpg')).pause(5000)
+        return this;
+    },
 };
- 
+
 const loginPage: PageObjectModel = {
     url: "https://nashtechglobal.qa.go1percent.com/",
     commands: [commands],
@@ -139,49 +141,36 @@ const loginPage: PageObjectModel = {
             locateStrategy: 'xpath'
         },
         Ticketassignedtome: {
-            selector: "(//a[@href='/helpdesk/assigned-tickets'])[1]",
-            locateStrategy: 'xpath'
+            selector: "a[href='/helpdesk/assigned-tickets']"
         },
         openTicket: {
-            selector: "(//a[normalize-space()='Open Ticket'])[1]",
-            locateStrategy: 'xpath'
+            selector: ".cursor-pointer.newTabs"
         },
 
         particularTicket: {
             selector: "//datatable-row-wrapper[@class='datatable-row-wrapper'][1]",
             locateStrategy: 'xpath'
         },
+        attachfile: '#uploadfile',
 
         textBox: {
-            selector: "(//textarea[@placeholder='Enter you text'])[1]",
-            locateStrategy: 'xpath'
+            selector: "textarea[placeholder='Enter you text']"
         },
 
         sendButton: {
-            selector: 'button[class="send-button bg-gradient-info"]'
-        },
-
-        attachFile: {
-            selector: 'label[class="attach_file cursor-point"]'
+            selector: '.send-button.bg-gradient-info'
         },
 
         closedTicketPage: {
-            selector: '//div[@class="card me-3 p-4 mt-3"]',
-            locateStrategy: 'xpath'
+            selector: '.card.me-3.p-4.mt-3'
         },
-
-        // assignedNameInput: {
-        //     selector: "input[placeholder='Search']",
-        //     locateStrategy: 'xpath'
-        // },
 
         assignedNameSuggestion: {
             selector: "span[class='ng-star-inserted']"
         },
 
         status: {
-            selector: "//option[normalize-space()='Closed']",
-            locateStrategy: 'xpath'
+            selector: "select[id='status'] option:nth-child(2)"
         },
         statusCheck: {
             selector: '#status'
@@ -196,19 +185,13 @@ const loginPage: PageObjectModel = {
         },
 
         priority: {
-            selector: '//option[normalize-space()="Low"]',
-            locateStrategy: 'xpath'
+            selector: "select[id='priority'] option:nth-child(1)"
         },
         priorityCheck: {
             selector: '#priority'
         },
-        assignedCheck: {
-            selector: "//tag-input[@class='ng-tns-c229-0 ng-untouched ng-pristine ng-valid ng-star-inserted']",
-            locateStrategy: 'xpath'
-        },
         updateButton: {
-            selector: '//button[normalize-space()="Update"]',
-            locateStrategy: 'xpath'
+            selector: '.Update-button.btn.btn-primary'
         },
 
         statusMessage: {
@@ -216,12 +199,7 @@ const loginPage: PageObjectModel = {
         },
 
         savedConversation: {
-            selector: "//div[@class='card tab-bar border-0 mt-4 pr-2 pb-3 p-4']",
-            locateStrategy: 'xpath'
-        },
-        allFieldsForm: {
-            selector: "//form[@class='w-100 ng-untouched ng-pristine ng-valid']//div[@class='card tab-bar mt-4 p-4']",
-            locateStrategy: 'xpath'
+            selector: ".card.tab-bar.border-0.mt-4.pr-2.pb-3.p-4"
         },
 
         assignedNameInput: {
@@ -236,17 +214,8 @@ const loginPage: PageObjectModel = {
             locateStrategy: 'xpath'
         },
 
-        latestClosedTicket: {
-            selector: "//div[@class='mt-2 ticket-number ng-star-inserted'][normalize-space()='1324']",
-            locateStrategy: 'xpath'
-        },
         knolxCategory: {
-            selector: '//*[@id="category"]/option[10]',
-            locateStrategy: 'xpath'
-        },
-        assignedClosedTicket: {
-            selector: "//label[@class='fs-6 mb-2 ng-star-inserted']",
-            locateStrategy: 'xpath'
+            selector: "option[value='Knolx']"
         },
         assignedTo: {
             selector: "(//*[name()='path'])[1]",
@@ -258,15 +227,19 @@ const loginPage: PageObjectModel = {
         },
         categoryOpen: {
             selector: "select[id='status'] option:nth-child(1)"
+        },
+        allFieldsForm: {
+            selector: 'form[class="w-100 ng-untouched ng-pristine ng-valid"] div[class="card tab-bar mt-4 p-4"]'
+        },
+        assignedCheck: {
+            selector: 'div[class="row mb-4 ng-star-inserted"] tag-input[formcontrolname="assignedTo"]'
         }
     },
 
- 
-
 };
- 
+
 export default loginPage;
- 
+
 export interface LoginPage
-  extends EnhancedPageObject<typeof commands,
-  typeof loginPage.elements> { }
+    extends EnhancedPageObject<typeof commands,
+        typeof loginPage.elements> { }
