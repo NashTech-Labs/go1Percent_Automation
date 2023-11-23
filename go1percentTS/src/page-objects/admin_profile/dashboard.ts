@@ -1,7 +1,7 @@
 import { PageObjectModel, EnhancedPageObject } from "nightwatch";
 
 const dashboardCommands = {
-    clickImage(this : goOneDasboardPage) {
+    clickImage(this : goOneDashboardPage) {
         return this
         .waitForElementVisible('@adminProfilePic' , 10000)
         .click('@adminProfilePic')
@@ -12,7 +12,7 @@ const goOneDashboard: PageObjectModel = {
     url: "",
 
     elements : {
-        adminProfilePic : '.no-profile',
+        adminProfilePic : 'div.no-profile',
         badgeText : 'h6.badge-text'
     },
 
@@ -20,4 +20,4 @@ const goOneDashboard: PageObjectModel = {
 }
 
 export default goOneDashboard;
-export interface goOneDasboardPage extends EnhancedPageObject <typeof dashboardCommands, typeof goOneDashboard.elements> {}
+export interface goOneDashboardPage extends EnhancedPageObject <typeof dashboardCommands, typeof goOneDashboard.elements> {}
