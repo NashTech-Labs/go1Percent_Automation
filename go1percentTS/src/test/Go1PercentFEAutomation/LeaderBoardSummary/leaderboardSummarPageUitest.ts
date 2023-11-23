@@ -1,36 +1,43 @@
-// Describe block for UI automation of the leaderboard summary option
+import {NightwatchBrowser } from 'nightwatch';
+import{LoginPage} from '../../../page-objects/leaderBoardSummary/login';
+import{SummaryPage} from '../../../page-objects/leaderBoardSummary/summary';
+import {LeadingNasherPage} from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
+
+
 describe('UI automation for leaderboard summary page option', () => {
-  let summaryPage;
-  let leadingpage;
+    let summaryPage: SummaryPage;
+    let leadingPage: LeadingNasherPage;
 
-  beforeEach((client) => {
-    // Create a page object and perform login actions
-    const page = client.page.LeaderBoardSummary.login();
-    page
-      .maximizeWindow()
-      .navigate()
-      .enterCredentials('testemployee', 'testemployee')
-      .signIn();
+    beforeEach((browser:NightwatchBrowser) => {
+        // Create a page object and perform login actions
+        const page = browser.page.leaderBoardSummary.login()as LoginPage;
+        page
+            .maximizeWindow()
+            .navigate()
+            .enterCredentials()
+            .signIn();
 
-    //Initialize summaryPage and leadingpage page objects
-    summaryPage = client.page.LeaderBoardSummary.summary();
-    leadingpage = client.page.LeaderBoardSummary.leadingnasher();
-  });
+        //Initialize summaryPage and leadingpage page objects
+        summaryPage = browser.page.leaderBoardSummary.summary() as SummaryPage;
+        leadingPage = browser.page.leaderBoardSummary.leadingNasherPage() as LeadingNasherPage;
+    });
 
-  // Define common actions in the beforeEach hook
-  const commonActions = () => {
-    summaryPage
-      .isLeaderboardVisible()
-      .assert.containsText('@summary', 'Summary')
-      .SummaryWithAllTheDetails()
-  };
+    // Define common actions in the beforeEach hook
+    const commonActions = () => {
+        summaryPage
+            .isLeaderboardVisible()
+            .assert.textContains('@summary', 'Summary')
+            .SummaryWithAllTheDetails()
+    };
 
-  const leadingNasherCommonActions = () => {
-    commonActions();
-    leadingpage
-      .leadingNasherProfilePage()
-  };
+    const leadingNasherCommonActions = () => {
+        commonActions();
+        leadingPage
+            .leadingNasherProfilePage()
+    };
 
+
+    
   /**
    * Test case to check if the dashboard is visible
    */
@@ -110,4 +117,3 @@ describe('UI automation for leaderboard summary page option', () => {
     client.end();
   });
 });
-
