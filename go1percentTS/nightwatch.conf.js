@@ -32,8 +32,8 @@ module.exports = {
   
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
 
-  //globals_path : './globals.js',
 
+  // globals_path : './globals.js',
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
