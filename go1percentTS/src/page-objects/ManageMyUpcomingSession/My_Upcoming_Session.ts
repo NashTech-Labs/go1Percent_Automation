@@ -363,7 +363,7 @@ const UpcomingSessionCommands = {
 }
 const ManageSessionPage: PageObjectModel = {
 
-    url: "",
+
     commands: [UpcomingSessionCommands],
     elements: SessionElements,
 
@@ -375,3 +375,5 @@ export default ManageSessionPage;
 export interface UpcomingSession
     extends EnhancedPageObject<typeof UpcomingSessionCommands,
         typeof SessionElements> { }
+
+        //Here interface means whenever any of the commands call in test class it will follow the interface rule(this:UpcomingSession)
