@@ -4,13 +4,13 @@ const commands = {
     dashboardIsVisible(this: SummaryPage) {
         return this
             .waitForElementVisible('@dashboard')
-            .assert.containsText('@dashboard', 'DASHBOARD')
+            .assert.textContains('@dashboard', 'DASHBOARD')
     },
     isLeaderboardVisible(this: SummaryPage) {
         return this
             .waitForElementVisible('@leaderboard')
             .click('@leaderboard')
-            .assert.containsText('@summary', 'Summary')
+            .assert.textContains('@summary', 'Summary')
     },
     SummaryWithAllTheDetails(this: SummaryPage) {
         return this
@@ -63,10 +63,7 @@ const summaryPage: PageObjectModel = {
         contributionTypes_3: { selector: 'div.row.section > div:nth-child(3) p' },
         contributionTypes_4: { selector: 'div.row.section > div:nth-child(4) p' },
         leadingNashers: { selector: 'div[class="leading mt-3"]' },
-        leadingNasherList: {
-            // selector: 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]' 
-            selector: 'div[class*="d-flex justify-content-between align-items-center summary"]'
-        },
+        leadingNasherList:'div[class*="d-flex justify-content-between align-items-center summary"]',
         thismonth: { selector: 'a[class="mx-2 tabs cursor-pointer overall-txt-color"]' },
         allTime: { selector: ".card.leading-card.p-4 > div:first-child > a:nth-child(2)" },
     }

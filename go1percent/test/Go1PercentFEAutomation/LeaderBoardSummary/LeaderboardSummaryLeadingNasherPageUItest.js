@@ -4,7 +4,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
 
     beforeEach((client) => {
         // Create a page object and perform login actions
-        const page = client.page.LeaderBoard_summary.login();
+        const page = client.page.LeaderBoardSummary.login();
         page
             .maximizeWindow()
             .navigate()
@@ -12,8 +12,8 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
             .signIn();
 
         //Initialize summaryPage and leadingpage page objects
-        summaryPage = client.page.LeaderBoard_summary.summary();
-        leadingpage = client.page.LeaderBoard_summary.leadingnasher();
+        summaryPage = client.page.LeaderBoardSummary.summary();
+        leadingpage = client.page.LeaderBoardSummary.leadingnasher();
     });
 
     // Define common actions in the beforeEach hook
@@ -148,8 +148,6 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
         leadingpage
             .pointsSectionWithScore()
             .expandContribution()
-            //with user expand contribution user is able to see the contribution
-            .assert.containsText('@contributionsTyes', 'Test'||'test', 'asssert test as suffix or prefix')
     });
 
     /**

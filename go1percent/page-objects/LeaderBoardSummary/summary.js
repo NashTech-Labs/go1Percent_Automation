@@ -15,9 +15,9 @@ module.exports = {
         contributionTypes_3: "div.row.section > div:nth-child(3) p",
         contributionTypes_4: "div.row.section > div:nth-child(4) p",
         leadingNashers: 'div[class="leading mt-3"]',
-        leadingNasherList:'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]',
+        leadingNasherList:'div[class*="d-flex justify-content-between align-items-center summary"]',
         thismonth: 'a[class="mx-2 tabs cursor-pointer overall-txt-color"]',
-        allTime: "app-leading-knolder div[class='card leading-card p-4'] a[class='mx-2 tabs cursor-pointer overall-txt-color']",
+        allTime: ".card.leading-card.p-4 > div:first-child > a:nth-child(2)",
     },
     commands: [
 

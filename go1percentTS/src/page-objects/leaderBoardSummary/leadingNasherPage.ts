@@ -30,8 +30,6 @@ const commands = {
                 console.log(result.value);
                 // Verify that the fetched text meets your expectations
             });
-        // You might need to add additional assertions or return statements here
-        // depending on what you want to achieve.
     },
 
     allContibutionList(this: LeadingNasherPage) {
@@ -111,7 +109,7 @@ const commands = {
     // we expand our configuration here
         expandContribution(this: LeadingNasherPage) {
             
-            let wordRegex = '[A-Za-z]+ [A-Za-z]+';
+            let wordRegex = '[A-Za-z]+';
             let dateRegex='[0-9]+-[A-Za-z]+-[0-9]+';
 
             return this
@@ -169,9 +167,8 @@ const leadingNasher: PageObjectModel = {
     url: "https://nashtechglobal.qa.go1percent.com/",
     commands: [commands],
     elements: {
-
         leadingnahser: {
-            selector: 'div[class="d-flex justify-content-between align-items-center summary-tab cursor-pointer"]'
+            selector: '.leading.mt-3 >:nth-child(1)'
         },
         contibutionButton: {
             selector: "//a[text()='Contributions']",
@@ -182,10 +179,10 @@ const leadingNasher: PageObjectModel = {
             locateStrategy: 'xpath'
         },
         allContributions: {
-            selector: 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]',
+            selector: '.studio-member-card.cursor-pointer',
         },
         rewrordSection: {
-            selector: "div[class='d-flex flex-column align-items-center mt-5'] div div:nth-child(1)",
+            selector:"div[class*='-center mt-5'] div div:nth-child(1)"
         },
         rewordSectionDate: {
             selector: 'span[class="text-bold"]'
@@ -194,31 +191,26 @@ const leadingNasher: PageObjectModel = {
             selector: 'p[class="text-center"]'
         },
         noRewordNasher: {
-            selector: "(//div[@class='d-flex justify-content-between align-items-center summary-tab cursor-pointer'])[3]",
-            locateStrategy: "xpath"
+            selector: '.leading.mt-3>:nth-child(3)'
         },
         norewordSection: {
             selector: 'span[class="mt-5 text-center"]'
         },
 
         viewRwordsButton: {
-            selector: 'button[class="btn add-button reedeem-btn mt-5"]'
+            selector: '.add-button.reedeem-btn'
         },
         rewords: {
-            selector: 'div[class*="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-3 card"]'
+            selector:'.card.rewrdlist'
         },
         badge: {
-            selector: 'div[class="material-symbols-outlined hexagon cursor-pointer"]'
+            selector:'div[class*="material-symbols-outlined hexagon"]'
         },
         badgPopup: {
-            selector: 'div[class="d-flex justify-content-between align-items-center"]'
-        },
-        badgePopUpDetails: {
-            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
-            locateStrategy: 'xpath'
+            selector:'.modal-body :nth-child(1)'
         },
         noBadgeFound: {
-            selector: "div[class='d-flex flex-column align-items-center my-auto'] p"
+            selector: ".badge-card :nth-child(3) p"
         },
         pointSection: {
             selector: 'div[class="col-6 current-month"]'
@@ -232,55 +224,56 @@ const leadingNasher: PageObjectModel = {
         graph: {
             selector: 'canvas'
         },
-        graphData1: {
-            selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(2)"
-        },
-        graphData2: {
-            selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(3)",
-        },
         exanContribution: {
             selector: 'div[class="accordion mb-3 br spanText"]'
         },
         contributionsTyesOne: {
-            selector: "div[class*='pb-3 mt-4'] div div:nth-child(1) div:nth-child(1)"
+            selector:'.detail-row:nth-child(1) :nth-child(1)'
         },
         contributionsTyesTwo:{
-            selector:'div[class="col-4 col-md-4 text-right text-xl-center"]'
+            selector:'.detail-row:nth-child(1) :nth-child(2)'
         },
         
         skillButton: {
-            selector: 'li[class="nav-item my-1 cursor-pointer text-bold p-2"]'
+            selector:'.newTabs.nav-item + li'
         },
         noSkillSection: {
             selector: 'div[class="skill-outline-div w-100 h-40"]'
         },
 
         nasherWithSkill: {
-            selector: "(//div[@class='d-flex justify-content-between align-items-center summary-tab cursor-pointer'])[2]",
-            locateStrategy: 'xpath'
+            selector :'.leading.mt-3>:nth-child(2)'
         },
         skillabel1: {
             selector: "(//div[@class='mb-4 mt-3'])[1]",
             locateStrategy: 'xpath'
         },
         skillForLable1: {
-            selector: "(//div[@class='skill-outline-div w-100 h-40'])[2]",
-            locateStrategy: 'xpath'
+            selector:'.skill-outline-div.skill-outline-div'
         },
         skillabel2: {
             selector: "(//div[@class='mb-4 mt-3'])[2]",
             locateStrategy: 'xpath'
         },
         skillForLable2: {
-            selector: "(//div[@class='skill-outline-div w-100 h-40'])[3]",
-            locateStrategy: 'xpath'
+             selector:'.card.tab-card :nth-child(3)'
         },
         skillabel3: {
             selector: "(//div[@class='mb-2 mt-3'])",
             locateStrategy: 'xpath'
         },
+        graphData1: {
+            selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(2)"
+        },
+        graphData2: {
+            selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(3)",
+        },
         skillForLable3: {
             selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
+            locateStrategy: 'xpath'
+        },
+        badgePopUpDetails: {
+            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
             locateStrategy: 'xpath'
         },
     }

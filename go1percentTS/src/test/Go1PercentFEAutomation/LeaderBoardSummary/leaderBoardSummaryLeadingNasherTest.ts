@@ -78,7 +78,7 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
         leadingPage
             //verifying that reword section contains no reoword
             .noRewordSection()
-            .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet');
+            .assert.textContains('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet');
     });
 
     /**
@@ -91,8 +91,8 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
             .assert.containsText('@norewordSection', 'You have not redeemed any rewards yet', 'no rewords redeemed yet')
             .viewRewords()
             //verifying that the reword page contains reowrds
-            .assert.containsText('@rewords', 'pts', 'asserting points on reword section')
-            .assert.containsText('@rewords', 'Expiry', 'asserting the date of Expiry the reword section');
+            .assert.textContains('@rewords', 'pts', 'asserting points on reword section')
+            .assert.textContains('@rewords', 'Expiry', 'asserting the date of Expiry the reword section');
     });
 
     /**
@@ -152,7 +152,6 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
    * Test case to expand any contribution and verify visibility of one's own contribution for that type with topic name and date.
    */
     it('When i expand any contribution Then i should able to see my contribution for that contribution type with Topic name and Date', () => {
-        // const regex='[A-Za-z]+ [A-Za-z]+ ([A-Za-z0-9]+(-[A-Za-z0-9]+)+)'
         leadingNasherCommonActions();
         leadingPage
             .pointsSectionWithScore()
