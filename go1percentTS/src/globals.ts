@@ -23,12 +23,35 @@ const techhubUrls = {
     grant_type: 'password',
   };
   
+const feedbackForm = {
+  apiUrls: {
+    requestUrl: 'https://knolx-backend.qa.go1percent.com/v02/feedback-form',
+  },
+  uiData: {
+    sessionInUseMessage: 'The Form is currently being used in following session(s)',
+    formUpdateMessage: 'Form Updated Successfully',
+    deleteDialogBoxMessage: 'Are you sure want to delete this form ?',
+    addNPSMessage: 'Please add a NPS question',
+    addFormTitleMessage: 'Please enter a Form Title',
+    addQuestionMessage: 'Question cannot be empty',
+    formCreatedMessage: 'Form created successfully',
+    searchQuery: 'Search Me',
+    formDeletedMessage: 'Form Deleted Successfully',
+    sessionFormName: 'knol',
+    no_sessionFormName: 'temp',
+    setTitle: 'Temporary Form',
+
+  },
+
+};
   export const admin = {
     techhubUrls,
     headers,
     tokenHeaders,
     tokenBody,
+    feedbackForm,
   };
   
   // ... (other exports)
+
   

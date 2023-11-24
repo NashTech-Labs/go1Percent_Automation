@@ -1,19 +1,19 @@
 import { Nightwatch, NightwatchBrowser } from "nightwatch";
-import globals from "../../../../globals";
+import { admin } from "../../../globals";
 const Homepage = browser.page.feedbackForm.loginPage();
 const feedbackFormPage = browser.page.feedbackForm.feedbackFormSectionPage();
 const formCreateUpdatePage = browser.page.feedbackForm.formCreateUpdatePage();
 
-const data = globals.feedbackForm.uiData;
+const data = admin.feedbackForm.uiData;
 
 
 // ----------------------------------------------------------------------
-//    >> using command "npx nightwatch src/test/Go1PercentFEAutomation/FEEDBACKFORM/feedbackForm_ui_tests.js"
+//    >> using command "npx nightwatch src/test/Go1PercentFEAutomation/FEEDBACKFORM/feedbackForm_ui_tests.ts"
 // -------------------------------------------------------------------------
 describe('Feedback-form UI tests', function () {
 
     beforeEach(
-        async function (browser) {
+        async function (browser:NightwatchBrowser) {
 
             Homepage
                 .navigate();
@@ -21,8 +21,8 @@ describe('Feedback-form UI tests', function () {
             await browser.window.maximize();
 
             await Homepage
-                .inputUsername(browser.globals.adminUserName)
-                .inputPassword(browser.globals.adminPassword)
+                .inputUsername(admin.tokenBody.username)
+                .inputPassword(admin.tokenBody.password)
                 .login();
 
         });
