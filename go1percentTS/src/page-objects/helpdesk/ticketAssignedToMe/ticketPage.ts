@@ -1,3 +1,4 @@
+//POM
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 const message = 'this is for testing purpose';
 
@@ -124,7 +125,7 @@ const commands = {
             }
         })
             .uploadFile('#uploadfile', path
-                .resolve(__dirname, '..', '..', '..', '..', '..', 'src/helpers/Go1PercentFEAutomation/helpdesk/ticketassignedtome/smalldog.jpg')).pause(5000)
+                .resolve(__dirname, '..', '..', '..', '..', 'src/helpers/Go1PercentFEAutomation/helpdesk/ticketassignedtome/smalldog.jpg')).pause(5000)
         return this;
     },
 };
@@ -148,8 +149,7 @@ const loginPage: PageObjectModel = {
         },
 
         particularTicket: {
-            selector: "//datatable-row-wrapper[@class='datatable-row-wrapper'][1]",
-            locateStrategy: 'xpath'
+            selector: 'datatable-body datatable-selection datatable-row-wrapper:nth-child(1)'
         },
         attachfile: '#uploadfile',
 
@@ -210,8 +210,7 @@ const loginPage: PageObjectModel = {
         },
 
         closeTicketButton: {
-            selector: "(//a[normalize-space()='Close Ticket'])[1]",
-            locateStrategy: 'xpath'
+            selector: "a[class='cursor-pointer']"
         },
 
         knolxCategory: {
@@ -222,8 +221,7 @@ const loginPage: PageObjectModel = {
             locateStrategy: 'xpath'
         },
         lastClosed: {
-            selector: "//datatable-body//datatable-selection//datatable-row-wrapper[2]",
-            locateStrategy: 'xpath'
+            selector: "datatable-body datatable-selection datatable-row-wrapper:nth-child(1)"
         },
         categoryOpen: {
             selector: "select[id='status'] option:nth-child(1)"
