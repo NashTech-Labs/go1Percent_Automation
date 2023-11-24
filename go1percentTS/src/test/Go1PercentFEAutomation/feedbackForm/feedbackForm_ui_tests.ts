@@ -1,10 +1,10 @@
 import { Nightwatch, NightwatchBrowser } from "nightwatch";
-import { admin } from "../../../globals";
+import { feedbackForm } from "../../../globals";
 const Homepage = browser.page.feedbackForm.loginPage();
 const feedbackFormPage = browser.page.feedbackForm.feedbackFormSectionPage();
 const formCreateUpdatePage = browser.page.feedbackForm.formCreateUpdatePage();
 
-const data = admin.feedbackForm.uiData;
+const data = feedbackForm.uiData;
 
 
 // ----------------------------------------------------------------------
@@ -21,8 +21,8 @@ describe('Feedback-form UI tests', function () {
             await browser.window.maximize();
 
             await Homepage
-                .inputUsername(admin.tokenBody.username)
-                .inputPassword(admin.tokenBody.password)
+                .inputUsername(feedbackForm.username)
+                .inputPassword(feedbackForm.password)
                 .login();
 
         });
