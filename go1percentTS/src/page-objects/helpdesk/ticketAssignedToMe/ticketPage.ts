@@ -1,3 +1,4 @@
+//POM
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 const message = 'this is for testing purpose';
 

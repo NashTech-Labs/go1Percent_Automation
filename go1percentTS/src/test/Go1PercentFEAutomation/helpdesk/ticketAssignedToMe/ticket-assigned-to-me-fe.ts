@@ -1,3 +1,4 @@
+//UI Test cases 
 import { NightwatchBrowser } from "nightwatch";
 const fetchElements = browser.page.helpdesk.ticketAssignedToMe.ticketPage();
 
