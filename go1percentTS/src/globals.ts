@@ -22,6 +22,8 @@ const techhubUrls = {
     password: 'testadmin',
     grant_type: 'password',
   };
+// Backend QA Url
+const base_url ="https://knolx-backend.qa.go1percent.com/"
   
   const addContribution={
     BaseUrl: "https://backend.qa.go1percent.com",
@@ -39,6 +41,7 @@ const techhubUrls = {
     tokenHeaders,
     tokenBody,
   };
+
   export const contibution = {
     addContribution,
     headers,
@@ -63,6 +66,10 @@ export const UpcomingSessionData={
 
 SessionData,
 EmployeeLogin,
+}
+
+export const baseURL ={
+  base_url
 }
   
   // ... (other exports)
