@@ -1,14 +1,6 @@
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
 
 
-
-//  url: '',
-
-
-
-
-
-
 const DashboardCommands = {
 
     ClickOnKnolx(this: Dashboard) {
