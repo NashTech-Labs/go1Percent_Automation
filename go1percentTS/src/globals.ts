@@ -23,12 +23,47 @@ const techhubUrls = {
     grant_type: 'password',
   };
   
+  const addContribution={
+    BaseUrl: "https://backend.qa.go1percent.com",
+    PostEndPoints: "/contribution/addContribution",
+    GetEndPoints: "/contribution/getKnolderContribution?pageNumber=1&limit=10000",
+    Contribution_url: "www.codsfcdu.org",
+    token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
+    go1percentBase: "https://techhub-backend.qa.go1percent.com",
+};
+
+  
   export const admin = {
     techhubUrls,
     headers,
     tokenHeaders,
     tokenBody,
   };
+  export const contibution = {
+    addContribution,
+    headers,
+    tokenHeaders,
+    tokenBody,
+    
+  };
+
+  const SessionData= {
+    ExpectedTitle: 'TestAutomationTitle',
+    Description: 'Description',
+    SlideURL: 'Slide URL',
+    }
+    
+    const EmployeeLogin={
+    
+    username: 'testemployee',
+    password: 'testemployee'
+    }
+
+export const UpcomingSessionData={
+
+SessionData,
+EmployeeLogin,
+}
   
   // ... (other exports)
   
