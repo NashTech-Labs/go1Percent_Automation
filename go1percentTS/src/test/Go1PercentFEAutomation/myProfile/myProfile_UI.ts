@@ -1,33 +1,35 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
-import { globalElement } from "nightwatch";
-import { Nightwatch } from "nightwatch";
-
+import{LoginPage} from '../../../page-objects/login';
 var userName = browser.globals.userName;
 var password = browser.globals.password;
+userName = 'testadmin';
+password = 'testadmin';
 
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
-    var myProfile = browser.page.myProfile.myProfilePage();
+    const dashboardPage = browser.page.myProfile.dashboard();
+    const myProfile = browser.page.myProfile.myProfilePage();
 
 
-    beforeEach(function (browser) {
+    beforeEach((client:NightwatchBrowser) => {
+        // Create a page object and perform login actions
+        const loginPage = browser.page.loginGo1();
+        
 
-        browser
-            .window.maximize()
-
-            .page.contribution.login()
+        loginPage
+        .maximizeWindow()
             .navigate()
-            .setValue('@emailInput', userName)
-            .setValue('@passwordInput', password)
-            .signIn()
+            .enterCredentials(userName, password)
+            .waitForElementVisible('@signIn', 2000)
+            .signIn() 
             .assert.urlContains("my-dashboard", 'URL contains my-dashboard');
 
-        myProfile
-            .pause(1000)
-            .ClickOnMyProfile()
-            .pause(1000)
-            .assert.urlContains("my-profile", 'URL contains my-profile')
+            
+            
+            dashboardPage.clickImage();
+            browser.assert.urlContains("my-profile", 'URL contains my-profile')
+ 
 
     });
     afterEach(function (browser) {
@@ -67,7 +69,7 @@ describe("My Profile Page Frontend Automation", () => {
             .assert.elementPresent('@CompetencyName', 'Competency Name Visible');
 
     });
-    it.only('View the points, overall rank and monthly score on the profile page', function (browser) {
+    it('View the points, overall rank and monthly score on the profile page', function (browser) {
         myProfile
             .waitForElementVisible('@Points', 7000)
             .assert.elementPresent('@Points', 'User Points Visible')
@@ -93,7 +95,7 @@ describe("My Profile Page Frontend Automation", () => {
 
 
     });
-    it.only('View the badges and the count in the badges section', function (browser) {
+    it('View the badges and the count in the badges section', function (browser) {
 
         browser.elements("xpath", "@BadgeCounts", function (result) {
             if (result.status === 0) {
