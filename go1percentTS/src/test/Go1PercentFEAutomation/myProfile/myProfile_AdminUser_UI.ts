@@ -1,4 +1,5 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
+import{LoginPage} from '../../../page-objects/login';
 var userName = browser.globals.userName;
 var password = browser.globals.password;
 userName = 'testadmin';
@@ -6,61 +7,72 @@ password = 'testadmin';
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
-    var myProfile = browser.page.myProfile.myProfilePage();
+    
+    const dashboardPage = browser.page.myProfile.dashboard();
+    const myProfile = browser.page.myProfile.myProfilePage();
 
 
-    beforeEach(function (browser) {
+    beforeEach((client:NightwatchBrowser) => {
+        // Create a page object and perform login actions
+        const loginPage = browser.page.loginGo1();
+        
 
-        browser
-            .window.maximize()            
-            .page.contribution.login()
+        loginPage
+        .maximizeWindow()
             .navigate()
-            .setValue('@emailInput', userName)
-            .setValue('@passwordInput', password)
+            .enterCredentials(userName, password)
+            .waitForElementVisible('@signIn', 2000)
             .signIn() 
             .assert.urlContains("my-dashboard", 'URL contains my-dashboard');
 
-        myProfile
-            .pause(1000)
-            .ClickOnMyProfile()
-            .assert.urlContains("my-profile", 'URL contains my-profile')
+            
+            
+            dashboardPage.clickImage();
+            browser.assert.urlContains("my-profile", 'URL contains my-profile')
+
 
     });
     afterEach(function (browser) {
         browser.end();
     });
 
-    it.only('View rewards button is present on the profile page when no reward is redeemed till now', async function (browser) {
+    it('View rewards button is present on the profile page when no reward is redeemed till now', function (browser) {
 
-       await myProfile.element.find('@ViewRewardBtn').waitUntil('visible', {timeout: 3000, abortOnFailure: false});
+        myProfile
+         //In QA environment, all user have redeemed the rewards, so checking in production environment(Only GET methods)
+         .navigate('https://nashtechglobal.go1percent.com/my-profile?id=656')
+        .assert.elementPresent('@ViewRewardBtn','View Reward button exist');
           
     });
 
     it('Re-directed to the rewards page when he clicks on view rewards button', function (browser) {
+        
         myProfile
-            
-
+            //In QA environment, all user have redeemed the rewards, so checking in production environment(Only GET methods)
+            .navigate('https://nashtechglobal.go1percent.com/my-profile?id=656')
             .ClickOnRewardButton()
             .pause(1000)
-            .assert.urlContains("rewards/list", 'You entered the View Rewards Page');
+            .assert.urlContains("rewards/list", 'View Rewards Page is present');
 
 
     });
     it('Re-directed to the rewards page and can able to edit the rewards as well', function (browser) {
+        
         myProfile
-            
-            .waitForElementVisible('@ViewRewardBtn',3000)
+            //In QA environment, all user have redeemed the rewards, so checking in production environment(Only GET methods)
+            .navigate('https://nashtechglobal.go1percent.com/my-profile?id=656')
+        
             .ClickOnRewardButton()
-            .ClickOnRewardEditCancelBtn()
+            .ClickOnRewardEditCancelBtn();
             
 
     });
     it('See view rewards list by clicking on the view rewards button', function (browser) {
         myProfile
 
-            .waitForElementVisible('@ViewRewardBtn',3000)
+         //In QA environment, all user have redeemed the rewards, so checking in production environment(Only GET methods)
+         .navigate('https://nashtechglobal.go1percent.com/my-profile?id=656')
             .ClickOnRewardButton()
-            .pause(1000)
             .assert.urlContains("rewards/list", 'View Rewards list Page is visible');
 
 

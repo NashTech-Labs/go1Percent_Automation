@@ -1,7 +1,8 @@
 import { PageObjectModel, EnhancedPageObject } from 'nightwatch';
-import { NightwatchBrowser } from "nightwatch";
-module.exports = {
-    elements: {
+
+
+
+const myProfileElements = {
         Setting: "#navbar  div:nth-of-type(2) ul app-dropdown-wrapper i",
         MyProfile: "div[class='d-flex py-1 mt-1'] span",
         UpdateProfilepic: {
@@ -43,12 +44,18 @@ module.exports = {
         UserName: "div[class='d-flex flex-column align-items-center'] div h3",
         CompetencyName: {
             locateStrategy: 'xpath',
-            selector: "//span[@class='studio']"
+            selector: "span.studio"
         },
-        Points: "app-my-profile  > div > div> div >div >div:nth-child(2)>div:nth-child(2)",
-        OverallRank: "app-my-profile  > div > div> div >div >div:nth-child(2)>div:nth-child(2)",
+        Points : {
+            selector : "//span[text()='Points']/preceding-sibling::h4",
+            locateStrategy : 'xpath'
+        },
+        OverallRank : { 
+            selector : " //span[text()='Overall Rank']/preceding-sibling::h4",
+            locateStrategy : 'xpath'
+        },
         MonthlyScore: "div[class='d-flex flex-column align-items-center points-section p-1'] h4[class='mt-2']",
-        RewardExist: "img[alt='reward']",
+        rewardImg: "img[alt='reward']",
 
         Badge: "app-my-profile > div > div:nth-of-type(2) > div:nth-of-type(1) > div > div:nth-of-type(3) > div",
         BadgeRank: "modal-container div.modal-content > div > div:nth-of-type(1)",
@@ -56,88 +63,90 @@ module.exports = {
         BadgeScore: "div[class='info-div d-flex flex-column justify-content-center'] span[class='score-size']",
         BadgeQuit: "span[role='button']",
         BadgeCounts: {
-            localStrategy: 'xpath',
+            locateStrategy: 'xpath',
             selector: "//div[@class='w-20']"
         },
-    },
-    commands: [{
+    };
+    
 
+ 
+    const myProfileCommands = {
 
-
-        ClickOnBadge(this: EnhancedPageObject) {
+        ClickOnBadge(this: MyProfilePage) {
             return this
-                .waitForElementVisible('@Badge', 30000)
+                .waitForElementVisible('@Badge')
                 .click('@Badge');
         },
-        Buttontext(this: EnhancedPageObject) {
-            return this
-                .getText('@contributiontext', function (result: any) {
-                    const buttonText = result.value;
 
-                    // Compare the button text with the expected text
-                    this.assert.equal(buttonText, 'ADD A CONTRIBUTION');
-                })
-        },
-
-        ClickOnUpdateProfilePic(this: EnhancedPageObject) {
+        ClickOnUpdateProfilePic(this: MyProfilePage) {
             this
-                .waitForElementVisible('@UpdateProfilepic', 30000)
+                .waitForElementVisible('@UpdateProfilepic')
                 .click('@UpdateProfilepic')
-                .waitForElementVisible('@UpdateProfilePicSaveButton', 3000)
+                .waitForElementVisible('@UpdateProfilePicSaveButton')
                 .click('@UpdateProfilePicSaveButton')
             return this
         },
 
-        ClickOnMyProfile(this: EnhancedPageObject) {
+        ClickOnMyProfile(this: MyProfilePage) {
             this
-                .waitForElementVisible('@Setting', 3000)
+                .waitForElementVisible('@Setting')
                 .click('@Setting')
-                .waitForElementVisible('@MyProfile', 3000)
+                .waitForElementVisible('@MyProfile')
                 .click('@MyProfile');
             return this
         },
 
 
-        ClickOnProfilePic(this: EnhancedPageObject) {
+        ClickOnProfilePic(this: MyProfilePage) {
             this
-                .waitForElementVisible('@ProfilePic', 3000)
+                .waitForElementVisible('@ProfilePic')
                 .click('@ProfilePic')
             return this
         },
-        ClickOnRewardButton(this: EnhancedPageObject) {
+        ClickOnRewardButton(this: MyProfilePage) {
             this
-                .waitForElementVisible('@ViewRewardBtn', 30000)
+                .waitForElementVisible('@ViewRewardBtn')
                 .click('@ViewRewardBtn');
             return this
         },
-        waitForPageLoad(this: EnhancedPageObject) {
+        waitForPageLoad(this: MyProfilePage) {
             return this
-                .waitForElementVisible('body', 10000)
+                .waitForElementVisible('body')
         },
-        ClickOnRewardEditCancelBtn(this: EnhancedPageObject) {
+        ClickOnRewardEditCancelBtn(this: MyProfilePage) {
             this
-                .waitForElementVisible('@RewardEditBtn', 30000)
-                .assert.elementPresent('@RewardEditBtn')
                 .click('@RewardEditBtn')
-                .waitForElementVisible('@RewardEditCancelBtn', 30000)
-                .assert.elementPresent('@RewardEditCancelBtn')
+                .waitForElementVisible('@RewardEditCancelBtn',30000)
+                .assert.elementPresent('@RewardEditCancelBtn','reward editable')
                 .click('@RewardEditCancelBtn');
             return this
 
         },
-        BadgeCheck(this: EnhancedPageObject) {
+        BadgeCheck(this: MyProfilePage) {
             return this
-                .waitForElementVisible('@NoBadgeEarned', 30000)
+                .waitForElementVisible('@NoBadgeEarned')
                 .assert.elementPresent('@NoBadgeEarned')
         },
-        ViewUserCompetencyName(this: EnhancedPageObject) {
+        ViewUserCompetencyName(this: MyProfilePage) {
             this
-                .waitForElementVisible('@UserName', 3000)
+                .waitForElementVisible('@UserName')
                 .pause(3000)
-                .waitForElementVisible('@CompetencyName', 3000)
+                .waitForElementVisible('@CompetencyName')
             return this
         },
-
-
-    }]
 };
+
+
+
+const myProfilePage: PageObjectModel = {
+    elements: myProfileElements,
+    commands: [myProfileCommands]
+};
+
+
+export default myProfilePage;
+export interface MyProfilePage 
+    extends EnhancedPageObject <
+        typeof myProfileCommands,
+        typeof myProfileElements
+    > { }
