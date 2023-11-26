@@ -4,7 +4,6 @@ var userName = browser.globals.userName;
 var password = browser.globals.password;
 userName = 'testadmin';
 password = 'testadmin';
-const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
 describe("My Profile Page Frontend Automation", () => {
     
@@ -29,7 +28,7 @@ describe("My Profile Page Frontend Automation", () => {
             
             dashboardPage.clickImage();
             browser.assert.urlContains("my-profile", 'URL contains my-profile')
-
+ 
 
     });
     afterEach(function (browser) {

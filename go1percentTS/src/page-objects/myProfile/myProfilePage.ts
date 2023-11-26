@@ -42,10 +42,7 @@ const myProfileElements = {
             selector: "//div[@class='material-symbols-outlined hexSmall']//*[name()='svg']"
         },
         UserName: "div[class='d-flex flex-column align-items-center'] div h3",
-        CompetencyName: {
-            locateStrategy: 'xpath',
-            selector: "span.studio"
-        },
+        CompetencyName: "span.studio",
         Points : {
             selector : "//span[text()='Points']/preceding-sibling::h4",
             locateStrategy : 'xpath'
@@ -57,11 +54,11 @@ const myProfileElements = {
         MonthlyScore: "div[class='d-flex flex-column align-items-center points-section p-1'] h4[class='mt-2']",
         rewardImg: "img[alt='reward']",
 
-        Badge: "app-my-profile > div > div:nth-of-type(2) > div:nth-of-type(1) > div > div:nth-of-type(3) > div",
+        Badge: "app-my-profile > div > div:nth-of-type(2) > div:nth-of-type(1) > div > div:nth-of-type(3) > div:nth-of-type(1)",
         BadgeRank: "modal-container div.modal-content > div > div:nth-of-type(1)",
         BadgeMonth: "modal-container div.modal-content > div > div:nth-of-type(2) > div >div >h6",
         BadgeScore: "div[class='info-div d-flex flex-column justify-content-center'] span[class='score-size']",
-        BadgeQuit: "span[role='button']",
+        BadgeQuit: "div[class='d-flex justify-content-between align-items-center'] div:nth-child(2)",
         BadgeCounts: {
             locateStrategy: 'xpath',
             selector: "//div[@class='w-20']"
@@ -72,6 +69,11 @@ const myProfileElements = {
  
     const myProfileCommands = {
 
+        ClickOnBadgeQuit(this: MyProfilePage) {
+            return this
+                .waitForElementVisible('@BadgeQuit')
+                .click('@BadgeQuit');
+        },
         ClickOnBadge(this: MyProfilePage) {
             return this
                 .waitForElementVisible('@Badge')
@@ -105,7 +107,7 @@ const myProfileElements = {
         },
         ClickOnRewardButton(this: MyProfilePage) {
             this
-                .waitForElementVisible('@ViewRewardBtn')
+                .waitForElementVisible('@ViewRewardBtn',30000)
                 .click('@ViewRewardBtn');
             return this
         },
@@ -116,7 +118,8 @@ const myProfileElements = {
         ClickOnRewardEditCancelBtn(this: MyProfilePage) {
             this
                 .click('@RewardEditBtn')
-                .waitForElementVisible('@RewardEditCancelBtn',30000)
+                .pause(2000)
+                .waitForElementVisible('@RewardEditCancelBtn',40000)
                 .assert.elementPresent('@RewardEditCancelBtn','reward editable')
                 .click('@RewardEditCancelBtn');
             return this

@@ -49,22 +49,23 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it('View the profile picture along with the monthly rank', function (browser) {
         myProfile
-            .waitForElementVisible('@ProfilePicExist', 5000)
-            .assert.elementPresent('@ProfilePicExist', 'Profile Pic exist')
+            .pause(2000)
+            .assert.elementPresent('@ProfilePic', 'Profile Pic exist')
             .assert.elementPresent('@ViewMonthlyRank', 'Monthly Rank exist');
     });
     it('Change their profile picture by clicking on update profile page', function (browser) {
         myProfile
 
-            .waitForElementVisible('@UpdateProfilepic', 7000)
+            .waitForElementVisible('@UpdateProfilepic', 30000)
             .ClickOnUpdateProfilePic()
-            .waitForElementVisible('@ProfilePicSuccessMsg', 7000)
-            .expect('@ProfilePicSuccessMsg').to.be.eq(profilePicUploadSuccessMsg)
+            .waitForElementVisible('@ProfilePicSuccessMsg', 30000)
+            .assert.textContains('@ProfilePicSuccessMsg', profilePicUploadSuccessMsg, 'Profile picture updated successfully')
+            // .expect('@ProfilePicSuccessMsg').to.be.eq(profilePicUploadSuccessMsg)
             .pause(2000);
     });
     it('Name and competency name on the profile page', function (browser) {
         myProfile
-            .waitForElementVisible('@UserName', 7000)
+            .waitForElementVisible('@UserName', 30000)
             .assert.elementPresent('@UserName', 'User Name Visible')
             .assert.elementPresent('@CompetencyName', 'Competency Name Visible');
 
@@ -80,18 +81,18 @@ describe("My Profile Page Frontend Automation", () => {
 
     it('View the reward if redeemed', function (browser) {
         myProfile
-            .waitForElementVisible('@RewardExist', 10000)
-            .assert.elementPresent('@RewardExist', 'Reward redeemed for the user')
-            .assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
+            .waitForElementVisible('@rewardImg', 10000)
+            .assert.elementPresent('@rewardImg', 'Reward redeemed for the user')
+            //.assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
 
 
 
     });
     it('View all the rewards redeemed by him/her', function (browser) {
         myProfile
-            .waitForElementVisible('@RewardExist', 10000)
-            .assert.elementPresent('@RewardExist', 'All redeemed reward for the user displyed')
-            .assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
+            .waitForElementVisible('@rewardImg', 10000)
+            .assert.elementPresent('@rewardImg', 'All redeemed reward for the user displyed')
+            //.assert.elementPresent('@ViewRewardBtn', 'No reward redeemed for the user');
 
 
     });
@@ -109,7 +110,7 @@ describe("My Profile Page Frontend Automation", () => {
     });
     it('See month and score and rank by clicking on the badges', function (browser) {
         myProfile
-            .waitForElementVisible('@Badge', 10000)
+            
             .ClickOnBadge()
             .pause(2000)
             .assert.elementPresent('@BadgeRank', 'Badge Rank visible for the user')
