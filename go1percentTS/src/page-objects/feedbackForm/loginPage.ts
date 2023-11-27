@@ -1,4 +1,4 @@
-import { NightwatchBrowser } from "nightwatch";
+import { NightwatchBrowser, PageObjectModel } from "nightwatch";
 
 const cmd = {
     inputUsername(this:NightwatchBrowser, username:string) {
@@ -45,7 +45,7 @@ const cmd = {
 };
 
 
-module.exports = {
+const loginPage:PageObjectModel = {
     
     url: 'https://nashtechglobal.qa.go1percent.com/',
 
@@ -92,3 +92,5 @@ module.exports = {
 
 
 };
+
+export default loginPage;

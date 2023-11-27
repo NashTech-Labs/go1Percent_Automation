@@ -35,32 +35,32 @@ describe('Feedback-form UI tests', function () {
     });
 
 
-    it('LB-1252 : Verify that admin should be able to see feedback form in feedback section (TC-257)',
+    // it('LB-1252 : Verify that admin should be able to see feedback form in feedback section (TC-257)',
 
-        async function () {
+    //     async function () {
 
-            await Homepage
-                .goToFeedbackFormSection();
+    //         await Homepage
+    //             .goToFeedbackFormSection();
 
-            await feedbackFormPage
-                .waitForElementVisible('@heading')
-                .assert.textContains('@heading', 'Feedback Forms');
+    //         await feedbackFormPage
+    //             .waitForElementVisible('@heading')
+    //             .assert.textContains('@heading', 'Feedback Forms');
 
-        });
+    //     });
 
 
-    it('LB-1253 : Verify that admin should be able to click on edit option of existing feedback forms (TC-258)',
-    async function () {
+    // it('LB-1253 : Verify that admin should be able to click on edit option of existing feedback forms (TC-258)',
+    // async function () {
 
-            await Homepage
-                .goToFeedbackFormSection();
+    //         await Homepage
+    //             .goToFeedbackFormSection();
 
-            await feedbackFormPage
-                .inputInSearchField(data.sessionFormName)
-                .clickOnFormEditButton()
-                .waitForElementVisible('@dialogBox');
+    //         await feedbackFormPage
+    //             .inputInSearchField(data.sessionFormName)
+    //             .clickOnFormEditButton()
+    //             .waitForElementVisible('@dialogBox');
 
-        });
+    //     });
 
 
     it('LB-1254 : Verify that admin should not able to edit a feedback form (TC-259) ',

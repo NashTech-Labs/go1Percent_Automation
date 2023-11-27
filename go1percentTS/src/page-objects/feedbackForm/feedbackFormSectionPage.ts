@@ -1,4 +1,4 @@
-import { NightwatchBrowser } from "nightwatch";
+import { NightwatchBrowser, PageObjectModel } from "nightwatch";
 
 const cmd = {
 
@@ -56,7 +56,7 @@ const createFormCommands = {
 
 
 
-module.exports = {
+const feedbackFormSectionPage:PageObjectModel = {
     url: 'https://nashtechglobal.qa.go1percent.com/',
 
     commands: [
@@ -157,3 +157,5 @@ module.exports = {
 
 
 };
+
+export default feedbackFormSectionPage; 

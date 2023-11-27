@@ -1,4 +1,4 @@
-import { NightwatchBrowser } from "nightwatch";
+import { NightwatchBrowser, PageObjectModel } from "nightwatch";
 
 const cmds = {
     setFormTitle(this:NightwatchBrowser,formTitle:string) {
@@ -144,7 +144,7 @@ const updateFormCommands = {
 }
 
 
-module.exports = {
+const formCreateUpdatePage:PageObjectModel = {
     url:'',
 
     commands: [
@@ -286,3 +286,5 @@ module.exports = {
     }
 
 };
+
+export default formCreateUpdatePage;
