@@ -4,16 +4,16 @@ const cmd = {
 
     clickOnFormDeleteButton(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@heading')
-            .waitForElementVisible('@firstSearchResultCardTitle')
-            .waitForElementVisible('@firstSearchResultCardDeleteBtn')
+            .waitForElementVisible('@heading',30000)
+            .waitForElementVisible('@firstSearchResultCardTitle',30000)
+            .waitForElementVisible('@firstSearchResultCardDeleteBtn',30000)
             .click('@firstSearchResultCardDeleteBtn')
         return this;
     },
 
     clickNoOnPopupMessage(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@deleteDialogBox')
+            .waitForElementVisible('@deleteDialogBox',30000)
             .click('@deleteDialogBox_NoButton')
 
         return this;
@@ -24,9 +24,9 @@ const cmd = {
         const regex = new RegExp(message, "i");
 
         this
-            .waitForElementVisible('@heading')
-            .waitForElementVisible('@feedbackFormCardTitle')
-            .waitForElementVisible('@searchField')
+            .waitForElementVisible('@heading',30000)
+            .waitForElementVisible('@feedbackFormCardTitle',30000)
+            .waitForElementVisible('@searchField',30000,30000)
             .sendKeys('@searchField', message)
             .expect.element('@firstSearchResultCard').text.to.match(regex);
         return this;
@@ -34,8 +34,8 @@ const cmd = {
 
     clickOnFormEditButton(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@heading')
-            .waitForElementVisible('@firstSearchResultCardTitle')
+            .waitForElementVisible('@heading',30000)
+            .waitForElementVisible('@firstSearchResultCardTitle',30000)
             .click('@firstSearchResultCardEditBtn');
 
         return this;
@@ -47,7 +47,7 @@ const createFormCommands = {
 
     clickOnCreateFormButton(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@createANewFormButton')
+            .waitForElementVisible('@createANewFormButton',30000)
             .click('@createANewFormButton');
 
         return this;

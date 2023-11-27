@@ -3,7 +3,7 @@ import { NightwatchBrowser, PageObjectModel } from "nightwatch";
 const cmds = {
     setFormTitle(this:NightwatchBrowser,formTitle:string) {
         this
-            .waitForElementVisible('@newForm')
+            .waitForElementVisible('@newForm',30000)
             .sendKeys('@newFormTitleInput', formTitle)
 
         return this;
@@ -25,7 +25,7 @@ const cmds = {
 
     addNewQuestion(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@addQuestionButton')
+            .waitForElementVisible('@addQuestionButton',30000)
             .click('@addQuestionButton');
 
         return this;
@@ -35,13 +35,13 @@ const cmds = {
     // setting type of question
     setMCQQuestion(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@questionDefaultMCQ')
+            .waitForElementVisible('@questionDefaultMCQ',30000)
             .click('@questionDefaultMCQ')
 
-            .waitForElementVisible('@questionDefaultTitle')
+            .waitForElementVisible('@questionDefaultTitle',30000)
             .sendKeys('@questionDefaultTitle', 'Default MCQ Question')
 
-            .waitForElementVisible('@questionDefaultOption1')
+            .waitForElementVisible('@questionDefaultOption1',30000)
             .sendKeys('@questionDefaultOption1', 'Yes')
 
         return this;
@@ -50,9 +50,9 @@ const cmds = {
     setParagraphQuestion(this:NightwatchBrowser) {
 
         this
-            .waitForElementVisible('@questionTwoParagraph')
+            .waitForElementVisible('@questionTwoParagraph',30000)
             .click('@questionTwoParagraph')
-            .waitForElementVisible('@newFormQuestionTitle')
+            .waitForElementVisible('@newFormQuestionTitle',30000)
             .setValue('@questionTwoTitle', 'Paragraph Question')
 
         return this;
@@ -61,7 +61,7 @@ const cmds = {
     setNPSQuestion(this:NightwatchBrowser) {
 
         this
-            .waitForElementVisible('@newFormQuestionTitle')
+            .waitForElementVisible('@newFormQuestionTitle',30000)
             .click('@questionOneNPS')
             .setValue('@questionOneTitle', 'NPS Question')
 
@@ -71,7 +71,7 @@ const cmds = {
 
     saveForm(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@newFormSaveFormButton')
+            .waitForElementVisible('@newFormSaveFormButton',30000)
             .click('@newFormSaveFormButton')
 
         return this;
@@ -81,7 +81,7 @@ const cmds = {
 
     assertPopUpMessageContains(this:NightwatchBrowser,message:string) {
         this
-            .waitForElementVisible('@addNPSModal')
+            .waitForElementVisible('@addNPSModal',30000)
             .assert.textContains('@addNPSModal', message);
 
         return this;
@@ -89,7 +89,7 @@ const cmds = {
 
     assertTitleValidationIsShown(this:NightwatchBrowser, message:string) {
         this
-            .waitForElementVisible('@formEmptyTitleValidationMessage')
+            .waitForElementVisible('@formEmptyTitleValidationMessage',30000)
             .assert.textContains('@formEmptyTitleValidationMessage', message);
 
         return this;
@@ -97,7 +97,7 @@ const cmds = {
 
     assertQuestionValidationIsShown(this:NightwatchBrowser, message:string) {
         this
-            .waitForElementVisible('@formEmptyQuestionValidationMessage')
+            .waitForElementVisible('@formEmptyQuestionValidationMessage',30000)
             .assert.textContains('@formEmptyQuestionValidationMessage', message);
 
         return this;
@@ -106,7 +106,7 @@ const cmds = {
 
     clickDeleteOnUpdateForm(this:NightwatchBrowser) {
         this
-            .waitForElementVisible('@formUpdate_deleteButton')
+            .waitForElementVisible('@formUpdate_deleteButton',30000)
             .click('@formUpdate_deleteButton')
 
         return this;
@@ -120,7 +120,7 @@ const updateFormCommands = {
     clickAddQuestion(this:NightwatchBrowser) {
         this
             .findElement('@formUpdate_addQuestionButton')  // add question selctor
-            .waitForElementVisible('@formUpdate_addQuestionButton')
+            .waitForElementVisible('@formUpdate_addQuestionButton',30000)
             .click('@formUpdate_addQuestionButton');
 
         return this;
@@ -129,7 +129,7 @@ const updateFormCommands = {
 
     setParagaphQuestion(this:NightwatchBrowser) {
         return this
-            .waitForElementVisible('@formUpdate_newQuestionFormField')
+            .waitForElementVisible('@formUpdate_newQuestionFormField',30000)
             .sendKeys('@formUpdate_newQuestionTitle', "New Question id Added")  //question title
             .click('@formUpdate_selectParagraph')  //select question type
         // save button

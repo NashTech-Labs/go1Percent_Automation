@@ -35,32 +35,32 @@ describe('Feedback-form UI tests', function () {
     });
 
 
-    // it('LB-1252 : Verify that admin should be able to see feedback form in feedback section (TC-257)',
+    it('LB-1252 : Verify that admin should be able to see feedback form in feedback section (TC-257)',
 
-    //     async function () {
+        async function () {
 
-    //         await Homepage
-    //             .goToFeedbackFormSection();
+            await Homepage
+                .goToFeedbackFormSection();
 
-    //         await feedbackFormPage
-    //             .waitForElementVisible('@heading')
-    //             .assert.textContains('@heading', 'Feedback Forms');
+            await feedbackFormPage
+                .waitForElementVisible('@heading',30000)
+                .assert.textContains('@heading', 'Feedback Forms');
 
-    //     });
+        });
 
 
-    // it('LB-1253 : Verify that admin should be able to click on edit option of existing feedback forms (TC-258)',
-    // async function () {
+    it('LB-1253 : Verify that admin should be able to click on edit option of existing feedback forms (TC-258)',
+    async function () {
 
-    //         await Homepage
-    //             .goToFeedbackFormSection();
+            await Homepage
+                .goToFeedbackFormSection();
 
-    //         await feedbackFormPage
-    //             .inputInSearchField(data.sessionFormName)
-    //             .clickOnFormEditButton()
-    //             .waitForElementVisible('@dialogBox');
+            await feedbackFormPage
+                .inputInSearchField(data.sessionFormName)
+                .clickOnFormEditButton()
+                .waitForElementVisible('@dialogBox',30000);
 
-    //     });
+        });
 
 
     it('LB-1254 : Verify that admin should not able to edit a feedback form (TC-259) ',
@@ -72,12 +72,12 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .inputInSearchField(data.sessionFormName)
-                .waitForElementVisible('@firstSearchResultCardTitle')
+                .waitForElementVisible('@firstSearchResultCardTitle',30000)
 
-                .waitForElementVisible('@firstSearchResultCardEditBtn')
+                .waitForElementVisible('@firstSearchResultCardEditBtn',30000)
                 .click('@firstSearchResultCardEditBtn')
 
-                .waitForElementVisible('@sessionDialogBox')
+                .waitForElementVisible('@sessionDialogBox',30000)
                 .assert.textContains('@sessionDialogBox', data.sessionInUseMessage);
         });
 
@@ -97,7 +97,7 @@ describe('Feedback-form UI tests', function () {
                 .clickAddQuestion()
                 .setParagaphQuestion()
                 .saveUpdatedForm()
-                .waitForElementVisible('@alertOfFormUpdated')
+                .waitForElementVisible('@alertOfFormUpdated',30000)
                 .assert.textContains('@alertOfFormUpdated', data.formUpdateMessage);
         });
 
@@ -111,12 +111,12 @@ describe('Feedback-form UI tests', function () {
 
             await feedbackFormPage
                 .inputInSearchField(data.no_sessionFormName)
-                .waitForElementVisible('@firstSearchResultCardTitle')
-                .waitForElementVisible('@firstSearchResultCardEditBtn')
+                .waitForElementVisible('@firstSearchResultCardTitle',30000)
+                .waitForElementVisible('@firstSearchResultCardEditBtn',30000)
                 .click('@firstSearchResultCardEditBtn');
 
             await formCreateUpdatePage
-                .waitForElementVisible('@previewButton')
+                .waitForElementVisible('@previewButton',30000)
                 .pause(4500)
                 .click('@previewButton')
 
@@ -216,7 +216,7 @@ describe('Feedback-form UI tests', function () {
 
             await formCreateUpdatePage
                 .setFormTitle(data.setTitle)
-                .waitForElementVisible('@newFormQuestionTitle')
+                .waitForElementVisible('@newFormQuestionTitle',30000)
                 .click('@selectQuestionTypeNPS')
                 .saveForm()
                 .assertQuestionValidationIsShown(data.addQuestionMessage)
@@ -278,7 +278,7 @@ describe('Feedback-form UI tests', function () {
 
             await formCreateUpdatePage
                 .clickDeleteOnUpdateForm()
-                .waitForElementVisible('@formUpdate_dialogBox')
+                .waitForElementVisible('@formUpdate_dialogBox',30000)
                 .assert.textContains('@formUpdate_dialogBox', data.deleteDialogBoxMessage);
 
         });

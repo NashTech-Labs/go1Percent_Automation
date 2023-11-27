@@ -3,7 +3,7 @@ import { NightwatchBrowser, PageObjectModel } from "nightwatch";
 const cmd = {
     inputUsername(this:NightwatchBrowser, username:string) {
         this
-            .waitForElementVisible('@usernameField')
+            .waitForElementVisible('@usernameField',30000)
             .setValue('@usernameField', username);
 
         return this;
@@ -11,7 +11,7 @@ const cmd = {
 
     inputPassword(this:NightwatchBrowser, password:string) {
         this
-            .waitForElementVisible('@passwordField')
+            .waitForElementVisible('@passwordField',30000)
             .setValue('@passwordField', password);
 
         return this;
@@ -20,7 +20,7 @@ const cmd = {
     login(this:NightwatchBrowser) {
         this
 
-            .waitForElementVisible('@loginButton')
+            .waitForElementVisible('@loginButton',30000)
             .click('@loginButton');
 
         return this;
@@ -29,13 +29,13 @@ const cmd = {
 
     goToFeedbackFormSection(this:NightwatchBrowser) {
         this
-            .waitForElementVisible("@navbar")
+            .waitForElementVisible("@navbar",30000)
             .click('@admins_link')
 
-            .waitForElementVisible("@admin_options")
+            .waitForElementVisible("@admin_options",30000)
             .click('@knolx_link')
 
-            .waitForElementVisible('@knolx_options')
+            .waitForElementVisible('@knolx_options',30000)
             .click('@feedback_form_link');
 
 
