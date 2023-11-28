@@ -2,7 +2,7 @@ module.exports = {
     url: "",
     elements: {    
         MyActivity:{
-        locateStrategy: 'xpath',
+        locateStrategy: 'xpath' ,
         selector: "//a[normalize-space()='My Activity']"},
         MyContribution:{
             locateStrategy: 'xpath',
@@ -26,7 +26,9 @@ module.exports = {
                     Pointscontri:".nav-item.my-1.cursor-pointer.text-bold.p-2.newTabs",
                     Contributions:"input[placeholder='Select Month']",
                     Alltime:".mt-3.date-bar.button-class.allTime_class",
-                    ContributionCircle:"canvas[data-zr-dom-id='zr_0']"
+                    ContributionCircle:"canvas[data-zr-dom-id='zr_0']",
+                    Month:"input[placeholder='Select Month']",
+                    Octobermonth:"tbody tr:nth-child(1) td:nth-child(1) span:nth-child(1)"
                     
 
 

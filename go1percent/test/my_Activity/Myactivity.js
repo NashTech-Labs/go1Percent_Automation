@@ -77,7 +77,7 @@ it('Verify that user is able to change the month which changes the chart and the
 Myactivityui
 .waitForElementVisible('@Month', 10000)
 .ClickOnBadge(Month)
-,pause(2000)
+,pause (2000)
 .ClickOnBadge(Octobermonth)
 .assert.elementPresent('@Octobermonth', 'Contributions for the month');
 });

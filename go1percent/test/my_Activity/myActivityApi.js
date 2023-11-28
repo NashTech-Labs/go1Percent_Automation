@@ -1,6 +1,6 @@
 const globals = require('../../globals')
 it('Validate upcoming months data', async function ({ supertest }) {
-  const startTime = performance.now();
+  const startTime = performance.now  ();
   const response = await supertest
       .request(headers.base_url)
       .get('656?month=october&year=2023')
