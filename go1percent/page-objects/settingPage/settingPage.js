@@ -10,7 +10,7 @@ module.exports = {
         fullName:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(1) > div:nth-child(2) > input",
         fullname1:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(1) > div.outline-div.div-item",
         savebutt:"div[class='left-div-button-div mt-1'] button:nth-child(1)",
-        errormsg:".left-div-button-div.mt-1",
+        errormsg:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(1) > div.left-div-button-div.mt-1 > span",
         updategithubid:"body > app-root:nth-child(1) > div:nth-child(1) > app-main:nth-child(2) > section:nth-child(1) > main:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > app-my-profile:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > app-my-settings:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(5) > button:nth-child(1)",
         githubup:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.d-flex.flex-column.flex-md-row.my-4 > div:nth-child(1) > div:nth-child(2) > input",
         githubsave:"body > app-root > div > app-main > section > main > div > div > div > app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.d-flex.flex-column.flex-md-row.my-4 > div:nth-child(1) > div.left-div-button-div.mt-2 > button:nth-child(1)",
@@ -43,12 +43,12 @@ module.exports = {
                 .waitForElementVisible('body', );
         },
  
-        clickOnElement(element) {
-            return this
-                .waitForElementVisible(element,10000)
-                .click(element)
-                .waitForPageLoad();
-        },
+          clickOnElement(element) {
+              return this
+                  .waitForElementVisible(element,10000)
+                  .click(element)
+                  .waitForPageLoad();
+         },
 
         clickOn(){
             return this
@@ -307,7 +307,7 @@ verifylocinlist(){
             });
         })
         .waitForPageLoad()
-        .end();
+       // .end();
 },
 verifylocblank(){
     return this
@@ -325,7 +325,7 @@ verifylocblank(){
             });
         })
         .waitForPageLoad()
-        .end();
+     //   .end();
 
 },
 verifynamecantblank(){
