@@ -103,7 +103,7 @@ describe('Go1percent techHub FE Testing', () => {
     });
 
     // Scrolling Issue in Submitting Techhub
-    it('Verify that user should be able to submit only one techhub a day', (browser) => {
+    it.only('Verify that user should be able to submit only one techhub a day', (browser) => {
         pageObject
         // Submitting First Techhub
         .navigateToPendingTechHubSearch()

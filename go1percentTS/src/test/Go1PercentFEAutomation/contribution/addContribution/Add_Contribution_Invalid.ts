@@ -1,23 +1,25 @@
+
+import { NightwatchBrowser } from 'nightwatch';
+describe('Add Contribution- Invalid details', () => {
+
 const Login = require('../../../../helpers/Go1PercentFEAutomation/contribution/addContribution/go1Percentloging');
 const dashboard = browser.page.contribution.addContribution.Dashboard();
 const profile = browser.page.contribution.addContribution.Profile();
 const contribution = browser.page.contribution.addContribution.Contribution(); 
-import { NightwatchBrowser } from 'nightwatch';
-module.exports = 
-{
 
-    before: function (browser:NightwatchBrowser)
+
+    before(function (browser:NightwatchBrowser)
      {
         Login.beforeEach(browser);
-      },
+      }),
      
 
-      after: function (browser:NightwatchBrowser) 
+      after(function (browser:NightwatchBrowser) 
       {
         Login.after(browser);
-      },
+      }),
 
-      'click to setting and profile' : function (browser:NightwatchBrowser) 
+     it('click to setting and profile',()=>
       { 
           
           
@@ -26,9 +28,9 @@ module.exports =
           .click('@setting')
           .click("@profile")
       
-      },
+      }),
   
-      'click to contribution and add contribution' : function (browser:NightwatchBrowser) 
+     it( 'click to contribution and add contribution',()=>
       { 
            
               
@@ -36,11 +38,11 @@ module.exports =
               .click("@contribution")
               .click("@addcontribution")
   
-      },  
+      }),  
   
     
-    'Verify that user should not able to click on submit button without adding description':function (browser:NightwatchBrowser) 
-    { 
+    it('Verify that user should not able to click on submit button without adding description',()=>{
+    
         contribution
             .waitForElementVisible("@description", 5000) 
             .getValue("@description", function(result:any) 
@@ -56,20 +58,21 @@ module.exports =
         contribution
           .sendKeys("@description", ['Entering description leass than 100 words'])
           .Submitdisabled('disabled');
-    },
+    }),
 
-    'Verify that user should not able to click submit form with filling invalid url':function (browser:NightwatchBrowser) 
-    { 
+    it('Verify that user should not able to click submit form with filling invalid url',()=>{
+    
         contribution
            .sendKeys("@url", ['www.coursera'])
            .Submitdisabled('disabled');
-    },
-    'Verify that user should be able to select "Online Courses" from contribution':function (browser:NightwatchBrowser) 
-    { 
+    }),
+
+   it('Verify that user should be able to select "Online Courses" from contribution',()=>{
+    
         contribution
           .setValue('@contributiontype', 'Online Course')
-    }
+    })
 
   
 
-}
+})
