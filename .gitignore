@@ -26,6 +26,7 @@ hs_err_pid*
 replay_pid*
 go1percent/node_modules/
 go1percent/tests_output/
+go1percent/.env
 
 //go1percent/package.json
 //go1percent/package-lock.json
@@ -60,4 +61,6 @@ go1percentTS/nightwatch
 go1percentTS/tsconfig.json
 go1percentTS/nightwatch.conf.js
 go1percentTS/tests_output
+
+
 
