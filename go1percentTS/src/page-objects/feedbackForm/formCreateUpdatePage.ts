@@ -10,19 +10,6 @@ const formCreateCommands = {
     },
 
 
-
-    clearAllFormQuestions(this:NightwatchBrowser) {
-        this
-        .findElements('', async function(result:any){
-            if(result.value.length > 0){
-                for(let i=result.value.length-1;i>=0;i--){
-                    
-                }
-            }
-        })
-
-    },
-
     addNewQuestion(this:NightwatchBrowser) {
         this
             .waitForElementVisible('@addQuestionButton',30000)
@@ -114,7 +101,6 @@ const formCreateCommands = {
 
 }
 
-// =========================
 const updateFormCommands = {
 
     clickAddQuestion(this:NightwatchBrowser) {
