@@ -1,4 +1,4 @@
-import { Nightwatch, NightwatchBrowser } from "nightwatch";
+import { NightwatchBrowser } from "nightwatch";
 import { feedbackForm } from "../../../globals";
 const Homepage = browser.page.feedbackForm.loginPage();
 const feedbackFormPage = browser.page.feedbackForm.feedbackFormSectionPage();

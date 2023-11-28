@@ -1,6 +1,6 @@
-import { NightwatchBrowser, PageObjectModel } from "nightwatch";
+import { EnhancedPageObject, NightwatchBrowser, PageObjectModel } from "nightwatch";
 
-const cmds = {
+const formCreateCommands = {
     setFormTitle(this:NightwatchBrowser,formTitle:string) {
         this
             .waitForElementVisible('@newForm',30000)
@@ -145,10 +145,9 @@ const updateFormCommands = {
 
 
 const formCreateUpdatePage:PageObjectModel = {
-    url:'',
 
     commands: [
-        cmds, updateFormCommands
+        formCreateCommands, updateFormCommands
     ],
 
     elements: {
@@ -288,3 +287,8 @@ const formCreateUpdatePage:PageObjectModel = {
 };
 
 export default formCreateUpdatePage;
+export interface FormCreateUpdatePage
+    extends EnhancedPageObject<
+        typeof formCreateUpdatePage,
+        typeof formCreateCommands
+    > { }

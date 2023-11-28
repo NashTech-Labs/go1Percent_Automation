@@ -1,6 +1,6 @@
-import { NightwatchBrowser, PageObjectModel } from "nightwatch";
+import { EnhancedPageObject, NightwatchBrowser, PageObjectModel } from "nightwatch";
 
-const cmd = {
+const formSectionPageCommands = {
 
     clickOnFormDeleteButton(this:NightwatchBrowser) {
         this
@@ -60,7 +60,7 @@ const feedbackFormSectionPage:PageObjectModel = {
     url: 'https://nashtechglobal.qa.go1percent.com/',
 
     commands: [
-        cmd, createFormCommands
+        formSectionPageCommands, createFormCommands
     ],
 
     elements: {
@@ -99,8 +99,7 @@ const feedbackFormSectionPage:PageObjectModel = {
         feedbackFormCardContainer: {
             selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(1)'
         },
-        // app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(1) div div[class="card-body"]  span[title="Delete"]
-
+        
         feedbackFormCard: {
             selector: 'app-feedback-forms div[class="row"]:nth-of-type(4) div:nth-of-type(1) div'
         },
@@ -159,3 +158,8 @@ const feedbackFormSectionPage:PageObjectModel = {
 };
 
 export default feedbackFormSectionPage; 
+export interface FeedbackFormSectionPage
+    extends EnhancedPageObject<
+        typeof createFormCommands,
+        typeof formSectionPageCommands
+    > { }

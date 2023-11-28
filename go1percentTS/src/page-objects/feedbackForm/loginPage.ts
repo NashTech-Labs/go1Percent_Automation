@@ -1,6 +1,6 @@
-import { NightwatchBrowser, PageObjectModel } from "nightwatch";
+import { EnhancedPageObject, NightwatchBrowser, PageObjectModel } from "nightwatch";
 
-const cmd = {
+const loginPageCommands = {
     inputUsername(this:NightwatchBrowser, username:string) {
         this
             .waitForElementVisible('@usernameField',30000)
@@ -50,7 +50,7 @@ const loginPage:PageObjectModel = {
     url: 'https://nashtechglobal.qa.go1percent.com/',
 
     commands: [
-        cmd
+        loginPageCommands
     ],
 
     elements: {
@@ -94,3 +94,7 @@ const loginPage:PageObjectModel = {
 };
 
 export default loginPage;
+export interface LoginPage
+    extends EnhancedPageObject<
+        typeof loginPageCommands
+    > { }
