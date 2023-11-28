@@ -1,3 +1,4 @@
+//UI Test cases 
 import { NightwatchBrowser } from "nightwatch";
 const fetchElements = browser.page.helpdesk.ticketAssignedToMe.ticketPage();
 
@@ -9,22 +10,22 @@ describe("TicketAssignedToMe Frontend Automation", () => {
             .enterCredentials()
             .signInButton()
             .assert.urlContains("my-dashboard");
-    }),
+    })
 
-        /**
-        * @function viewAllFieldsPresentOnOpenTicketPage
-        * @description Verify all fields are present on Open ticket chat page.
-        */
-        it("verify all fields are present on Open ticket chat page 880", () => {
-            fetchElements
-                .chatPage()
-                .assert.elementPresent("@status")
-                .assert.elementPresent("@category")
-                .assert.elementPresent("@priority")
-                .assert.elementPresent("@assignedTo")
-                .isVisible("@updateButton")
-                .end();
-        }),
+    /**
+    * @function viewAllFieldsPresentOnOpenTicketPage
+    * @description Verify all fields are present on Open ticket chat page.
+    */
+    it("verify all fields are present on Open ticket chat page 880", () => {
+        fetchElements
+            .chatPage()
+            .assert.elementPresent("@status")
+            .assert.elementPresent("@category")
+            .assert.elementPresent("@priority")
+            .assert.elementPresent("@assignedTo")
+            .isVisible("@updateButton")
+            .end();
+    }),
 
         /**
          * @function userShouldAbleToSendMessage
@@ -96,9 +97,10 @@ describe("TicketAssignedToMe Frontend Automation", () => {
             fetchElements
                 .chatPage()
                 .clickAssignedToClear()
+                .pause(1000)
                 .setValue('@assignedNameInput', assignedValue)
                 .click('@assignedNameSuggestion')
-                .pause(2000)
+                .isVisible('@updateButton')
                 .waitForElementVisible('@updateButton')
                 .clickOnupdateButton()
                 .waitForElementVisible('@statusMessage')
@@ -167,7 +169,7 @@ describe("TicketAssignedToMe Frontend Automation", () => {
          * @function userShouldAbleToReopenClosedTicket
          * @description Verify user should able to reopen  closed ticket.
          */
-        //test case is not working due to bug on closed ticket page 
+        // test case is not working due to bug on closed ticket page 
         it("Updating status of ticket close to open", () => {
             fetchElements
                 .closedTicketPage()
