@@ -11,11 +11,12 @@ describe("KNolx|Settingbutton", () => {
     });
 it("should navigate to the dashboard", () => {
         settingPage
-        .clickOn()
+        .clickOn()       
 });
 it("Verify user should be able to see all fields in Profile Details page", () => {
      settingPage
          .verifyAllFieldsVisible() 
+         
          
 });
 it("Verify user should be able to edit all the fields in Profile Details page", () => {
@@ -72,10 +73,12 @@ it("Verify that user should be able to update location     ", () => {
     settingPage
     .verifyLocation()
 });
+
 it("verify that user should be able to select any component from location     ", () => {
     settingPage
     .verifylocinlist()
 });
+
 it("verify that user cannot leave location field empty     ", () => {
     settingPage
     .verifylocblank()

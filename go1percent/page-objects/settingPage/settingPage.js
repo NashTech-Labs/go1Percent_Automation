@@ -2,7 +2,10 @@
 module.exports = {
     url: "",
     elements: {
-        profileSetting:"ul[class='navbar-nav justify-content-end'] app-dropdown-wrapper div[class='position-relative'] div[class='pt-2'] li[class='icon nav-item dropdown px-2 d-flex align-items-center justify-content-center'] a[class='nav-link text-body p-0 text-white'] div i[class='material-icons user-icon']",
+        profileSetting: {
+           selector:"(//i[@class='material-icons user-icon'][normalize-space()='settings'])[1]",
+            locateStrategy: 'xpath'
+        },
         clickonprofile:".d-flex.py-1.mt-1",
         clickonset:".tab-icon[src='../../../assets/Icons/Settings.svg']",
         seeallfield:".card.tab-card.py-4.px-5",
@@ -12,29 +15,56 @@ module.exports = {
         errormsg:"div:nth-child(1) div.left-div-button-div.mt-1 span",
         updategithubid:"app-my-settings div:nth-child(5) > button",
         githubup:".my-4 input",
-        githubsave:"app-my-profile div:nth-child(2) div:nth-child(3) app-my-settings div:nth-child(1) div:nth-child(2) div:nth-child(1) div:nth-child(4) button:nth-child(1)",
-        errormsggit:"div.float-container > div > div.d-flex.flex-column.flex-md-row.my-4 > div:nth-child(1) > div:nth-child(3) > span",
+         githubsave: {
+             selector: "//button[normalize-space(@class)='edit-detail-button' and normalize-space(text())='Save']",
+             locateStrategy: 'xpath'
+         },
+         errormsggit: {
+            selector: "//span[@class='error-span']",
+            locateStrategy: 'xpath'
+        },
         gitcancel:"div[class='card-gap'] button:nth-child(2)",
         wordpresssave:"div:nth-child(3) div.left-div-button-div.mt-2 div button:nth-child(1)",
-        textboxwordpress:"div.col-lg-8 > div:nth-child(3) > app-my-settings div.float-container div div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(3) > div:nth-child(2) > input",
-        updatewordpress:"div.col-lg-8 > div:nth-child(3) > app-my-settings div.float-container div div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(3) > div.left-div-button-div.mt-2 > button",
+        textboxwordpress: {
+        selector:"//input[contains(@class, 'session-input')]",
+        locateStrategy: 'xpath'
+        },
+      updatewordpress: {
+            selector: "//button[normalize-space()='Update Wordpress ID']",
+            locateStrategy: 'xpath'
+        },
         savedropdown:"div[class='mt-3 d-flex flex-column flex-md-row justify-content-between'] div:nth-child(2) button:nth-child(1)",
         selectdropdown:"option[value='11']",
         dropdownloc:"select[placeholder='Your studio ID']",
-        updatecompetency:"div.col-lg-8 > div:nth-child(3) > app-my-settings div.float-container div div.mt-3.d-flex.flex-column.flex-md-row.justify-content-between > div:nth-child(2) > select",
+        updatecompetency: {
+            selector: "//select[@placeholder='Your studio ID']",
+            locateStrategy: 'xpath'
+        },
         changecompetency:"div[class='mt-3 d-flex flex-column flex-md-row justify-content-between'] div:nth-child(2) button:nth-child(1)",
-        changepractice:"app-my-profile:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > app-my-settings:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(3) > button:nth-child(1)",
+        changepractice: {
+            selector: "//button[normalize-space()='Change Practice']",
+            locateStrategy: 'xpath'
+        },
         updatetextpractice:"select[placeholder='Your studio ID']",
         selectpractice:"option[value='Quality Solutions']",
-        savebuttpractice:"app-my-profile:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > app-my-settings:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(4) > button:nth-child(1)",
+        savebuttpractice: {
+            selector: "//button[normalize-space()='Save']",
+            locateStrategy: 'xpath'
+        },
         addskill:"app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.url-div.mt-3.d-flex.mb-4 > div:nth-child(1) > form > div > div > div:nth-child(2) > input",
         removeskill:"div.col-lg-8 app-my-settings ul li button i",
-        updatelocation:"app-my-profile > div > div.col-lg-8 > div:nth-child(3) > app-my-settings > div > div.float-container > div > div.d-flex.flex-column.flex-md-row.my-4 > div:nth-child(3) > div.left-div-button-div.mt-2 > button",
+        updatelocation: {
+            selector: "/html/body/app-root/div/app-main/section/main/div/div/div/app-my-profile/div/div[2]/div[3]/app-my-settings/div/div[1]/div/div[2]/div[3]/div[2]/button",
+            locateStrategy: 'xpath'
+        },
         selectdroploc:"select[placeholder='Your location']",
         locup:"option[value='India']",
         errorspe:".left-div-button-div.mt-1",
         errorMsg: '.error-message',
-        saveloc:"app-my-profile:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > app-my-settings:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(4) > button:nth-child(1)        ",
+         saveloc: {
+         selector: "(//button[normalize-space()='Save'])[1]",
+             locateStrategy: 'xpath'
+         },
     },
  
     commands: [{
@@ -112,7 +142,7 @@ module.exports = {
         .clearValue('@githubup') 
         .setValue('@githubup', ' ') 
         .click('@githubsave')
-        .waitForElementVisible('@errormsggit', 5000)
+        .waitForElementVisible('@errormsggit', 10000)
         .assert.containsText('@errormsggit', 'GitHub Id cannot contain whitespaces'.trim())          
         },   
         verifyGit(newGITid) {
