@@ -31,8 +31,9 @@ describe("Upcoming Sessions Page Frontend Automation", () => {
           .waitForPageLoad()
           .clickUnAvailableDateAndCheckAvailability()
           .assert.cssProperty('@unAvailableDates', 'background-color', 'rgba(249, 135, 135, 1)');
-      }),
-      it('3. Verify that in the calender the red color date indicates all slots are booked',async function(){
+    }),
+
+    it('3. Verify that in the calender the red color date indicates all slots are booked',async function(){
         bookPage
         .waitForPageLoad()
         .clickUnAvailableDateAndCheckAvailability()
@@ -91,7 +92,7 @@ describe("Upcoming Sessions Page Frontend Automation", () => {
             .validateDifferentSessions()
             .assert.not.attributeEquals('@webinarLabel', 'found', 'Webinar label should not have the "found" attribute')
             .assert.not.attributeEquals('@meetupLabel', 'found', 'Meetup label should not have the "found" attribute');
-    });
+    }),
     
     it('11. Verify that user can add the co-presenter name ',async function(){
         bookPage
@@ -120,13 +121,13 @@ describe("Upcoming Sessions Page Frontend Automation", () => {
         .expect.element('@subCategoryDropDown').to.not.have.attribute('found');            
     }),
 
-
     it('15. Verify that in the calender the open slots should be visible in the green color',async function(){
         bookPage
         .waitForPageLoad()
         .verifyAvailableDatesGreenColor()
         .assert.cssProperty('@availableDates', 'background-color', 'rgba(83, 203, 160, 1)',)
     }),
+    
     it('16. Verify that the user should be able to book a session without co-presenter',async function(){
         bookPage
         .waitForPageLoad()
@@ -169,8 +170,7 @@ describe("Upcoming Sessions Page Frontend Automation", () => {
 
     bookPage.api.assert.deepEqual(matchingValues, TEST_AUTOMATION, 'Dropdown values match TEST_AUTOMATION');
 
-}),
-        
+}),    
 
         after(function (browser: NightwatchBrowser) {
             browser.end();
