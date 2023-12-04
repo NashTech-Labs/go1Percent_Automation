@@ -4,11 +4,13 @@ const bookASessionCommands = {
     waitForPageLoad(this: BookASessionPage) {
         return this.waitForElementVisible('body', 10000);
     },
+
     clickOnElement(this: BookASessionPage, element: string) {
         return this
             .waitForElementVisible(element, 10000)
             .click(element);
     },
+
     clickOnKnolxButton(this: BookASessionPage) {
         return this
             .clickOnElement("@knolxButton");
@@ -39,7 +41,6 @@ const bookASessionCommands = {
         return this
         .clickOnElement('@lastAvailableDate')
         .perform((client: { execute: (arg0: () => void, arg1: never[], arg2: any) => void; }, done: any) => {
-            // Scroll down using JavaScript
             client.execute(() => {
                 window.scrollBy(0, window.innerHeight);
             }, [], done)})
@@ -100,10 +101,6 @@ const bookASessionCommands = {
         .clickOnElement('@lastAvailableDate')
         .clickOnElement('@availableSlots')
         .clickOnElement('@lastAvailableDate')
-        // .getText('input[type="datetime-local"]', (result) => {
-        //     const expectedValue = "";
-        //     this.assert.strictEqual(result.value.trim(), expectedValue, `No date is selected: ${result.value}`);
-        //   });
     },
 
     verifyDropDown(this: BookASessionPage) {
