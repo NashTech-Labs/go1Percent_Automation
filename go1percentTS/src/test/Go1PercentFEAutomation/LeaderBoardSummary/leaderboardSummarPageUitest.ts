@@ -1,43 +1,43 @@
-import {NightwatchBrowser } from 'nightwatch';
-import{LoginPage} from '../../../page-objects/leaderBoardSummary/login';
-import{SummaryPage} from '../../../page-objects/leaderBoardSummary/summary';
-import {LeadingNasherPage} from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
+import { NightwatchBrowser } from 'nightwatch';
+import { LoginPage } from '../../../page-objects/leaderBoardSummary/login';
+import { SummaryPage } from '../../../page-objects/leaderBoardSummary/summary';
+import { LeadingNasherPage } from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
 
 
 describe('UI automation for leaderboard summary page option', () => {
-    let summaryPage: SummaryPage;
-    let leadingPage: LeadingNasherPage;
+  let summaryPage: SummaryPage;
+  let leadingPage: LeadingNasherPage;
 
-    beforeEach((browser:NightwatchBrowser) => {
-        // Create a page object and perform login actions
-        const page = browser.page.leaderBoardSummary.login()as LoginPage;
-        page
-            .maximizeWindow()
-            .navigate()
-            .enterCredentials()
-            .signIn();
+  beforeEach((browser: NightwatchBrowser) => {
+    // Create a page object and perform login actions
+    const page = browser.page.leaderBoardSummary.login() as LoginPage;
+    page
+      .maximizeWindow()
+      .navigate()
+      .enterCredentials()
+      .signIn();
 
-        //Initialize summaryPage and leadingpage page objects
-        summaryPage = browser.page.leaderBoardSummary.summary() as SummaryPage;
-        leadingPage = browser.page.leaderBoardSummary.leadingNasherPage() as LeadingNasherPage;
-    });
+    //Initialize summaryPage and leadingpage page objects
+    summaryPage = browser.page.leaderBoardSummary.summary() as SummaryPage;
+    leadingPage = browser.page.leaderBoardSummary.leadingNasherPage() as LeadingNasherPage;
+  });
 
-    // Define common actions in the beforeEach hook
-    const commonActions = () => {
-        summaryPage
-            .isLeaderboardVisible()
-            .assert.textContains('@summary', 'Summary')
-            .SummaryWithAllTheDetails()
-    };
+  // Define common actions in the beforeEach hook
+  const commonActions = () => {
+    summaryPage
+      .isLeaderboardVisible()
+      .assert.textContains('@summary', 'Summary')
+      .SummaryWithAllTheDetails()
+  };
 
-    const leadingNasherCommonActions = () => {
-        commonActions();
-        leadingPage
-            .leadingNasherProfilePage()
-    };
+  const leadingNasherCommonActions = () => {
+    commonActions();
+    leadingPage
+      .leadingNasherProfilePage()
+  };
 
 
-    
+
   /**
    * Test case to check if the dashboard is visible
    */
@@ -45,7 +45,7 @@ describe('UI automation for leaderboard summary page option', () => {
     // summaryPage.dashboardIsVisible()
     summaryPage
       .waitForElementVisible('@dashboard')
-      .assert.containsText('@dashboard', 'DASHBOARD')
+      .assert.textContains('@dashboard', 'DASHBOARD')
   });
 
   /**
@@ -70,23 +70,23 @@ describe('UI automation for leaderboard summary page option', () => {
     summaryPage
       // all contribution section is visible 
       .allContributionSectionIsVisible()
-      .assert.containsText('@contributionTypes_1', 'Blogs')
-      .assert.containsText('@contributionTypes_2', 'Knolx')
-      .assert.containsText('@contributionTypes_3', 'Webinars')
-      .assert.containsText('@contributionTypes_4', 'OS Contributions')
+      .assert.textContains('@contributionTypes_1', 'Blogs')
+      .assert.textContains('@contributionTypes_2', 'Knolx')
+      .assert.textContains('@contributionTypes_3', 'Webinars')
+      .assert.textContains('@contributionTypes_4', 'OS Contributions')
       .clickOnNavigationArrow()
-      .assert.containsText('@contributionTypes_1', 'Techhub')
-      .assert.containsText('@contributionTypes_2', 'Conferences')
-      .assert.containsText('@contributionTypes_3', 'Research Papers')
-      .assert.containsText('@contributionTypes_4', 'Books')
+      .assert.textContains('@contributionTypes_1', 'Techhub')
+      .assert.textContains('@contributionTypes_2', 'Conferences')
+      .assert.textContains('@contributionTypes_3', 'Research Papers')
+      .assert.textContains('@contributionTypes_4', 'Books')
       .clickOnNavigationArrow()
-      .assert.containsText('@contributionTypes_1', 'Meetup')
-      .assert.containsText('@contributionTypes_2', 'Proposal')
-      .assert.containsText('@contributionTypes_3', 'Process Doc')
-      .assert.containsText('@contributionTypes_4', 'PMO Template')
+      .assert.textContains('@contributionTypes_1', 'Meetup')
+      .assert.textContains('@contributionTypes_2', 'Proposal')
+      .assert.textContains('@contributionTypes_3', 'Process Doc')
+      .assert.textContains('@contributionTypes_4', 'PMO Template')
       .clickOnNavigationArrow()
-      .assert.containsText('@contributionTypes_1', 'Certifications')
-      .assert.containsText('@contributionTypes_2', 'Online Courses')
+      .assert.textContains('@contributionTypes_1', 'Certifications')
+      .assert.textContains('@contributionTypes_2', 'Online Courses')
   });
 
 

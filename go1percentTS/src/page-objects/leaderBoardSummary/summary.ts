@@ -63,7 +63,7 @@ const summaryPage: PageObjectModel = {
         contributionTypes_3: { selector: 'div.row.section > div:nth-child(3) p' },
         contributionTypes_4: { selector: 'div.row.section > div:nth-child(4) p' },
         leadingNashers: { selector: 'div[class="leading mt-3"]' },
-        leadingNasherList:'div[class*="d-flex justify-content-between align-items-center summary"]',
+        leadingNasherList: 'div[class*="d-flex justify-content-between align-items-center summary"]',
         thismonth: { selector: 'a[class="mx-2 tabs cursor-pointer overall-txt-color"]' },
         allTime: { selector: ".card.leading-card.p-4 > div:first-child > a:nth-child(2)" },
     }
