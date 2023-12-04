@@ -4,7 +4,7 @@ import { admin } from '../../../globals'
 import { baseURL } from '../../../globals';
 
 describe('Leaderboard-Rewards API Testing', function () {
-    const headers = admin.headers;    
+    const headers = admin.headers;
     const tokenHeaders = admin.tokenHeaders;
     const tokenBody = admin.tokenBody;
     const token_urls = admin.techhubUrls;
@@ -18,16 +18,16 @@ describe('Leaderboard-Rewards API Testing', function () {
 
     //Generate Bearer Token
     before(async function () {
-      const response: any = await request(token_urls.token)
-        .post("/token")
-        .set(tokenHeaders) // Set your custom headers here
-        .send(tokenBody)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .then(function (response: any) {
-          const token = response.body.access_token;
-          headers['Authorization'] = 'Bearer ' + token;
-        });
+        const response: any = await request(token_urls.token)
+            .post("/token")
+            .set(tokenHeaders) // Set your custom headers here
+            .send(tokenBody)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .then(function (response: any) {
+                const token = response.body.access_token;
+                headers['Authorization'] = 'Bearer ' + token;
+            });
     });
     it('Check All Rewards Data', async function () {
         const startTime = Date.now();
@@ -38,9 +38,6 @@ describe('Leaderboard-Rewards API Testing', function () {
             .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
 
             .then((response) => {
-
-                //The test then checks the response body for the presence of specific properties such as "name," "pointsNeededToRedeem," "description," "rewardType," 
-                //"quantity," "expiryDate and" "active ."
 
                 expect(Object.keys(response.body).length).to.be.greaterThan(0);
                 expect(response.body.data).length.to.be.greaterThan(0);
@@ -59,28 +56,23 @@ describe('Leaderboard-Rewards API Testing', function () {
             });
 
     });
-        it('Check all Knolder ID', async function () {
-            const startTime = performance.now();
-            const response = await request(urls.base_url)
-                .get('/get/knolderId?knolderEmail=testadmin@nashtechglobal.com')
-                .set(headers)
-                .expect(200)
-                .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
+    it('Check all Knolder ID', async function () {
+        const startTime = performance.now();
+        const response = await request(urls.base_url)
+            .get('/get/knolderId?knolderEmail=testadmin@nashtechglobal.com')
+            .set(headers)
+            .expect(200)
+            .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
 
-                .then( (response) => {
+            .then((response) => {
 
-                    //The test then checks the response body for the presence of specific properties such as "name," "pointsNeededToRedeem," "description," "rewardType," 
-                    //"quantity," "expiryDate and" "active ."
+                expect(response.body).to.have.property("resource");
+                expect(response.body).to.have.property('status');
+                expect(response.body).to.have.property('data');
 
-                  
+                commonExpectation(startTime, response);// expect for checking the response time
 
-                    expect(response.body).to.have.property("resource");
-                    expect(response.body).to.have.property('status');
-                    expect(response.body).to.have.property('data');
-
-                    commonExpectation(startTime, response);// expect for checking the response time
-
-        });
+            });
     });
 
     it('Get Profile Pic', async function () {
@@ -89,21 +81,15 @@ describe('Leaderboard-Rewards API Testing', function () {
             .get('/profile/getProfilePic?email=testadmin@nashtechglobal.com')
             .set(headers)
             .expect(200)
-            .expect('Content-Type', 'application/json')  // Expect a response with JSON content type
+            .expect('Content-Type', 'application/json')
 
-            .then( (response) => {
-
-                //The test then checks the response body for the presence of specific properties such as "name," "pointsNeededToRedeem," "description," "rewardType," 
-                //"quantity," "expiryDate and" "active ."
-
-               
-
+            .then((response) => {
 
                 expect(response.body).to.have.property("resource");
                 expect(response.body).to.have.property('status');
 
 
-                commonExpectation(startTime, response);// expect for checking the response time
+                commonExpectation(startTime, response);
 
             });
     });
