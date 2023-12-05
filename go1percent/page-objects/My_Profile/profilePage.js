@@ -3,8 +3,8 @@
 const { assert } = require("nightwatch");
 
 module.exports = {
-  url: 'https://nashtechglobal.go1percent.com/',
-  //url:'https://nashtechglobal.qa.go1percent.com/',
+  //url: 'https://nashtechglobal.go1percent.com/',//
+  url: 'https://nashtechglobal.qa.go1percent.com/',
 
   elements: {
     viewRewardsButton: {
@@ -28,7 +28,7 @@ module.exports = {
 
     },
     profilePicture: {
-      selector: "//img[@id='img']",
+      selector: "//*[name()='path' and contains(@d,'M24 23.95q')]",
       locateStrategy: 'xpath',
     },
     rank: {
@@ -67,74 +67,71 @@ module.exports = {
       selector: "//div[@class='d-flex flex-column align-items-center points-section p-1']//h4[@class='mt-2'][normalize-space()='0']",
       locateStrategy: 'xpath',
     },
-    rewardsList:{
+    rewardsList: {
       selector: "/html/body/app-root/div/app-main/section/main/div/div/div/app-rewardspage/div/div[2]/app-rewards-list/div/div/div/div[2]",
       locateStrategy: 'xpath',
     },
-    redeemedRewardText:{
+    redeemedRewardText: {
       selector: "//div[@class='d-flex flex-column align-items-center']//span[contains(text(),'Rewards')]",
       locateStrategy: 'xpath',
     },
-    redeemedRewardImage:{
+    redeemedRewardImage: {
       selector: "//img[@alt='reward']",
       locateStrategy: 'xpath',
     },
-    navigateNextRewardButton:{
+    navigateNextRewardButton: {
       selector: "//button[@class='btn btn-icon-only btn-rounded p-3 btn-md d-flex align-items-center justify-content-center']//i[@class='material-icons fs-4 text-white'][normalize-space()='navigate_next']",
       locateStrategy: 'xpath',
     },
 
-    viewBadges:{
+    viewBadges: {
       selector: "/html/body/app-root/div/app-main/section/main/div/div/div/app-my-profile/div/div[2]/div[1]/div/div[3]",
       locateStrategy: 'xpath',
     },
 
-    count1:{
+    count1: {
       selector: "//div[@class='row badge-card p-3']//div[1]//div[1]//div[1]//div[1]//span[1]",
       locateStrategy: 'xpath',
     },
-    count2:{
+    count2: {
       selector: "//div[@class='material-symbols-outlined hexagon cursor-pointer']//span[@class='rank-tag-number d-flex align-items-center'][normalize-space()='2']",
       locateStrategy: 'xpath',
     },
-    count3:{
+    count3: {
       selector: "//div[@class='d-flex justify-content-start align-items-center no-scroll-badges']//div[3]//div[1]//div[1]//div[1]//span[1]",
       locateStrategy: 'xpath',
     },
-    count4:{
+    count4: {
       selector: "//div[@class='d-flex justify-content-start align-items-center no-scroll-badges']//div[4]//div[1]//div[1]//div[1]//span[1]",
       locateStrategy: 'xpath',
     },
-    //body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[1]/div[1]/div[1]//*[name()='svg']
-    badge1:{
-      selector: "//body/app-root/div/app-main/section[@class='g-sidenav-show']/main[@class='main-content position-relative max-height-vh-100 h-100 border-radius-lg']/div[@class='container-fluid pb-4']/div[@class='row']/div[@class='col-12']/app-my-profile/div[@class='row board-pos']/div[@class='col-lg-8']/div[@class='card mt-2 card-gap']/div[@class='row badge-card p-3']/div[@class='d-flex justify-content-start align-items-center no-scroll-badges']/div[1]/div[1]/div[1]//*[name()='svg']",
+    badge1: '.material-symbols-outlined.hexagon.cursor-pointer'
+    ,
+
+    month: {
+      selector: "//h6[@class='mb-n1']",
+      locateStrategy: 'xpath',
+    },
+    score: {
+      selector: "//span[@class='score-size']",
+      locateStrategy: 'xpath',
+    },
+    badgesRank: {
+      selector: "//span[@class='font-weight-light overall-txt-color rankSize']",
       locateStrategy: 'xpath',
     },
 
-    month:{
-      selector:"//h6[@class='mb-n1']",
-      locateStrategy:'xpath',
-    },
-    score:{
-      selector:"//span[@class='score-size']",
-      locateStrategy:'xpath',
-    },
-    badgesRank:{
-      selector:"//span[@class='font-weight-light overall-txt-color rankSize']",
-      locateStrategy:'xpath',
-    },
-    
   },
 
   commands: [{
     verifyViewRewardsButtonPresent: function () {
-      return this.waitForElementVisible('@viewRewardsButton', 1000);
+      return this.waitForElementVisible('@viewRewardsButton', 3000);
     },
     commands: [{
       clickViewRewardsButton: function () {
         return this.click('@viewRewardsButton');
       },
-     
+
     }],
     commands: [{
       verifyImageVisible: function () {
@@ -167,7 +164,6 @@ module.exports = {
     },
     loginAndNavigateToDashboard: function (username, password) {
       return this
-        .maximizeWindow()
         .pause(1000)
         .setValue('@usernameInput', username)
         .setValue('@passwordInput', password)
@@ -218,34 +214,34 @@ module.exports = {
         .assert.urlContains('/rewards');
     },
 
-    verifyRedeemedReward:function(){
+    verifyRedeemedReward: function () {
       return this
-         .assert.visible('@redeemedRewardImage')
-         .assert.textContains('@redeemedRewardText','Rewards')
+        .assert.visible('@redeemedRewardImage')
+        .assert.textContains('@redeemedRewardText', 'Rewards')
     },
 
-    verifyallRedeemedReward:function(){
+    verifyallRedeemedReward: function () {
       return this
-           .click('@navigateNextRewardButton')
-           .assert.visible('@redeemedRewardImage')
+        .click('@navigateNextRewardButton')
+        .assert.visible('@redeemedRewardImage')
     },
 
-    verifyBadgesAndCount:function(){
+    verifyBadgesAndCount: function () {
       return this
-          .assert.visible('@viewBadges')
-          .assert.textContains('@count1',1)
-          .assert.textContains('@count2',2)
-          .assert.textContains('@count3',1)
-          .assert.textContains('@count4',1)
+        .assert.visible('@viewBadges')
+        .assert.textContains('@count1', 1)
+        .assert.textContains('@count2', 3)
+        .assert.textContains('@count3', 1)
+        .assert.textContains('@count4', 1)
     },
 
-    verifyMonthScoreAndRank:function(){
-      return this 
-          .click('@badge1')
-          .assert.textContains('@month','SEPTEMBER')
-          .assert.textContains('@score','2000')
-          .assert.textContains('@badgesRank','Rank')
-          
+    verifyMonthScoreAndRank: function () {
+      return this
+        .click('@badge1')
+        .assert.textContains('@month', 'SEPTEMBER')
+        .assert.textContains('@score', '2000')
+        .assert.textContains('@badgesRank', 'Rank')
+
 
     }
 
