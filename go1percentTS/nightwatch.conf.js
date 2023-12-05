@@ -15,10 +15,12 @@ module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['src/test'],
- 
+
+
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['src/page-objects'],
- 
+
+
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
   //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
  
@@ -26,6 +28,7 @@ module.exports = {
   //custom_assertions_path: '',
  
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
+
     plugins: ['@nightwatch/apitesting'],
  
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
@@ -33,7 +36,12 @@ module.exports = {
  
   //globals_path : './globals.js',
  
- 
+
+  // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
+
+
+  //globals_path : './globals.js',
+
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
     "password": "testemployee", // this is placeholderPassword, Make sure to update.
@@ -44,7 +52,7 @@ module.exports = {
   },
  
   webdriver: {},
- 
+
   test_workers: {
     enabled: true,
     workers: 'auto'
@@ -62,7 +70,9 @@ module.exports = {
       },
  
       desiredCapabilities: {
+
         browserName: 'MicrosoftEdge'
+
       },
  
       webdriver: {
@@ -125,9 +135,7 @@ module.exports = {
         ]
       }
     },
- 
- 
- 
+
     edge: {
       desiredCapabilities: {
         browserName: 'MicrosoftEdge',
@@ -150,9 +158,7 @@ module.exports = {
         ]
       }
     },
- 
- 
- 
+    
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for when using cucumber-js (https://cucumber.io)                |
     //                                                                               |

@@ -1,37 +1,35 @@
-const Login = require('../../../../helpers/Go1PercentFEAutomation/contribution/addContribution/go1Percentloging');
-const dashboard = browser.page.contribution.addContribution.Dashboard();
-const profile = browser.page.contribution.addContribution.Profile();
-const contribution = browser.page.contribution.addContribution.Contribution(); 
+
 import { NightwatchBrowser } from 'nightwatch';
 
-module.exports = 
-{
+describe('Add Contribution- Submit button is Disabled', () => {
+  const Login = require('../../../../helpers/Go1PercentFEAutomation/contribution/addContribution/go1Percentloging');
+  const dashboard = browser.page.contribution.addContribution.Dashboard();
+  const profile = browser.page.contribution.addContribution.Profile();
+  const contribution = browser.page.contribution.addContribution.Contribution(); 
 
-    before: function (browser:NightwatchBrowser )
-     {
-        Login.beforeEach(browser);
-      },
-     
+  before(function (browser:NightwatchBrowser)
+  {
+     Login.beforeEach(browser);
+   }),
+  
 
-      after: function (browser:NightwatchBrowser ) 
-      {
-        Login.after(browser);
-      },
+   after(function (browser:NightwatchBrowser) 
+   {
+     Login.after(browser);
+   }),
     
-    'User should able to view profile page' : function (browser:NightwatchBrowser ) 
-    { 
-        
-        
+    it('User should able to view profile page',()=>{
+            
         dashboard
         .waitForElementVisible('@body', 1000)
         .click('@setting')
         .click("@profile")
         .assert.urlContains("my-profile")
     
-    },
+    }),
 
-    'Verify that user should be able to click on contribution button to add contribution' : function (browser:NightwatchBrowser ) 
-    { 
+   it('Verify that user should be able to click on contribution button to add contribution',()=>{
+  
         profile
         .waitForElementVisible('@body', 1000)
         .click("@contribution")
@@ -41,20 +39,20 @@ module.exports =
         .click("@addcontribution")
 
           
-    },
+    }),
    
-    'Verify that user should not able to submit form without filling mandatory fields':function (browser:NightwatchBrowser)
-    { 
+    it('Verify that user should not able to submit form without filling mandatory fields',()=>{
+    
         contribution
             .Submitdisabled('disabled');
           
-    },
-    'Verify that user should not able to click on submit button with adding title':function (browser:NightwatchBrowser ) 
-    { 
+    }),
+   it('Verify that user should not able to click on submit button with adding title',()=>{
+    
         contribution
            .sendKeys("@title", ['Nightwatchjs']);
          contribution
            .Submitdisabled('disabled');
           
-    }
-}
+    })
+})
