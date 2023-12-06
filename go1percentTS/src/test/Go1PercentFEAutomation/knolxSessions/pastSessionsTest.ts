@@ -7,7 +7,6 @@ let login: LoginPage, sessionsPage: KnolxSessionsPage;
 
 describe("Past Sessions Page Frontend Automation", function () {
 
-
     this.tags = ['knolexsession'];
     before(function () {
         login = browser.page.login() as LoginPage
