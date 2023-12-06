@@ -1,4 +1,4 @@
-name: Run Leaderboard Rewards Api Test
+name: Run Leaderboard Rewards Tests
 
 on:
   push:
@@ -8,44 +8,76 @@ on:
         
 jobs:
 
-    build:
-      
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
     
-        strategy:
-          matrix:
-            node-version: [18.x]
-    
-        steps:
-        
-        - name: Checkout repository
-          uses: actions/checkout@v2
-    
-        - name: Set up Node.js
-          uses: actions/setup-node@v3
-          with:
-            node-version: ${{ matrix.node-version }}
-            cache: 'npm'
-            cache-dependency-path: './go1percent/package-lock.json'
-    
-        - name: Install dependencies
-          run: npm install
-          working-directory: go1percent
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
           
-        - name: Build project
-          run: npm run build --if-present
-          working-directory: go1percent 
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent 
+      
 
-        - name: Run Leaderboard Rewards FE Test
-          run: npx nightwatch ./test/Go1PercentFEAutomation/LeaderboardRewards/ --env chrome
-          working-directory: go1percent 
+  run_fe_tests:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
 
-        - name: Run Leaderboard Rewards Api Test
-          run: npx nightwatch ./test/Go1PercentAPIAutomation/LeaderboardRewards/ --env api_testing
-          working-directory: go1percent 
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-       
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Run Leaderboard Rewards FE Test
+      run: npx nightwatch ./test/Go1PercentFEAutomation/LeaderboardRewards/ --env chrome
+      working-directory: go1percent 
 
 
+  run_api_tests:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
 
-        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Run Leaderboard Rewards Api Test
+      run: npx nightwatch ./test/Go1PercentAPIAutomation/LeaderboardRewards/ --env api_testing
+      working-directory: go1percent 
