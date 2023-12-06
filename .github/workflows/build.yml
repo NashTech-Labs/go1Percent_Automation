@@ -46,6 +46,8 @@ jobs:
       working-directory: go1percentTS
       
     - name: Run Leaderboard Rewards Test
-      run: 
-        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards --env chrome
+      run: |
+        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/AddRewardTest.ts --env chrome
+        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/RedeemRewardTest.ts --env chrome
+        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/UpdateRewardTest.ts --env chrome 
       working-directory: go1percentTS
