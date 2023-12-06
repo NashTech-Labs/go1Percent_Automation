@@ -54,7 +54,7 @@ const summaryPage: PageObjectModel = {
             selector: '//h6[text()=" LEADERBOARD "]',
             locateStrategy: 'xpath'
         },
-        dashboard: { selector: 'div[role="button"]' },
+        dashboard: {selector: 'div[role="button"]' },
         summary: { selector: 'a[class="nav-link text-white"]' },
         welcomeToSummaryPage: { selector: 'div[class="ml-1 mt-4 text-div"]' },
         navigationArrow: { selector: "div:nth-child(2) button.btn.sy" },
