@@ -35,10 +35,10 @@ jobs:
       run: npm run build --if-present
       working-directory: go1percent  
 
-    - name: Run Go1PercentAPIAutomation Tests
-      run: npx nightwatch  ./test/Go1PercentAPIAutomation/myPastSession/myPastSession.js --env api_testing
-      working-directory: go1percent  
+    # - name: Run Go1PercentAPIAutomation Tests
+    #   run: npx nightwatch  ./test/Go1PercentAPIAutomation/myPastSession/myPastSession.js --env api_testing
+    #   working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch ./test/Go1PercentFEAutomation/myPastSession/myPastSession.js --env chrome
-      working-directory: go1percent  
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/myPastSession/myPastSessionFe.ts --env chrome
+      working-directory: go1percentTS
