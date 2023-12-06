@@ -36,7 +36,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag adminProfile -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/adminProfile -e chrome
       working-directory: go1percent  
 
   build2:
@@ -68,7 +68,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag Contibutions -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/contribution -e chrome
       working-directory: go1percent 
 
   build3:
@@ -100,7 +100,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag feedBackForm   -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/feedbackForm -e chrome
       working-directory: go1percent       
 
   build4:
@@ -132,7 +132,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag helpDesk -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/helpdesk -e chrome
       working-directory: go1percent   
 
   build5:
@@ -164,7 +164,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag knolexsession -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions -e chrome
       working-directory: go1percent    
 
   build6:
@@ -196,7 +196,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag leaderBoardReview -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards -e chrome
       working-directory: go1percent    
 
   build7:
@@ -228,7 +228,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag LeaderBoardSummary -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/LeaderBoardSummary -e chrome
       working-directory: go1percent 
 
   build8:
@@ -260,7 +260,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag manageUpcommingSession -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/ManageMyUpcomingSession -e chrome
       working-directory: go1percent  
 
 
@@ -293,7 +293,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag manageSlots -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/manageSlot -e chrome
       working-directory: go1percent 
 
   build10:
@@ -325,7 +325,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag manageUpcommingSession -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/ManageUpcomingSession -e chrome
       working-directory: go1percent  
 
   build11:
@@ -357,7 +357,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag myPastSession -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/myPastSession -e chrome
       working-directory: go1percent   
 
 
@@ -390,7 +390,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag myProfile -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/myProfile -e chrome
       working-directory: go1percent   
 
 
@@ -423,7 +423,7 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag requestsession -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/RequestedSession -e chrome
       working-directory: go1percent    
 
 
@@ -456,5 +456,5 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch --tag techhub -e chrome
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/techhub -e chrome
       working-directory: go1percent   
