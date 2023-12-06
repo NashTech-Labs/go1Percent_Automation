@@ -10,8 +10,10 @@ const data = feedbackForm.uiData;
 // ----------------------------------------------------------------------
 //    >> using command "npx nightwatch src/test/Go1PercentFEAutomation/FEEDBACKFORM/feedbackForm_ui_tests.ts"
 // -------------------------------------------------------------------------
-describe('Feedback-form UI tests', function () {
+describe('Feedback-form UI tests',  function () {
 
+
+    this.tags = ['feedBackForm'];
     beforeEach(
         async function (browser:NightwatchBrowser) {
 

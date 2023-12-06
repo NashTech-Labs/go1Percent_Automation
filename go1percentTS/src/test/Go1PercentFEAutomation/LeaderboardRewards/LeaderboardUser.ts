@@ -4,7 +4,10 @@ import{RewardsPage} from '../../../page-objects/LeaderboardRewards/RewardSection
 import globalsData from '../../../../globals';
 
 let sessionsPage: RewardsPage;
-describe("Rewards Page Frontend Automation with Typescript for User", () => {
+describe("Rewards Page Frontend Automation with Typescript for User", function () {
+
+
+    this.tags = ['leaderBoardReview'];
     
     before((browser: NightwatchBrowser) => {
         const page = browser.page.login()as LoginPage;

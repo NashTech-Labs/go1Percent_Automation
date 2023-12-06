@@ -1,6 +1,8 @@
     import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
 
-    describe('Go1percent techHub FE Testing', () => {
+    describe('Go1percent techHub FE Testing',function() {
+        this.tags = ['techhub'];
+      
 
         let pageObject = browser.page.techhub.EmployeeUser.techhub();
 

@@ -2,7 +2,10 @@ import { NightwatchBrowser, NightwatchTests } from "nightwatch";
 let reopenedTicketId: string
 let ticket=browser.page.helpdesk.ticketRaised.ticket()
 
-describe('Go1Percent Ticket Raised By Me Module',()=>{
+describe('Go1Percent Ticket Raised By Me Module',function () {
+
+
+    this.tags = ['helpDesk'];
     before((browser:NightwatchBrowser)=>{
         browser
             .window.maximize()   

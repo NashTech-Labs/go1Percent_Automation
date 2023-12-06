@@ -1,13 +1,15 @@
 import { NightwatchBrowser } from "nightwatch";
 import{LoginPage} from '../../../page-objects/login';
 import{RewardsPage} from '../../../page-objects/LeaderboardRewards/RewardSectionPage';
-import globalsData from '../../../../globals';
+import globalsData from '../../../globals';
 import path from 'path';
 const imageContainer = ".ImageMinWidthClass > input"
 
 let sessionsPage: RewardsPage;
-describe("Rewards Page Frontend Automation with Typescript for Admin", () =>  {
-    
+describe("Rewards Page Frontend Automation with Typescript for Admin",function () {
+
+
+    this.tags = ['leaderBoardReview'];
     before ((browser: NightwatchBrowser) => {
         const user = "Test Admin"
         const page = browser.page.login()as LoginPage;

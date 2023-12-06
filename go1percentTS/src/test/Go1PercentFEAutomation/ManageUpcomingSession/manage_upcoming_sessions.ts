@@ -3,7 +3,8 @@ import { NightwatchBrowser } from "nightwatch";
 const sessionsPage = browser.page.ManageUpcomingSession.manage_upcoming_sessions_page();;
 describe('Test Automation', () => {
 
-  it('should enter credentials', () => {
+  it('should enter credentials',  function() {
+    this.tags = ['manageUpcommingSession'];
     const email: string = 'testadmin';
     const password: string = 'testadmin';
     sessionsPage

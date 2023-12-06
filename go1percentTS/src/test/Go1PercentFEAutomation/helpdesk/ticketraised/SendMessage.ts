@@ -1,8 +1,10 @@
 import { NightwatchTests,NightwatchBrowser } from "nightwatch";
 
 
-describe('Go 1 Percent TicketRaised BY Me Module', () => {
-    
+describe('Go 1 Percent TicketRaised BY Me Module', function () {
+
+
+    this.tags = ['helpDesk'];
     before((browser:NightwatchBrowser)=>{
         browser
             .window.maximize()   

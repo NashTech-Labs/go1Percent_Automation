@@ -2,7 +2,10 @@
 import { NightwatchBrowser } from "nightwatch";
 const fetchElements = browser.page.helpdesk.ticketAssignedToMe.ticketPage();
 
-describe("TicketAssignedToMe Frontend Automation", () => {
+describe("TicketAssignedToMe Frontend Automation", function () {
+
+
+    this.tags = ['helpDesk'];
     beforeEach((browser: NightwatchBrowser) => {
         fetchElements
             .maximizeWindow()

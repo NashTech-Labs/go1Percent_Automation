@@ -3,8 +3,9 @@ import *as login from '../../../helpers/Go1PercentFEAutomation/techhub/AdminUser
 import *as dashboard from '../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1PercentDashboard';
 import *as techhub from'../../../helpers/Go1PercentFEAutomation/techhub/AdminUser/go1PercentTechhub';
 
-describe('Go1percent techHub FE Testing', () => {
-
+describe('Go1percent techHub FE Testing', function() {
+    this.tags = ['techhub'];
+  
     beforeEach((browser) =>{
         login.beforeEach(browser);
         login['landingOnDashboardPage'](browser);

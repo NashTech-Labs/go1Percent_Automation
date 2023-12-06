@@ -4,8 +4,9 @@ import { RewardPage } from '../../../page-objects/LeaderboardRewards/rewards';
 import { RedeemRewardPage } from '../../../page-objects/LeaderboardRewards/redeem_reward';
 
 
-describe('Leaderboard : Redeem Reward Test', () => {
+describe('Leaderboard : Redeem Reward Test', function () {
 
+    this.tags = ['leaderBoardReview'];
     const redeemedRewardsTab= browser.page.LeaderboardRewards.redeem_reward() as RedeemRewardPage;
     
     before((browser: NightwatchBrowser) => {

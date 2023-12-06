@@ -4,7 +4,11 @@ import { SummaryPage } from '../../../page-objects/leaderBoardSummary/summary';
 import { LeadingNasherPage } from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
 
 
-describe('UI automation for leaderboard summary page option', () => {
+describe('UI automation for leaderboard summary page option', function() {
+
+  this.tags = ['LeaderBoardSummary'];
+  
+
   let summaryPage: SummaryPage;
   let leadingPage: LeadingNasherPage;
 

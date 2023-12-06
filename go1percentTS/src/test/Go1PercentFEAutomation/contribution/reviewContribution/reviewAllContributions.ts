@@ -1,6 +1,10 @@
 import { NightwatchBrowser } from "nightwatch";
 
-describe('Go1Percent Review Contribution FE tests', () => {
+describe('Go1Percent Review Contribution FE tests', function () {
+
+
+    this.tags = ['Contibutions'];
+
     const contribution = browser.page.contribution.reviewContribution.allContribution();
     before((browser: NightwatchBrowser) => {
         browser
@@ -15,9 +19,9 @@ describe('Go1Percent Review Contribution FE tests', () => {
         contribution.navigateToAllContributions();
     });
 
-        it('Verify Filter fields on All Contributions Dashboard', () => {
-            contribution.verifyAllFields()
-        }),
+    it('Verify Filter fields on All Contributions Dashboard', () => {
+        contribution.verifyAllFields()
+    }),
 
         it('Approve a Contribution', () => {
             contribution.approveContribution()

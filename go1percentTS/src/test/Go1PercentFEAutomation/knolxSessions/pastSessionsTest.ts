@@ -5,7 +5,10 @@ const sessionDescription = "Testing TicketTesting TicketTesting TicketTesting Ti
 
 let login: LoginPage, sessionsPage: KnolxSessionsPage;
 
-describe("Past Sessions Page Frontend Automation", () => {
+describe("Past Sessions Page Frontend Automation", function () {
+
+
+    this.tags = ['knolexsession'];
     before(function () {
         login = browser.page.login() as LoginPage
         sessionsPage = browser.page.knolxSessions.knolxSessionsPage() as KnolxSessionsPage

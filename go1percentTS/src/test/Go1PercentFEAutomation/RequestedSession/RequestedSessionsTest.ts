@@ -3,7 +3,9 @@ import { knolxRequestPage } from '../../../page-objects/RequestedSession/knolxRe
 
 let requestPage = browser.page.RequestedSession.knolxRequestPage() as knolxRequestPage; 
 
-describe('Test Automation', () => {
+describe('Test Automation',  function() {
+  this.tags = ['requestsession'];
+
 
   it('should enter credentials', () => {
     requestPage

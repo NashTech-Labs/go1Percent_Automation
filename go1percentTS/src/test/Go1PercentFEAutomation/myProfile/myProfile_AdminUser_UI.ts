@@ -5,7 +5,8 @@ var password = browser.globals.password;
 userName = 'testadmin';
 password = 'testadmin';
 
-describe("My Profile Page Frontend Automation", () => {
+describe("My Profile Page Frontend Automation", function() {
+    this.tags = ['myProfile'];
     
     const dashboardPage = browser.page.myProfile.dashboard();
     const myProfile = browser.page.myProfile.myProfilePage();

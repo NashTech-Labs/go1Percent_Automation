@@ -1,7 +1,8 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 const pastSession = browser.page.myPastSession.myPastSession();
  
-  describe("MyPastSession Frontend Automation", () => {
+  describe("MyPastSession Frontend Automation",  function() {
+    this.tags = ['myPastSession'];
     before((browser: NightwatchBrowser) => {
     pastSession
       .maximizeWindow()

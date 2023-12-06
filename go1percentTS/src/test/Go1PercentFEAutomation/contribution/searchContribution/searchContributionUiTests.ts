@@ -2,7 +2,10 @@ const { assert } = require("chai");
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 
 
-describe('Go1Percent search contribution frontend testing', ()=> {
+describe('Go1Percent search contribution frontend testing',  function () {
+
+
+    this.tags = ['Contibutions'];
     
     const search = browser.page.contribution.editSearchContribution.editSearchContribution();
     beforeEach((client: NightwatchBrowser) =>  {

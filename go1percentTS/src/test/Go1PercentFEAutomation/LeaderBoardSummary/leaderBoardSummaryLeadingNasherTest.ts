@@ -4,7 +4,9 @@ import { SummaryPage } from '../../../page-objects/leaderBoardSummary/summary';
 import { LeadingNasherPage } from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
 
 
-describe('UI automation for leaderboard summary leading nasher page option', () => {
+describe('UI automation for leaderboard summary leading nasher page option', function() {
+    this.tags = ['LeaderBoardSummary'];
+    
     let summaryPage: SummaryPage;
     let leadingPage: LeadingNasherPage;
 

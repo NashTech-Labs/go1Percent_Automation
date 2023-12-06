@@ -7,7 +7,8 @@ password = 'testadmin';
 
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
-describe("My Profile Page Frontend Automation", () => {
+describe("My Profile Page Frontend Automation",  function() {
+    this.tags = ['myProfile'];
     const dashboardPage = browser.page.myProfile.dashboard();
     const myProfile = browser.page.myProfile.myProfilePage();
 

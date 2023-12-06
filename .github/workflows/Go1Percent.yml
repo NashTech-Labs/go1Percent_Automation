@@ -7,7 +7,7 @@ on:
     branches: ["feature/LeaderBoard_summary"]
 
 jobs:
-  build:
+  build1:
 
     runs-on: ubuntu-latest
 
@@ -36,5 +36,425 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch test/Go1PercentFEAutomation --env chrome
+      run: npx nightwatch --tag adminProfile -e chrome
       working-directory: go1percent  
+
+  build2:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag Contibutions -e chrome
+      working-directory: go1percent 
+
+  build3:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag feedBackForm   -e chrome
+      working-directory: go1percent       
+
+  build4:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag helpDesk -e chrome
+      working-directory: go1percent   
+
+  build5:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag knolexsession -e chrome
+      working-directory: go1percent    
+
+  build6:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag leaderBoardReview -e chrome
+      working-directory: go1percent    
+
+   build7:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag LeaderBoardSummary -e chrome
+      working-directory: go1percent 
+
+  build8:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag manageUpcommingSession -e chrome
+      working-directory: go1percent  
+
+
+  build9:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag manageSlots -e chrome
+      working-directory: go1percent 
+
+  build10:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag manageUpcommingSession -e chrome
+      working-directory: go1percent  
+
+  build11:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag myPastSession -e chrome
+      working-directory: go1percent   
+
+
+  build12:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag myProfile -e chrome
+      working-directory: go1percent   
+
+
+  build13:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag requestsession -e chrome
+      working-directory: go1percent    
+
+
+   build14:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percent
+      
+    - name: Build project
+      run: npm run build --if-present
+      working-directory: go1percent  
+
+    - name: Run Go1PercentFEAutomation Tests
+      run: npx nightwatch --tag techhub -e chrome
+      working-directory: go1percent   
