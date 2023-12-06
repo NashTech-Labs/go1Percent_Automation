@@ -29,15 +29,15 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: go1percent
+      working-directory: go1percentTS
       
     - name: Build project
       run: npm run build --if-present
-      working-directory: go1percent  
+      working-directory: go1percentTS 
 
     - name: Run Go1PercentFEAutomation Tests
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions -e chrome
-      working-directory: go1percent  
+      working-directory: go1percentTS  
 
   # build2:
 
