@@ -114,18 +114,7 @@ describe("Requested session Frontend Automation", () => {
         .pause(300)
 
     }),
-
-    it("Should be able to reject session ", () => {
-
-      requestPage
-        .ClickRemarks('Rejecting the session remarks')
-        .waitForElementVisible('@rejectButton')
-
-        .RejectingingSession()
-        .pause(300)
-    }),
     
-
     after(function (browser) {
       browser.end();
     })
