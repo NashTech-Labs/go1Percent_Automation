@@ -36,9 +36,9 @@ jobs:
       working-directory: go1percent  
 
     - name: Run Go1PercentAPIAutomation Tests
-      run: npx nightwatch  ./test/Go1PercentAPIAutomation/myPastSession/myPastSession.js --env api_testing
+      run: npx nightwatch  ./test/Go1PercentAPIAutomation --env api_testing
       working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch ./test/Go1PercentFEAutomation/myPastSession/myPastSession.js --env chrome
+      run: npx nightwatch ./test/Go1PercentFEAutomation --env chrome
       working-directory: go1percent  
