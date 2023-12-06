@@ -2,7 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: ["feature/manage-requested-session"]
+    branches: ["feature/leaderboard_rewards_part2" ]
+  pull_request:
+    branches: ["feature/leaderboard_rewards_part2"] 
 
 jobs:
   build:
@@ -42,13 +44,9 @@ jobs:
     - name: Build project
       run: npm run build --if-present
       working-directory: go1percent  
-
-    # - name: Run Go1PercentAPIAutomation Tests
-    #   run: npx nightwatch ./test/Go1PercentAPIAutomation/RequestedSession/requested-session_api.js --env api_testing
-    #   working-directory: go1percent  
       
-    - name: Run Go1PercentFEAutomation Tests
+    - name: Run Leaderboard Rewards FE Test
       run: |
-        npx nightwatch ./test/Go1PercentFEAutomation/RequestedSession/Requested-sessions_fe.js --env chrome
-        npx nightwatch ./test/Go1PercentFEAutomation/RequestedSession/RejectSession.js --env chrome
+        npx nightwatch ./test/Go1PercentFEAutomation/LeaderboardRewards/AddRewardTest.js --env chrome
+        npx nightwatch ./test/Go1PercentAPIAutomation/LeaderboardRewards --env api_testing
       working-directory: go1percent  
