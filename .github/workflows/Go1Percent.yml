@@ -42,5 +42,7 @@ jobs:
     #   working-directory: go1percent  
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch ./test/Go1PercentFEAutomation/RequestedSession/Requested-sessions_fe.js --env chrome
+      run: |
+        npx nightwatch ./test/Go1PercentFEAutomation/RequestedSession/Requested-sessions_fe.js --env chrome
+        npx nightwatch ./test/Go1PercentFEAutomation/RequestedSession/RejectSession.js --env chrome
       working-directory: go1percent  
