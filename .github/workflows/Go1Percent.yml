@@ -36,7 +36,7 @@ jobs:
       working-directory: go1percentTS 
 
     - name: Run Go1PercentFEAutomation Tests
-      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions -e edge
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions --env chrome
       working-directory: go1percentTS  
 
   # build2:
