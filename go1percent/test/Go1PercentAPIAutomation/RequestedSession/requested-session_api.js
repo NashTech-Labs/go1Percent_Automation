@@ -1,4 +1,4 @@
-const headers = require('../globals')
+const globals = require('../../../globals')
 const accessToken =''
 
 const addTag ={
