@@ -1,10 +1,11 @@
     import { NightwatchTests, NightwatchBrowser } from 'nightwatch';
+    
 
     describe('Go1percent techHub FE Testing',function() {
         this.tags = ['techhub'];
       
 
-        let pageObject = browser.page.techhub.EmployeeUser.techhub();
+        const pageObject = browser.page.techhub.EmployeeUser.techhub();
 
         // Setup: Before each test, open the specified URL, maximize the window, and perform initial page setup.
         beforeEach((browser) => {

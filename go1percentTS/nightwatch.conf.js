@@ -11,14 +11,16 @@
 //             __/ |
 //            |___/
 //
+
+
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['src/test'],
+  src_folders: ['./src/test'],
 
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['src/page-objects'],
+  page_objects_path: ['./src/page-objects'],
 
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
@@ -40,7 +42,7 @@ module.exports = {
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
 
 
-  //globals_path : './globals.js',
+  // globals_path : './globals.js',
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.

@@ -1,6 +1,6 @@
 
 const randomString = Math.random().toString(36).substring(7);
-import {contibution} from '../../../globals'
+import {contibution} from '../../../../globals'
 import request from 'supertest';
 import { expect } from 'chai';
 

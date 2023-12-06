@@ -1,9 +1,9 @@
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 import{LoginPage} from '../../../page-objects/login';
-var userName = browser.globals.userName;
-var password = browser.globals.password;
-userName = 'testadmin';
-password = 'testadmin';
+// var userName = browser.globals.userName;
+// var password = browser.globals.password;
+var userName = 'testadmin';
+var password = 'testadmin';
 
 const profilePicUploadSuccessMsg = "Profile picture updated successfully!";
 
