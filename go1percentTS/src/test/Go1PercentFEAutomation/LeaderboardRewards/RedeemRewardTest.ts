@@ -52,47 +52,7 @@ describe('Leaderboard : Redeem Reward Test', () => {
     });
 
 
-    //TC : 1172
-    /**
-     * BUG : 
-     * 1. On resetting the filter, the list does not appear
-     * 2. On clicking process, the window is not closing
-     * 3. After processing, the status of the reward changes only on refreshing
-     * */
-    it('admin should able to change status of reward from processing to process', (browser: NightwatchBrowser) => {
-        redeemedRewardsTab
-        .setStatusFilterToProcessing()
-        .pause(3000);
-        browser
-        .elements('css selector', 'button.processingStatus', (results : any) => {
-            if (results.value.length > 0) { 
-            redeemedRewardsTab.openRedeemRequestWindow()
-            .pause(3000)
-            .getDetailsOfRedeemReward(function (rewardDetails) {
-                redeemedRewardsTab
-                .processReward()
-                //BUG : the window is not closing on its own
-                // .closeRedeemRequestWindow()
-                .setStatusFilterToProcessed();
-                //BUG : the page needs to be refreshed
-                // browser.refresh();
-                //assert the stored details
-                redeemedRewardsTab
-                .waitForElementPresent('@employeeName', 5000)
-                .assert.textContains('@employeeName', rewardDetails.owner, 'Employee name matched.') 
-                .assert.textContains('@competencyName', rewardDetails.competency, 'Competency name matched.')
-                .assert.textContains('@rewardName', rewardDetails.reward, 'Reward name matched.') 
-                .assert.textContains('@redeemedDate', rewardDetails.redeemedDate, 'Redeemed Date matched.') 
-                .assert.textContains('@statusButton', 'PROCESSED', 'Status is processed.');
-            });
-            }
-            else { 
-            console.log('No Redeemed Reward Available'); 
-            }
-        })
-        .refresh();
-    });
-    
+  
     //TC : 1173
     it('admin should able to switch to competency from Individual', (browser: NightwatchBrowser) => {
         redeemedRewardsTab
@@ -141,5 +101,47 @@ describe('Leaderboard : Redeem Reward Test', () => {
         // .waitForElementPresent('@showMoreCard') 
         // .assert.textContains('@showMoreCard', 'SHOW MORE');
     });
+
+      //TC : 1172
+    /**
+     * BUG : 
+     * 1. On resetting the filter, the list does not appear
+     * 2. On clicking process, the window is not closing
+     * 3. After processing, the status of the reward changes only on refreshing
+     * */
+    it('admin should able to change status of reward from processing to process', (browser: NightwatchBrowser) => {
+        redeemedRewardsTab
+        .setStatusFilterToProcessing()
+        .pause(3000);
+        browser
+        .elements('css selector', 'button.processingStatus', (results : any) => {
+            if (results.value.length > 0) { 
+            redeemedRewardsTab.openRedeemRequestWindow()
+            .pause(3000)
+            .getDetailsOfRedeemReward(function (rewardDetails) {
+                redeemedRewardsTab
+                .processReward()
+                //BUG : the window is not closing on its own
+                // .closeRedeemRequestWindow()
+                .setStatusFilterToProcessed();
+                //BUG : the page needs to be refreshed
+                // browser.refresh();
+                //assert the stored details
+                redeemedRewardsTab
+                .waitForElementPresent('@employeeName', 5000)
+                .assert.textContains('@employeeName', rewardDetails.owner, 'Employee name matched.') 
+                .assert.textContains('@competencyName', rewardDetails.competency, 'Competency name matched.')
+                .assert.textContains('@rewardName', rewardDetails.reward, 'Reward name matched.') 
+                .assert.textContains('@redeemedDate', rewardDetails.redeemedDate, 'Redeemed Date matched.') 
+                .assert.textContains('@statusButton', 'PROCESSED', 'Status is processed.');
+            });
+            }
+            else { 
+            console.log('No Redeemed Reward Available'); 
+            }
+        })
+        .refresh();
+    });
+    
 
 });

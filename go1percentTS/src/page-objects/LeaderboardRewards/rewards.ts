@@ -14,6 +14,8 @@ var rewardCommands = {
 
     goToRewards: function (this: RewardPage) {
         return this
+        .pause(5000)
+        .waitForElementVisible('@dropDownButton', 5000)
         .click('@dropDownButton')
         .click('@rewardsOption')
     }
