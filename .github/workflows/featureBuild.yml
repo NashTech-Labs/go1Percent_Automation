@@ -1,4 +1,4 @@
-name: Node.js CI
+name: TypeScript_FE_Testcases_go!percent
 
 on:
   push:
@@ -11,71 +11,71 @@ jobs:
   leaderboardRewards:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: LeaderboardRewards/
+      featureName: LeaderboardRewards/
 
   adminProfile:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: adminProfile/
+      featureName: adminProfile/
 
   Contribution:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: contribution/
+      featureName: contribution/
 
   FeedbackForm:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: feedbackForm/
+      featureName: feedbackForm/
 
   Helpdesk:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: helpdesk/
+      featureName: helpdesk/
 
   KnolxSessions:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: knolxSessions/
+      featureName: knolxSessions/
 
   LeaderBoardSummary:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: LeaderBoardSummary/
+      featureName: LeaderBoardSummary/
 
   ManageMyUpcomingSession:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: ManageMyUpcomingSession/
+      featureName: ManageMyUpcomingSession/
 
   ManageSlot:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: manageSlot/
+      featureName: manageSlot/
 
   ManageUpcomingSession:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: ManageUpcomingSession/
+      featureName: ManageUpcomingSession/
 
   MyPastSession:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: myPastSession/
+      featureName: myPastSession/
 
   MyProfile:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: myProfile/
+      featureName: myProfile/
 
   RequestedSession:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: RequestedSession/
+      featureName: RequestedSession/
 
   Techhub:
     uses: ./.github/workflows/fearuresTemlate.yml
     with:
-      feature_Name: techhub/
+      featureName: techhub/
 
           

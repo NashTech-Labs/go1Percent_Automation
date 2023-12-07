@@ -3,7 +3,7 @@ name: Set up for Nighwtwatch
 on:
   workflow_call:
     inputs:
-        file_name:
+        featureName:
             required: true
             type: string
 
@@ -48,6 +48,6 @@ jobs:
       working-directory: go1percentTS
 
     - name: Run FE Test
-      run:  npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.feature_Name}} --env chrome 
+      run:  npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env chrome 
       working-directory: go1percentTS
       
