@@ -8,7 +8,7 @@ on:
 
 jobs:
       
-      
   build1:
     uses: ./.github/workflows/template.yml
-      
+    with:
+      file_name: ./src/test/Go1PercentFEAutomation/LeaderboardRewards/AddRewardTest.ts
