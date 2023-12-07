@@ -64,7 +64,7 @@ jobs:
       feature_Name: myPastSession/
 
   MyProfile:
-    uses: ./.github/workflows/template.yml
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: myProfile/
 
