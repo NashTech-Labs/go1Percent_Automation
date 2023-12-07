@@ -7,7 +7,7 @@ on:
     branches: ["feature/LeaderBoard_summary"]
 
 jobs:
-  build1:
+  adminProfile:
 
     runs-on: ubuntu-latest
 
@@ -39,7 +39,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/adminProfile --env chrome
       working-directory: go1percentTS  
 
-  build2:
+  contribution:
 
     runs-on: ubuntu-latest
 
@@ -71,7 +71,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/contribution --env chrome
       working-directory: go1percentTS 
 
-  build3:
+  feedbackForm:
 
     runs-on: ubuntu-latest
 
@@ -103,7 +103,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/feedbackForm --env chrome
       working-directory: go1percentTS       
 
-  build4:
+  helpdesk:
 
     runs-on: ubuntu-latest
 
@@ -135,7 +135,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/helpdesk --env chrome
       working-directory: go1percentTS   
 
-  build5:
+  knolxSessions:
 
     runs-on: ubuntu-latest
 
@@ -167,7 +167,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions --env chrome
       working-directory: go1percentTS    
 
-  build6:
+  LeaderBoardSummary:
 
     runs-on: ubuntu-latest
 
@@ -199,7 +199,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/LeaderBoardSummary --env chrome
       working-directory: go1percentTS    
 
-  build7:
+  ManageMyUpcomingSession:
 
     runs-on: ubuntu-latest
 
@@ -231,7 +231,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/ManageMyUpcomingSession --env chrome
       working-directory: go1percentTS 
 
-  build8:
+  manageSlot:
 
     runs-on: ubuntu-latest
 
@@ -264,7 +264,7 @@ jobs:
       working-directory: go1percentTS  
 
 
-  build9:
+  ManageUpcomingSession:
 
     runs-on: ubuntu-latest
 
@@ -296,7 +296,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/ManageUpcomingSession --env chrome
       working-directory: go1percentTS 
 
-  build10:
+  myPastSession:
 
     runs-on: ubuntu-latest
 
@@ -328,7 +328,7 @@ jobs:
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/myPastSession --env chrome
       working-directory: go1percentTS  
 
-  build11:
+  myProfile:
 
     runs-on: ubuntu-latest
 
@@ -361,7 +361,7 @@ jobs:
       working-directory: go1percentTS   
 
 
-  build12:
+  RequestedSession:
 
     runs-on: ubuntu-latest
 
@@ -394,7 +394,7 @@ jobs:
       working-directory: go1percentTS   
 
 
-  build13:
+  techhub:
 
     runs-on: ubuntu-latest
 
@@ -427,7 +427,7 @@ jobs:
       working-directory: go1percentTS    
 
 
-  build14:
+  LeaderboardRewards:
 
     runs-on: ubuntu-latest
 

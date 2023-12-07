@@ -355,7 +355,7 @@ module.exports = {
           //'webdriver.gecko.driver': '',
           //'webdriver.chrome.driver': ''
         }
-      },
+      },  
       webdriver: {
         start_process: false,
         default_path_prefix: '/wd/hub'
