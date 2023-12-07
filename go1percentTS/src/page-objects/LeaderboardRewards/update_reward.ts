@@ -4,7 +4,8 @@ const updateRewardCommands = {
 
     openUpdateTab : function (this: UpdateRewardPage) {
         return this
-        .waitForElementPresent('@editButton', 5000)
+        .pause(5000)
+        .waitForElementPresent('@editButton')
         .click('@editButton')
         .waitForElementPresent('@updateRewardTitle', 5000);
     },
@@ -69,7 +70,7 @@ const updateRewardPage : PageObjectModel = {
             selector: '#expiryDate'
         }, 
         editButton : {
-            selector: '.editIcon'
+            selector: 'div.editIcon'
         },
         updateRewardTitle: {
             selector: 'h5.modal-title'

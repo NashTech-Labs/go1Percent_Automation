@@ -73,30 +73,6 @@ describe('Leaderboard : Add Reward Test', () => {
         .closeUpdateTab();
     });
 
-    // TC : 1181
-    it('admin should able to see competency reward in competency section', (browser: NightwatchBrowser) => {
-        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
-        const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
-        const rewardName = addRewardTab.generateRandomString();
-    
-        addRewardTab
-        .addARewardDetails(rewardName, '07-11-2027')
-        .scrollToCompetency(browser);
-        addRewardTab
-        .setAvailableForCompetency()
-        .clickSaveButton()
-        .assert.textContains('@alert', 'Successfully added reward!', 'Reward is successfully added in competency section.');
-        
-        browser.refresh();
-    
-        //check reward is added in the competency section
-        updateRewardsTab
-        .switchToCompetency()
-        .openUpdateTab()
-        .assert.valueContains('@rewardName', rewardName, 'Reward added is present in competency section.')
-        .closeUpdateTab();
-    });
-
     // TC : 1183
     it('admin should not able to add current date in exp date it should a popup message', (browser: NightwatchBrowser) => {
         const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
@@ -140,4 +116,27 @@ describe('Leaderboard : Add Reward Test', () => {
         .closeAddRewardTab();
     });
 
+     // TC : 1181
+     it('admin should able to see competency reward in competency section', (browser: NightwatchBrowser) => {
+        const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
+        const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
+        const rewardName = addRewardTab.generateRandomString();
+    
+        addRewardTab
+        .addARewardDetails(rewardName, '07-11-2027')
+        .scrollToCompetency(browser);
+        addRewardTab
+        .setAvailableForCompetency()
+        .clickSaveButton()
+        .assert.textContains('@alert', 'Successfully added reward!', 'Reward is successfully added in competency section.');
+        
+        browser.refresh();
+    
+        //check reward is added in the competency section
+        updateRewardsTab
+        .switchToCompetency()
+        .openUpdateTab()
+        .assert.valueContains('@rewardName', rewardName, 'Reward added is present in competency section.')
+        .closeUpdateTab();
+    });
 });
