@@ -8,73 +8,73 @@ on:
 
 jobs:
       
-  leaderboard_rewards:
-    uses: ./.github/workflows/template.yml
+  leaderboardRewards:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: LeaderboardRewards/
 
   adminProfile:
-    uses: ./.github/workflows/template.yml
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: adminProfile/
 
-  contribution:
-    uses: ./.github/workflows/template.yml
+  Contribution:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: contribution/
 
-  feedbackForm:
-    uses: ./.github/workflows/template.yml
+  FeedbackForm:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: feedbackForm/
 
-  build_helpdesk:
-    uses: ./.github/workflows/template.yml
+  Helpdesk:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: helpdesk/
 
-  knolxSessions:
-    uses: ./.github/workflows/template.yml
+  KnolxSessions:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: knolxSessions/
 
-  build_LeaderBoardSummary:
-    uses: ./.github/workflows/template.yml
+  LeaderBoardSummary:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: LeaderBoardSummary/
 
   ManageMyUpcomingSession:
-    uses: ./.github/workflows/template.yml
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: ManageMyUpcomingSession/
 
-  manageSlot:
-    uses: ./.github/workflows/template.yml
+  ManageSlot:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: manageSlot/
 
   ManageUpcomingSession:
-    uses: ./.github/workflows/template.yml
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: ManageUpcomingSession/
 
-  myPastSession:
-    uses: ./.github/workflows/template.yml
+  MyPastSession:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: myPastSession/
 
-  myProfile:
+  MyProfile:
     uses: ./.github/workflows/template.yml
     with:
       feature_Name: myProfile/
 
   RequestedSession:
-    uses: ./.github/workflows/template.yml
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: RequestedSession/
 
-  techhub:
-    uses: ./.github/workflows/template.yml
+  Techhub:
+    uses: ./.github/workflows/fearuresTemlate.yml
     with:
       feature_Name: techhub/
 
