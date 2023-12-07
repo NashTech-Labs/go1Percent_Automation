@@ -8,10 +8,7 @@ on:
 
 jobs:
       
+      
   build1:
     uses: ./.github/workflows/template.yml
-         
-
-
-        
       
