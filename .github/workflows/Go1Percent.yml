@@ -12,6 +12,21 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+        feature:
+          - 'RequestedSession'
+          - 'LeaderBoardSummary'
+          - 'LeaderboardRewards'
+          - 'ManageMyUpcomingSession'
+          - 'ManageUpcomingSession'
+          - 'adminProfile'
+          - 'contribution'
+          - 'feedbackForm'
+          - 'helpdesk'
+          - 'knolxSessions'
+          - 'manageSlot'
+          - 'myPastSession'
+          - 'myProfile'
+          - 'techhub'
 
     steps:
       - name: Checkout repository
