@@ -7,20 +7,11 @@ on:
     branches: ["feature/leaderboard_rewards_part2"] 
 
 jobs:
+      
   build1:
+    uses: ./.github/workflows/template.yml
+         
 
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      # Use the steps from the template
-      - name: Custom Steps
-        uses: ./.github/workflows/custom-template.yml     
         
       
