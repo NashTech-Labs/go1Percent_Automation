@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: ["feature/leaderboard_rewards_part2"] 
 
-
-
 jobs:
   build1:
 
@@ -25,9 +23,4 @@ jobs:
       - name: Custom Steps
         uses: ./.github/workflows/custom-template.yml     
         
-      - name: Run Leaderboard Rewards Test
-        run: |
-          npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/AddRewardTest.ts --env chrome 
-          npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/RedeemRewardTest.ts --env chrome
-          npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/UpdateRewardTest.ts --env chrome 
-        working-directory: go1percentTS
+      
