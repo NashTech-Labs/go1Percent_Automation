@@ -11,29 +11,38 @@
 //             __/ |
 //            |___/
 //
+
+
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['src/test'],
+  src_folders: ['./src/test'],
+
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['src/page-objects'],
+  page_objects_path: ['./src/page-objects'],
+
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
   //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
-
+ 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
   //custom_assertions_path: '',
-
+ 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
-  // plugins: ["vite-plugin-nightwatch","@nightwatch/react"],
-  plugins: ['@nightwatch/apitesting'],
+
+    plugins: ['@nightwatch/apitesting'],
+ 
+  // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
+ 
+ 
+  //globals_path : './globals.js',
+ 
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
 
 
-  //globals_path : './globals.js',
-
+  // globals_path : './globals.js',
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
@@ -43,65 +52,69 @@ module.exports = {
     "employeeUserName": "testemployee1",
     "employeePassword": "testemployee1"
   },
-
+ 
   webdriver: {},
 
   test_workers: {
     enabled: true,
     workers: 'auto'
   },
-
+ 
   test_settings: {
     default: {
       disable_error_log: false,
       launch_url: 'https://nashtechglobal.qa.go1percent.com/my-dashboard',
-
+ 
       screenshots: {
         enabled: true,
         path: 'screens',
         on_failure: true
       },
-
+ 
       desiredCapabilities: {
-        browserName: 'chrome'
-      },
 
+        browserName: 'chrome'
+
+      },
+ 
       webdriver: {
         start_process: true,
         server_path: 'node_modules/.bin/chromedriver'
       }
     },
-
+ 
     api_testing: {
       start_session: false,
       webdriver: {
         start_process: false,
       }
     },
-
+ 
     firefox: {
       desiredCapabilities: {
         browserName: 'firefox',
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
           args: [
-            // '-headless',
+            '-headless',
             // '-verbose'
           ]
         }
       },
+      
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: './node_modules/.bin/geckodriver',
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
         ]
       }
     },
-
+ 
     chrome: {
-      browserName: 'chrome',
+      desiredCapabilities: {
+        browserName: 'chrome',
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         'goog:chromeOptions': {
@@ -120,9 +133,16 @@ module.exports = {
          ],
          "binary": "/usr/bin/google-chrome"
         }
+      },
+ 
+      webdriver: {
+        start_process: true,
+        server_path: '',
+        cli_args: [
+          // --verbose
+        ]
+      }
     },
-
-
 
     edge: {
       desiredCapabilities: {
@@ -131,11 +151,11 @@ module.exports = {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
-            //'--headless'
+            '--headless'
           ]
         }
       },
-
+ 
       webdriver: {
         start_process: true,
         // Download msedgedriver from https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/
@@ -146,9 +166,7 @@ module.exports = {
         ]
       }
     },
-
-
-
+    
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for when using cucumber-js (https://cucumber.io)                |
     //                                                                               |
@@ -157,25 +175,25 @@ module.exports = {
     //////////////////////////////////////////////////////////////////////////////////
     'cucumber-js': {
       src_folders: ['examples/cucumber-js/features/step_definitions'],
-
+ 
       test_runner: {
         // set cucumber as the runner
         type: 'cucumber',
-
+ 
         // define cucumber specific options
         options: {
           //set the feature path
           feature_path: 'node_modules/nightwatch/examples/cucumber-js/*/*.feature',
-
+ 
           // start the webdriver session automatically (enabled by default)
           // auto_start_session: true
-
+ 
           // use parallel execution in Cucumber
           // workers: 2 // set number of workers to use (can also be defined in the cli as --workers=2
         }
       }
     },
-
+ 
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for when using the browserstack.com cloud service               |
     //                                                                               |
@@ -197,7 +215,7 @@ module.exports = {
           accessKey: '${BROWSERSTACK_ACCESS_KEY}',
         }
       },
-
+ 
       disable_error_log: true,
       webdriver: {
         timeout_options: {
@@ -208,14 +226,14 @@ module.exports = {
         start_process: false
       }
     },
-
+ 
     'browserstack.local': {
       extends: 'browserstack',
       desiredCapabilities: {
         'browserstack.local': true
       }
     },
-
+ 
     'browserstack.chrome': {
       extends: 'browserstack',
       desiredCapabilities: {
@@ -225,14 +243,14 @@ module.exports = {
         }
       }
     },
-
+ 
     'browserstack.firefox': {
       extends: 'browserstack',
       desiredCapabilities: {
         browserName: 'firefox'
       }
     },
-
+ 
     'browserstack.ie': {
       extends: 'browserstack',
       desiredCapabilities: {
@@ -240,21 +258,21 @@ module.exports = {
         browserVersion: '11.0'
       }
     },
-
+ 
     'browserstack.safari': {
       extends: 'browserstack',
       desiredCapabilities: {
         browserName: 'safari'
       }
     },
-
+ 
     'browserstack.local_chrome': {
       extends: 'browserstack.local',
       desiredCapabilities: {
         browserName: 'chrome'
       }
     },
-
+ 
     'browserstack.local_firefox': {
       extends: 'browserstack.local',
       desiredCapabilities: {
@@ -337,7 +355,7 @@ module.exports = {
         default_path_prefix: '/wd/hub'
       }
     },
-
+ 
     'selenium.chrome': {
       extends: 'selenium_server',
       desiredCapabilities: {
@@ -347,7 +365,7 @@ module.exports = {
         }
       }
     },
-
+ 
     'selenium.firefox': {
       extends: 'selenium_server',
       desiredCapabilities: {
@@ -360,9 +378,11 @@ module.exports = {
         }
       }
     },
-
+ 
     "@nightwatch/apitesting": {
       "log_responses": true
     }
   }
 };
+ 
+
