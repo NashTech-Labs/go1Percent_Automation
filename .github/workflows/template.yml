@@ -1,10 +1,11 @@
-name: Node.js CI
+name: Set up for Nighwtwatch
 
 on:
-  [push, pull_request] 
+  workflow_call:
 
 jobs:
-  build:
+
+  build_template:
 
     runs-on: ubuntu-latest
 
@@ -41,13 +42,4 @@ jobs:
     - name: Build project
       run: npm run build --if-present
       working-directory: go1percentTS
-  
-    - name: Run Leaderboard Rewards Test
-      run: |
-        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/AddRewardTest.ts --env chrome 
-        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/RedeemRewardTest.ts --env chrome
-        npx nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards/UpdateRewardTest.ts --env chrome 
-      working-directory: go1percentTS
-  
-
-    
+      

@@ -7,6 +7,7 @@ on:
     branches: ["feature/leaderboard_rewards_part2"] 
 
 jobs:
+      
   build1:
 
     runs-on: ubuntu-latest
@@ -20,7 +21,9 @@ jobs:
         uses: actions/checkout@v2
 
       # Use the steps from the template
-      - name: Custom Steps
-        uses: ./.github/workflows/custom-template.yml     
+      - name: Run Leaderboard Rewards Test
+        uses: ./.github/workflows/template.yml 
+
+
         
       
