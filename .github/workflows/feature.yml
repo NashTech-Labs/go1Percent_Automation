@@ -1,0 +1,78 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - feature/manage-requested-session
+
+jobs:
+  
+  RequestedSession:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+      feature: 'RequestedSession'
+
+  LeaderBoardSummary:
+      uses: ./.github/workflows/Go1Percent.yml
+      with:
+        feature: 'LeaderBoardSummary'
+        
+  LeaderboardRewards:
+      uses: ./.github/workflows/Go1Percent.yml
+      with:
+        feature: LeaderboardRewards/
+        
+  ManageMyUpcomingSession:
+     uses: ./.github/workflows/Go1Percent.yml
+     with:
+       feature: 'ManageMyUpcomingSession'
+
+  ManageUpcomingSession:
+     uses: ./.github/workflows/Go1Percent.yml
+     with:
+       feature: 'ManageUpcomingSession'
+    
+  adminProfile:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+      feature: 'adminProfile'
+
+  contribution:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+      feature: 'contribution'
+
+  feedbackForm:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+      feature: 'feedbackForm'
+
+  helpdesk:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+       feature: 'helpdesk'
+
+  knolxSessions:
+      uses: ./.github/workflows/Go1Percent.yml
+      with:
+         feature: 'knolxSessions'
+
+  manageSlot:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+       feature: 'manageSlot'
+       
+  myPastSession:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+       feature: 'myPastSession'
+
+  myProfile:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+       feature: 'myProfile'
+
+  techhub:
+    uses: ./.github/workflows/Go1Percent.yml
+    with:
+       feature: 'techhub'
