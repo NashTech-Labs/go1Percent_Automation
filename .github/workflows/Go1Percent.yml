@@ -36,16 +36,7 @@ jobs:
       working-directory: go1percentTS 
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-<<<<<<< HEAD
-      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions -e edge
-
-=======
-      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions --env chrome
->>>>>>> 1e6284fa (Update Go1Percent.yml)
-=======
-      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/adminProfile --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
+      run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions -e edge 
       working-directory: go1percentTS  
 
   contribution:
@@ -77,11 +68,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag Contibutions -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/contribution --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS 
 
   feedbackForm:
@@ -113,11 +100,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag feedBackForm   -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/feedbackForm --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS       
 
   helpdesk:
@@ -149,11 +132,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag helpDesk -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/helpdesk --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS   
 
   knolxSessions:
@@ -185,11 +164,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag knolexsession -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/knolxSessions --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS    
 
   LeaderBoardSummary:
@@ -221,11 +196,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag leaderBoardReview -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/LeaderBoardSummary --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS    
 
   ManageMyUpcomingSession:
@@ -257,11 +228,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag LeaderBoardSummary -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/ManageMyUpcomingSession --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS 
 
   manageSlot:
@@ -293,11 +260,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag manageUpcommingSession -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/manageSlot --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS  
 
 
@@ -330,11 +293,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag manageSlots -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/ManageUpcomingSession --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS 
 
   myPastSession:
@@ -366,11 +325,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag manageUpcommingSession -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/myPastSession --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS  
 
   myProfile:
@@ -402,11 +357,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag myPastSession -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/myProfile --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS   
 
 
@@ -439,11 +390,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag myProfile -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/RequestedSession --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS   
 
 
@@ -476,11 +423,7 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag requestsession -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/techhub --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS    
 
 
@@ -513,9 +456,5 @@ jobs:
       working-directory: go1percentTS  
 
     - name: Run Go1PercentFEAutomation Tests
-<<<<<<< HEAD
-      run: npx nightwatch --tag techhub -e chrome
-=======
       run: npx  nightwatch ./src/test/Go1PercentFEAutomation/LeaderboardRewards --env chrome
->>>>>>> 6072762239bcb1c2fc89b06bace5c3ba095e75d0
       working-directory: go1percentTS   
