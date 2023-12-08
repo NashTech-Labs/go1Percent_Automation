@@ -48,7 +48,6 @@ jobs:
       working-directory: go1percentTS
 
     - name: Run FE Test
-      run: |
-       npx nightwatch ${{inputs.file_name}} --env chrome 
+      run: npx nightwatch ${{inputs.file_name}} --env chrome,firefox,edge 
       working-directory: go1percentTS
       
