@@ -14,7 +14,9 @@ var rewardCommands = {
 
     goToRewards: function (this: RewardPage) {
         return this
+        .waitForElementVisible('@dropDownButton')
         .click('@dropDownButton')
+        .waitForElementVisible('@rewardsOption')
         .click('@rewardsOption')
     }
     };

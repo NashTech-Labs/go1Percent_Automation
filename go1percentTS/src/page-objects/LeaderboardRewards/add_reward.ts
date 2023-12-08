@@ -75,7 +75,7 @@ var addRewardCommands = {
             if (result.value) {
                 // Element is interactable, proceed with file upload
                 browser.uploadFile('input[type="file"]', path
-                .resolve(__dirname,'..', '..', '..', '..', '..', 'go1percent/helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/Reward.jpeg'));
+                .resolve(__dirname,'..', '..', '..', '..', 'go1percent/helpers/Go1PercentFEAutomation/LeaderboardRewards/imageFiles/Reward.jpeg'));
             } else {
                 console.error('Element is not interactable');
             }
