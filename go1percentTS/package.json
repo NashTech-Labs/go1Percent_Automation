@@ -15,15 +15,24 @@
     "@types/nightwatch": "^2.3.28",
     "@types/supertest": "^2.0.16",
     "chromedriver": "^119.0.0",
+<<<<<<< Updated upstream
+=======
+    "date-fns": "^2.30.0",
+>>>>>>> Stashed changes
     "geckodriver": "^4.2.1",
     "nightwatch": "^3.3.1",
     "nightwatch-allure": "^1.2.0",
     "ts-node": "^10.9.1",
+<<<<<<< Updated upstream
     "typescript": "^5.2.2",
     "date-fns": "^2.30.0"
+=======
+    "typescript": "^5.2.2"
+>>>>>>> Stashed changes
   },
   "dependencies": {
     "chai": "^4.3.10",
+    "edgedriver": "^5.3.8",
     "supertest": "^6.3.3"
   }
 }
