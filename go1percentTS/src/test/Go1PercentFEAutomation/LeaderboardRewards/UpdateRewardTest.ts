@@ -4,7 +4,10 @@ import { UpdateRewardPage } from '../../../page-objects/LeaderboardRewards/updat
 
 
 
-describe('Leaderboard : Update Reward Test', () => {
+describe('Leaderboard : Update Reward Test',function () {
+
+
+    this.tags = ['leaderBoardReview'];
 
     const updateRewardsTab = browser.page.LeaderboardRewards.update_reward() as UpdateRewardPage;
 

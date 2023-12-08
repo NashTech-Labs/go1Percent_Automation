@@ -4,7 +4,7 @@ const skillSectionCount = 3;
 module.exports = {
     elements: {
         leadingnahser: {
-            selector: '.leading.mt-3 >:nth-child(1)'
+            selector: '.my-summary-card.detail-row.my-tab'
         },
         contibutionButton: {
             selector: "//a[text()='Contributions']",
@@ -98,6 +98,9 @@ module.exports = {
             selector: "(//div[@class='mb-2 mt-3'])",
             locateStrategy: 'xpath'
         },
+        badgePopUpDetails: {
+            selector: `.months-score :nth-of-type(${randomNumber})`,
+        },
         graphData1: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(2)"
         },
@@ -106,10 +109,6 @@ module.exports = {
         },
         skillForLable3: {
             selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
-            locateStrategy: 'xpath'
-        },
-        badgePopUpDetails: {
-            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
             locateStrategy: 'xpath'
         },
     },

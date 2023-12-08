@@ -4,8 +4,10 @@ import { AddRewardPage } from '../../../page-objects/LeaderboardRewards/add_rewa
 import { UpdateRewardPage } from '../../../page-objects/LeaderboardRewards/update_reward';
 
 
-describe('Leaderboard : Add Reward Test', () => {
+describe('Leaderboard : Add Reward Test', function () {
 
+
+    this.tags = ['leaderBoardReview'];
     const addRewardTab = browser.page.LeaderboardRewards.add_reward() as AddRewardPage;
 
     before ((browser: NightwatchBrowser) => {

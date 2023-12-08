@@ -11,13 +11,17 @@
 //             __/ |
 //            |___/
 //
+
+
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['src/test'],
+  src_folders: ['./src/test'],
+
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['src/page-objects'],
+  page_objects_path: ['./src/page-objects'],
+
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
   //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],
@@ -26,7 +30,7 @@ module.exports = {
   //custom_assertions_path: '',
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
-  // plugins: ["vite-plugin-nightwatch","@nightwatch/react"],
+
   plugins: ['@nightwatch/apitesting'],
 
   // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
@@ -34,6 +38,11 @@ module.exports = {
 
   //globals_path : './globals.js',
 
+
+  // See https://nightwatchjs.org/guide/concepts/test-globals.html#external-test-globals
+
+
+  // globals_path : './globals.js',
 
   globals: {
     "userName": "testemployee", // this is placeholder username, make sure to update.
@@ -63,7 +72,9 @@ module.exports = {
       },
 
       desiredCapabilities: {
-        browserName: 'chrome'
+
+        browserName: 'MicrosoftEdge'
+
       },
 
       webdriver: {
@@ -85,14 +96,18 @@ module.exports = {
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
           args: [
-            // '-headless',
-            // '-verbose'
+            '--headless',           
+            "window-size=1920,1080",
+            '--no-sandbox',          
+            "disable-gpu",           
+            "--disable-dev-shm-usage" 
           ]
         }
       },
+
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: './node_modules/.bin/geckodriver',
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
@@ -109,10 +124,14 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            //'--no-sandbox',
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
-            //'--headless'
+            '--no-sandbox',
+            '--ignore-certificate-errors',
+            '--allow-insecure-localhost',
+            '--headless',
+            "window-size=1920,1080",
+            '--no-sandbox',
+            "disable-gpu",
+            "--disable-dev-shm-usage"
           ]
         }
       },
@@ -126,8 +145,6 @@ module.exports = {
       }
     },
 
-
-
     edge: {
       desiredCapabilities: {
         browserName: 'MicrosoftEdge',
@@ -135,7 +152,11 @@ module.exports = {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
-            //'--headless'
+            '--headless',            
+            "window-size=1920,1080", 
+            '--no-sandbox',          
+            "disable-gpu",           
+            "--disable-dev-shm-usage" 
           ]
         }
       },
@@ -150,8 +171,6 @@ module.exports = {
         ]
       }
     },
-
-
 
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for when using cucumber-js (https://cucumber.io)                |
@@ -335,7 +354,7 @@ module.exports = {
           //'webdriver.gecko.driver': '',
           //'webdriver.chrome.driver': ''
         }
-      },
+      },  
       webdriver: {
         start_process: false,
         default_path_prefix: '/wd/hub'
@@ -370,3 +389,6 @@ module.exports = {
     }
   }
 };
+
+
+

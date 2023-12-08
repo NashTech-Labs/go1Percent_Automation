@@ -1,16 +1,18 @@
-import {NightwatchBrowser } from 'nightwatch';
-import{LoginPage} from '../../../page-objects/leaderBoardSummary/login';
-import{SummaryPage} from '../../../page-objects/leaderBoardSummary/summary';
-import {LeadingNasherPage} from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
+import { NightwatchBrowser } from 'nightwatch';
+import { LoginPage } from '../../../page-objects/leaderBoardSummary/login';
+import { SummaryPage } from '../../../page-objects/leaderBoardSummary/summary';
+import { LeadingNasherPage } from '../../../page-objects/leaderBoardSummary/leadingNasherPage';
 
 
-describe('UI automation for leaderboard summary leading nasher page option', () => {
+describe('UI automation for leaderboard summary leading nasher page option', function() {
+    this.tags = ['LeaderBoardSummary'];
+    
     let summaryPage: SummaryPage;
     let leadingPage: LeadingNasherPage;
 
-    beforeEach((client:NightwatchBrowser) => {
+    beforeEach((client: NightwatchBrowser) => {
         // Create a page object and perform login actions
-        const page = client.page.leaderBoardSummary.login()as LoginPage;
+        const page = client.page.leaderBoardSummary.login() as LoginPage;
         page
             .maximizeWindow()
             .navigate()
@@ -26,11 +28,12 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
     const commonActions = () => {
         summaryPage
             .isLeaderboardVisible()
-            .assert.containsText('@summary', 'Summary')
+            .assert.textContains('@summary', 'Summary')
             .SummaryWithAllTheDetails()
     };
 
-    const leadingNasherCommonActions = () => {
+    const leadingNasherCommonActions = () => { 
+
         commonActions();
         leadingPage
             .leadingNasherProfilePage()
@@ -38,10 +41,10 @@ describe('UI automation for leaderboard summary leading nasher page option', () 
 
 
 
-     /**
-     * Test case to validate opening a Nasher's profile when clicking on their name.
-     */
-     it('When I click on any Nasher Name Then it should open their profile', () => {
+    /**
+    * Test case to validate opening a Nasher's profile when clicking on their name.
+    */
+    it('When I click on any Nasher Name Then it should open their profile', () => {
         leadingNasherCommonActions();
         leadingPage
             //verify leader nasher profle page 

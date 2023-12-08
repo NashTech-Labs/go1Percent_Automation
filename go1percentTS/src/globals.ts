@@ -1,21 +1,21 @@
 // globals.ts
 
-const techhubUrls = {
+export const techhubUrls = {
     token: "https://auth.go1percent.com/auth/realms/nashtech/protocol/openid-connect",
     go1percentBase: "https://techhub-backend.qa.go1percent.com",
   };
   
-  const headers = {
+  export const headers = {
     'Authorization': '',
     'Source': 'https://nashtechglobal.qa.go1percent.com'
   };
   
-  const tokenHeaders = {
+  export  const tokenHeaders = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'source': 'https://nashtechglobal.qa.go1percent.com'
   };
   
-  const tokenBody = {
+  export const tokenBody = {
     client_id: 'leaderboard-ui',
     client_secret: '8090ed15-4cd1-483c-9fee-2a8b35941852',
     username: 'testadmin',
@@ -23,7 +23,7 @@ const techhubUrls = {
     grant_type: 'password',
   };
 // Backend QA Url
-const base_url ="https://knolx-backend.qa.go1percent.com/"
+export const base_url ="https://knolx-backend.qa.go1percent.com/"
   
   const addContribution={
     BaseUrl: "https://backend.qa.go1percent.com",

@@ -5,7 +5,8 @@ import { ManageSlotPage } from '../../../page-objects/manageSlot/manageSlotPage'
 let login: LoginPage;
 let manageslotpage: ManageSlotPage;
 
-describe("KNolx|Manage Slot Frontend Automation", () => {
+describe("KNolx|Manage Slot Frontend Automation",  function() {
+    this.tags = ['manageSlots'];
     before(function () {
         login = browser.page.login() as LoginPage
         manageslotpage = browser.page.manageSlot.manageSlotPage() as ManageSlotPage

@@ -1,7 +1,8 @@
 
 import { NightwatchBrowser } from 'nightwatch';
 
-describe('Add Contribution- Submit button is Disabled', () => {
+describe('Add Contribution- Submit button is Disabled', function () {
+  this.tags = ['Contibutions'];
   const Login = require('../../../../helpers/Go1PercentFEAutomation/contribution/addContribution/go1Percentloging');
   const dashboard = browser.page.contribution.addContribution.Dashboard();
   const profile = browser.page.contribution.addContribution.Profile();

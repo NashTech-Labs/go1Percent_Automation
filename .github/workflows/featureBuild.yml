@@ -1,0 +1,81 @@
+name: TypeScript_FE_Testcases_go!percent
+
+on:
+  push:
+    branches: ["feature/LeaderBoard_summary" ]
+  pull_request:
+    branches: ["feature/LeaderBoard_summary"] 
+
+jobs:
+      
+  leaderboardRewards:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: LeaderboardRewards/
+
+  adminProfile:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: adminProfile/
+
+  Contribution:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: contribution/
+
+  FeedbackForm:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: feedbackForm/
+
+  Helpdesk:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: helpdesk/
+
+  KnolxSessions:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: knolxSessions/
+
+  LeaderBoardSummary:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: LeaderBoardSummary/
+
+  ManageMyUpcomingSession:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: ManageMyUpcomingSession/
+
+  ManageSlot:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: manageSlot/
+
+  ManageUpcomingSession:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: ManageUpcomingSession/
+
+  MyPastSession:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: myPastSession/
+
+  MyProfile:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: myProfile/
+
+  RequestedSession:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: RequestedSession/
+
+  Techhub:
+    uses: ./.github/workflows/fearuresTemlate.yml
+    with:
+      featureName: techhub/
+
+          

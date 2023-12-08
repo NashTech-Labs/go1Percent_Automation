@@ -1,7 +1,9 @@
 const { assert } = require("chai");
 import { NightwatchTests, NightwatchBrowser } from "nightwatch";
 
-describe('Go1Percent edit contribution frontend testing', ()=> {
+describe('Go1Percent edit contribution frontend testing', function () {
+    this.tags = ['Contibutions'];
+
 
     const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
 
@@ -14,21 +16,21 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
             .setValue('@emailInput', 'testemployee')
             .setValue('@passwordInput', 'testemployee')
             .signIn()
-            
-     });
+
+    });
 
 
-     afterEach((client: NightwatchBrowser) =>{
+    afterEach((client: NightwatchBrowser) => {
         client.end();
-     });
+    });
 
     // This test case verifies that save button is disabled if a title less than 15 words is entered. 
     it("Verify that the save button should be disable if user add a title less than 15 words", () => {
-        
+
         editContribution
             .navigate()
             .clickSettings()
-            .clickProfile()    
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
@@ -40,11 +42,11 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
 
     // This test case verifies that save button is disabled if a description less than 100 words is entered.
     it("Verify that the save button should be disable if user add a description less than 100 words", () => {
-        
+
         editContribution
             .navigate()
             .clickSettings()
-            .clickProfile()    
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
@@ -56,11 +58,11 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
 
     // This test case verifies that save button is disabled if invalid url is entered.
     it("Verify that the save button should not be enable if user add a invalid URL", () => {
-        
+
         editContribution
-            .navigate() 
+            .navigate()
             .clickSettings()
-            .clickProfile()   
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
@@ -71,11 +73,11 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
 
     // This test case verifies that contribution type cannot be edited.
     it("Verify that user should not be able to edit the contribution type of the added contribution", () => {
-        
+
         editContribution
-            .navigate()  
+            .navigate()
             .clickSettings()
-            .clickProfile()  
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
@@ -85,11 +87,11 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
 
     // This test case verifies that title can be edited.
     it("Verify that user should be able to edit the title of the added contribution", () => {
-        
+
         editContribution
-            .navigate() 
+            .navigate()
             .clickSettings()
-            .clickProfile()   
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
@@ -99,11 +101,11 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
 
     // This test case verifies that description can be edited.
     it("Verify that user should be able to edit the details of pending contribution", () => {
-        
+
         editContribution
-            .navigate() 
+            .navigate()
             .clickSettings()
-            .clickProfile()   
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
@@ -151,10 +153,10 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
             .clickOnlineCourseContribution()
             .clickEditButton()
             .expect.element('@contributionDate').to.have.attribute('disabled')
-            
+
 
     });
-    
+
     // This test case verifies that title/description/url of online course type contribution cannot be edited.
     it("Verify that the title/description/url of the online course contribution cannot be modified", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
@@ -172,17 +174,17 @@ describe('Go1Percent edit contribution frontend testing', ()=> {
     it("Verify that it throws an error id we add an existing url", () => {
         const editContribution = browser.page.contribution.editSearchContribution.editSearchContribution();
         editContribution
-            .navigate() 
+            .navigate()
             .clickSettings()
-            .clickProfile()   
+            .clickProfile()
             .clickContributions()
             .clickContribution()
             .clickEditButton()
             .editUrl('https://testcontribution.com')
             .click('@saveButton')
             .waitForElementVisible('@alert')
-            .assert.textContains('@alert','Contribution with same url already exist')
+            .assert.textContains('@alert', 'Contribution with same url already exist')
     });
-  
+
 });
 

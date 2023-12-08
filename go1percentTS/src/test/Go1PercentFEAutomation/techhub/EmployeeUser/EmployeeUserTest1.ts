@@ -1,8 +1,9 @@
 import {NightwatchBrowser} from 'nightwatch';
 import { TechHubPage } from '../../../../page-objects/techhub/EmployeeUser/techHubPage';
 
-describe('Go1 Percent Frontend Test cases', () => {
-
+describe('Go1 Percent Frontend Test cases', function() {
+    this.tags = ['techhub'];
+  
     //perform login ang go in TechHub Page through the profile
     beforeEach((browser: NightwatchBrowser) => {
         browser

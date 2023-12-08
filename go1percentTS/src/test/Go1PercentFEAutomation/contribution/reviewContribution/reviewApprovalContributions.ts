@@ -1,6 +1,11 @@
 import { NightwatchBrowser } from "nightwatch";
 
-describe('Go1Percent Review Contribution FE tests', () => {
+describe('Go1Percent Review Contribution FE tests', function () {
+
+
+    this.tags = ['Contibutions'];
+
+
     const contribution = browser.page.contribution.reviewContribution.approvals();
 
     before((browser: NightwatchBrowser) => {
@@ -32,9 +37,9 @@ describe('Go1Percent Review Contribution FE tests', () => {
         contribution.searchNasher();
     }),
 
-    it('Filter contributions by all competency filter', () => {
-        contribution.competencyFilter();
-    });
+        it('Filter contributions by all competency filter', () => {
+            contribution.competencyFilter();
+        });
 
     it('Filter by competency type', () => {
         contribution.contributionTypeFilter();

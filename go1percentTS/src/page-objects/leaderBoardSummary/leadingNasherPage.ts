@@ -23,22 +23,20 @@ const commands = {
             .waitForElementVisible('@contibutionButton') // Make sure '@contibutionButton' is a valid selector
             .click('@contibutionButton')
             .waitForElementPresent('@allContributions')
-            .waitForElementVisible('@allContributions',6000)
+            .waitForElementVisible('@allContributions', 6000)
             .getText('@allContributions', function name(result) {
-                contributionText = result.value; // Save the text for further use if needed
+                contributionText = result.value;
                 console.log(result.value);
-                // Verify that the fetched text meets your expectations
             });
     },
 
     allContibutionList(this: LeadingNasherPage) {
         const elementValues: any[] = [];
         browser.waitForElementVisible('div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]')
-        browser.elements('css selector', 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]', function (result) {
-            elementValues.push(result.value)
-            this.assert.ok(elementValues.length > 0, 'elementCount should be greater than 0')
-        });
-
+        browser.elements('css selector', 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3', elements => {
+            elementValues.push(elements.value)
+            browser.assert.ok(elementValues.length > 0, 'elementCount should be greater than 0')
+        })
     },
     verifyRewordSectionContainsPointAndDate(this: LeadingNasherPage) {
         const dateRegex = '[A-Za-z]+ [0-9]+, [0-9]+'
@@ -55,12 +53,12 @@ const commands = {
     viewRewords(this: LeadingNasherPage) {
         return this
             .click('@viewRwordsButton')
-            .waitForElementVisible('@rewords',6000)
+            .waitForElementVisible('@rewords', 6000)
             .assert.textContains('@rewords', 'pts', 'asserting points ont reworing section')
             .assert.textContains('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
     },
     contaisBadgeSectionWithPopUpDetails(this: LeadingNasherPage) {
-        let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/; // Use a regex without quotes
+        let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/;
         return this
             .click('@badge')
             .waitForElementVisible('@badgPopup')
@@ -93,6 +91,7 @@ const commands = {
         let graphDetail2sRegex = '[0-9]+';
 
         return this
+            .click('@allTime')
             .waitForElementVisible('@graph', 6000)
             .moveToElement('@graph', 10, 10)
             .pause(5000)
@@ -106,32 +105,33 @@ const commands = {
     },
 
     // we expand our configuration here
-        expandContribution(this: LeadingNasherPage) {
-            
-            let wordRegex = '[A-Za-z]+';
-            let dateRegex='[0-9]+-[A-Za-z]+-[0-9]+';
+    expandContribution(this: LeadingNasherPage) {
 
-            return this
-                .waitForElementVisible('@exanContribution')
-                .click('@exanContribution')
-                .getText('@contributionsTyesTwo', function name(text) {
-                console.log('-----------------------------------',text.value) 
-                })
-                .assert.textMatches('@contributionsTyesOne', new RegExp(wordRegex))
-                .assert.textMatches('@contributionsTyesTwo', new RegExp(dateRegex))
-        },
-   
+        let wordRegex = '[A-Za-z]+';
+        let dateRegex = '[0-9]+-[A-Za-z]+-[0-9]+';  
+
+        return this
+            .click('@allTime')
+            .waitForElementVisible('@exanContribution')
+            .click('@exanContribution')
+            .getText('@contributionsTyesTwo', function name(text) {
+                console.log('-----------------------------------', text.value)
+            })
+            .assert.textMatches('@contributionsTyesOne', new RegExp(wordRegex))
+            .assert.textMatches('@contributionsTyesTwo', new RegExp(dateRegex))
+    },
+
     nasherWithSkillAndWithoutSkill(this: LeadingNasherPage) {
         //conatais skill with lebels 
         return this
             .click('@nasherWithSkill')
             .click('@skillButton')
             .waitForElementVisible('@skillabel1')
-            .assert.containsText('@skillabel1', 'Proficient', 'contains the skill lebel Proficient')
+            .assert.textContains('@skillabel1', 'Proficient', 'contains the skill lebel Proficient')
             .waitForElementVisible('@skillabel2')
-            .assert.containsText('@skillabel2', 'Intermediate', 'contains the skill lebel Intermediate')
+            .assert.textContains('@skillabel2', 'Intermediate', 'contains the skill lebel Intermediate')
             .waitForElementVisible('@skillabel3')
-            .assert.containsText('@skillabel3', 'Beginner', 'contains the skill lebel Beginner')
+            .assert.textContains('@skillabel3', 'Beginner', 'contains the skill lebel Beginner')
 
             //asserting skill for allt he labels
             .getText('@skillForLable1', function name(text) {
@@ -167,7 +167,7 @@ const leadingNasher: PageObjectModel = {
     commands: [commands],
     elements: {
         leadingnahser: {
-            selector: '.leading.mt-3 >:nth-child(1)'
+            selector: '.my-summary-card.detail-row.my-tab'
         },
         contibutionButton: {
             selector: "//a[text()='Contributions']",
@@ -181,7 +181,7 @@ const leadingNasher: PageObjectModel = {
             selector: '.studio-member-card.cursor-pointer',
         },
         rewrordSection: {
-            selector:"div[class*='-center mt-5'] div div:nth-child(1)"
+            selector: "div[class*='-center mt-5'] div div:nth-child(1)"
         },
         rewordSectionDate: {
             selector: 'span[class="text-bold"]'
@@ -200,19 +200,19 @@ const leadingNasher: PageObjectModel = {
             selector: '.add-button.reedeem-btn'
         },
         rewords: {
-            selector:'.card.rewrdlist'
+            selector: '.card.rewrdlist'
         },
         badge: {
-            selector:'div[class*="material-symbols-outlined hexagon"]'
+            selector: 'div[class*="material-symbols-outlined hexagon"]'
         },
         badgPopup: {
-            selector:'.modal-body :nth-child(1)'
+            selector: '.modal-body :nth-child(1)'
         },
         noBadgeFound: {
             selector: ".badge-card :nth-child(3) p"
         },
         pointSection: {
-            selector: 'div[class="col-6 current-month"]'
+            selector: '.col-6.current-month:nth-of-type(1)'
         },
         calander: {
             selector: "input[placeholder='Select Month']"
@@ -227,38 +227,45 @@ const leadingNasher: PageObjectModel = {
             selector: 'div[class="accordion mb-3 br spanText"]'
         },
         contributionsTyesOne: {
-            selector:'.detail-row:nth-child(1) :nth-child(1)'
+            selector: '.detail-row:nth-child(1) :nth-child(1)'
         },
-        contributionsTyesTwo:{
-            selector:'.detail-row:nth-child(1) :nth-child(2)'
+        contributionsTyesTwo: {
+            selector: '.detail-row:nth-child(1) :nth-child(2)'
         },
-        
+
         skillButton: {
-            selector:'.newTabs.nav-item + li'
+            selector: '.newTabs.nav-item + li'
         },
         noSkillSection: {
             selector: 'div[class="skill-outline-div w-100 h-40"]'
         },
 
         nasherWithSkill: {
-            selector :'.leading.mt-3>:nth-child(2)'
+            selector: '.leading.mt-3>:nth-child(2)'
         },
         skillabel1: {
             selector: "(//div[@class='mb-4 mt-3'])[1]",
             locateStrategy: 'xpath'
         },
         skillForLable1: {
-            selector:'.skill-outline-div.skill-outline-div'
+            selector: '.skill-outline-div.skill-outline-div'
         },
         skillabel2: {
             selector: "(//div[@class='mb-4 mt-3'])[2]",
             locateStrategy: 'xpath'
         },
         skillForLable2: {
-             selector:'.card.tab-card :nth-child(3)'
+            selector: '.card.tab-card :nth-child(3)'
         },
         skillabel3: {
             selector: "(//div[@class='mb-2 mt-3'])",
+            locateStrategy: 'xpath'
+        },
+        badgePopUpDetails: {
+            selector: `.months-score :nth-of-type(${randomNumber})`
+        },
+        skillForLable3: {
+            selector: "(//div[@class='skill-outline-div w-100 h-40'])[3]",
             locateStrategy: 'xpath'
         },
         graphData1: {
@@ -267,14 +274,10 @@ const leadingNasher: PageObjectModel = {
         graphData2: {
             selector: "app-profile-pie-chart div:nth-of-type(2) > div > div > span:nth-of-type(3)",
         },
-        skillForLable3: {
-            selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
-            locateStrategy: 'xpath'
+        allTime: {
+            selector: ".mt-3.date-bar.button-class"
         },
-        badgePopUpDetails: {
-            selector: `(//div[@class='info-div d-flex flex-column justify-content-center'])[${randomNumber}]`,
-            locateStrategy: 'xpath'
-        },
+
     }
 };
 

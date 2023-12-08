@@ -4,7 +4,10 @@ import { KnolxSessionsPage } from '../../../page-objects/knolxSessions/knolxSess
 const competencyName = "TEST AUTOMATION COMPETENCY";
 let login: LoginPage, sessionsPage: KnolxSessionsPage;
 
-describe("Upcoming Sessions Page Frontend Automation", () => {
+describe("Upcoming Sessions Page Frontend Automation", function () {
+
+
+    this.tags = ['knolexsession'];
     before(function () {
         login = browser.page.login() as LoginPage
         sessionsPage = browser.page.knolxSessions.knolxSessionsPage() as KnolxSessionsPage

@@ -7,7 +7,9 @@ import { UpcomingSessionData } from "../../../globals";
 
 
 
-describe("Manage My Upcoming Session", () => {
+describe("Manage My Upcoming Session",  function() {
+    this.tags = ['manageUpcommingSession'];
+
 
   let  Session = browser.page.ManageMyUpcomingSession.MySessionPage() as Dashboard;
    let Upcoming = browser.page.ManageMyUpcomingSession.My_Upcoming_Session() as UpcomingSession;
