@@ -4,7 +4,7 @@ const skillSectionCount = 3;
 module.exports = {
     elements: {
         leadingnahser: {
-            selector: '.leading.mt-3 >:nth-child(1)'
+            selector: '.my-summary-card.detail-row.my-tab'
         },
         contibutionButton: {
             selector: "//a[text()='Contributions']",

@@ -28,11 +28,11 @@ describe('UI automation for leaderboard summary leading nasher page option', fun
     const commonActions = () => {
         summaryPage
             .isLeaderboardVisible()
-            .assert.containsText('@summary', 'Summary')
+            .assert.textContains('@summary', 'Summary')
             .SummaryWithAllTheDetails()
     };
 
-    const leadingNasherCommonActions = () => {
+    const leadingNasherCommonActions = () => { 
 
         commonActions();
         leadingPage

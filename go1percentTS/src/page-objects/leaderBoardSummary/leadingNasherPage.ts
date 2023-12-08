@@ -25,20 +25,18 @@ const commands = {
             .waitForElementPresent('@allContributions')
             .waitForElementVisible('@allContributions', 6000)
             .getText('@allContributions', function name(result) {
-                contributionText = result.value; // Save the text for further use if needed
+                contributionText = result.value;
                 console.log(result.value);
-                // Verify that the fetched text meets your expectations
             });
     },
 
     allContibutionList(this: LeadingNasherPage) {
         const elementValues: any[] = [];
         browser.waitForElementVisible('div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]')
-        browser.elements('css selector', 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3"]', function (result) {
-            elementValues.push(result.value)
-            this.assert.ok(elementValues.length > 0, 'elementCount should be greater than 0')
-        });
-
+        browser.elements('css selector', 'div[class="studio-member-card cursor-pointer my-4 px-2 py-3', elements => {
+            elementValues.push(elements.value)
+            browser.assert.ok(elementValues.length > 0, 'elementCount should be greater than 0')
+        })
     },
     verifyRewordSectionContainsPointAndDate(this: LeadingNasherPage) {
         const dateRegex = '[A-Za-z]+ [0-9]+, [0-9]+'
@@ -60,7 +58,7 @@ const commands = {
             .assert.textContains('@rewords', 'Expiry', 'asserting the date of Expiry the reword section')
     },
     contaisBadgeSectionWithPopUpDetails(this: LeadingNasherPage) {
-        let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/; // Use a regex without quotes
+        let regexPattern = /^[A-Z]+ \d{4}\nScore: \d+$/;
         return this
             .click('@badge')
             .waitForElementVisible('@badgPopup')
@@ -110,7 +108,7 @@ const commands = {
     expandContribution(this: LeadingNasherPage) {
 
         let wordRegex = '[A-Za-z]+';
-        let dateRegex = '[0-9]+-[A-Za-z]+-[0-9]+';
+        let dateRegex = '[0-9]+-[A-Za-z]+-[0-9]+';  
 
         return this
             .click('@allTime')
@@ -169,7 +167,6 @@ const leadingNasher: PageObjectModel = {
     commands: [commands],
     elements: {
         leadingnahser: {
-            // selector: '.leading.mt-3 >:nth-child(1)'
             selector: '.my-summary-card.detail-row.my-tab'
         },
         contibutionButton: {
@@ -268,7 +265,6 @@ const leadingNasher: PageObjectModel = {
             selector: `.months-score :nth-of-type(${randomNumber})`
         },
         skillForLable3: {
-            // selector: "(//div[@class='skill-outline-div w-100 h-40'])[4]",
             selector: "(//div[@class='skill-outline-div w-100 h-40'])[3]",
             locateStrategy: 'xpath'
         },
