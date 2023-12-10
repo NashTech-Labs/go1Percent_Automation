@@ -1,0 +1,64 @@
+
+name: Set up for Nighwtwatch
+
+on:
+  workflow_call:
+    inputs:
+        featureName:
+            required: true
+            type: string
+
+jobs:
+
+  build_template:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './go1percent/package-lock.json'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: go1percentTS
+
+    - name: Install Nightwatch
+      run: npm install --save-dev nightwatch
+      working-directory: go1percentTS
+
+    - name: Install ChromeDriver
+      run: |
+        CHROMEDRIVER_VERSION=119.0.0
+        npm install chromedriver@$CHROMEDRIVER_VERSION
+      working-directory: go1percentTS
+
+    - name: Build project on feature Branch
+      run: npm run build --if-present
+      working-directory: go1percentTS
+
+    - name: Run FrontEnd Test (Chrome)
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env chrome
+      working-directory: go1percentTS
+
+    - name: Run FrontEnd Test (Edge)
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env edge
+      working-directory: go1percentTS  
+
+    - name: Run FrontEnd Test (firefox)
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env firefox
+      working-directory: go1percentTS  
+
+
+      
