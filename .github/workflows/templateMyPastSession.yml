@@ -48,15 +48,15 @@ jobs:
       run: npm run build --if-present
       working-directory: go1percentTS
 
-    - name: Run FrontEnd Test (Chrome)
+    - name: Run FrontEnd Test for Chrome
       run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env chrome
       working-directory: go1percentTS
 
-    - name: Run FrontEnd Test (Edge)
+    - name: Run FrontEnd Test for Edge
       run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env edge
       working-directory: go1percentTS  
 
-    - name: Run FrontEnd Test (firefox)
+    - name: Run FrontEnd Test for firefox
       run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env firefox
       working-directory: go1percentTS  
 
