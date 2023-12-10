@@ -14,10 +14,10 @@ jobs:
     with:
       featureName: adminProfile/
 
-  # Contribution:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: contribution/
+  Contribution:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: contribution/
 
   # FeedbackForm:
   #   uses: ./.github/workflows/templateMyPastSession.yml
