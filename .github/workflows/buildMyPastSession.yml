@@ -19,15 +19,15 @@ jobs:
     with:
       featureName: contribution/
 
-  # FeedbackForm:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: feedbackForm/
+  FeedbackForm:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: feedbackForm/
 
-  # Helpdesk:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: helpdesk/
+  Helpdesk:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: helpdesk/
 
   # KnolxSessions:
   #   uses: ./.github/workflows/templateMyPastSession.yml
