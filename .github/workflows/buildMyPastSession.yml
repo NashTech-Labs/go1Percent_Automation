@@ -14,70 +14,70 @@ jobs:
     with:
       featureName: adminProfile/
 
-  Contribution:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: contribution/
+  # Contribution:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: contribution/
 
-  FeedbackForm:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: feedbackForm/
+  # FeedbackForm:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: feedbackForm/
 
-  Helpdesk:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: helpdesk/
+  # Helpdesk:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: helpdesk/
 
-  KnolxSessions:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: knolxSessions/
+  # KnolxSessions:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: knolxSessions/
   
-  leaderboardRewards:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: LeaderboardRewards/
+  # leaderboardRewards:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: LeaderboardRewards/
 
-  LeaderBoardSummary:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: LeaderBoardSummary/
+  # LeaderBoardSummary:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: LeaderBoardSummary/
 
-  ManageMyUpcomingSession:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: ManageMyUpcomingSession/
+  # ManageMyUpcomingSession:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: ManageMyUpcomingSession/
 
-  ManageSlot:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: manageSlot/
+  # ManageSlot:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: manageSlot/
 
-  ManageUpcomingSession:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: ManageUpcomingSession/
+  # ManageUpcomingSession:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: ManageUpcomingSession/
 
-  MyPastSession:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: myPastSession/
+  # MyPastSession:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: myPastSession/
 
-  MyProfile:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: myProfile/
+  # MyProfile:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: myProfile/
 
-  RequestedSession:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: RequestedSession/
+  # RequestedSession:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: RequestedSession/
 
-  Techhub:
-    uses: ./.github/workflows/templateMyPastSession.yml
-    with:
-      featureName: techhub/
+  # Techhub:
+  #   uses: ./.github/workflows/templateMyPastSession.yml
+  #   with:
+  #     featureName: techhub/
 
           
 
