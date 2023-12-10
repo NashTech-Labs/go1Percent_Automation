@@ -29,10 +29,10 @@ jobs:
     with:
       featureName: helpdesk/
 
-  # KnolxSessions:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: knolxSessions/
+  KnolxSessions:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: knolxSessions/
   
   # leaderboardRewards:
   #   uses: ./.github/workflows/templateMyPastSession.yml
@@ -44,25 +44,25 @@ jobs:
   #   with:
   #     featureName: LeaderBoardSummary/
 
-  # ManageMyUpcomingSession:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: ManageMyUpcomingSession/
+  ManageMyUpcomingSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: ManageMyUpcomingSession/
 
-  # ManageSlot:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: manageSlot/
+  ManageSlot:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: manageSlot/
 
-  # ManageUpcomingSession:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: ManageUpcomingSession/
+  ManageUpcomingSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: ManageUpcomingSession/
 
-  # MyPastSession:
-  #   uses: ./.github/workflows/templateMyPastSession.yml
-  #   with:
-  #     featureName: myPastSession/
+  MyPastSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: myPastSession/
 
   # MyProfile:
   #   uses: ./.github/workflows/templateMyPastSession.yml
