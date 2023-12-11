@@ -3,7 +3,7 @@ name: Set up for Nighwtwatch
 
 on:
   workflow_call:
-    inputs:
+    featureTags:
         featureName:
             required: true
             type: string
@@ -49,15 +49,15 @@ jobs:
       working-directory: go1percentTS
 
     - name: Run FrontEnd Test for Chrome
-      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env chrome
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{featureTags.featureName}} --env chrome
       working-directory: go1percentTS
 
     - name: Run FrontEnd Test for Edge
-      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env edge
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{featureTags.featureName}} --env edge
       working-directory: go1percentTS  
 
     - name: Run FrontEnd Test for firefox
-      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{inputs.featureName}} --env firefox
+      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{featureTags.featureName}} --env firefox
       working-directory: go1percentTS  
 
 
