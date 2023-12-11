@@ -1,0 +1,83 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: ["feature/My_Past_Session" ]
+  pull_request:
+    branches: ["feature/My_Past_Session"]
+
+
+jobs:
+
+  adminProfile:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: adminProfile/
+
+  Contribution:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: contribution/
+
+  FeedbackForm:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: feedbackForm/
+
+  Helpdesk:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: helpdesk/
+
+  KnolxSessions:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: knolxSessions/
+  
+  leaderboardRewards:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: LeaderboardRewards/
+
+  LeaderBoardSummary:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: LeaderBoardSummary/
+
+  ManageMyUpcomingSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: ManageMyUpcomingSession/
+
+  ManageSlot:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: manageSlot/
+
+  ManageUpcomingSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: ManageUpcomingSession/
+
+  MyPastSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: myPastSession/
+
+  MyProfile:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: myProfile/
+
+  RequestedSession:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: RequestedSession/
+
+  Techhub:
+    uses: ./.github/workflows/templateMyPastSession.yml
+    with:
+      featureName: techhub/
+
+          
+

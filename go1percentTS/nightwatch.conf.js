@@ -85,7 +85,7 @@ module.exports = {
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
           args: [
-            // '-headless',
+            '-headless',
             // '-verbose'
           ]
         }
@@ -109,10 +109,10 @@ module.exports = {
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
           w3c: true,
           args: [
-            //'--no-sandbox',
-            //'--ignore-certificate-errors',
-            //'--allow-insecure-localhost',
-            //'--headless'
+            '--no-sandbox',
+            '--ignore-certificate-errors',
+            '--allow-insecure-localhost',
+            '--headless'
           ]
         }
       },
@@ -135,7 +135,7 @@ module.exports = {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
-            //'--headless'
+            '--headless'
           ]
         }
       },
@@ -358,7 +358,7 @@ module.exports = {
         browserName: 'firefox',
         'moz:firefoxOptions': {
           args: [
-            // '-headless',
+            '-headless',
             // '-verbose'
           ]
         }
