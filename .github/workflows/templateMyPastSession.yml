@@ -1,5 +1,5 @@
 
-name: Set up for Nighwtwatch
+name: Pipeline for feature/My Past Session
 
 on:
   workflow_call:
