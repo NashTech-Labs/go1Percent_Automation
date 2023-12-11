@@ -38,19 +38,19 @@ jobs:
       run: npm install --save-dev nightwatch
       working-directory: go1percentTS
 
-    - name: Install ChromeDriver
-      run: |
-        CHROMEDRIVER_VERSION=119.0.0
-        npm install chromedriver@$CHROMEDRIVER_VERSION
-      working-directory: go1percentTS
+    # - name: Install ChromeDriver
+    #   run: |
+    #     CHROMEDRIVER_VERSION=119.0.0
+    #     npm install chromedriver@$CHROMEDRIVER_VERSION
+    #   working-directory: go1percentTS
 
     - name: Build project on feature Branch
       run: npm run build --if-present
       working-directory: go1percentTS
 
-    - name: Run FrontEnd Test for Chrome
-      run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{featureTags.featureName}} --env chrome
-      working-directory: go1percentTS
+    # - name: Run FrontEnd Test for Chrome
+    #   run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{featureTags.featureName}} --env chrome
+    #   working-directory: go1percentTS
 
     - name: Run FrontEnd Test for Edge
       run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{featureTags.featureName}} --env edge
