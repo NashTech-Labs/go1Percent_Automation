@@ -1,9 +1,11 @@
 name: Nightwatch Tests
 
 on:
-  push:
-    branches:
-      - feature/manage-requested-session
+  workflow_call:
+    inputs:
+        feature:
+            required: true
+            type: string
 
 jobs:
   run_nightwatch:
