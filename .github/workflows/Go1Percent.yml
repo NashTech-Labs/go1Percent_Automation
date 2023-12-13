@@ -1,14 +1,14 @@
-name: Node.js CI
+name: Nightwatch Tests
 
 on:
-  push:
-    branches: ["main" ]
-  pull_request:
-    branches: ["main"]
+  workflow_call:
+    inputs:
+        feature:
+            required: true
+            type: string
 
 jobs:
-  build:
-
+  run_nightwatch:
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,29 +16,42 @@ jobs:
         node-version: [18.x]
 
     steps:
-    
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: './go1percent/package-lock.json'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: './go1percent/package-lock.json'
 
-    - name: Install dependencies
-      run: npm install
-      working-directory: go1percent
-      
-    - name: Build project
-      run: npm run build --if-present
-      working-directory: go1percent  
+      - name: Install dependencies
+        run: npm install
+        working-directory: go1percentTS
 
-    - name: Run Go1PercentAPIAutomation Tests
-      run: npx nightwatch test/Go1PercentAPIAutomation --env api_testing
-      working-directory: go1percent  
+      - name: Install Nightwatch
+        run: npm install --save-dev nightwatch
+        working-directory: go1percentTS
 
-    - name: Run Go1PercentFEAutomation Tests
-      run: npx nightwatch test/Go1PercentFEAutomation --env chrome
-      working-directory: go1percent  
+      - name: Install ChromeDriver
+        run: |
+          CHROMEDRIVER_VERSION=119.0.0
+          npm install chromedriver@$CHROMEDRIVER_VERSION
+        working-directory: go1percentTS
+
+      - name: Build project
+        run: npm run build --if-present
+        working-directory: go1percentTS
+
+      - name: Run Frontend Tests:Google Chrome 
+        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ inputs.feature }} --env chrome
+        working-directory: go1percentTS
+
+      - name: Run Frontend Tests:Microsoft Edge 
+        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ inputs.feature }} --env edge
+        working-directory: go1percentTS
+
+      - name: Run Frontend Tests:Firefox 
+        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ inputs.feature }} --env firefox
+        working-directory: go1percentTS

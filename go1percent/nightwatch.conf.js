@@ -16,12 +16,12 @@ require('dotenv').config();
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['test'],
+  src_folders: ['./test'],
   skip_testcases_on_fail: false,
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
 
-  page_objects_path: ['page-objects', './page-objects/Manage_upcoming_sessions', './page-objects/TicketAssignedToMe','page-objects/My_Profile', 'page-objects/knolxSessions'],
+  page_objects_path: ['page-objects', './page-objects/RequestedSession'],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
   //custom_commands_path: ['node_modules/nightwatch/examples/custom-commands/'],

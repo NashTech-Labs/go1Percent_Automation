@@ -63,7 +63,7 @@ module.exports = {
       },
 
       desiredCapabilities: {
-        browserName: 'chrome'
+        browserName: 'MicrosoftEdge'
       },
 
       webdriver: {
@@ -85,14 +85,17 @@ module.exports = {
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
           args: [
-            // '-headless',
-            // '-verbose'
+            '--headless',           
+            "window-size=1920,1080",
+            '--no-sandbox',          
+            "disable-gpu",           
+            "--disable-dev-shm-usage" 
           ]
         }
       },
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: './node_modules/.bin/geckodriver',
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
@@ -113,6 +116,11 @@ module.exports = {
             //'--ignore-certificate-errors',
             //'--allow-insecure-localhost',
             //'--headless'
+            '--headless',
+            "window-size=1920,1080",
+            '--no-sandbox',
+            "disable-gpu",
+            "--disable-dev-shm-usage"
           ]
         }
       },
@@ -135,7 +143,11 @@ module.exports = {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
-            //'--headless'
+            '--headless',            
+            "window-size=1920,1080", 
+            '--no-sandbox',          
+            "disable-gpu",           
+            "--disable-dev-shm-usage" 
           ]
         }
       },
