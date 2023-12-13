@@ -1,12 +1,9 @@
 name: Node.js CI
 
 on:
-  workflow_call:
-    inputs:
-        feature:
-            required: true
-            type: string
-
+  push:
+    branches:
+      - feature/manage-requested-session
 jobs:
   
   RequestedSession:
