@@ -14,21 +14,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        feature:
-          - 'RequestedSession'
-          - 'LeaderBoardSummary'
-          - 'LeaderboardRewards'
-          - 'ManageMyUpcomingSession'
-          - 'ManageUpcomingSession'
-          - 'adminProfile'
-          - 'contribution'
-          - 'feedbackForm'
-          - 'helpdesk'
-          - 'knolxSessions'
-          - 'manageSlot'
-          - 'myPastSession'
-          - 'myProfile'
-          - 'techhub'
 
     steps:
       - name: Checkout repository
@@ -60,13 +45,13 @@ jobs:
         working-directory: go1percentTS
 
       - name: Run Frontend Tests:Google Chrome 
-        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ matrix.feature }} --env chrome
+        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ inputs.feature }} --env chrome
         working-directory: go1percentTS
 
       - name: Run Frontend Tests:Microsoft Edge 
-        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ matrix.feature }} --env edge
+        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ inputs.feature }} --env edge
         working-directory: go1percentTS
 
       - name: Run Frontend Tests:Firefox 
-        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ matrix.feature }} --env firefox
+        run: npx nightwatch ./src/test/Go1PercentFEAutomation/${{ inputs.feature }} --env firefox
         working-directory: go1percentTS
